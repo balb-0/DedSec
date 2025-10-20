@@ -79,35 +79,79 @@ _O Canvas da proposta de valor deve ser feito considerando a solução que você
 
 _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estão criando. Deve ser entregue no template disponível no drive da turma. Os alunos devem enumerar os riscos, distribuí-los na matriz e justificar suas decisões._     
 
-### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
+### 3.1.6. Política de Privacidade de acordo com a LGPD  
 
-_A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
+&nbsp;&nbsp;&nbsp;&nbsp;A Política de Privacidade é um documento essencial no contexto de colaboração entre o DedSec — o Grupo 04 do 4º módulo de 2025 da Turma 18 de alunos do Inteli — e a Tic Trens, dada a necessidade de coleta e análise de dados. Esse documento assegura aos usuários, colaboradores e parceiros, enquanto titulares dos dados, que seus dados pessoais estão sendo tratados com respeito e de acordo com a Lei Geral de Proteção de Dados (LGPD). (Kore, 2024)<sup>[1](#foot1)</sup>
 
-#### 3.1.6.1 Informações gerais sobre a empresa / organização
+#### 3.1.6.1 Informações gerais sobre a empresa / organização  
 
-#### 3.1.6.2 Informações sobre o tratamento de dados
+&nbsp;&nbsp;&nbsp;&nbsp;O Instituto de Tecnologia e Liderança (Inteli), pessoa jurídica de direito privado, está localizado na Av. Prof. Almeida Prado, 520 - Butantã, São Paulo - SP, 05508-070, e inscrito no CNPJ/MF sob o nº 28.226.170/0001-08.  
+&nbsp;&nbsp;&nbsp;&nbsp;Em parceria com a Tic Trens, o Inteli reforça seu compromisso com a proteção de dados pessoais. A colaboração com o time DedSec no projeto de gerenciamento de acessos utiliza plataformas e conexões para coletar e tratar dados de forma responsável, garantindo total conformidade com a legislação vigente.  
 
-#### 3.1.6.3 Quais são os dados coletados
+#### 3.1.6.2 Informações sobre o tratamento de dados  
 
-#### 3.1.6.4 Onde os dados são coletados 
+&nbsp;&nbsp;&nbsp;&nbsp;O tratamento de dados coletados pela aplicação tem como principal objetivo proporcionar funcionalidades avançadas no monitoramento e análise, garantindo a segurança da plataforma e a personalização de serviços. Esses dados são tratados de acordo com os seguintes princípios:  
+- **Finalidade**: O tratamento dos dados tem propósitos claros e legítimos, como melhoria da experiência do usuário, monitoramento de dispositivos conectados e otimização de processos.  
+- **Adequação**: Os dados tratados estão alinhados às necessidades do projeto.  
+- **Segurança**: Todas as medidas de proteção de dados são aplicadas para mitigar riscos de vazamentos ou acessos indevidos.  
 
-#### 3.1.6.5 Para quais finalidades os dados serão utilizadas
+#### 3.1.6.3 Quais são os dados coletados  
 
-#### 3.1.6.6 Onde os dados ficam armazenados 
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados incluem informações fornecidas diretamente pelo parceiro, como localização do usuário e informações técnicas geradas durante a interação com a plataforma, como localização aproximada, tipo de dispositivo e logs de sistema.  
+&nbsp;&nbsp;&nbsp;&nbsp;Além disso, o projeto registra dados provenientes de dispositivos IoT, como localização, _timestamps_ e IDs, para análise em tempo real e aplicação em estudos avançados de engenharia.  
 
-#### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
+#### 3.1.6.4 Onde os dados são coletados  
 
-#### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são coletados por meio da integração com a plataforma feita para o parceiro. Esta plataforma atua como um ponto central de coleta, unificando dados provenientes de dispositivos IoT conectados e informações inseridas diretamente pelos usuários.  
 
-#### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
+#### 3.1.6.5 Para quais finalidades os dados serão utilizados  
 
-#### 3.1.6.10 Informações sobre medidas de segurança adotadas pela empresa
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados têm múltiplas finalidades, incluindo:  
+1. **Monitoramento e análise**: Auxiliar no acompanhamento em tempo real das condições ambientais ou operacionais registradas pelos dispositivos IoT.  
+2. **Melhoria da experiência do usuário**: Personalizar a interação com a plataforma e apresentar insights mais relevantes.  
+3. **Segurança e auditoria**: Proteger a integridade dos dados e garantir o cumprimento das obrigações legais.  
 
-#### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários
+#### 3.1.6.6 Onde os dados ficam armazenados  
 
-#### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são armazenados nos servidores na nuvem, localizados em provedores de alta confiabilidade. Estes servidores seguem rigorosos padrões internacionais de segurança, com auditorias regulares para proteger as informações contra ataques cibernéticos e acessos não autorizados.  
 
-#### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização
+#### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O período padrão de retenção dos dados é de três meses, a menos que haja uma necessidade específica do projeto ou exigências regulatórias. Caso o período seja alterado, os titulares dos dados serão notificados com antecedência.  
+
+#### 3.1.6.8 Uso de *cookies* e/ou tecnologias semelhantes  
+
+&nbsp;&nbsp;&nbsp;&nbsp;A plataforma construída para o projeto utiliza *cookies* para gerenciar sessões, armazenar preferências e otimizar o desempenho da plataforma. Os *cookies* são necessários para o funcionamento eficiente da interface e podem ser gerenciados ou desativados pelos usuários através das configurações de seus navegadores.  
+
+#### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são compartilhados com a Tic Trens, além de parceiros essenciais, como provedores de serviços de nuvem. Todos os parceiros seguem os padrões de privacidade e segurança estipulados pela LGPD.  
+
+#### 3.1.6.10 Informações sobre medidas de segurança adotadas pela empresa  
+
+&nbsp;&nbsp;&nbsp;&nbsp;São implementadas medidas avançadas para proteger os dados, incluindo:  
+- Criptografia de ponta a ponta na transmissão de informações.  
+- Controle rigoroso de acesso aos dados.  
+- Monitoramento contínuo de vulnerabilidades e incidentes de segurança.  
+
+#### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os usuários podem exercer seus direitos, como acesso, retificação e exclusão de dados, entrando em contato pelo e-mail [parcerias@inteli.edu.br](mailto:parcerias@inteli.edu.br). O time DedSec assegura que todas as solicitações serão processadas dentro do prazo estipulado pela legislação.  
+
+#### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os titulares de dados podem exercer seus direitos previstos na LGPD, como:  
+1. Solicitar a exclusão de dados pessoais.  
+2. Corrigir informações incorretas ou desatualizadas.  
+3. Obter uma cópia de todos os dados tratados.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Para isso, basta entrar em contato pelo e-mail [parcerias@inteli.edu.br](mailto:parcerias@inteli.edu.br).  
+
+#### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O Encarregado de Proteção de Dados (DPO) é responsável por supervisionar todas as práticas relacionadas ao tratamento de dados pessoais no projeto. O contato com o DPO pode ser realizado pelo e-mail [dpo@inteli.edu.br](mailto:dpo@inteli.edu.br), especificando o motivo da solicitação e fornecendo informações necessárias para identificação no sistema.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O time DedSec reforça seu compromisso com a transparência e a segurança, garantindo que todas as práticas estão alinhadas à LGPD e respeitando os direitos dos titulares.
 
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
@@ -260,8 +304,4 @@ _Escreva, de forma resumida, sobre os principais resultados do seu projeto e fa�
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site: <br>
-LUCK, Heloisa. Liderança em gestão escolar. 4. ed. Petrópolis: Vozes, 2010. <br>
-SOBRENOME, Nome. Título do livro: subtítulo do livro. Edição. Cidade de publicação: Nome da editora, Ano de publicação. <br>
-Disponível em: https://adalove.inteli.edu.br/feed. Acesso em: 1 out. 2023 <br>
-Disponível em: LINK DO SITE. Acesso em: Dia Mês Ano_
+[1] ARQUIA. (2025). Como a IoT impacta a segurança dos dados?. Disponível em: <https://arqia.com.br/post/como-a-iot-impacta-a-seguranca-dos-dados/?utm_source=chatgpt.com> Acesso em 20 Out. 2025. <a name="foot1"></a>

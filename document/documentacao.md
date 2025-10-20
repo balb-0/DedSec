@@ -319,8 +319,26 @@ _Escreva, de forma resumida, sobre os principais resultados do seu projeto e fa�
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site: <br>
-LUCK, Heloisa. Liderança em gestão escolar. 4. ed. Petrópolis: Vozes, 2010. <br>
-SOBRENOME, Nome. Título do livro: subtítulo do livro. Edição. Cidade de publicação: Nome da editora, Ano de publicação. <br>
-Disponível em: https://adalove.inteli.edu.br/feed. Acesso em: 1 out. 2023 <br>
-Disponível em: LINK DO SITE. Acesso em: Dia Mês Ano_
+**Fontes utilizadas na seção 3.1.1. Contexto da Indústria:**
+
+**Sobre o Modelo de Concessão, Players e KPIs (Multas):**
+
+GOVERNO DO BRASIL. ANTT. Manual de Fiscalização do Transporte Ferroviário. 4. ed. Brasília: ANTT, 2023. Disponível em: https://www.gov.br/antt/pt-br/assuntos/ferrovias/manuais-das-ferrovias/arquivos/manual-de-fiscalizacao-do-transporte-ferroviario-4a-edicao.pdf. Acesso em: 20 out. 2025.
+
+MEIER, Ricardo. Governo confirma que CCR e Comporte disputarão concessão das linhas 11, 12 e 13 da CPTM. Metrô CPTM, 26 mar. 2025. Disponível em: https://www.metrocptm.com.br/governo-confirma-que-apenas-a-ccr-e-a-comporte-disputarao-concessao-das-linhas-11-12-e-13-da-cptm/. Acesso em: 20 out. 2025.
+
+**Sobre as Tendências (Digitalização, IoT e Manutenção Preditiva):**
+
+BLOG LYRA M2M. Como a IoT ajuda na manutenção preditiva em trens e linhas ferroviárias?. Lyra M2M, 9 jun. 2025. Disponível em: https://blog.lyram2m.com.br/como-a-iot-ajuda-na-manutencao-preditiva-em-trens-e-linhas-ferroviarias/. Acesso em: 20 out. 2025.
+
+MODALCONNECTION. 3 tendências globais para o setor ferroviário. Intermodal Digital, 27 mar. 2025. Disponível em: https://modalconnection.com.br/eventos/ntexpo/3-tendencias-globais-para-o-setor-ferroviario/. Acesso em: 20 out. 2025.
+
+**Sobre o Poder dos Fornecedores (Oligopólio):**
+
+ALSTOM. Alstom celebra marco de 5 mil caixas produzidas no Brasil. Alstom (Press Release), 22 jul. 2024. Disponível em: https://www.alstom.com/pt/press-releases-news/2024/7/alstom-celebra-marco-de-5-mil-caixas-produzidas-no-brasil. Acesso em: 20 out. 2025.
+
+**Sobre a Ameaça de Substitutos (Concorrentes SP-Campinas):**
+
+BUSER. Ônibus de São Paulo - SP para Campinas - SP. Disponível em: https://www.buser.com.br/onibus/sao-paulo-sp/campinas-sp. Acesso em: 20 out. 2025.
+
+VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em: https://www.viacaocometa.com.br/. Acesso em: 20 out. 2025.

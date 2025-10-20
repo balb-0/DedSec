@@ -97,23 +97,27 @@ _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estã
 
 #### 3.1.6.3 Quais são os dados coletados  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados incluem informações fornecidas diretamente pelo parceiro, como localização do usuário e informações técnicas geradas durante a interação com a plataforma, como localização aproximada, tipo de dispositivo e logs de sistema.  
-&nbsp;&nbsp;&nbsp;&nbsp;Além disso, o projeto registra dados provenientes de dispositivos IoT, como localização, _timestamps_ e IDs, para análise em tempo real e aplicação em estudos avançados de engenharia.  
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados englobam informações fornecidas diretamente pelo parceiro, bem como dados técnicos gerados automaticamente durante o uso da plataforma. Entre eles, estão:  
+- **Dados fornecidos pelo parceiro**: informações de cadastro ou identificação operacional, quando aplicável.  
+- **Dados técnicos do dispositivo/usuário**: tipo de dispositivo utilizado, sistema operacional, localização aproximada (derivada de IP), dados de telemetria e registros de logs de sistema para fins de auditoria e diagnóstico.  
+- **Dados oriundos dos dispositivos IoT**: identificadores únicos dos dispositivos, localização geográfica (quando habilitada), marcação temporal (_timestamp_) e demais métricas relevantes à operação, possibilitando análises em tempo real e estudos avançados de engenharia.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Todos os dados são obtidos estritamente para fins operacionais, analíticos e acadêmicos, de acordo com o escopo do projeto.
 
 #### 3.1.6.4 Onde os dados são coletados  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os dados são coletados por meio da integração com a plataforma feita para o parceiro. Esta plataforma atua como um ponto central de coleta, unificando dados provenientes de dispositivos IoT conectados e informações inseridas diretamente pelos usuários.  
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são coletados por meio da integração com a plataforma feita para o parceiro. Esta plataforma atua como um ponto central de coleta, unificando dados provenientes de dispositivos IoT conectados e informações inseridas diretamente pelos usuários, como senhas de acesso e credenciais únicas de acesso.  
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizados  
 
 &nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados têm múltiplas finalidades, incluindo:  
-1. **Monitoramento e análise**: Auxiliar no acompanhamento em tempo real das condições ambientais ou operacionais registradas pelos dispositivos IoT.  
+1. **Monitoramento e análise**: Auxiliar no acompanhamento em tempo real das condições operacionais registradas pelos dispositivos IoT.  
 2. **Melhoria da experiência do usuário**: Personalizar a interação com a plataforma e apresentar insights mais relevantes.  
 3. **Segurança e auditoria**: Proteger a integridade dos dados e garantir o cumprimento das obrigações legais.  
 
 #### 3.1.6.6 Onde os dados ficam armazenados  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os dados são armazenados nos servidores na nuvem, localizados em provedores de alta confiabilidade. Estes servidores seguem rigorosos padrões internacionais de segurança, com auditorias regulares para proteger as informações contra ataques cibernéticos e acessos não autorizados.  
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são armazenados em servidores na nuvem provisionados pela plataforma Render.com, que utiliza infraestrutura redundante hospedada em provedores globais de alta disponibilidade (como AWS, Google Cloud e Render). Esses ambientes seguem padrões internacionais de segurança da informação, incluindo criptografia em repouso e em trânsito, controle de acesso baseado em função, isolamento de containers e monitoramento contínuo contra atividades maliciosas. Além disso, o provedor passa por auditorias periódicas e adota conformidades reconhecidas internacionalmente, como ISO 27001, SOC 2 e GDPR, assegurando a proteção dos dados contra acessos não autorizados e ataques cibernéticos.
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)  
 
@@ -132,7 +136,6 @@ _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estã
 &nbsp;&nbsp;&nbsp;&nbsp;São implementadas medidas avançadas para proteger os dados, incluindo:  
 - Criptografia de ponta a ponta na transmissão de informações.  
 - Controle rigoroso de acesso aos dados.  
-- Monitoramento contínuo de vulnerabilidades e incidentes de segurança.  
 
 #### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários  
 

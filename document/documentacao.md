@@ -150,9 +150,105 @@ Dessa forma, a empresa deve direcionar esforços para aproveitar a capacidade de
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 	
-### 3.1.4. Value Proposition Canvas (sprint 1)	
+### 3.1.4. Value Proposition Canvas
 
-_O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._     
+&nbsp;&nbsp;&nbsp;&nbsp;O Value Proposition Canvas é uma ferramenta visual utilizada para ajudar a desenvolver e alinhar a proposta de valor de um produto ou serviço às necessidades dos clientes. Ele é dividido em duas áreas principais: o Perfil do Cliente e o Mapa de Valor.<sup>[2](#foot2)</sup>.
+
+&nbsp;&nbsp;&nbsp;&nbsp;No Perfil do Cliente, são analisadas as tarefas que o cliente precisa realizar (jobs), os problemas ou desafios que ele enfrenta (pains) e os benefícios ou resultados que ele deseja alcançar (gains). Isso ajuda a entender com maior profundidade o que realmente importa para o cliente e quais são suas principais preocupações e desejos.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Já o Mapa de Valor descreve como o produto ou serviço (Products & services) atende a essas necessidades. Aqui são detalhados os produtos e serviços oferecidos, como eles ajudam a resolver os problemas do cliente (Pain relievers) e como eles criam valor adicional, gerando benefícios que o cliente valoriza (Gain creators).
+
+&nbsp;&nbsp;&nbsp;&nbsp;O objetivo do Value Proposition Canvas é garantir que a solução desenvolvida esteja diretamente conectada às dores e necessidades do cliente, oferecendo um valor claro e relevante. Ele ajuda a identificar se a proposta de valor realmente faz sentido para o cliente, focado em entregar uma solução que resolva seus problemas e maximize os benefícios desejados. (Figura 3.1.4.1).
+
+<div align="center">
+<sub>Figura 3.1.4.1 - Value Proposition Canvas</sub><br>
+<img src="../assets/valuePropositionCanvas.png" width="80%" ><br>
+<sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+#### 1. Customer Profile (Perfil do Usuário)
+
+##### Pains (Dores)
+
+1. **Falta de controle eficiente sobre acessos físicos às áreas técnicas**  
+A TIC Trens enfrenta dificuldades em gerenciar os acessos de colaboradores e prestadores de serviço em áreas restritas, como salas técnicas e zonas operacionais. Atualmente, o processo depende de registros manuais e verificações descentralizadas, o que aumenta o risco de entradas não autorizadas e dificulta a rastreabilidade de quem acessou cada local. Essa falta de controle pode comprometer tanto a segurança operacional quanto a integridade dos equipamentos e dados sensíveis da empresa.
+
+2. **Dificuldade na verificação da capacitação dos colaboradores em tempo real**  
+A ausência de integração entre os sistemas de capacitação e os mecanismos de controle de acesso torna difícil confirmar, no momento da entrada, se o colaborador está devidamente treinado para executar a tarefa programada. Isso expõe a empresa a riscos de segurança e descumprimento de normas regulatórias, além de aumentar a probabilidade de acidentes e falhas técnicas causadas por pessoal não habilitado.
+
+3. **Dificuldade na rastreabilidade e auditoria de acessos**  
+A falta de registros digitais integrados impede o acompanhamento detalhado de quem acessou cada área, em qual horário e para qual finalidade. Em auditorias internas ou externas, a ausência dessas informações dificulta a comprovação de conformidade e a identificação de falhas no controle de acesso, gerando vulnerabilidades tanto operacionais quanto legais.
+
+4. **Riscos trabalhistas e de segurança devido a acessos indevidos**  
+Sem validações automáticas, existe a possibilidade de que colaboradores entrem em áreas restritas sem autorização adequada e ficam expostos a riscos físicos e colocando a empresa em posição vulnerável em casos de acidentes. Além de comprometer a segurança dos funcionários, esse cenário pode resultar em sanções legais e aumentar os custos com indenizações e seguros.
+
+##### Gains (Ganhos)
+
+1. **Aumento da segurança operacional com controle automatizado de acesso**  
+Com a implementação de uma solução IoT integrada, a TIC Trens garante que apenas colaboradores devidamente autorizados e capacitados possam acessar áreas técnicas. O controle automatizado reduz drasticamente o risco de acidentes e falhas humanas, promovendo um ambiente de trabalho mais seguro e em conformidade com as normas internas de segurança do trabalho.
+
+2. **Melhoria na eficiência das operações e redução de conflitos de agenda**  
+A integração entre o sistema de controle de acesso e o agendamento de atividades permite melhor planejamento e coordenação entre as equipes. Dessa forma, evitam-se sobreposições de tarefas e atrasos causados por conflitos de agenda, resultando em maior fluidez nas operações e otimização do uso dos espaços técnicos.
+
+3. **Maior rastreabilidade e transparência nas atividades de campo**  
+Com o registro automatizado de todos os acessos — incluindo data, hora, local e identificação do colaborador —, a empresa passa a dispor de um histórico completo e confiável para auditorias e análises internas. Essa rastreabilidade melhora a gestão de riscos e fornece dados estratégicos para aprimorar os protocolos de segurança e manutenção.
+
+
+##### Customer Jobs (Tarefas do Cliente)
+
+1. **Gerenciar acessos físicos a áreas técnicas de forma segura e organizada**  
+Os gestores e equipes operacionais da TIC Trens precisam controlar quem entra e sai das áreas técnicas, garantindo que apenas pessoas autorizadas tenham acesso. Atualmente, esse processo é realizado de maneira manual ou fragmentada, exigindo verificação de listas, comunicação entre equipes e conferência física no local, o que consome tempo e está sujeito a erros humanos.
+
+2. **Agendar e coordenar atividades de manutenção e implantação em áreas restritas**  
+Os gestores de operação precisam planejar e organizar o uso das áreas técnicas, conciliando diferentes demandas e evitando conflitos de agenda entre equipes. Sem um sistema integrado, essa coordenação depende de planilhas ou comunicações informais, o que pode gerar atrasos, sobreposições e falhas de planejamento.
+
+3. **Manter registros confiáveis para auditorias e conformidade**  
+A empresa deve registrar com precisão todos os acessos realizados, incluindo identificação do colaborador, horário, local e motivo do acesso. Essa rastreabilidade é essencial para auditorias internas, inspeções de segurança e certificações de conformidade, mas atualmente é dificultada pela ausência de um sistema centralizado e automatizado.
+
+4. **Responder rapidamente a situações de risco ou acessos indevidos**  
+Em casos de tentativas de acesso não autorizado ou irregularidades, os gestores precisam ser notificados em tempo real para agir imediatamente. A falta de um sistema que gere alertas automáticos e permita o monitoramento contínuo reduz a capacidade de resposta, aumentando os riscos à segurança e à operação.
+
+#### 2. Value Map (Mapa de Valor)
+
+##### Pain Relievers (Aliviadores de Dores)
+
+1. **Automatização do controle de acesso físico com validação de credenciais**  
+A solução IoT elimina a necessidade de verificações manuais, automatizando o processo de entrada em áreas técnicas por meio de sensores, leitores RFID ou autenticação biométrica. O sistema valida, em tempo real, se o colaborador está autorizado e capacitado para acessar o local, reduzindo significativamente o risco de entradas indevidas e erros humanos.
+
+2. **Integração com banco de dados de capacitação e agendamento de atividades**  
+O sistema é projetado para se conectar aos registros internos de capacitação e ao cronograma de atividades da TIC Trens. Essa integração permite verificar automaticamente se o colaborador possui as certificações exigidas para a tarefa agendada, além de cruzar informações com o calendário de manutenções e implantações, evitando sobreposições e conflitos de agenda.
+
+3. **Emissão de alertas automáticos para acessos não autorizados ou riscos operacionais**  
+O sistema envia notificações em tempo real quando detecta tentativas de acesso indevido, capacitação vencida ou incompatibilidade entre a atividade programada e o colaborador. Esses alertas permitem uma resposta imediata da equipe de segurança ou do gestor responsável, prevenindo incidentes e reforçando o controle sobre áreas críticas.
+
+4. **Registro digital centralizado e rastreável de todos os acessos**  
+Todos os eventos de entrada e saída são registrados em um banco de dados seguro e auditável, incluindo identificação do colaborador, data, hora e motivo do acesso. Essa rastreabilidade facilita auditorias, inspeções de conformidade e investigações internas, oferecendo total transparência e confiabilidade às operações.
+
+5. **Redução da burocracia e do tempo gasto em processos de verificação**  
+Ao automatizar a checagem de permissões e capacitações, o sistema reduz o tempo gasto com tarefas administrativas e libera as equipes para focarem em atividades estratégicas. Além disso, a eliminação de registros em papel e controles paralelos diminui o retrabalho e aumenta a eficiência operacional.
+
+##### Products & Services (Produtos e Serviços)
+
+1. **Aplicação de IoT para o controle inteligente de acesso físico a áreas técnicas**  
+A solução proposta para a TIC Trens utiliza a tecnologia IoT para automatizar o controle de acesso em ambientes restritos, integrando dispositivos físicos e sistemas digitais em uma única plataforma. Sensores, leitores RFID e autenticação biométrica são utilizados para registrar entradas e saídas em tempo real, garantindo que apenas colaboradores devidamente autorizados e capacitados possam acessar áreas técnicas. A aplicação se conecta diretamente ao banco de dados de capacitação e ao sistema de agendamento de atividades, permitindo a validação instantânea das permissões conforme as exigências de cada tarefa. Além disso, o sistema envia alertas para tentativas de acesso indevido e disponibiliza um painel simples para verificação de eventos registrados. Essa integração entre hardware e software oferece um controle preciso, seguro e eficiente, reduzindo riscos operacionais, melhorando a rastreabilidade e fortalecendo a gestão de segurança da empresa.
+
+##### Gain Creators (Criadores de Ganho)
+
+1. **Aprimoramento da segurança e conformidade nas operações**  
+A solução IoT garante que apenas colaboradores devidamente qualificados e autorizados tenham acesso às áreas técnicas, reduzindo drasticamente a ocorrência de incidentes e falhas operacionais. Isso reforça a conformidade com normas de segurança e políticas internas, além de proporcionar maior controle e segurança às equipes de gestão e auditoria.
+
+2. **Otimização do planejamento e coordenação das atividades técnicas**  
+Com a integração de dados de agendamento, capacitação e acesso em um único sistema, a TIC Trens pode planejar as atividades de manutenção e implantação de maneira mais eficiente. Isso evita sobreposições de tarefas, reduz o tempo ocioso e melhora a produtividade das equipes de campo.
+
+3. **Redução de custos operacionais e administrativos**  
+A automatização dos processos de controle de acesso e verificação de capacitação reduz a necessidade de trabalho manual e a dependência de múltiplos sistemas. Isso gera economia de tempo e recursos, permitindo que as equipes se concentrem em tarefas de maior valor agregado.
+
+4. **Tomada de decisão mais ágil e baseada em dados**  
+Com relatórios em tempo real e indicadores de acesso, a empresa tem maior capacidade de ação em situações importantes, consegue antecipar riscos e tomar decisões mais embasadas. A visibilidade contínua sobre o fluxo de pessoas e atividades nas áreas técnicas aumenta o controle operacional e contribui para uma gestão mais estratégica e inteligente.
+
+#### Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp;Em conclusão, a aplicação do Value Proposition Canvas ao contexto da TIC Trens evidencia a importância de alinhar a proposta de valor da solução IoT às reais necessidades operacionais e de segurança da empresa. A análise das dores e desafios enfrentados — como a falta de controle eficiente de acessos, os riscos trabalhistas e a dificuldade de rastreabilidade — permite compreender de forma clara os pontos críticos que comprometem a eficiência e a conformidade da organização. Com isso, a TIC Trens obtém ganhos tangíveis, como o aumento da segurança operacional, a redução de custos administrativos e a melhora significativa da conformidade regulatória. A integração entre controle de acesso, gestão de capacitação e rastreabilidade de operações reafirma a TIC Trens como exemplo de segurança industrial e demonstra como o uso estratégico de IoT pode transformar processos críticos em sistemas inteligentes, seguros e eficientes.
 
 ### 3.1.5. Matriz de Riscos (sprint 1)	
 
@@ -362,3 +458,9 @@ ALSTOM. Alstom celebra marco de 5 mil caixas produzidas no Brasil. Alstom (Press
 BUSER. Ônibus de São Paulo - SP para Campinas - SP. Disponível em: https://www.buser.com.br/onibus/sao-paulo-sp/campinas-sp. Acesso em: 20 out. 2025.
 
 VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em: https://www.viacaocometa.com.br/. Acesso em: 20 out. 2025.
+
+**Fontes utilizadas na seção 3.1.4. Value Proposition Canvas:**
+
+**Value Proposition Canvas**
+
+[2] RUSHIKEN, Amanda. (2023). Value Proposition Canvas: o que é e como funciona essa metodologia?. G4 Educação. Disponível em: <https://g4educacao.com/blog/value-proposition-canvas> Acesso em 21 out. 2025. <a name="foot2" id="foot2"></a>

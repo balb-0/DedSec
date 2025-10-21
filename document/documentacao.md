@@ -138,17 +138,66 @@ Além disso, as ameaças de mudanças regulatórias governamentais, o risco de a
 
 Dessa forma, a empresa deve direcionar esforços para aproveitar a capacidade de produção própria e a base da concessão, enquanto mitiga ativamente os riscos de custos e fortalece sua imagem e penetração no mercado, superando as barreiras culturais e regulatórias.
 
-### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)	
+### 3.1.3. Descrição da solução a ser desenvolvida
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
+A TIC Trens enfrenta uma crítica falta de rastreabilidade e controle nos acessos físicos a áreas técnicas de alto risco (subestações de energia, _houses_ de via, canteiros de obra). O processo atual de liberação é manual, baseado em comunicação via rádio, e propenso a falhas humanas, como o esquecimento de registrar a saída.
+
+Isso deixa o Centro de Controle Operacional (CCO) "cego", incapaz de garantir que o acesso foi feito pela pessoa correta e capacitada. Mais grave, o CCO não consegue monitorar se uma equipe permaneceu na área de risco além do tempo agendado, criando um risco crítico de segurança operacional (ex: atropelamentos ou choques elétricos) quando a operação dos trens é retomada.
+
 #### 3.1.3.2 Qual a solução proposta (visão de negócios)
+
+Propomos o desenvolvimento de uma **Plataforma de Gestão de Acesso Inteligente (IoT)**. A solução automatiza e digitaliza todo o ciclo de acesso, desde a validação na porta até o monitoramento em tempo real.
+
+A visão de negócios é substituir um processo manual e reativo por um sistema proativo e baseado em dados. A plataforma fornecerá ao CCO uma fonte única de verdade sobre a ocupação das áreas técnicas, garantindo que todo acesso seja verificado, autenticado e monitorado, conectando o planejamento do escritório à realidade do campo.
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
+A solução será utilizada por duas personas principais:
+
+*   **Para o Técnico de Campo:**
+    
+    *   **Entrada:** O técnico usará Autenticação de Múltiplos Fatores (MFA). Ele primeiro passará seu crachá RFID (Fator 1: o que ele tem) em um leitor na porta. Em seguida, digitará um código único baseado em tempo (TOTP, Fator 2: o que ele sabe) em um teclado anexo, código este gerado por um aplicativo em seu celular.
+        
+    *   **Saída:** Para sair, o técnico passará o crachá em um **leitor dedicado no lado interno** da porta. Este ato destravará a porta e registrará automaticamente sua saída, eliminando a necessidade de avisar o CCO.
+        
+*   **Para o Operador do CCO:**
+    
+    *   O operador utilizará um **Dashboard Web** que exibirá, em tempo real, todos os eventos de acesso (entradas, saídas e tentativas negadas) assim que eles acontecerem.
+        
+    *   O operador será **proativamente alertado** por notificações visuais e sonoras sobre dois eventos críticos: (1) tentativas de acesso não autorizadas e (2) equipes que **excederem o tempo de permanência agendado** na área de risco.
+        
+
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
+*   **Aumento drástico da Segurança Operacional:** Mitiga o risco de acidentes graves ao garantir que apenas pessoas capacitadas e agendadas entrem, e ao alertar o CCO sobre equipes que permanecem em áreas de risco além do tempo permitido.
+    
+*   **Visibilidade e Controle em Tempo Real:** Elimina a "cegueira" do CCO, fornecendo dados ao vivo sobre quais áreas estão ocupadas e por quem, permitindo uma gestão de segurança proativa.
+    
+*   **Rastreabilidade e Conformidade (Auditoria):** Gera um log digital, centralizado, imutável e pesquisável de todos os acessos (quem, onde, quando, por quê), facilitando auditorias internas e garantindo conformidade com normas de segurança.
+    
+*   **Aumento da Eficiência:** Automatiza o processo manual de liberação e registro via rádio, liberando o tempo do operador do CCO e do técnico de campo para focarem em suas tarefas principais.
+    
+
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
+
+O critério de sucesso é a **confiabilidade e a adoção da plataforma pelo CCO como a fonte primária de verdade** para o status de ocupação das áreas técnicas piloto.
+
+O sucesso será alcançado quando o sistema for capaz de (1) validar confiavelmente 100% das tentativas de acesso (permitidas e negadas) conforme as regras de negócio e (2) fornecer ao CCO os alertas proativos sobre desvios de segurança, especialmente o alerta de tempo excedido.
+
+O sucesso será avaliado por três medidas principais durante a fase de testes (MVP):
+
+*   **Medida de Eficácia (Dados):** Taxa de sucesso de 100% no registro de eventos. (Meta: Zero acessos físicos não registrados no log do sistema).
+    
+*   **Medida de Segurança (Funcionalidade Chave):** Taxa de sucesso de 100% na geração de alertas de "tempo excedido" no dashboard do CCO para todos os cenários de teste onde um acesso ultrapassa o horário de saída agendado.
+    
+*   **Medida de Adoção (Qualitativa):** Feedback direto da persona "Operador do CCO" sobre a clareza, confiabilidade e utilidade do dashboard para a tomada de decisão de segurança.
+
+
+
+
+
 	
 ### 3.1.4. Value Proposition Canvas (sprint 1)	
 

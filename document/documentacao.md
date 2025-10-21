@@ -37,7 +37,13 @@ _Descreva resumidamente sua proposta de solução (em alto nível) e como essa s
 
 ## 1.3 Justificativa
 
-_Faça uma breve defesa de sua proposta de solução, escreva sobre seus potenciais, seus benefícios e como ela se diferencia._
+Quando analisamos as tendências futuras, é evidente que cada vez mais os objetos do cotidiano estão se conectando à internet e se tornando mais inteligentes. Muitas vezes, há um grande paradigma entre tecnologias atuais e práticas tradicionais, mas é perceptível como o desenvolvimento tecnológico tem proporcionado mais segurança, conforto e utilidade para as coisas.
+
+A proposta deste projeto, desenvolvida em parceria com a Tic Trens — uma holding brasileira do setor rodoferroviário que atua em ambientes de alta exigência regulatória e segurança — tem como foco transformar o controle de acesso físico às áreas técnicas em uma experiência automatizada, inteligente e segura. A proposta deste projeto se alinha diretamente com essa visão, ao transformar o controle de acesso físico em uma experiência automatizada, inteligente e integrada. Ao combinar identificação por cartão, verificação de agendamento e autenticação por código, criamos um sistema que não apenas protege áreas críticas da empresa, mas também reforça a confiabilidade dos processos operacionais.
+
+Além disso, essa abordagem contribui para a conformidade com normas regulatórias e padrões de segurança exigidos no setor rodoferroviário, ao mesmo tempo em que promove uma cultura organizacional voltada para inovação e responsabilidade. A tecnologia deixa de ser um obstáculo e passa a ser uma aliada estratégica, capaz de conectar tradição e modernidade em prol de resultados mais seguros e eficazes. 
+
+Portanto, a adoção dessa solução IoT representa um avanço significativo na gestão de acesso, elevando o nível de segurança e controle, e posicionando a Tic Trens como referência em inovação no setor ferroviário.
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 

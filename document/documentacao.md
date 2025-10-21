@@ -41,8 +41,12 @@ Criar uma solução que permita monitorar e validar acessos físicos a áreas t�
 
 ## 1.2 Proposta da solução
 
-_Descreva resumidamente sua proposta de solução (em alto nível) e como essa solução pretende resolver o problema, atendendo os objetivos listados na seção anterior._
+Como o próprio nome sugere, “internet das coisas”, vamos aplicar internet nas “coisas”. Essas coisas se referem a dispositivos físicos do cotidiano que podem se tornar mais inteligentes, permitindo que coletem, troquem e processem dados automaticamente — e é isso que vamos fazer.
+Nossa solução para a empresa parceira de veículos rodoferroviários, a Tic Trens — uma holding brasileira que opera em um ambiente que exige os mais altos padrões de segurança e conformidade regulatória — foca principalmente no controle de acesso às suas áreas técnicas, onde enfrentam dificuldades em garantir que o acesso físico autorizado seja efetivamente realizado por pessoas capacitadas para a atividade programada.
 
+Nesse contexto, este projeto propõe desenvolver uma solução IoT (Internet das Coisas) que funcionaria como um dispositivo de validação. Ele possuirá uma área para leitura de cartão, que identificará cada pessoa e verificará se ela tem horário agendado para estar naquele espaço, além de um teclado externo para inserção de uma senha — um código gerado e enviado ao dispositivo do usuário, que deverá digitá-lo em nosso equipamento.
+
+Com essa solução baseada em IoT, buscamos garantir que o acesso às áreas técnicas da Tic Trens seja realizado exclusivamente por pessoas autorizadas e devidamente capacitadas, reforçando os padrões de segurança exigidos pela empresa. Ao integrar identificação por cartão, agendamento prévio e autenticação por código, criamos um sistema robusto, inteligente e automatizado, que contribui diretamente para a eficiência operacional e a conformidade regulatória da organização.
 ## 1.3 Justificativa
 
 _Faça uma breve defesa de sua proposta de solução, escreva sobre seus potenciais, seus benefícios e como ela se diferencia._

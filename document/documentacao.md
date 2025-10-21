@@ -25,11 +25,19 @@
 
 # <a name="c1"></a>1. Introdução (sprint 1)
 
-_Apresente de forma sucinta o parceiro de negócio, seu porte, local, área de atuação e posicionamento no mercado. Maiores detalhes deverão ser descritos na seção 4. Descreva resumidamente o problema a ser resolvido (sem ainda mencionar a solução)._
+O parceiro de negócio, TIC Trens, é uma holding brasileira que atua no setor de transporte, abrangendo empresas de transporte rodoviário e urbano de passageiros, ônibus, cargas e turismo. Sua principal área de atuação é o transporte de pessoas. O problema a ser resolvido pela empresa está relacionado à gestão e validação do acesso físico a suas áreas técnicas. A empresa enfrenta desafios em coordenar as demandas de acesso lidando com a sobreposição de atividades, priorização entre manutenção e implantação, e a necessidade de verificar a capacitação dos colaboradores conforme a análise de risco. Além disso, há o desafio de garantir que o acesso físico autorizado foi, de fato, realizado por pessoas capacitadas para a atividade programada.
 
 ## 1.1 Objetivos
 
-_Descreva os objetivos gerais e específicos do seu parceiro de negócios, sem entrar em méritos técnicos ou especificações de tecnologia. Aqui importa o objetivo em si, não os meios para se chegar até lá._
+**Objetivo Geral:**
+Criar uma solução que permita monitorar e validar acessos físicos a áreas técnicas , garantindo que apenas colaboradores devidamente capacitados e com atividades agendadas possam executar tarefas nesses locais.
+
+**Objetivos Específicos:**
+- Aumentar a segurança e a praticidade operacional da empresa.
+- Melhorar a gestão e a organização da agenda.
+- Registrar e validar acessos físicos a salas técnicas.
+- Garantir a entrada apenas de pessoas capacitadas ou autorizadas para a atividade programada.
+
 
 ## 1.2 Proposta da solução
 
@@ -69,7 +77,7 @@ A principal tendência do setor é a **Digitalização da Operação** para aume
 
 Conclui-se que o setor é um ambiente de alta pressão, onde o modelo de negócio punitivo (baseado em KPIs e multas) e a rivalidade estratégica (por reputação e performance) se encontram. A tendência da digitalização, especialmente a gestão de ativos e a manutenção preditiva, não é um luxo, mas uma necessidade de sobrevivência e competitividade. É neste nexo de segurança rigorosa e necessidade de eficiência que o projeto de controle de acesso se torna uma alavanca estratégica para a TIC Trens, garantindo conformidade e protegendo a empresa das penalidades contratuais.
 
-#### Análise das 5 Forças de Porter
+### Análise das 5 Forças de Porter
 
 A análise das 5 Forças de Porter ajuda a mapear o ambiente competitivo das concessões ferroviárias. Este modelo avalia a intensidade das pressões que a TIC Trens enfrenta de concorrentes, fornecedores, clientes e substitutos, identificando os principais desafios para o seu sucesso operacional e rentabilidade.
 

@@ -359,20 +359,10 @@ _Coloque aqui seu Storyboard:_
 - _Destaca pontos de atrito ou oportunidades na experiência._
 - _Criar ao menos um storyboard._
 
-## 3.3. Solução Técnica	
+&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, são apresentados os principais aspectos técnicos do desenvolvimento da solução proposta, abrangendo desde os requisitos funcionais e não funcionais até a definição das arquiteturas em diferentes níveis de detalhamento.
 
-_Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
-
-### 3.3.1. Requisitos Funcionais (sprint 1)	
-
-_Descreva quais são os requisitos funcionais e sua relação com as demandas e problemas de negócios (visão de funcionalidades). Evolua estes requisitos conforme o desenvolvimento do projeto._
-
-_Atente-se as regras de negócios. Caso necessário, as aponte nos cenários dos requisitos funcionais._
-
-| **RF#** | **Descrição** | **Regra de negócio** | 
-|----------|----------|----------|
-|RF01|Ex. O dispositivo deve permitir acionamento por botão liga e desliga|Ex. A solução deve funcionar apenas durante seu uso por operadores|
-|RF02|Preencha aqui seus requisitos|Preencha aqui as regras de negócio relacionadas|
+### 3.3.1. Requisitos Funcionais
+  
 
 ### 3.3.2. Requisitos Não Funcionais (sprint 2)	
 

@@ -377,7 +377,9 @@ _Coloque aqui seu Storyboard:_
 | **RF05** | O sistema deve atualizar o painel em tempo real e gerar alertas visuais para eventos críticos. | Sempre que ocorrer um acesso negado ou PIN incorreto, o dashboard deve exibir alerta imediato para a equipe de segurança. | Atualizar dashboard e emitir notificação visual “Acesso negado” ou “PIN incorreto”, mantendo histórico dos eventos no sistema. |
 
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
-</div>  
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Essas especificações asseguram que o sistema fornecerá informações precisas e oportunas para os operadores, ao mesmo tempo em que mantém os dados protegidos e a operação dos equipamentos monitorada sob condições seguras para a TIC Trens. A implementação adequada desses requisitos contribuirá para um ambiente de trabalho mais seguro e facilitará a análise de dados e auditorias futuras, além de garantir a continuidade e integridade dos processos de monitoramento e manutenção.
 
 ### 3.3.2. Requisitos Não Funcionais (sprint 2)	
 

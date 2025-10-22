@@ -385,6 +385,99 @@ _Descreva quais são os requisitos não funcionais e sua relação com aspectos 
 
 ### 3.3.3. Arquitetura da Solução (sprint 3)
 
+#### (Diagrama desenvolvido durante a Sprint 1)
+
+<div align="center">
+<sub>Diagrama UML da solução</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/diagrama-uml.jpeg">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
+</div> 
+
+#### Diagrama de Sequência: Fluxo de Validação de Acesso
+
+Este diagrama ilustra o fluxo de ponta-a-ponta para o processo de validação de acesso a uma área técnica. Ele detalha a interação entre o Colaborador (usuário de campo), o Dispositivo IoT (hardware na porta), nosso Backend (a API), o Banco de Dados, a API Externa (do parceiro, para agendamentos) e o Dashboard (do CCO).
+
+O processo é dividido em duas fases principais: a autenticação e a autorização.
+
+##### 1\. Autenticação de Múltiplos Fatores (MFA)
+
+Esta é a primeira etapa, onde o sistema valida a **identidade** do colaborador.
+
+1.  **Fator 1 (O que ele tem):** O Colaborador aproxima seu crachá do Dispositivo IoT.
+    
+2.  O Dispositivo IoT envia o ID do crachá para o Backend.
+    
+3.  O Backend consulta o Banco de Dados para verificar se este ID existe e a quem pertence.
+    
+4.  **Fator 2 (O que ele sabe):** Se o crachá é reconhecido, o Dispositivo IoT solicita o segundo fator (a senha única/PIN enviada para o colaborador).
+    
+5.  O Colaborador digita o PIN no teclado do dispositivo.
+    
+6.  O Dispositivo IoT envia ambos os dados (cardId + PIN) para o Backend.
+    
+
+##### 2\. Lógica de Validação e Autorização (O "Cérebro")
+
+Esta é a segunda etapa, onde o Backend decide se o acesso é **permitido**.
+
+1.  **Validação de Identidade:** O Backend verifica se o PIN fornecido é válido para o Colaborador associado ao cardId.
+    
+2.  **Validação de Autorização:**
+    
+    *   Se a identidade for válida, o Backend executa a verificação de regras de negócio.
+        
+    *   Ele consulta a **API de Capacitação / Agendamento** (o sistema externo da TIC Trens) para perguntar: "Este colaborador está agendado e capacitado para esta sala _agora_?"
+        
+
+##### 3\. Respostas do Sistema
+
+O sistema possui três respostas principais:
+
+**A. Caminho de Sucesso (Acesso Permitido)**
+
+_Se_ o PIN for válido _e_ a API externa autorizar o acesso:
+
+1.  O Backend envia um comando de **sucesso** ao Dispositivo IoT (que aciona o relé da porta e acende o LED verde).
+    
+2.  O Backend registra o evento como "Acesso Autorizado" no Banco de Dados.
+    
+3.  O Backend envia uma notificação em tempo real (via WebSocket) para o Dashboard do CCO, informando que o colaborador entrou na sala.
+    
+
+**B. Falha na Autorização (Acesso Negado)**
+
+_Se_ o PIN for válido, _mas_ a API externa negar o acesso (sem agendamento, capacitação vencida, etc.):
+
+1.  O Backend envia um comando de **falha** ao Dispositivo IoT (que mantém a porta trancada e acende o LED vermelho).
+    
+2.  O Backend registra a tentativa falha e o motivo (ex: "Sem agendamento") no Banco de Dados.
+    
+3.  O Backend envia um **alerta** em tempo real para o Dashboard do CCO, informando a tentativa de acesso negada.
+    
+
+**C. Falha na Autenticação (Acesso Negado)**
+
+_Se_ o PIN estiver incorreto ou o crachá RFID não for reconhecido:
+
+1.  O Backend envia imediatamente um comando de **falha** ao Dispositivo IoT (LED vermelho).
+    
+2.  O Backend registra a tentativa falha e o motivo (ex: "PIN incorreto") no Banco de Dados.
+    
+3.  O Backend também envia um **alerta** para o Dashboard do CCO.
+    
+
+##### 4\. Pós-Acesso (Auditoria)
+
+*   A qualquer momento, um operador no Dashboard do CCO pode solicitar relatórios de conformidade e auditoria, consultando o histórico de acessos armazenado no Banco de Dados.
+
+---
+
+#### (Sprint 3)
+
 _Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
 
 _Descreva a arquitetura técnica da solução de forma detalhada (visão de arquitetura).

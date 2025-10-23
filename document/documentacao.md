@@ -25,16 +25,28 @@
 
 # <a name="c1"></a>1. Introdução (sprint 1)
 
-_Apresente de forma sucinta o parceiro de negócio, seu porte, local, área de atuação e posicionamento no mercado. Maiores detalhes deverão ser descritos na seção 4. Descreva resumidamente o problema a ser resolvido (sem ainda mencionar a solução)._
+O parceiro de negócio, TIC Trens, é uma holding brasileira que atua no setor de transporte, abrangendo empresas de transporte rodoviário e urbano de passageiros, ônibus, cargas e turismo. Sua principal área de atuação é o transporte de pessoas. O problema a ser resolvido pela empresa está relacionado à gestão e validação do acesso físico a suas áreas técnicas. A empresa enfrenta desafios em coordenar as demandas de acesso lidando com a sobreposição de atividades, priorização entre manutenção e implantação, e a necessidade de verificar a capacitação dos colaboradores conforme a análise de risco. Além disso, há o desafio de garantir que o acesso físico autorizado foi, de fato, realizado por pessoas capacitadas para a atividade programada.
 
 ## 1.1 Objetivos
 
-_Descreva os objetivos gerais e específicos do seu parceiro de negócios, sem entrar em méritos técnicos ou especificações de tecnologia. Aqui importa o objetivo em si, não os meios para se chegar até lá._
+**Objetivo Geral:**
+Criar uma solução que permita monitorar e validar acessos físicos a áreas técnicas , garantindo que apenas colaboradores devidamente capacitados e com atividades agendadas possam executar tarefas nesses locais.
+
+**Objetivos Específicos:**
+- Aumentar a segurança e a praticidade operacional da empresa.
+- Melhorar a gestão e a organização da agenda.
+- Registrar e validar acessos físicos a salas técnicas.
+- Garantir a entrada apenas de pessoas capacitadas ou autorizadas para a atividade programada.
+
 
 ## 1.2 Proposta da solução
 
-_Descreva resumidamente sua proposta de solução (em alto nível) e como essa solução pretende resolver o problema, atendendo os objetivos listados na seção anterior._
+Como o próprio nome sugere, “internet das coisas”, vamos aplicar internet nas “coisas”. Essas coisas se referem a dispositivos físicos do cotidiano que podem se tornar mais inteligentes, permitindo que coletem, troquem e processem dados automaticamente — e é isso que vamos fazer.
+Nossa solução para a empresa parceira de veículos rodoferroviários, a Tic Trens — uma holding brasileira que opera em um ambiente que exige os mais altos padrões de segurança e conformidade regulatória — foca principalmente no controle de acesso às suas áreas técnicas, onde enfrentam dificuldades em garantir que o acesso físico autorizado seja efetivamente realizado por pessoas capacitadas para a atividade programada.
 
+Nesse contexto, este projeto propõe desenvolver uma solução IoT (Internet das Coisas) que funcionaria como um dispositivo de validação. Ele possuirá uma área para leitura de cartão, que identificará cada pessoa e verificará se ela tem horário agendado para estar naquele espaço, além de um teclado externo para inserção de uma senha — um código gerado e enviado ao dispositivo do usuário, que deverá digitá-lo em nosso equipamento.
+
+Com essa solução baseada em IoT, buscamos garantir que o acesso às áreas técnicas da Tic Trens seja realizado exclusivamente por pessoas autorizadas e devidamente capacitadas, reforçando os padrões de segurança exigidos pela empresa. Ao integrar identificação por cartão, agendamento prévio e autenticação por código, criamos um sistema robusto, inteligente e automatizado, que contribui diretamente para a eficiência operacional e a conformidade regulatória da organização.
 ## 1.3 Justificativa
 
 _Faça uma breve defesa de sua proposta de solução, escreva sobre seus potenciais, seus benefícios e como ela se diferencia._
@@ -69,7 +81,7 @@ A principal tendência do setor é a **Digitalização da Operação** para aume
 
 Conclui-se que o setor é um ambiente de alta pressão, onde o modelo de negócio punitivo (baseado em KPIs e multas) e a rivalidade estratégica (por reputação e performance) se encontram. A tendência da digitalização, especialmente a gestão de ativos e a manutenção preditiva, não é um luxo, mas uma necessidade de sobrevivência e competitividade. É neste nexo de segurança rigorosa e necessidade de eficiência que o projeto de controle de acesso se torna uma alavanca estratégica para a TIC Trens, garantindo conformidade e protegendo a empresa das penalidades contratuais.
 
-#### Análise das 5 Forças de Porter
+### Análise das 5 Forças de Porter
 
 A análise das 5 Forças de Porter ajuda a mapear o ambiente competitivo das concessões ferroviárias. Este modelo avalia a intensidade das pressões que a TIC Trens enfrenta de concorrentes, fornecedores, clientes e substitutos, identificando os principais desafios para o seu sucesso operacional e rentabilidade.
 
@@ -119,7 +131,7 @@ A análise das 5 Forças revela que o setor de concessões ferroviárias é **es
 A análise SWOT é um documento essencial para todo projeto, isso se deve por nele apresentar fatores internos(forças e fraquezas) e externos(ameaças e oportunidades), esses que vão mostrar a situação clara da empresa, facilitando a tomada de decisão e rumo do produto.
 
 <div align="center">
-<sub>Imagem 03: Análsie SWOT</sub>
+<sub>Imagem 03: Análise SWOT</sub>
 </div>
 <div align="center">
 <img src="../assets/documentação/SWOT.png">
@@ -252,7 +264,135 @@ Com relatórios em tempo real e indicadores de acesso, a empresa tem maior capac
 
 ### 3.1.5. Matriz de Riscos (sprint 1)	
 
-_A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estão criando. Deve ser entregue no template disponível no drive da turma. Os alunos devem enumerar os riscos, distribuí-los na matriz e justificar suas decisões._     
+A matriz de riscos é uma ferramenta utilizada para identificar, qualificar e categorizar os riscos que podem ocorrer ao longo do projeto, classificando-os em Ameaças (riscos negativos) e Oportunidades (riscos positivos).
+
+Os riscos identificados são posicionados na matriz conforme sua qualificação nos dois eixos principais:
+
+- Eixo X (Impacto): varia entre Muito Baixo, Baixo, Médio, Alto e Muito Alto;
+
+- Eixo Y (Probabilidade): representado pelos valores 10%, 30%, 50%, 70% e 90%.
+
+A matriz é estruturada de forma espelhada, permitindo a visualização e comparação entre ameaças e oportunidades de maneira equilibrada e intuitiva.
+
+<div align="center">
+<sub>Imagem 04: Matriz de Risco</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/matrizRisco.png">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec, 2025.</sub>
+</div> 
+
+#### 3.1.5.1. Ameaças 
+
+&nbsp;&nbsp;&nbsp;&nbsp; As ameaças representam os riscos negativos identificados, ou seja, aqueles que podem causar impactos adversos ou dificultar o andamento e a execução do projeto. Identificar essas ameaças antecipadamente é uma forma de proteger o projeto e garantir que ele siga o cronograma, orçamento e qualidade planejados.
+
+- **1 - Risco de invasão por falha na segurança:**
+
+    **Impacto:** Muito Alto.<br>
+    **Probabilidade:** 10%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A invasão de terceiros aos ambientes de autênticação e proteção da solução por cópia do RFID ou até mesmo invasões no sistmea de segurança representa um risco muito alto para a solução, já que afeta completamente a credibilidade da equipe e confiança da parceira no projeto.
+    <br>
+
+- **2 - Dificuldade no planejamento para implementação por falta de estrutura:**
+
+    **Impacto:** Médio.<br>
+    **Probabilidade:** 10%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A empresa parceira necessita de segurança nas salas das estações e nos canteiros de obras que ainda não possuem um planejamento adequado ou uma planta definida para orientar a instalação e o mapeamento do local. Por esse motivo, a equipe pode enfrentar dificuldades durante o processo de planejamento e adaptação da solução às necessidades da empresa, devido à falta de estrutura prévia.
+    <br>
+
+- **3 - Custo de manutenção:**
+
+    **Impacto:** Baixo.<br>
+    **Probabilidade:** 10%.
+    
+   &nbsp;&nbsp;&nbsp;&nbsp;  Devido a grande quantidade de salas e múltiplas implementações em diferentes lugares, podem haver danos aos equipamentos, o que representa um risco por um alto custo de manutenção.
+   <br>
+
+- **4 - Perda de energia elétrica durante a operação:**
+
+
+    **Impacto:** Muito Alto.<br>
+    **Probabilidade:** 50%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A possível falta de energia elétrica durante as operações da empresa parceira pode comprometer o funcionamento contínuo da solução, afetando diretamente sua confiabilidade. Além disso, fatores ambientais e geográficos, como chuvas intensas, variações bruscas de temperatura e exposição prolongada a condições climáticas adversas, podem danificar os equipamentos, causar falhas operacionais e comprometer a segurança do sistema. Esses fatores representam um risco elevado à disponibilidade e à credibilidade da solução proposta.
+
+    <br>
+
+- **5 - Erro humano na permissão de acesso:**
+
+    **Impacto:** Médio.<br>
+    **Probabilidade:** 50%.
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp; Um ponto negativo para a solução está relacionado à possibilidade de erro humano durante o processo de concessão ou controle de acesso. Falhas como o cadastro incorreto de usuários, esquecimento de credenciais ou permissões atribuídas de forma indevida podem comprometer a segurança do sistema e permitir acessos não autorizados. Esse risco reforça a importância de implementar camadas adicionais de autenticação, registros de auditoria e treinamentos adequados aos responsáveis pela gestão dos acessos.
+    <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; As ameaças identificadas permitem prever possíveis riscos que podem influenciar negativamente o andamento da solução, possibilitando que a equipe adote medidas preventivas e estratégias de mitigação para reduzir seus impactos durante o desenvolvimento e a implementação do projeto.
+<br>
+
+#### 3.1.5.2. Oportunidades 
+
+&nbsp;&nbsp;&nbsp;&nbsp; As oportunidades são situações ou condições favoráveis que, se aproveitadas, podem gerar benefícios ou vantagens para o projeto.
+Elas funcionam como o “lado positivo” da análise de riscos: enquanto os riscos representam ameaças, as oportunidades representam possibilidades de ganho.
+
+- **6 - Utilização de criptografia:** como diferencial competitivo
+
+    **Impacto:** Muito Alto.<br>
+    **Probabilidade:** 50%.
+
+     &nbsp;&nbsp;&nbsp;&nbsp; A adoção de técnicas avançadas de criptografia como parte da solução IoT representa uma oportunidade de destaque no mercado, agregando valor e aumentando a confiança dos clientes em relação à segurança de dados e acessos.
+     A utilização de uma criptografia pós-quântica permitiria elevar exponencialmente o nível de segurança da solução. Essa abordagem diferencia o produto frente a concorrentes e fortalece a imagem da empresa parceira como inovadora e comprometida com a proteção das informações sensíveis.
+    <br>
+
+- **7 - Implementação real da solução:**
+
+    **Impacto:** Muito Alto.<br>
+    **Probabilidade:** 10%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A aplicação prática da solução nas instalações reais da parceira TIC Trens oferece uma oportunidade de validação do projeto, permitindo testes em ambiente operacional e coleta de dados reais sobre desempenho, usabilidade e eficiência. Essa implementação pode gerar visibilidade institucional, ampliar o portfólio de soluções tecnológicas e abrir novas possibilidades de expansão para outras unidades ou empresas do mesmo setor.
+    <br>
+
+- **8 - Implementação de autenticação multifator:**
+
+
+    **Impacto:** Alto.<br>
+    **Probabilidade:** 70%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A inclusão de autenticação multifator combinando RFID, senha e outros métodos de autênticação via aplicativo fortalece significativamente a segurança do sistema, reduzindo as chances de acesso não autorizado. Além de proteger informações sensíveis, essa funcionalidade amplia o valor da solução e a adequa a padrões modernos de segurança digital, tornando-a mais atrativa para futuras aplicações corporativas.
+    <br>
+
+- **9 - Alteração da senha com o decorrer do tempo para evitar clonagem/fraude do RFID:**
+
+    **Impacto:** Médio.<br>
+    **Probabilidade:** 70%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; A implementação de um sistema de atualização periódica de senhas associadas ao RFID contribui para a redução de vulnerabilidades e fraudes. Essa prática reforça a confiabilidade da solução, permitindo que o sistema se adapte continuamente a potenciais ameaças e mantenha a integridade do controle de acesso ao longo do tempo.
+    <br>
+
+- **10 - Criação de uma patente ou artigo científico do projeto:**
+
+    **Impacto:** Alto.<br>
+    **Probabilidade:** 30%.
+
+    &nbsp;&nbsp;&nbsp;&nbsp; O desenvolvimento bem-sucedido da solução pode gerar oportunidades acadêmicas e comerciais, como a publicação de artigos científicos ou o registro de uma patente. Isso contribuiria para a visibilidade do grupo e da solução.
+    <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; As oportunidades identificadas permitem elevar o nível de qualidade e eficiência da solução, além de evidenciar cenários favoráveis que podem ser explorados estrategicamente. Com isso, a equipe consegue definir prioridades para o planejamento, desenvolvimento e execução do projeto, maximizando seus resultados e valor agregado.
+<br>
+
+#### 3.1.5.3. Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp; As ameaças levantadas possibilitam prever e identificar riscos que podem influenciar negativamente o andamento do projeto, como falhas de segurança, interrupções por falta de energia e erros humanos no processo de autenticação. Essa antecipação favorece a elaboração de planos de contingência e a definição de práticas preventivas para garantir maior estabilidade e confiabilidade do sistema IoT desenvolvido.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Por outro lado, as oportunidades destacadas representam caminhos de crescimento e inovação para o projeto, como a implementação de autenticação multifator, a aplicação de criptografia avançada e a possibilidade de criação de uma patente ou publicação científica. Esses fatores contribuem para aumentar a credibilidade, o valor tecnológico e o impacto social da solução proposta.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, a análise da matriz de riscos e oportunidades não apenas orienta as decisões da equipe durante o desenvolvimento, mas também fortalece a segurança e eficiência do projeto em parceria com a TIC Trens.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Segue o link para o design da Matriz de Risco: https://www.figma.com/design/lKAsWLCpfKZVKuKm9DAwO1/Untitled?node-id=0-1&t=mX89bk1b4YsXKFtA-1 
 
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
@@ -293,13 +433,33 @@ _BOM (Bill of Material) pode ser definido como uma lista completa de materiais, 
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário 
 
-### 3.2.1. Personas (sprint 1)	
+### 3.2.1. Personas
 
-_Coloque aqui suas Personas:_
-- _Representação fictícia do público-alvo._
-- _Baseada em dados reais e pesquisas._
-- _Humaniza o público, facilitando decisões centradas no usuário._
-- _Trabalhar na criação de pelo menos uma Persona_
+A etapa de criação de personas é essencial para o alinhamento do projeto. Com as personas conseguimos identificar as dores que o projeto solucionará, as funções que deve contemplar e o impacto causado na vida do público-alvo, de forma a guiar o projeto numa direção organizada e alinhada. Isto posto, foi determinado que o projeto possuirá duas principais personas: um técnico de manutenção que irá interagir diretamente com a solução IoT desenvolvida e uma gestora de acesso, que terá seu trabalho facilitado pelo sistema. 
+
+Carlos Mendes, 42 anos, é Técnico de Manutenção Eletromecânica com mais de 15 anos de experiência no setor ferroviário. Trabalha diariamente em houses, subestações e salas técnicas, onde realiza inspeções e manutenções em equipamentos elétricos e mecânicos. Para executar suas atividades, precisa acessar diferentes áreas restritas, o que hoje exige solicitações manuais e autorizações demoradas.
+Sua principal necessidade é contar com um sistema de acesso ágil e seguro, que reduza a burocracia e elimine esperas desnecessárias antes de iniciar o trabalho em campo.
+
+<div align="center">
+<sub>Persona 1 - Técnico de manutenção</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Persona1.png">
+</div>
+
+Beatriz Nunes, 29 anos, é Analista de Gestão de Terceiros – Gestão de Acesso, com formação em Logística e mais de 5 anos de experiência no setor ferroviário. É responsável por monitorar a circulação de equipes e controlar acessos às áreas operacionais, garantindo a segurança das vias e a conformidade dos processos.
+Sua principal necessidade é dispor de um sistema centralizado e confiável de monitoramento de acessos, que permita acompanhar em tempo real quem entrou, onde e quando. Além disso, deseja receber alertas automaticamente sobre tentativas de entrada não autorizadas.
+
+<div align="center">
+<sub>Persona 2 -  Gestora de acessos</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Persona2.png">
+</div>
+
+Para melhor visualização, acesse nosso [figma](https://www.figma.com/design/kGDeEGhxhv6GqoSpoG70At/Tic-Trens?node-id=0-1&t=Zh99GbnlH5k2zP99-1).
+
+Portanto a criação de personas se mostra uma etapa imprescindível para o direcionamento e contiunuidade do projeto, de forma a ser um guia para conseguirmos chegar no resultado masi satisfatório para a Tic Trens.
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
 
@@ -459,8 +619,14 @@ BUSER. Ônibus de São Paulo - SP para Campinas - SP. Disponível em: https://ww
 
 VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em: https://www.viacaocometa.com.br/. Acesso em: 20 out. 2025.
 
+
 **Fontes utilizadas na seção 3.1.4. Value Proposition Canvas:**
 
 **Value Proposition Canvas**
 
 [2] RUSHIKEN, Amanda. (2023). Value Proposition Canvas: o que é e como funciona essa metodologia?. G4 Educação. Disponível em: <https://g4educacao.com/blog/value-proposition-canvas> Acesso em 21 out. 2025. <a name="foot2" id="foot2"></a>
+
+**Sobre a pesquisa para as personas:**
+
+TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025
+

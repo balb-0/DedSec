@@ -382,3 +382,7 @@ ALSTOM. Alstom celebra marco de 5 mil caixas produzidas no Brasil. Alstom (Press
 BUSER. Ônibus de São Paulo - SP para Campinas - SP. Disponível em: https://www.buser.com.br/onibus/sao-paulo-sp/campinas-sp. Acesso em: 20 out. 2025.
 
 VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em: https://www.viacaocometa.com.br/. Acesso em: 20 out. 2025.
+
+**Sobre a pesquisa para as personas:**
+
+TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025

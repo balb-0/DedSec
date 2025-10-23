@@ -449,35 +449,88 @@ Elas funcionam como o “lado positivo” da análise de riscos: enquanto os ris
 
 &nbsp;&nbsp;&nbsp;&nbsp; Segue o link para o design da Matriz de Risco: https://www.figma.com/design/lKAsWLCpfKZVKuKm9DAwO1/Untitled?node-id=0-1&t=mX89bk1b4YsXKFtA-1 
 
-### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
+### 3.1.6. Política de Privacidade de acordo com a LGPD  
 
-_A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
+&nbsp;&nbsp;&nbsp;&nbsp;A Política de Privacidade é um documento essencial no contexto de colaboração entre o grupo DedSec — o Grupo 04 do 4º módulo de 2025 da Turma 18 do Inteli — e a Tic Trens, considerando a necessidade de coleta e análise de dados. Este documento assegura aos usuários, colaboradores e parceiros, enquanto titulares dos dados, que as informações pessoais são tratadas com respeito, responsabilidade e em conformidade com a Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais (LGPD). (Arquia, 2025)<sup>[1](#foot1)</sup>  
 
-#### 3.1.6.1 Informações gerais sobre a empresa / organização
+#### 3.1.6.1 Informações gerais sobre a empresa / organização  
 
-#### 3.1.6.2 Informações sobre o tratamento de dados
+&nbsp;&nbsp;&nbsp;&nbsp;O Instituto de Tecnologia e Liderança (Inteli), pessoa jurídica de direito privado, está localizado na Av. Prof. Almeida Prado, 520 - Butantã, São Paulo - SP, 05508-070, e inscrito no CNPJ/MF sob o nº 28.226.170/0001-08.  
+&nbsp;&nbsp;&nbsp;&nbsp;Em parceria com a Tic Trens, o Inteli reforça seu compromisso com a proteção de dados pessoais. A colaboração com o time DedSec no projeto de gerenciamento de acessos utiliza plataformas e conexões para coletar e tratar dados de forma responsável, garantindo total conformidade com a legislação vigente.  
 
-#### 3.1.6.3 Quais são os dados coletados
+#### 3.1.6.2 Informações sobre o tratamento de dados  
 
-#### 3.1.6.4 Onde os dados são coletados 
+&nbsp;&nbsp;&nbsp;&nbsp;O tratamento de dados coletados pelo sistema e integrados à Ubidots tem como principal objetivo monitorar e validar acessos físicos a áreas técnicas, garantindo segurança operacional e integridade das informações.  
+&nbsp;&nbsp;&nbsp;&nbsp;O tratamento baseia-se nas hipóteses legais de **execução de contrato** e **legítimo interesse** (art. 7º, incisos V e IX da LGPD).  
 
-#### 3.1.6.5 Para quais finalidades os dados serão utilizadas
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são tratados conforme os seguintes princípios:  
+- **Finalidade**: os dados têm propósitos legítimos, claros e específicos, como autenticação, registro de acessos e geração de relatórios de conformidade.  
+- **Adequação**: o tratamento é compatível com as necessidades e objetivos do projeto.  
+- **Necessidade**: apenas os dados estritamente necessários são coletados e transmitidos à Ubidots.  
+- **Segurança**: medidas técnicas e administrativas são aplicadas para proteger as informações contra acessos não autorizados.  
 
-#### 3.1.6.6 Onde os dados ficam armazenados 
+#### 3.1.6.3 Quais são os dados coletados  
 
-#### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados englobam informações fornecidas diretamente pelos usuários e dados técnicos obtidos automaticamente por dispositivos IoT. Entre eles, estão:  
+- **Dados pessoais identificáveis**: nome, identificação corporativa (RFID) e credenciais de acesso.  
+- **Dados técnicos e operacionais**: tipo de dispositivo, sistema operacional, localização aproximada (via IP), registros de logs e _timestamps_ de acesso.  
+- **Dados provenientes de dispositivos IoT**: identificadores únicos, leituras de sensores e eventos de autenticação coletados pela Ubidots para análise em tempo real.  
 
-#### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
+&nbsp;&nbsp;&nbsp;&nbsp; Os **dados sensíveis**, como informações relacionadas à saúde ocupacional ou segurança do trabalho, estes recebem tratamento diferenciado, com camadas adicionais de segurança, controle de acesso e anonimização, conforme o art. 11 da LGPD.  
 
-#### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
+#### 3.1.6.4 Onde os dados são coletados  
 
-#### 3.1.6.10 Informações sobre medidas de segurança adotadas pela empresa
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são coletados por meio da **integração entre os dispositivos IoT e a plataforma Ubidots**, que atua como um ponto central de coleta e visualização.  
+&nbsp;&nbsp;&nbsp;&nbsp;A comunicação entre os dispositivos (ex: módulos ESP32 com RFID) e a Ubidots ocorre via protocolos MQTT ou HTTP, com autenticação de token e criptografia, garantindo a integridade e confidencialidade das transmissões.  
 
-#### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários
+#### 3.1.6.5 Para quais finalidades os dados serão utilizados  
 
-#### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados coletados têm as seguintes finalidades:  
+1. **Monitoramento e controle de acesso**: validar autenticações e registrar entradas em áreas técnicas.  
+2. **Gestão de segurança**: identificar tentativas de acesso indevido e emitir alertas em tempo real.  
+3. **Auditoria e conformidade**: gerar relatórios de histórico e rastreabilidade para gestores.  
+4. **Visualização analítica**: exibir métricas de uso e dados de sensores por meio dos dashboards da Ubidots.  
 
-#### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização
+#### 3.1.6.6 Onde os dados ficam armazenados  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são armazenados de forma redundante e segura nos **servidores da Ubidots**, que utilizam infraestrutura em nuvem com alto padrão de disponibilidade e segurança.  
+&nbsp;&nbsp;&nbsp;&nbsp;A plataforma aplica **criptografia em repouso e em trânsito**, controle de acesso por token e autenticação multifatorial para usuários administrativos. Além disso, a Ubidots realiza auditorias de segurança periódicas e segue conformidades reconhecidas internacionalmente, como **ISO 27001** e **SOC 2**.  
+
+#### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)  
+
+&nbsp;&nbsp;&nbsp;&nbsp; O período de retenção dos dados (logs de acesso, sessões) será definido em conformidade com as obrigações legais e a política interna de auditoria e segurança da TIC Trens. Para fins de desenvolvimento do projeto acadêmico, os dados serão retidos apenas durante a duração do módulo **(três meses)**, sendo anonimizados ou excluídos após a sua conclusão.
+
+#### 3.1.6.8 Uso de *cookies* e/ou tecnologias semelhantes  
+
+&nbsp;&nbsp;&nbsp;&nbsp;A plataforma web de visualização pode utilizar *cookies* essenciais para manter sessões e preferências de usuário. Esses *cookies* são necessários para o funcionamento adequado da interface e podem ser gerenciados ou desativados pelo navegador do usuário.  
+
+#### 3.1.6.9 Com quem esses dados são compartilhados  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os dados são compartilhados com a **Tic Trens**, o **Inteli** e a **Ubidots**, responsável pela hospedagem e visualização dos dados IoT. Todos os parceiros seguem políticas internas de segurança e privacidade alinhadas à LGPD.  
+
+#### 3.1.6.10 Informações sobre medidas de segurança adotadas  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O sistema implementa medidas de segurança abrangentes, incluindo:  
+- Criptografia ponta a ponta nas comunicações entre dispositivos e servidor.  
+- Controle de acesso baseado em papéis (RBAC) e autenticação multifatorial.  
+- Segregação de ambientes de desenvolvimento, teste e produção.  
+- Anonimização e pseudonimização de dados sensíveis.  
+- Logs de auditoria contínuos na Ubidots e no backend do projeto.  
+
+#### 3.1.6.11 Direitos dos titulares de dados  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os titulares de dados podem exercer seus direitos previstos nos artigos 18 e 19 da LGPD, incluindo:  
+1. Solicitar a exclusão ou anonimização de seus dados pessoais.  
+2. Corrigir informações incorretas ou desatualizadas.  
+3. Solicitar uma cópia de todos os dados tratados.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;As solicitações devem ser enviadas para [parcerias@inteli.edu.br](mailto:parcerias@inteli.edu.br) e serão atendidas em até **15 dias**, conforme a legislação vigente.  
+
+#### 3.1.6.12 Contato do Encarregado de Proteção de Dados (DPO)  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O Encarregado de Proteção de Dados (DPO) é responsável por supervisionar as práticas relacionadas ao tratamento de dados pessoais no projeto. O contato pode ser realizado pelo e-mail [dpo@inteli.edu.br](mailto:dpo@inteli.edu.br), informando o motivo da solicitação e os dados necessários para identificação.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;O grupo DedSec reafirma seu compromisso com a **transparência**, **segurança da informação** e **conformidade legal**, garantindo que todas as práticas de tratamento de dados — tanto na infraestrutura interna quanto na Ubidots — estejam alinhadas à LGPD e às diretrizes éticas do Inteli.
 
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
@@ -713,4 +766,3 @@ VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em:
 **Sobre a pesquisa para as personas:**
 
 TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025
-

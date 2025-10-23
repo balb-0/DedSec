@@ -611,7 +611,29 @@ A revisão deverá incluir comentários sobre cada ponto levantado, mostrando co
 
 _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
 
-### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
+### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi
+
+Para validar o *firmware* (a lógica de programação embarcada) do microcontrolador ESP32 de forma ágil, antes de sua implementação no hardware final, foi desenvolvido um protótipo virtual no simulador Wokwi.
+
+Este ambiente de simulação permitiu o desenvolvimento e depuração do código de controle de acesso. No entanto, devido às limitações do Wokwi na simulação de componentes de hardware específicos, foram necessárias duas adaptações principais em relação ao protótipo físico montado.
+
+#### Principais Diferenças e Adaptações
+
+1. **Substituição do Atuador (Relé/Trava):**
+    - **Protótipo Físico:** Utiliza um **Módulo Relé** que é acionado para controlar uma **fechadura eletrônica** (a trava).
+    - **Protótipo Wokwi:** O Módulo Relé não é o foco da simulação lógica. Por isso, foi substituído por um **LED**. No simulador, o ato de acender o LED verde representa o "comando de destravar" que seria enviado ao relé.
+2. **Substituição do Sensor de Identidade (RFID):**
+    - **Protótipo Físico:** Utiliza um **Leitor RFID** (MFRC522) para ler o ID único do crachá do colaborador (Fator 1 de autenticação).
+    - **Protótipo Wokwi:** O simulador não possui um componente de leitor RFID funcional. Para simular o *evento* de "passar o crachá", o leitor foi substituído por um **Botão (Push Button)**.
+
+#### Fluxo de Interação no Simulador
+
+Com essas adaptações, o fluxo de teste no Wokwi valida a lógica de estados da seguinte forma:
+
+1. O usuário pressiona o **Botão** (simulando a leitura de um crachá RFID).
+2. O sistema (ESP32) reconhece o evento e passa a aguardar o Fator 2 de autenticação.
+3. O usuário insere a senha correta no **Teclado Numérico (Keypad)**.
+4. Após a validação da senha, o **LED de status** (atuador) acende, confirmando que a lógica de autenticação foi executada com sucesso.
 
 _Preencha aqui o link para o protótipo inicial no Wokwi_
 

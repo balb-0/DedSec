@@ -337,13 +337,33 @@ _BOM (Bill of Material) pode ser definido como uma lista completa de materiais, 
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário 
 
-### 3.2.1. Personas (sprint 1)	
+### 3.2.1. Personas
 
-_Coloque aqui suas Personas:_
-- _Representação fictícia do público-alvo._
-- _Baseada em dados reais e pesquisas._
-- _Humaniza o público, facilitando decisões centradas no usuário._
-- _Trabalhar na criação de pelo menos uma Persona_
+A etapa de criação de personas é essencial para o alinhamento do projeto. Com as personas conseguimos identificar as dores que o projeto solucionará, as funções que deve contemplar e o impacto causado na vida do público-alvo, de forma a guiar o projeto numa direção organizada e alinhada. Isto posto, foi determinado que o projeto possuirá duas principais personas: um técnico de manutenção que irá interagir diretamente com a solução IoT desenvolvida e uma gestora de acesso, que terá seu trabalho facilitado pelo sistema. 
+
+Carlos Mendes, 42 anos, é Técnico de Manutenção Eletromecânica com mais de 15 anos de experiência no setor ferroviário. Trabalha diariamente em houses, subestações e salas técnicas, onde realiza inspeções e manutenções em equipamentos elétricos e mecânicos. Para executar suas atividades, precisa acessar diferentes áreas restritas, o que hoje exige solicitações manuais e autorizações demoradas.
+Sua principal necessidade é contar com um sistema de acesso ágil e seguro, que reduza a burocracia e elimine esperas desnecessárias antes de iniciar o trabalho em campo.
+
+<div align="center">
+<sub>Persona 1 - Técnico de manutenção</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Persona1.png">
+</div>
+
+Beatriz Nunes, 29 anos, é Analista de Gestão de Terceiros – Gestão de Acesso, com formação em Logística e mais de 5 anos de experiência no setor ferroviário. É responsável por monitorar a circulação de equipes e controlar acessos às áreas operacionais, garantindo a segurança das vias e a conformidade dos processos.
+Sua principal necessidade é dispor de um sistema centralizado e confiável de monitoramento de acessos, que permita acompanhar em tempo real quem entrou, onde e quando. Além disso, deseja receber alertas automaticamente sobre tentativas de entrada não autorizadas.
+
+<div align="center">
+<sub>Persona 2 -  Gestora de acessos</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Persona2.png">
+</div>
+
+Para melhor visualização, acesse nosso [figma](https://www.figma.com/design/kGDeEGhxhv6GqoSpoG70At/Tic-Trens?node-id=0-1&t=Zh99GbnlH5k2zP99-1).
+
+Portanto a criação de personas se mostra uma etapa imprescindível para o direcionamento e contiunuidade do projeto, de forma a ser um guia para conseguirmos chegar no resultado masi satisfatório para a Tic Trens.
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
 
@@ -502,3 +522,7 @@ ALSTOM. Alstom celebra marco de 5 mil caixas produzidas no Brasil. Alstom (Press
 BUSER. Ônibus de São Paulo - SP para Campinas - SP. Disponível em: https://www.buser.com.br/onibus/sao-paulo-sp/campinas-sp. Acesso em: 20 out. 2025.
 
 VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em: https://www.viacaocometa.com.br/. Acesso em: 20 out. 2025.
+
+**Sobre a pesquisa para as personas:**
+
+TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025

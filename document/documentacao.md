@@ -530,20 +530,27 @@ _Coloque aqui seu Storyboard:_
 - _Destaca pontos de atrito ou oportunidades na experiência._
 - _Criar ao menos um storyboard._
 
-## 3.3. Solução Técnica	
+&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, são apresentados os principais aspectos técnicos do desenvolvimento da solução proposta, abrangendo desde os requisitos funcionais e não funcionais até a definição das arquiteturas em diferentes níveis de detalhamento.
 
-_Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
+### 3.3.1. Requisitos Funcionais
 
-### 3.3.1. Requisitos Funcionais (sprint 1)	
+&nbsp;&nbsp;&nbsp;&nbsp;Os requisitos funcionais definidos para o sistema de controle de acesso inteligente da TIC Trens foram elaborados com base no fluxo de validação apresentado no diagrama de sequência. Cada requisito busca garantir a segurança das áreas técnicas, a confiabilidade das informações e a rastreabilidade das ações dos colaboradores. O conjunto de requisitos descrito a seguir reflete a integração entre hardware IoT, backend e sistemas corporativos de capacitação e agendamento.  
 
-_Descreva quais são os requisitos funcionais e sua relação com as demandas e problemas de negócios (visão de funcionalidades). Evolua estes requisitos conforme o desenvolvimento do projeto._
+<div align="center">  
+<sub>Quadro 1 - Requisitos Funcionais</sub>
 
-_Atente-se as regras de negócios. Caso necessário, as aponte nos cenários dos requisitos funcionais._
+| **RF#** | **Descrição** | **Regra de Negócio** | **Ações Previstas** |
+|---|---|---|---|
+| **RF01** | O sistema deve identificar o colaborador por meio de leitura RFID. | Se o identificador não estiver cadastrado, o acesso é negado e o evento é registrado. | Exibir mensagem “Cartão não reconhecido” em caso de falha e registrar tentativa de acesso inválida no banco de dados. |
+| **RF02** | O sistema deve solicitar e validar uma senha única (PIN) após a leitura bem-sucedida do RFID. | O PIN é obrigatório para autenticação completa. Se incorreto, o sistema deve negar o acesso e registrar a tentativa falha. | Solicitar PIN no dispositivo; caso incorreto, exibir “Senha incorreta, tente novamente” e enviar log ao backend. |
+| **RF03** | O sistema deve verificar a capacitação e o agendamento do colaborador antes de liberar o acesso. | O acesso só é concedido se o colaborador estiver capacitado e com atividade programada na data e hora da tentativa. | Consultar API de capacitação/agendamento; em caso de não conformidade, exibir “Acesso negado – colaborador não autorizado”. |
+| **RF04** | O sistema deve registrar todos os eventos de acesso, autorizados ou não, com data, hora e identificação do colaborador. | Todos os eventos devem ser armazenados em banco de dados, incluindo falhas e sucessos, para fins de auditoria e rastreabilidade. | Gravar logs de tentativas e acessos aprovados, com sincronização automática com o servidor quando houver rede. |
+| **RF05** | O sistema deve atualizar o painel em tempo real e gerar alertas visuais para eventos críticos. | Sempre que ocorrer um acesso negado ou PIN incorreto, o dashboard deve exibir alerta imediato para a equipe de segurança. | Atualizar dashboard e emitir notificação visual “Acesso negado” ou “PIN incorreto”, mantendo histórico dos eventos no sistema. |
 
-| **RF#** | **Descrição** | **Regra de negócio** | 
-|----------|----------|----------|
-|RF01|Ex. O dispositivo deve permitir acionamento por botão liga e desliga|Ex. A solução deve funcionar apenas durante seu uso por operadores|
-|RF02|Preencha aqui seus requisitos|Preencha aqui as regras de negócio relacionadas|
+<sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Essas especificações asseguram que o sistema fornecerá informações precisas e oportunas para os operadores, ao mesmo tempo em que mantém os dados protegidos e a operação dos equipamentos monitorada sob condições seguras para a TIC Trens. A implementação adequada desses requisitos contribuirá para um ambiente de trabalho mais seguro e facilitará a análise de dados e auditorias futuras, além de garantir a continuidade e integridade dos processos de monitoramento e manutenção.
 
 ### 3.3.2. Requisitos Não Funcionais (sprint 2)	
 

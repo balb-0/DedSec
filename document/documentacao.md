@@ -533,11 +533,37 @@ Elas funcionam como o “lado positivo” da análise de riscos: enquanto os ris
 &nbsp;&nbsp;&nbsp;&nbsp;O grupo DedSec reafirma seu compromisso com a **transparência**, **segurança da informação** e **conformidade legal**, garantindo que todas as práticas de tratamento de dados — tanto na infraestrutura interna quanto na Ubidots — estejam alinhadas à LGPD e às diretrizes éticas do Inteli.
 
 
-### 3.1.7. Bill of Material (BOM) (sprint 1)
-_BOM (Bill of Material) pode ser definido como uma lista completa de materiais, que detalha todos os itens necessários para construir, fabricar ou reparar um produto. Deve-se preencher o template fornecido.
+### 3.1.7. Bill of Material (BOM)
 
+A Bill of Materials é uma lista que contempla todos os itens utilizados para construção do protótipo IoT. Esse processo de registros de mateirais utilizados é importante pois garante rastreabilidade, padronização e facilita tanto a montagem quanto futuras manutenções ou reproduções da solução.
 
+<div align="center">
+<sub>Imagem 05: Bill of Materials</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/billOfMaterials.png">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec, 2025.</sub>
+</div> 
 
+ESP32 (ESP32-WROOM-32UE): Microcontrolador Wi-Fi e Bluetooth de alto desempenho.
+
+RFID (RFID-RC522): Módulo de leitura por radiofrequência utilizado para identificação de tags RFID em sistemas de controle de acesso ou rastreamento.
+
+Display LCD 16x2 I2C Backlight Azul (CP-D1-001): Visor com interface I2C que exibe até 32 caracteres, facilitando a comunicação visual com o usuário.
+
+Teclado Matricial 4x4 16 teclas (KEYPAD 4X4): Dispositivo de entrada que permite o envio de comandos através de 16 botões dispostos em matriz.
+
+Relé (SRD-05VDC-SL-C): Componente eletromecânico que atua como interruptor controlado eletricamente, permitindo acionar cargas de maior potência.
+
+Conectores Macho-Macho (MM-JP-24): Jumpers usados para conexões diretas entre pinos ou módulos em protoboard ou placas de ensaio.
+
+Conectores Macho-Fêmea (MF-JP-4): Cabos de conexão versáteis usados para interligar módulos e sensores em prototipagem eletrônica.
+
+Resistor 100 Ω (Genérico): Componente passivo que limita a corrente elétrica em um circuito, protegendo componentes sensíveis e garantindo o funcionamento estável.
+
+Portanto, com o BOM é possível ter uma melhor visualização dos componentes utilizados, além de garantir a rastreabilidade e a padronização dos itens. A BOM assegura que cada componente seja corretamente identificado e especificado, contribuindo para a confiabilidade e a eficiência do desenvolvimento do projeto IoT. 
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário 
 

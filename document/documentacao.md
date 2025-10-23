@@ -185,7 +185,7 @@ _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estã
 - **Dados técnicos e operacionais**: tipo de dispositivo, sistema operacional, localização aproximada (via IP), registros de logs e _timestamps_ de acesso.  
 - **Dados provenientes de dispositivos IoT**: identificadores únicos, leituras de sensores e eventos de autenticação coletados pela Ubidots para análise em tempo real.  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Caso sejam tratados **dados sensíveis**, como informações relacionadas à saúde ocupacional ou segurança do trabalho, estes recebem tratamento diferenciado, com camadas adicionais de segurança, controle de acesso e anonimização, conforme o art. 11 da LGPD.  
+&nbsp;&nbsp;&nbsp;&nbsp; Os **dados sensíveis**, como informações relacionadas à saúde ocupacional ou segurança do trabalho, estes recebem tratamento diferenciado, com camadas adicionais de segurança, controle de acesso e anonimização, conforme o art. 11 da LGPD.  
 
 #### 3.1.6.4 Onde os dados são coletados  
 
@@ -207,7 +207,7 @@ _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estã
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)  
 
-&nbsp;&nbsp;&nbsp;&nbsp;O período padrão de retenção dos dados é de **três meses**, podendo variar conforme as necessidades do parceiro. Após o prazo, os dados são excluídos ou anonimizados automaticamente na plataforma Ubidots, conforme sua política de retenção.  
+&nbsp;&nbsp;&nbsp;&nbsp; O período de retenção dos dados (logs de acesso, sessões) será definido em conformidade com as obrigações legais e a política interna de auditoria e segurança da TIC Trens. Para fins de desenvolvimento do projeto acadêmico, os dados serão retidos apenas durante a duração do módulo **(três meses)**, sendo anonimizados ou excluídos após a sua conclusão.
 
 #### 3.1.6.8 Uso de *cookies* e/ou tecnologias semelhantes  
 

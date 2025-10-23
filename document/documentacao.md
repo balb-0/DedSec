@@ -397,82 +397,86 @@ _Descreva quais são os requisitos não funcionais e sua relação com aspectos 
 <sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
 </div> 
 
-#### Diagrama de Sequência: Fluxo de Validação de Acesso
+#### Diagrama de Sequência: Fluxo de Validação de Acesso  
 
-Este diagrama ilustra o fluxo de ponta-a-ponta para o processo de validação de acesso a uma área técnica. Ele detalha a interação entre o Colaborador (usuário de campo), o Dispositivo IoT (hardware na porta), nosso Backend (a API), o Banco de Dados, a API Externa (do parceiro, para agendamentos) e o Dashboard (do CCO).
+&nbsp;&nbsp;&nbsp;&nbsp;O diagrama de sequência a seguir representa o **fluxo completo de validação de acesso** a uma área técnica da Tic Trens, ilustrando as interações entre os diferentes componentes do sistema: o **Colaborador** (usuário de campo), o **Dispositivo IoT** (hardware instalado na porta), o **Backend** (API principal do sistema), o **Banco de Dados** (armazenamento central), o **Módulo de Validação** (responsável pelas regras de negócio), a **API de Capacitação/Agendamento** (serviço externo fornecido pela Tic Trens) e o **Dashboard** (interface do Centro de Controle Operacional – CCO).  
 
-O processo é dividido em duas fases principais: a autenticação e a autorização.
+&nbsp;&nbsp;&nbsp;&nbsp;O processo é composto por **duas fases principais**: a **autenticação de múltiplos fatores (MFA)** e a **validação/autorização de acesso**. Além disso, o sistema inclui rotinas de **resposta**, **notificação em tempo real** e **auditoria pós-acesso**.  
 
-##### 1\. Autenticação de Múltiplos Fatores (MFA)
+---
 
-Esta é a primeira etapa, onde o sistema valida a **identidade** do colaborador.
+##### 1. Autenticação de Múltiplos Fatores (MFA)  
 
-1.  **Fator 1 (O que ele tem):** O Colaborador aproxima seu crachá do Dispositivo IoT.
-    
-2.  O Dispositivo IoT envia o ID do crachá para o Backend.
-    
-3.  O Backend consulta o Banco de Dados para verificar se este ID existe e a quem pertence.
-    
-4.  **Fator 2 (O que ele sabe):** Se o crachá é reconhecido, o Dispositivo IoT solicita o segundo fator (a senha única/PIN enviada para o colaborador).
-    
-5.  O Colaborador digita o PIN no teclado do dispositivo.
-    
-6.  O Dispositivo IoT envia ambos os dados (cardId + PIN) para o Backend.
-    
+&nbsp;&nbsp;&nbsp;&nbsp;Nesta primeira etapa, o sistema realiza a validação da **identidade do colaborador**, utilizando dois fatores de autenticação distintos para garantir que o usuário que tenta o acesso é realmente quem diz ser.  
 
-##### 2\. Lógica de Validação e Autorização (O "Cérebro")
+1. **Fator 1 – O que o colaborador possui:** o colaborador aproxima o seu **crachá RFID** no **Dispositivo IoT** localizado na entrada da área técnica.  
+2. O **Dispositivo IoT** envia o **ID do RFID** ao **Backend**, que encaminha a solicitação ao **Módulo de Validação**.  
+3. O **Módulo de Validação** consulta o **Banco de Dados** para verificar se o identificador RFID está cadastrado e vinculado a um colaborador.  
+4. **Se o RFID for reconhecido**, o Dispositivo IoT solicita um segundo fator de autenticação — o **PIN (senha única)** — a ser informado pelo colaborador.  
+5. O colaborador insere o PIN diretamente no teclado do Dispositivo IoT.  
+6. O Dispositivo IoT envia as credenciais completas (**RFID + PIN**) para o Backend, que encaminha os dados para o Módulo de Validação processar a autenticação.  
 
-Esta é a segunda etapa, onde o Backend decide se o acesso é **permitido**.
+---
 
-1.  **Validação de Identidade:** O Backend verifica se o PIN fornecido é válido para o Colaborador associado ao cardId.
-    
-2.  **Validação de Autorização:**
-    
-    *   Se a identidade for válida, o Backend executa a verificação de regras de negócio.
-        
-    *   Ele consulta a **API de Capacitação / Agendamento** (o sistema externo da TIC Trens) para perguntar: "Este colaborador está agendado e capacitado para esta sala _agora_?"
-        
+##### 2. Validação e Autorização  
 
-##### 3\. Respostas do Sistema
+&nbsp;&nbsp;&nbsp;&nbsp;Após a confirmação da identidade do colaborador, o sistema realiza a verificação de **autorização de acesso**, consultando fontes internas e externas para validar se o acesso é permitido naquele momento.  
 
-O sistema possui três respostas principais:
+1. O **Módulo de Validação** confirma a validade do PIN e associa o colaborador autenticado ao seu perfil no banco de dados.  
+2. Se o PIN for **válido**, o sistema consulta a **API de Capacitação e Agendamento** (sistema externo da Tic Trens).  
+3. A API retorna as informações sobre **capacitação técnica** e **atividade agendada** do colaborador.  
+4. O Backend aplica as **regras de negócio**: o acesso só é autorizado se o colaborador estiver **capacitado**, **agendado** e dentro do **horário permitido**.  
+5. Caso contrário, o acesso é negado e o evento é classificado como tentativa não autorizada.  
 
-**A. Caminho de Sucesso (Acesso Permitido)**
+---
 
-_Se_ o PIN for válido _e_ a API externa autorizar o acesso:
+##### 3. Respostas do Sistema  
 
-1.  O Backend envia um comando de **sucesso** ao Dispositivo IoT (que aciona o relé da porta e acende o LED verde).
-    
-2.  O Backend registra o evento como "Acesso Autorizado" no Banco de Dados.
-    
-3.  O Backend envia uma notificação em tempo real (via WebSocket) para o Dashboard do CCO, informando que o colaborador entrou na sala.
-    
+&nbsp;&nbsp;&nbsp;&nbsp;Dependendo do resultado das validações, o sistema executa uma das três rotas de resposta:  
 
-**B. Falha na Autorização (Acesso Negado)**
+###### A. Caminho de Sucesso – Acesso Autorizado  
+- O PIN é válido e a API confirma capacitação e agendamento ativos.  
+- O **Backend** envia ao **Dispositivo IoT** o comando de **liberação de acesso** (acionando o relé e o LED verde).  
+- O **Módulo de Validação** registra o evento de “Acesso Autorizado” no **Banco de Dados**.  
+- O **Dashboard** é atualizado em tempo real via **WebSocket**, exibindo o nome do colaborador, horário e área acessada.  
+- Uma mensagem de confirmação é exibida ao colaborador: **“Acesso autorizado”**.  
 
-_Se_ o PIN for válido, _mas_ a API externa negar o acesso (sem agendamento, capacitação vencida, etc.):
+###### B. Caminho de Falha – Acesso Negado (Autorização)  
+- O PIN é válido, mas a API externa indica falha na autorização (sem agendamento, capacitação vencida ou área incorreta).  
+- O **Backend** envia comando de **negação de acesso** ao Dispositivo IoT (mantendo a porta trancada e acendendo o LED vermelho).  
+- O evento é registrado no Banco de Dados como “Tentativa Não Autorizada”, com o motivo da recusa.  
+- O **Dashboard** recebe um alerta visual e sonoro informando a tentativa de acesso negada.  
+- O colaborador vê a mensagem: **“Acesso negado – colaborador não autorizado”**.  
 
-1.  O Backend envia um comando de **falha** ao Dispositivo IoT (que mantém a porta trancada e acende o LED vermelho).
-    
-2.  O Backend registra a tentativa falha e o motivo (ex: "Sem agendamento") no Banco de Dados.
-    
-3.  O Backend envia um **alerta** em tempo real para o Dashboard do CCO, informando a tentativa de acesso negada.
-    
+###### C. Caminho de Falha – Acesso Negado (Autenticação)  
+- O RFID é inválido ou o PIN está incorreto.  
+- O **Backend** envia comando de **falha imediata** ao Dispositivo IoT (LED vermelho).  
+- O evento é registrado no Banco de Dados como “Falha de Autenticação”, incluindo a causa (ex: “PIN incorreto” ou “RFID não reconhecido”).  
+- O **Dashboard** exibe alerta de segurança em tempo real.  
+- O colaborador é informado com a mensagem: **“Senha incorreta, tente novamente”** ou **“Cartão não reconhecido”**.  
 
-**C. Falha na Autenticação (Acesso Negado)**
+---
 
-_Se_ o PIN estiver incorreto ou o crachá RFID não for reconhecido:
+##### 4. Pós-Acesso e Auditoria  
 
-1.  O Backend envia imediatamente um comando de **falha** ao Dispositivo IoT (LED vermelho).
-    
-2.  O Backend registra a tentativa falha e o motivo (ex: "PIN incorreto") no Banco de Dados.
-    
-3.  O Backend também envia um **alerta** para o Dashboard do CCO.
-    
+&nbsp;&nbsp;&nbsp;&nbsp;Todos os registros de autenticação e autorização ficam armazenados no Banco de Dados, compondo o histórico de auditoria do sistema.  
+&nbsp;&nbsp;&nbsp;&nbsp;Os gestores podem acessar o **Dashboard do CCO** para gerar **relatórios de conformidade** contendo dados como:  
+- Identificação do colaborador;  
+- Data, hora e local do acesso;  
+- Resultado da validação (autorizado, negado, falha de autenticação);  
+- Motivo do bloqueio, quando aplicável.  
 
-##### 4\. Pós-Acesso (Auditoria)
+&nbsp;&nbsp;&nbsp;&nbsp;Essas informações são essenciais para fins de **segurança operacional**, **auditoria interna** e **cumprimento de normas trabalhistas e de segurança do trabalho**.  
 
-*   A qualquer momento, um operador no Dashboard do CCO pode solicitar relatórios de conformidade e auditoria, consultando o histórico de acessos armazenado no Banco de Dados.
+---
+
+##### 5. Observações Técnicas  
+
+- O fluxo foi modelado com base no **princípio de autenticação em dois fatores (MFA)**, reforçando a confiabilidade do sistema.  
+- A comunicação entre o Dispositivo IoT e o Backend ocorre de forma segura via **protocolo MQTT ou HTTP com TLS**.  
+- O Dashboard utiliza **WebSocket** para atualização em tempo real dos eventos.  
+- O sistema registra todos os eventos de falha, sucesso e exceção para auditoria futura e análises de segurança.  
+- O modelo de dados é centralizado em **PostgreSQL**, garantindo integridade e rastreabilidade das operações.  
 
 ---
 

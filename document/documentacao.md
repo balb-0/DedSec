@@ -923,11 +923,9 @@ Esta tabela apresenta os **cenários de teste fundamentais** para a validação 
 | **03** | **Falha de Autenticação** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "SENHA INCORRETA" / Linha 2: "TENTE NOVAMENTE" | O usuário se identifica, mas comete um erro de digitação na senha. |
 | | | Teclado | Senha **`54321`** (Incorreta) | Atuador (Simulado) | Permanece Bloqueado |
 | | | Teclado | Senha incorreta 3x | Atuador (Simulado) | Permanece Bloqueado |
-| **04** | **Dupla Confirmação** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "CARTAO OK. Digite" / Linha 2: "a Senha (4 digitos):" | Confirma que a identificação foi concluída com sucesso antes de solicitar a senha. |
-| | | Teclado | Senha **`12345`** (Correta) | Display LCD (16x2) | Linha 1: "ACESSO LIBERADO!" |
-| **05** | **Integração Futura (Falha de Agendamento)** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "ACESSO NEGADO" / Linha 2: "Sem Agendamento!" | Simulação da regra de negócio IoT: cartao e senha ok, mas sem agendamento no backend. |
+| **04** | **Integração Futura (Falha de Agendamento)** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "ACESSO NEGADO" / Linha 2: "Sem Agendamento!" | Simulação da regra de negócio IoT: cartao e senha ok, mas sem agendamento no backend. |
 | | | Teclado | Senha **`12345`** (Correta) | Atuador (Simulado) | Permanece Bloqueado |
-| **06** | **Erro de Leitura RFID** | Leitor RFID | Ausência ou Interferência | Display LCD (16x2) | Linha 1: "Aproxime o Cartao" / Linha 2: "..." | Teste de estabilidade: O leitor não consegue obter uma leitura válida. |
+| **05** | **Erro de Leitura RFID** | Leitor RFID | Ausência ou Interferência | Display LCD (16x2) | Linha 1: "Aproxime o Cartao" / Linha 2: "..." | Teste de estabilidade: O leitor não consegue obter uma leitura válida. |
 | | | Teclado | (Não Solicitado) | Atuador (Simulado) | Permanece Bloqueado |
 
 ***

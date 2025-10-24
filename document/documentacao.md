@@ -735,7 +735,78 @@ _Descreva quais são os requisitos não funcionais e sua relação com aspectos 
 - O sistema registra todos os eventos de falha, sucesso e exceção para auditoria futura e análises de segurança.  
 - O modelo de dados é centralizado em **PostgreSQL**, garantindo integridade e rastreabilidade das operações.  
 
+
+### Diagrama de classes UML
+
+Para obter uma melhor visualização das futuras tabelas do nosso banco de dados, elaboramos um diagrama de classes. Esse diagrama é responsável por representar a modelagem da estrutura estática do sistema, auxiliando no planejamento das tabelas, dos dados que estarão nelas e dos métodos que poderão ser utilizados.
+Além disso, o diagrama é fundamental para visualizar as relações entre as classes e identificar a visibilidade dos dados, ou seja, se estarão definidos como públicos ou privados.
+
+
+<div align="center">
+<sub>Diagrama de Classes UML da solução</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Diagramas de Classe UML.png" 
+height=50% width=50%>
+</div>
+
+<br>
+
+### 1. Classes e Detalhes
+<div align="center"> 
+
+#### 1.1. Classe: user
+
+| Tipo | Atributo/Método | Visibilidade | Tipo de Dado/Retorno | Observação |
+| :--- | :--- | :--- | :--- | :--- |
+| **Atributo** | `id` | Privado (`-`) | `int` | Chave primária. |
+| **Atributo** | `timestamp` | Privado (`-`) | `data` | Registro de data/hora. |
+| **Atributo** | `rfid` | Privado (`-`) | `str` | Código de autenticação por RFID. |
+| **Atributo** | `senha` | Privado (`-`) | `int` | Senha do usuário. **(Recomendação: usar `string` para *hash*)** |
+| **Método** | `validarSenha` | Público (`+`) | `bool` | Verifica a validade da senha fornecida. |
+| **Método** | `autenticarRFID` | Público (`+`) | `bool` | Realiza a autenticação por código RFID. |
+| **Método** | `registrarAcesso` | Público (`+`) | `void` | Registra um evento de acesso do usuário. |
+| **Método** | `horarioPermitido` | Público (`+`) | `bool` | Checa se o acesso é permitido no horário atual. |
+
+#### 1.2. Classe: tarefa
+
+| Tipo | Atributo/Método | Visibilidade | Tipo de Dado/Retorno | Observação |
+| :--- | :--- | :--- | :--- | :--- |
+| **Atributo** | `id` | Privado (`-`) | `int` | Chave primária. |
+| **Atributo** | `salaId` | Privado (`-`) | `int` | Chave estrangeira para `sala`. |
+| **Atributo** | `localizacao` | Privado (`-`) | `string` | Local da tarefa. |
+| **Atributo** | `nome` | Privado (`-`) | `string` | Nome da tarefa. |
+| **Atributo** | `dataInicio` | Privado (`-`) | `data` | Data de início da atividade. |
+| **Atributo** | `dataFim` | Privado (`-`) | `data` | Data de término da atividade. |
+| **Atributo** | `agendamento` | Privado (`-`) | `data` | Data de agendamento. |
+| **Atributo** | `status` | Privado (`-`) | `bool` | Status da tarefa (e.g., ativa/finalizada). |
+| **Método** | `duracaoTotal` | Público (`+`) | `int` | Calcula e retorna a duração total da tarefa. |
+| **Método** | `estaAtiva` | Público (`+`) | `bool` | Retorna se a tarefa está atualmente em curso. |
+| **Método** | `finalizar` | Público (`+`) | `void` | Encerra e atualiza o status da tarefa. |
+
+#### 1.3. Classe: sala
+
+| Tipo | Atributo/Método | Visibilidade | Tipo de Dado/Retorno | Observação |
+| :--- | :--- | :--- | :--- | :--- |
+| **Atributo** | `id` | Privado (`-`) | `int` | Chave primária. |
+| **Atributo** | `localizacao` | Privado (`-`) | `string` | Localização da sala (e.g., andar). |
+| **Atributo** | `nome` | Privado (`-`) | `string` | Nome ou número da sala. |
+| **Atributo** | `status` | Privado (`-`) | `bool` | Status da sala (e.g., disponível/ocupada). |
+| **Método** | `validarAcesso` | Público (`+`) | `bool` | Verifica se um usuário possui permissão para entrar na sala. |
+| **Método** | `bloquearAcesso` | Público (`+`) | `bool` | Altera o estado da sala para impedir novos acessos. |
+| **Método** | `disponibilidade` | Público (`+`) | `bool` | Retorna o status de ocupação/liberação da sala. |
+
+### 2. Relacionamentos (Associações)
+
+As associações representam como as classes interagem entre si, utilizando a multiplicidade (cardinalidade) de um-para-muitos (`1...n`) em todos os casos.
+
+| Classe A | Relação com | Classe B | Multiplicidade (A para B) | Significado |
+| :--- | :--- | :--- | :--- | :--- |
+| **user** | $\longrightarrow$ | **tarefa** | $1 \longrightarrow 1...n$ | Um usuário pode ser responsável por **várias tarefas**. |
+| **user** | $\longrightarrow$ | **sala** | $1 \longrightarrow 1...n$ | Um usuário pode estar associado ou ter acesso a **várias salas**. |
+| **sala** | $\longrightarrow$ | **tarefa** | $1 \longrightarrow 1...n$ | Uma sala pode ter **várias tarefas** agendadas nela. |
 ---
+</div>
 
 #### (Sprint 3)
 

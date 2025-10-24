@@ -882,14 +882,66 @@ Com essas adaptações, o fluxo de teste no Wokwi valida a lógica de estados da
 3. O usuário insere a senha correta no **Teclado Numérico (Keypad)**.
 4. Após a validação da senha, o **LED de status** (atuador) acende, confirmando que a lógica de autenticação foi executada com sucesso.
 
-_Preencha aqui o link para o protótipo inicial no Wokwi_
+#### Como rodar o projeto no Wokwi?
 
-_Abaixo você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema no simulador. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do simulador e descreva os testes realizados para ilustrar o funcionamento do protótipo simulado. A tabela a seguir serve como exemplo._
+Para executar o protótipo inicial do projeto é necessário instalar a extensão do Wokwi dentro do próprio VSCode. Isso porque, houveram complicações na execução no ambiente virtual do navagador, por isso, foi necessário realizar a execução local.
 
-**#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição**
-|----------|----------|----------|----------|----------|----------|----------|
-|01|ex. medidor de umidade relativa do ar|ex. “sensor de umidade XPTO”| < 100 | ex. led amarelo | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca
+Passos:
+
+- Instale a extensão dentro do VSCode:
+    - Abra o VSCode.
+    - Vá até **View** e depois **Extensions**.
+    - Procure por **Wokwi Simulator**
+    - Instale-a.
+
+- Inserindo Licença no **Wokwi Simulator**:
+    -  Pressione ```F1```.
+    -  Procure por ```Wokwi: Request a new license ```.
+    -  Após ser redirecionado ao site, pressione no botão ```Get your License```.
+    - Copie o código disponibilizado no site.
+    - Pressione ```F1``` novamente e procure por ```Wokwi: Manually Enter License Key```.
+    - Cole o código copiado no campo.
+
+- Rodando o projeto:
+    - Entre em ```/src/firmware/```.
+    - Abra o arquivo ```diagram.json```.
+    - Pressione o botão de **Play** no ambiente criado.
+
+
+#### Tabela de Cenários de Teste do Protótipo de Validação de Acesso IoT
+
+
+
+Esta tabela apresenta os **cenários de teste fundamentais** para a validação do protótipo de controle de acesso. O objetivo é testar a robustez e a segurança da lógica de **dupla autenticação (Cartão RFID + Senha Fixa)**, simulando tanto as condições ideais de sucesso quanto as diversas situações de falha (cartão inválido, senha incorreta e bloqueio de tentativas). Além disso, inclui-se um cenário projetando a integração futura com o sistema de agendamento (*backend* IoT), crucial para a conformidade regulatória exigida pela Tic Trens.
+
+| **#** | **Bloco** | **Componente de Entrada** | **Leitura da Entrada** | **Componente de Saída** | **Leitura da Saída** | **Descrição** |
+| :---: | :---: | :--- | :--- | :--- | :--- | :--- |
+| **01** | **Sucesso Total** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "ACESSO LIBERADO!" / Linha 2: "Bem-vindo, JOAO!" | Teste base de sucesso. O sistema identifica o usuário autorizado, a senha é digitada corretamente, e a liberação é exibida. |
+| | | Teclado | Senha **`12345`** (Correta) | Atuador (Simulado) | Aciona Fechadura/Relé (Liberação) |
+| **02** | **Falha de Identificação** | Leitor RFID | Cartão **`C99999`** (Não Cadastrado) | Display LCD (16x2) | Linha 1: "CARTAO INVALIDO" / Linha 2: "ACESSO NEGADO" | Teste de segurança: Cartão sem registro no sistema. Bloqueio imediato. |
+| | | Teclado | (Não Solicitado) | Atuador (Simulado) | Permanece Bloqueado |
+| **03** | **Falha de Autenticação** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "SENHA INCORRETA" / Linha 2: "TENTE NOVAMENTE" | O usuário se identifica, mas comete um erro de digitação na senha. |
+| | | Teclado | Senha **`54321`** (Incorreta) | Atuador (Simulado) | Permanece Bloqueado |
+| | | Teclado | Senha incorreta 3x | Atuador (Simulado) | Permanece Bloqueado |
+| **04** | **Integração Futura (Falha de Agendamento)** | Leitor RFID | Cartão **`C12345`** (Autorizado) | Display LCD (16x2) | Linha 1: "ACESSO NEGADO" / Linha 2: "Sem Agendamento!" | Simulação da regra de negócio IoT: cartao e senha ok, mas sem agendamento no backend. |
+| | | Teclado | Senha **`12345`** (Correta) | Atuador (Simulado) | Permanece Bloqueado |
+| **05** | **Erro de Leitura RFID** | Leitor RFID | Ausência ou Interferência | Display LCD (16x2) | Linha 1: "Aproxime o Cartao" / Linha 2: "..." | Teste de estabilidade: O leitor não consegue obter uma leitura válida. |
+| | | Teclado | (Não Solicitado) | Atuador (Simulado) | Permanece Bloqueado |
+
+***
+
+#### Detalhamento do Fluxo de Sucesso no Simulador (Situação #01)
+
+A tabela a seguir detalha o **fluxo sequencial de eventos** que ocorre no protótipo para o cenário de **Sucesso Total (\#01)**. Este detalhamento é essencial para ilustrar a experiência do usuário e verificar o funcionamento lógico e o *timing* de cada componente (leitor, teclado, LCD e atuador) durante a validação de acesso no simulador.
+
+| **Passo** | **Componente de Entrada** | **Ação do Usuário/Sistema** | **Componente de Saída** | **Mensagem/Estado da Saída** |
+| :---: | :--- | :--- | :--- | :--- |
+| **1** | Leitor RFID | Aproximação do Cartão `C12345` (Leitura Válida) | Display LCD (16x2) | Linha 1: `Cartao OK. Digite` / Linha 2: `a Senha (4 digitos):` |
+| **2** | Teclado | Digitação da Senha: `12345` (Entrada) | Display LCD (16x2) | Linha 1: `Cartao OK. Digite` / Linha 2: `*****` |
+| **3** | Microcontrolador (Lógica) | Verificação e Validação de Cartão + Senha | Display LCD (16x2) | Linha 1: `ACESSO LIBERADO!` / Linha 2: `Bem-vindo, JOAO!` |
+| **4** | Atuador (Relé/Fechadura) | Liberação (ativação do relé por 5 segundos) | Atuador (Simulado) | Estado: **ACIONADO** (Porta Aberta) |
+| **5** | Buzzer (Opcional) | Emissão de feedback sonoro de sucesso | Buzzer | Sinal sonoro breve de sucesso |
+
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)	
 

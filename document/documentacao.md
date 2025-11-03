@@ -607,7 +607,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 &nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema que sua empresa está implementando possa automatizar sua jornada de trabalho, tornando o acesso mais rápido, confiável e seguro. Sem necessitar de múltiplas autorizações humanas.
 
-#### 3.2.2.1.2 Fases
+#### 3.2.2.1.1 Fases
 
 &nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada de um usuário representam os processos que o usuário irá passar durante a utilização do sistema e todos as interações que devem ocorrer durante esse processo.
 
@@ -693,8 +693,79 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 #### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
 
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é uma analista de gestão de terceiros da TicTrens, formada em logística e com mais de 5 anos de experiência no setor ferroviário. Ela é a principal responsável por monitorar a circulação de equipes e controlar acessos às áreas operacionais, garantindo a segurança das vias, áreas restritas e a conformidade de processos. Ela espere que o sistema automatize trabalhos que antes eram feitos de forma manual e que evite erros de segurança que possam cair sobre sua responsabilidade.
+
+#### 3.2.2.2.1 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada de um usuário representam os processos que o usuário irá passar durante a utilização do sistema e todos as interações que devem ocorrer durante esse processo.
+
+**Fase 1:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nessa etapa, Bia faz o login no painel do sistema e recebe na sua tela todos os acessos requisitados em áreas restritas e tem acesso a todos os UID dos operadores cadastrados no sistema. 
+
+**Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
+
+**Sentimento:** Beatriz se sente concentrada na operação e verificação do sistema.
+
+<br>
+
+**Fase 2:** Solicitação de Acesso
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz recebe uma solicitação de acesso por algum trabalhador que precisa realizar uma manutenção em uma área restrita.
+
+**Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
+
+**Sentimento:** Beatriz fica atenta na situação, principalmente para não cometer erros na verificação.
+
+<br>
+
+
+**Fase 3:** Autorização
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após receber a solicitação, Bia aprova o acesso e gera o crachá temporário com RFID vinculado ao usuário, dessa forma, ele só pode entrar na área quando estiver no horário permitido e na respectiva sala. Através do sistema, as tarefas de verificação de acesso são automatizadas.
+
+**Pensamento:** Tudo certo! Agora é só registrar."
+
+**Sentimento:** Ela se sente satisfeita, já que sua tarefa mais tensa agora pode ser realizada sem problemas.
+
+<br>
+
+**Fase 4:** Monitoramento
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após gerar o cartão, Bia precisa monitorar as pessoas que entram e saem das salas através do sistema de logs da solução, que exibe todas as entradas e saídas em seus respectivos horários, assim garantindo que pessoas de fora da TicTrens não estejam em locais que não possuem qualificação adequada.
+
+**Pensamento:** Preciso garantir que pessoas de fora não estejam em áreas não autorizadas."
+
+**Sentimento:** Bia se sente focada em monitorar as entradas.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Bia consegue finalmente finalizar seu turno com a certeza de que não houveram falhas de segurança que caíram sobre sua responsabilidade, uma vez que o sistema automatiza todo o processo de verificação do usuário.
+
+**Pensamento:** "Consegui encerrar meu turno sem contratempos"
+
+**Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
+
+<br>
+
+**Oportunidades:**
+
+- Implementar fluxos automáticos de aprovação, alertas em tempo real (como acessos fora de horário).
+- Possuir total controle de acesso de quem entrou em cada sala.
+
+<br>
+
+**Responsabilidades:**
+
+- Validar acessos, monitorar movimentações, gerar relatórios, garantir segurança e conformidade.
+- Comunicar incidentes, colaborar com equipes de TI e segurança, apoiar treinamentos de uso do sistema.
+
+ 
+
 <div align="center">
-<sub>Jornada 2 -  Analista de Gestão de Terceiros</sub>
+<sub>Jornada 2 - Analista de Gestão de Terceiros</sub>
 </div>
 <div align="center">
 <img src="../assets/documentação/jornadas/Jornada_Beatriz.png">
@@ -703,6 +774,9 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 <sub>Fonte: Autoria da equipe Dedsec.</sub>
 </div>
 <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso, principal beneficiário do sistema IoT, estabelece com a solução. Bia espera que o sistema não apenas lhe dê mais confiança e segurança durante sua jornada, como também que automatize grande parte das tarefas que antes eram realizadas de forma manual, permitindo segurança reforçada nas obras e estações. Essa análise permite identificar de forma clara tanto os desafios e pontos de dor enfrentados durante o processo quanto os benefícios e oportunidades proporcionados pela implementação do sistema.
+
 
 ### 3.3.1. Requisitos Funcionais
 

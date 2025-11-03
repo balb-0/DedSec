@@ -595,21 +595,114 @@ Para melhor visualização, acesse nosso [figma](https://www.figma.com/design/kG
 
 Portanto a criação de personas se mostra uma etapa imprescindível para o direcionamento e contiunuidade do projeto, de forma a ser um guia para conseguirmos chegar no resultado masi satisfatório para a Tic Trens.
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
+### 3.2.2. Jornada do Usuário e Storyboard	
 
-_Coloque aqui seu Mapa de Jornada do Usuário:_
-- _Ferramenta visual da sequência de interações do usuário._
-- _Retrata sentimentos, obstáculos e satisfação ao longo de um processo._
-- _Identifica oportunidades de melhoria na experiência._
-- _Fazer pelo menos um mapa de jornada do usuário_
+&nbsp;&nbsp;&nbsp;&nbsp;A jornada do usuário é uma representação visual e narrativa da experiência de uma pessoa ao interagir com um produto, serviço ou sistema. Ela descreve, passo a passo, o caminho percorrido pelo usuário, desde o primeiro contato até o alcance de seus objetivos, destacando ações, emoções, desafios e oportunidades da persona.
 
-_Coloque aqui seu Storyboard:_
-- _Ilustração sequencial da interação do usuário com a solução._
-- _Enfatiza fluxo, interações e narrativa visual._
-- _Destaca pontos de atrito ou oportunidades na experiência._
-- _Criar ao menos um storyboard._
+&nbsp;&nbsp;&nbsp;&nbsp; Mais do que um simples fluxo de tarefas, a jornada busca compreender o contexto humano por trás das interações, revelando o que o usuário pensa, sente e precisa em cada momento. 
+ 
+#### 3.2.2.1 Jornada de Usuário: Carlos Mendes
 
-&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, são apresentados os principais aspectos técnicos do desenvolvimento da solução proposta, abrangendo desde os requisitos funcionais e não funcionais até a definição das arquiteturas em diferentes níveis de detalhamento.
+&nbsp;&nbsp;&nbsp;&nbsp;Carlos Mendes é um operador de manutenção em subestações, salas técnicas e áreas restritas das obras realizadas pela **Tic Trens**. Durante seu dia a dia, ele precisa a todo momento acessar salas de acesso restrito, por isso, a autorização atual que ele enfrenta é lenta e demorada.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema que sua empresa está implementando possa automatizar sua jornada de trabalho, tornando o acesso mais rápido, confiável e seguro. Sem necessitar de múltiplas autorizações humanas.
+
+#### 3.2.2.1.2 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada de um usuário representam os processos que o usuário irá passar durante a utilização do sistema e todos as interações que devem ocorrer durante esse processo.
+
+**Fase 1:** Solicitação
+
+&nbsp;&nbsp;&nbsp;&nbsp; A primeira parte da jornada, é quando Carlos chega a base de operações e necessita solicitar autorização para entrar em uma sala técnica e iniciar seu trabalho. Após a solicitação, Carlos recebe o cartão RFID com o UID cadastrado referente ao dia atual. 
+
+**Pensamento:** "Tomara que hoje o processo não demore"
+
+**Sentimento:** Carlos se sente **frustrado** por demorar tanto tempo para iniciar sua jornada do trabalho, mas entende que é uma etapa necessária para garantir a segurança da operação.
+
+<br>
+
+**Fase 2:** Autenticação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar na área restrita desejada, ele aproxima seu cartão RFID no sensor e avança para a próxima etapa de verificação, a senha. O sistema envia um código de até 6 digitos gerado automaticamente em SMS ao número de celular vinculado ao UID do usuário que fez a requisição.  
+
+**Pensamento:** "Beleza, só inserir o código e posso iniciar o trabalho."
+
+**Sentimento:** Carlos se sente **aliviado** pois finalmente consegue iniciar sua jornada de trabalho sem complicações.
+
+<br>
+
+**Fase 3:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após validar as credênciais do Carlos, o sistema libera a porta automaticamente. Ele entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento do sistema.
+
+**Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação."
+
+**Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
+
+<br>
+
+**Fase 4:** Monitoramento
+
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema IoT registra a entrada e saída do usuário. Carlos tem o preenchimento de relatórios com horários comprovando sua presença no trabalho, assim automatizando relatórios feitos de forma manual.
+
+**Pensamento:** "Bom saber que o sistema registrou tudo, facilita o relatório depois."
+
+**Sentimento:** Carlos se sente **Neutro**.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Carlos finaliza sua jornada de trabalho e tem a garantia de que falhas de segurança não caiam sobre sua responsabilidade, já que o sistema valida corretamente sua entrada e saída nos horários permitidos, assim evitando erros manuais.
+
+**Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
+
+**Sentimento:** Carlos se sente **Confiante**, pois possui garantia na execução do seu trabalho.
+
+<br>
+
+**Oportunidades:**
+
+- Evitar que problemas de segurança caiam sobre sua responsabilidade, já que o sistema automatiza automaticamente a segurança de entrada e saída das áreas restritas.
+- O sistema pode registrar automaticamente hora de entrada e saída.
+- Implementar relatórios automáticos de entrada/saída, facilitando o trabalho do operador ao final do expediente.
+
+<br>
+
+**Responsabilidades:**
+
+- Seguir os protocolos de autenticação e segurança.
+- Reportar falhas ou inconsistências ao sistema, para evitar erros de segurança.
+- Realizar manutenções dentro das áreas liberadas pelo sistema no horário permitido.
+ 
+
+<div align="center">
+<sub>Jornada 1 -  Operador de Manutenção</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Carlos.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de usuário de Carlos Mendes é possível identificar todas as etapas e necessidades de um dos usuários finais da solução: O operador que deseja se autenticar para realizar manutenções.
+&nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema permita acesso rápido as salas necessitadas de forma segura e automatizada, sem precisar passar por processos de autenticação demorados ou até mesmo depender de várias autorizações, assim otimizando seu tempo e evitando atrasos nas manutenções, que muitas vezes precisam ser imediatas.  
+&nbsp;&nbsp;&nbsp;&nbsp; Através do sistema, ele tem sua tarefa facilitada, uma vez que ao final do expediente não precisa gerar relatórios manuais, tem sua presença detectada automaticamente e evita que erros de segurança possam cair sobre sua responsabilidade.
+
+#### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
+
+<div align="center">
+<sub>Jornada 2 -  Analista de Gestão de Terceiros</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Beatriz.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
 
 ### 3.3.1. Requisitos Funcionais
 

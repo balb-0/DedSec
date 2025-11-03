@@ -688,7 +688,9 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 <br>
 
 &nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de usuário de Carlos Mendes é possível identificar todas as etapas e necessidades de um dos usuários finais da solução: O operador que deseja se autenticar para realizar manutenções.
+
 &nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema permita acesso rápido as salas necessitadas de forma segura e automatizada, sem precisar passar por processos de autenticação demorados ou até mesmo depender de várias autorizações, assim otimizando seu tempo e evitando atrasos nas manutenções, que muitas vezes precisam ser imediatas.  
+
 &nbsp;&nbsp;&nbsp;&nbsp; Através do sistema, ele tem sua tarefa facilitada, uma vez que ao final do expediente não precisa gerar relatórios manuais, tem sua presença detectada automaticamente e evita que erros de segurança possam cair sobre sua responsabilidade.
 
 #### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
@@ -777,6 +779,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 &nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso, principal beneficiário do sistema IoT, estabelece com a solução. Bia espera que o sistema não apenas lhe dê mais confiança e segurança durante sua jornada, como também que automatize grande parte das tarefas que antes eram realizadas de forma manual, permitindo segurança reforçada nas obras e estações. Essa análise permite identificar de forma clara tanto os desafios e pontos de dor enfrentados durante o processo quanto os benefícios e oportunidades proporcionados pela implementação do sistema.
 
+Para melhor visualização do Mapa da Jornada de Usuário, segue o link do projeto produzido no Figma pela equipe: https://www.figma.com/design/okP2h2ZcSdpnKuPk64hLno/Untitled?node-id=4-2809&t=hg5T2g4TZcBTWzWn-1
 
 ### 3.3.1. Requisitos Funcionais
 

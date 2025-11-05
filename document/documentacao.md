@@ -711,34 +711,36 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 <br>
 
-**Fase 2:** Solicitação de Acesso
-
-&nbsp;&nbsp;&nbsp;&nbsp; Beatriz recebe uma solicitação de acesso por algum trabalhador que precisa realizar uma manutenção em uma área restrita.
-
-**Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
-
-**Sentimento:** Beatriz fica atenta na situação, principalmente para não cometer erros na verificação.
-
-<br>
-
-
-**Fase 3:** Autorização
-
-&nbsp;&nbsp;&nbsp;&nbsp; Após receber a solicitação, Bia aprova o acesso e gera o crachá temporário com RFID vinculado ao usuário, dessa forma, ele só pode entrar na área quando estiver no horário permitido e na respectiva sala. Através do sistema, as tarefas de verificação de acesso são automatizadas.
-
-**Pensamento:** Tudo certo! Agora é só registrar."
-
-**Sentimento:** Ela se sente satisfeita, já que sua tarefa mais tensa agora pode ser realizada sem problemas.
-
-<br>
-
-**Fase 4:** Monitoramento
+**Fase 2:** Monitoramento
 
 &nbsp;&nbsp;&nbsp;&nbsp; Após gerar o cartão, Bia precisa monitorar as pessoas que entram e saem das salas através do sistema de logs da solução, que exibe todas as entradas e saídas em seus respectivos horários, assim garantindo que pessoas de fora da TicTrens não estejam em locais que não possuem qualificação adequada.
 
-**Pensamento:** Preciso garantir que pessoas de fora não estejam em áreas não autorizadas."
+**Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
 
-**Sentimento:** Bia se sente focada em monitorar as entradas.
+**Sentimento:** Beatriz fica focada na situação, principalmente para não cometer erros na verificação.
+
+<br>
+
+
+**Fase 3:** Notificação
+
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia uma notificação para Beatriz sempre que ocorre a entrada de alguém em uma área restrita. Se o indivíduo permanecer no local após o horário autorizado, uma mensagem de alerta é exibida na tela indicando a infração.
+
+**Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
+
+**Sentimento:** Ela fica muito atenta e preocupada nessa situação, principalmente porque a mensagem de alerta se trata de um momento crítico durante sua jornada.
+
+<br>
+
+**Fase 4:** Comunicação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento das áreas operacionais, Beatriz atua como um elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas restritas que exigem autorização prévia ou tempo máximo de permanência.
+
+Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
+
+**Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
+
+**Sentimento:** Bia se sente muito preocupada nessas situações, pois ela precisa agir sem hesitação, pois um atraso pode representar grande risco na segurança.
 
 <br>
 

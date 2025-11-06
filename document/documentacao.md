@@ -981,7 +981,25 @@ O protótipo é composto pelos seguintes componentes principais, distribuídos n
 
 **Arquitetura de Comunicação:**Os dois módulos se comunicam via MQTT através de uma rede Wi-Fi local. O ESP32-SENHA publica mensagens de comando (ex: "liberada" ou "bloqueada") no tópico tranca, e o ESP32-TRANCA, que assina este tópico, recebe o comando e aciona a tranca física.
 
-#### **3.4.2.2 Imagens do Protótipo Físico em Funcionamento**
+#### **3.4.2.2 Fluxo de Operação do Protótipo**
+
+Para validar o sistema, o protótipo físico segue um fluxo de Autenticação de Múltiplos Fatores (MFA) claro, que é a base para os cenários de teste:
+
+1.  **Estado Ocioso (Pré-condição):** O ESP32-SENHA está em espera, e o LCD exibe a mensagem "Aproxime o cartao" (conforme Teste 01).
+    
+2.  **Fator 1 (Leitura de Entrada):** O usuário se identifica aproximando o crachá do leitor RFID (simulado pelo botão verde no Teste 02).
+    
+3.  **Fator 2 (Leitura de Entrada):** O ESP32-SENHA valida o crachá e, em caso positivo, solicita o segundo fator no LCD: "Digite a Senha:". O usuário então insere o PIN no teclado matricial.
+    
+4.  **Validação e "Escrita (Saída)" Lógica:** O ESP32-SENHA verifica o PIN.
+    
+    *   **Em caso de sucesso (Teste 03):** Ele publica o comando liberada no tópico MQTT.
+        
+    *   **Em caso de falha (Teste 04):** Ele aciona o Buzzer (saída sonora) e publica o comando bloqueada.
+        
+5.  **"Escrita (Saída)" Física:** O ESP32-TRANCA, que está assinando o tópico MQTT, recebe o comando. Ao receber liberada, ele aciona o relé, **destravando a tranca física** por 5 segundos. Se receber bloqueada, ele garante que a tranca permaneça travada.
+
+#### **3.4.2.3 Imagens do Protótipo Físico em Funcionamento**
 
 <p align="center">
   <img src="../assets/documentação/prototipo_fisico/modulo_teclado.jpeg" width="600">
@@ -1005,13 +1023,13 @@ O protótipo é composto pelos seguintes componentes principais, distribuídos n
   <em><sub><strong>Figura Z:</strong> Protótipo em ação, com o LCD exibindo "Acesso Liberado" durante o Teste 03.</sub></em>
 </p>
 
-#### **3.4.2.3 Vídeo de Demonstração do Protótipo**
+#### **3.4.2.4 Vídeo de Demonstração do Protótipo**
 
 Para uma demonstração visual da execução dos casos de teste (descritos na tabela a seguir) no protótipo físico, consulte o vídeo de validação no link abaixo:
 
 **\[VÍDEO DE DEMONSTRAÇÃO DOS TESTES\]**_(Link para o vídeo a ser inserido aqui - ex: YouTube, Google Drive)_
 
-#### **3.4.2.4 Cenários de Teste do Protótipo Físico**
+#### **3.4.2.5 Cenários de Teste do Protótipo Físico**
 
 A tabela a seguir detalha os testes executados para validar as "leituras (entradas)" (do RFID/Botão e Teclado) e as "escritas (saídas)" (no LCD, Buzzer e, mais importante, na Tranca).
 
@@ -1026,7 +1044,7 @@ A tabela a seguir detalha os testes executados para validar as "leituras (entrad
 |07| Tentativa de acesso sem apresentar cartão primeiro | Sistema inicializado mostrando "Aproxime o cartao" | Tente digitar números no teclado sem antes pressionar o botão do cartão | O sistema não responde às teclas digitadas e mantém a mensagem "Aproxime o cartao" | Garante que o sistema só aceita senha após detectar cartão |
 |08| Limite de caracteres na senha | Sistema aguardando entrada de senha | Digite mais de 6 números consecutivos no teclado | O sistema aceita apenas os primeiros 6 dígitos e ignora os demais | Previne overflow na entrada de senha |
 
-#### **3.4.2.5 Trechos de Código Relevantes (Evidências)**
+#### **3.4.2.6 Trechos de Código Relevantes (Evidências)**
 
 Os trechos de código a seguir ilustram como os casos de teste são executados, com foco na lógica de autenticação e na comunicação MQTT para acionar a saída física (tranca).
 
@@ -1127,7 +1145,7 @@ void setup() {
 *   **Explicação:** Este código é a evidência final do **Teste 03**. A função callback aguarda a mensagem "liberada". Ao recebê-la, ela imediatamente aciona o pino de saída (digitalWrite(5, HIGH)), que está conectado ao relé que controla a **tranca física**, por 5 segundos. Isso demonstra que a "escrita (saída)" no atuador foi testada e funciona.
     
 
-#### **3.4.2.6 Conclusão da Validação do Protótipo Físico**
+#### **3.4.2.7 Conclusão da Validação do Protótipo Físico**
 
 A implementação do protótipo físico com dois ESP32s e MQTT foi bem-sucedida, validando os requisitos fundamentais do projeto. A Tabela de Testes, em conjunto com os trechos de código e o vídeo de demonstração, comprova que o sistema é capaz de:
 

@@ -958,6 +958,7 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 |06| Correção de senha durante digitação usando tecla "*" | Sistema aguardando entrada de senha e já foram digitados alguns números | Digite alguns números, pressione "*" para apagar o último dígito, continue digitando | O último asterisco é removido do LCD e pode-se continuar digitando normalmente | Permite correção de erros durante a digitação |
 |07| Tentativa de acesso sem apresentar cartão primeiro | Sistema inicializado mostrando "Aproxime o cartao" | Tente digitar números no teclado sem antes pressionar o botão do cartão | O sistema não responde às teclas digitadas e mantém a mensagem "Aproxime o cartao" | Garante que o sistema só aceita senha após detectar cartão |
 |08| Limite de caracteres na senha | Sistema aguardando entrada de senha | Digite mais de 6 números consecutivos no teclado | O sistema aceita apenas os primeiros 6 dígitos e ignora os demais | Previne overflow na entrada de senha |
+|09| Registro de saída e liberação (Leitor Interno) | O dispositivo ESP32 está inicializado e no estado ocioso (LCD mostra "Aproxime o cartao"). | Pressione o **botão azul** (que simula o leitor RFID posicionado *dentro* da sala). | O LCD exibe "Saida Registrada" por 2 segundos. **O LED verde (simulador do relé) acende por 5 segundos**, destravando a porta para permitir a saída. O sistema retorna para "Aproxime o cartao". | Testa o fluxo de saída e valida a "escrita (saída)" no atuador físico (relé/LED). |
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
 

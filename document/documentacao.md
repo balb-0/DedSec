@@ -603,61 +603,63 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
  
 #### 3.2.2.1 Jornada de Usuário: Carlos Mendes
 
-&nbsp;&nbsp;&nbsp;&nbsp;Carlos Mendes é um operador de manutenção em subestações, salas técnicas e áreas restritas das obras realizadas pela **Tic Trens**. Durante seu dia a dia, ele precisa a todo momento acessar salas de acesso restrito, por isso, a autorização atual que ele enfrenta é lenta e demorada.
+&nbsp;&nbsp;&nbsp;&nbsp;Carlos Mendes é operador de manutenção em subestações, salas técnicas e áreas restritas das obras realizadas pela Tic Trens. No seu dia a dia, ele precisa acessar constantemente ambientes de acesso controlado. Atualmente, o processo de autorização é lento e burocrático.
 
-&nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema que sua empresa está implementando possa automatizar sua jornada de trabalho, tornando o acesso mais rápido, confiável e seguro. Sem necessitar de múltiplas autorizações humanas.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema, em fase de implementação pela empresa, automatize sua rotina de trabalho, tornando o acesso mais ágil, confiável e seguro — sem a necessidade de múltiplas autorizações humanas.
 
 #### 3.2.2.1.1 Fases
 
-&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada de um usuário representam os processos que o usuário irá passar durante a utilização do sistema e todos as interações que devem ocorrer durante esse processo.
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
 
 **Fase 1:** Solicitação
 
-&nbsp;&nbsp;&nbsp;&nbsp; A primeira parte da jornada, é quando Carlos chega a base de operações e necessita solicitar autorização para entrar em uma sala técnica e iniciar seu trabalho. Após a solicitação, Carlos recebe o cartão RFID com o UID cadastrado referente ao dia atual. 
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à base de operações, Carlos precisa solicitar autorização para acessar uma sala técnica e iniciar suas atividades. Após a solicitação, ele recebe um cartão RFID com o UID cadastrado para o dia.
 
-**Pensamento:** "Tomara que hoje o processo não demore"
+- **Pensamento:** "Tomara que hoje o processo não demore"
 
-**Sentimento:** Carlos se sente **frustrado** por demorar tanto tempo para iniciar sua jornada do trabalho, mas entende que é uma etapa necessária para garantir a segurança da operação.
+- **Sentimento:** Carlos se sente **frustrado** por demorar tanto tempo para iniciar sua jornada do trabalho, mas entende que é uma etapa necessária para garantir a segurança da operação.
 
 <br>
 
 **Fase 2:** Autenticação
 
-&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar na área restrita desejada, ele aproxima seu cartão RFID no sensor e avança para a próxima etapa de verificação, a senha. O sistema envia um código de até 6 digitos gerado automaticamente em SMS ao número de celular vinculado ao UID do usuário que fez a requisição.  
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à área restrita, Carlos aproxima seu cartão RFID do sensor e prossegue para a etapa de verificação por senha. O sistema envia automaticamente um código de até seis dígitos via SMS para o número de celular vinculado ao seu UID. 
 
-**Pensamento:** "Beleza, só inserir o código e posso iniciar o trabalho."
+- **Pensamento:** "Beleza, só inserir o código e posso iniciar o trabalho."
 
-**Sentimento:** Carlos se sente **aliviado** pois finalmente consegue iniciar sua jornada de trabalho sem complicações.
+- **Sentimento:** Carlos se sente **aliviado** pois finalmente consegue iniciar sua jornada de trabalho sem complicações.
 
 <br>
 
 **Fase 3:** Entrada
 
-&nbsp;&nbsp;&nbsp;&nbsp; Após validar as credênciais do Carlos, o sistema libera a porta automaticamente. Ele entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento do sistema.
+&nbsp;&nbsp;&nbsp;&nbsp; Após a validação das credenciais, o sistema libera automaticamente a porta. Carlos entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento adequado dos sistemas.
 
-**Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação."
+- **Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação."
 
-**Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
+- **Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
 
 <br>
 
 **Fase 4:** Monitoramento
 
-&nbsp;&nbsp;&nbsp;&nbsp; O sistema IoT registra a entrada e saída do usuário. Carlos tem o preenchimento de relatórios com horários comprovando sua presença no trabalho, assim automatizando relatórios feitos de forma manual.
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema IoT registra automaticamente os horários de entrada e saída do usuário. Com isso, Carlos não precisa preencher relatórios manuais, pois sua presença é comprovada digitalmente.
 
-**Pensamento:** "Bom saber que o sistema registrou tudo, facilita o relatório depois."
+- **Pensamento:** "Bom saber que o sistema registrou tudo, facilita o relatório depois."
 
-**Sentimento:** Carlos se sente **Neutro**.
+- **Sentimento:** Carlos se sente **Neutro**.
 
 <br>
 
 **Fase 5:** Garantia
 
-&nbsp;&nbsp;&nbsp;&nbsp; Carlos finaliza sua jornada de trabalho e tem a garantia de que falhas de segurança não caiam sobre sua responsabilidade, já que o sistema valida corretamente sua entrada e saída nos horários permitidos, assim evitando erros manuais.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao encerrar sua jornada, Carlos tem a tranquilidade de que eventuais falhas de segurança não recairão sobre ele, já que o sistema valida corretamente seus acessos dentro dos horários permitidos, evitando erros manuais.
 
-**Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
+- **Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
 
-**Sentimento:** Carlos se sente **Confiante**, pois possui garantia na execução do seu trabalho.
+- **Sentimento:** Carlos se sente **Confiante**, pois possui garantia na execução do seu trabalho.
 
 <br>
 
@@ -671,7 +673,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 **Responsabilidades:**
 
-- Seguir os protocolos de autenticação e segurança.
+- Cumprir os protocolos de autenticação e segurança.
 - Reportar falhas ou inconsistências ao sistema, para evitar erros de segurança.
 - Realizar manutenções dentro das áreas liberadas pelo sistema no horário permitido.
  
@@ -687,77 +689,79 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 </div>
 <br>
 
-&nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de usuário de Carlos Mendes é possível identificar todas as etapas e necessidades de um dos usuários finais da solução: O operador que deseja se autenticar para realizar manutenções.
+&nbsp;&nbsp;&nbsp;&nbsp; A jornada do usuário Carlos Mendes permite identificar claramente as etapas e necessidades de um dos perfis finais da solução: o operador que precisa se autenticar para realizar manutenções.
 
-&nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema permita acesso rápido as salas necessitadas de forma segura e automatizada, sem precisar passar por processos de autenticação demorados ou até mesmo depender de várias autorizações, assim otimizando seu tempo e evitando atrasos nas manutenções, que muitas vezes precisam ser imediatas.  
+&nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema proporcione acesso rápido e seguro às salas técnicas, eliminando processos de autenticação demorados e a dependência de múltiplas autorizações. Isso otimiza seu tempo e evita atrasos em manutenções que, muitas vezes, são urgentes.
 
-&nbsp;&nbsp;&nbsp;&nbsp; Através do sistema, ele tem sua tarefa facilitada, uma vez que ao final do expediente não precisa gerar relatórios manuais, tem sua presença detectada automaticamente e evita que erros de segurança possam cair sobre sua responsabilidade.
+&nbsp;&nbsp;&nbsp;&nbsp; Com o novo sistema, sua rotina é facilitada: ele não precisa mais gerar relatórios manuais, sua presença é registrada automaticamente e sua responsabilidade por falhas de segurança é mitigada.
 
 #### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
 
-&nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é uma analista de gestão de terceiros da TicTrens, formada em logística e com mais de 5 anos de experiência no setor ferroviário. Ela é a principal responsável por monitorar a circulação de equipes e controlar acessos às áreas operacionais, garantindo a segurança das vias, áreas restritas e a conformidade de processos. Ela espere que o sistema automatize trabalhos que antes eram feitos de forma manual e que evite erros de segurança que possam cair sobre sua responsabilidade.
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é analista de gestão de terceiros na Tic Trens, formada em Logística e com mais de cinco anos de experiência no setor ferroviário. É a principal responsável por monitorar a circulação das equipes e controlar os acessos às áreas operacionais, garantindo a segurança das vias, das áreas restritas e a conformidade dos processos.
+Ela espera que o novo sistema automatize tarefas anteriormente realizadas de forma manual e evite falhas de segurança que possam recair sobre sua responsabilidade.
 
 #### 3.2.2.2.1 Fases
 
-&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada de um usuário representam os processos que o usuário irá passar durante a utilização do sistema e todos as interações que devem ocorrer durante esse processo.
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
 
 **Fase 1:** Entrada
 
-&nbsp;&nbsp;&nbsp;&nbsp; Nessa etapa, Bia faz o login no painel do sistema e recebe na sua tela todos os acessos requisitados em áreas restritas e tem acesso a todos os UID dos operadores cadastrados no sistema. 
+&nbsp;&nbsp;&nbsp;&nbsp; Nesta etapa, Beatriz realiza o login no painel do sistema e visualiza todos os acessos requisitados às áreas restritas, além de ter acesso aos UIDs dos operadores cadastrados.
 
-**Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
+- **Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
 
-**Sentimento:** Beatriz se sente concentrada na operação e verificação do sistema.
+- **Sentimento:** Beatriz se sente concentrada na operação e verificação do sistema.
 
 <br>
 
 **Fase 2:** Monitoramento
 
-&nbsp;&nbsp;&nbsp;&nbsp; Após gerar o cartão, Bia precisa monitorar as pessoas que entram e saem das salas através do sistema de logs da solução, que exibe todas as entradas e saídas em seus respectivos horários, assim garantindo que pessoas de fora da TicTrens não estejam em locais que não possuem qualificação adequada.
+&nbsp;&nbsp;&nbsp;&nbsp; Após a geração dos cartões, Beatriz monitora os acessos por meio dos logs do sistema, que exibem os horários de entrada e saída dos usuários. Isso garante que apenas pessoas qualificadas estejam nas áreas restritas, evitando acessos indevidos por terceiros.
 
-**Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
+- **Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
 
-**Sentimento:** Beatriz fica focada na situação, principalmente para não cometer erros na verificação.
+- **Sentimento:** Beatriz fica focada na situação, principalmente para não cometer erros na verificação.
 
 <br>
 
 
 **Fase 3:** Notificação
 
-&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia uma notificação para Beatriz sempre que ocorre a entrada de alguém em uma área restrita. Se o indivíduo permanecer no local após o horário autorizado, uma mensagem de alerta é exibida na tela indicando a infração.
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia notificações sempre que alguém acessa uma área restrita. Caso o indivíduo permaneça além do horário autorizado, um alerta é exibido na tela, indicando a infração.
 
-**Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
+- **Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
 
-**Sentimento:** Ela fica muito atenta e preocupada nessa situação, principalmente porque a mensagem de alerta se trata de um momento crítico durante sua jornada.
+- **Sentimento:** Ela fica muito atenta e preocupada nessa situação, principalmente porque a mensagem de alerta se trata de um momento crítico durante sua jornada.
 
 <br>
 
 **Fase 4:** Comunicação
 
-&nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento das áreas operacionais, Beatriz atua como um elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas restritas que exigem autorização prévia ou tempo máximo de permanência.
+&nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento, Beatriz atua como elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas que exigem autorização prévia ou tempo máximo de permanência.
 
 Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
 
-**Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
+- **Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
 
-**Sentimento:** Bia se sente muito preocupada nessas situações, pois ela precisa agir sem hesitação, pois um atraso pode representar grande risco na segurança.
+- **Sentimento:** Bia se sente muito preocupada nessas situações, pois ela precisa agir sem hesitação, pois um atraso pode representar grande risco na segurança.
 
 <br>
 
 **Fase 5:** Garantia
 
-&nbsp;&nbsp;&nbsp;&nbsp; Bia consegue finalmente finalizar seu turno com a certeza de que não houveram falhas de segurança que caíram sobre sua responsabilidade, uma vez que o sistema automatiza todo o processo de verificação do usuário.
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz encerra seu turno com a certeza de que não houve falhas de segurança sob sua responsabilidade, já que o sistema automatiza todo o processo de verificação
 
-**Pensamento:** "Consegui encerrar meu turno sem contratempos"
+- **Pensamento:** "Consegui encerrar meu turno sem contratempos"
 
-**Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
+- **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
 
 <br>
 
 **Oportunidades:**
 
-- Implementar fluxos automáticos de aprovação, alertas em tempo real (como acessos fora de horário).
-- Possuir total controle de acesso de quem entrou em cada sala.
+- Implementar fluxos automáticos de aprovação e alertas em tempo real (como acessos fora do horário).
+- Garantir controle total sobre quem acessou cada sala.
+
 
 <br>
 
@@ -779,7 +783,7 @@ Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridad
 </div>
 <br>
 
-&nbsp;&nbsp;&nbsp;&nbsp; A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso, principal beneficiário do sistema IoT, estabelece com a solução. Bia espera que o sistema não apenas lhe dê mais confiança e segurança durante sua jornada, como também que automatize grande parte das tarefas que antes eram realizadas de forma manual, permitindo segurança reforçada nas obras e estações. Essa análise permite identificar de forma clara tanto os desafios e pontos de dor enfrentados durante o processo quanto os benefícios e oportunidades proporcionados pela implementação do sistema.
+A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso — principal beneficiário do sistema IoT — estabelece com a solução. Beatriz espera que o sistema lhe proporcione não apenas mais confiança e segurança ao longo de sua jornada, mas também que automatize grande parte das tarefas anteriormente realizadas de forma manual, reforçando a segurança nas obras e estações.
 
 Para melhor visualização do Mapa da Jornada de Usuário, segue o link do projeto produzido no Figma pela equipe: https://www.figma.com/design/okP2h2ZcSdpnKuPk64hLno/Untitled?node-id=4-2809&t=hg5T2g4TZcBTWzWn-1
 

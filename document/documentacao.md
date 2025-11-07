@@ -700,7 +700,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 #### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
 
 &nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é analista de gestão de terceiros na Tic Trens, formada em Logística e com mais de cinco anos de experiência no setor ferroviário. É a principal responsável por monitorar a circulação das equipes e controlar os acessos às áreas operacionais, garantindo a segurança das vias, das áreas restritas e a conformidade dos processos.
-Ela espera que o novo sistema automatize tarefas anteriormente realizadas de forma manual e evite falhas de segurança que possam recair sobre sua responsabilidade.
+&nbsp;&nbsp;&nbsp;&nbsp; Ela espera que o novo sistema automatize tarefas anteriormente realizadas de forma manual e evite falhas de segurança que possam recair sobre sua responsabilidade.
 
 #### 3.2.2.2.1 Fases
 
@@ -742,7 +742,7 @@ Ela espera que o novo sistema automatize tarefas anteriormente realizadas de for
 
 &nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento, Beatriz atua como elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas que exigem autorização prévia ou tempo máximo de permanência.
 
-Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
 
 - **Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
 
@@ -756,7 +756,7 @@ Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridad
 
 - **Pensamento:** "Consegui encerrar meu turno sem contratempos."
 
-- **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
+- **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho. 
 
 <br>
 

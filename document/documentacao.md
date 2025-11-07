@@ -862,14 +862,38 @@ Portanto, fica claro que as storyboards são essenciais para se ter uma melhor v
 
 &nbsp;&nbsp;&nbsp;&nbsp;Essas especificações asseguram que o sistema fornecerá informações precisas e oportunas para os operadores, ao mesmo tempo em que mantém os dados protegidos e a operação dos equipamentos monitorada sob condições seguras para a TIC Trens. A implementação adequada desses requisitos contribuirá para um ambiente de trabalho mais seguro e facilitará a análise de dados e auditorias futuras, além de garantir a continuidade e integridade dos processos de monitoramento e manutenção.
 
-### 3.3.2. Requisitos Não Funcionais (sprint 2)	
+### 3.3.2. Requisitos Não Funcionais  
 
-_Descreva quais são os requisitos não funcionais e sua relação com aspectos de qualidade seguindo a norma ISO25010 (visão de aspectos de qualidade). Evolua estes requisitos conforme o desenvolvimento do projeto._
+&nbsp;&nbsp;&nbsp;&nbsp;Os requisitos não funcionais são restrições aplicadas aos requisitos funcionais, ou seja, limitam e qualificam os serviços oferecidos pelo sistema, definindo padrões de qualidade esperados. Para garantir a eficiência e a confiabilidade do sistema de controle de acesso da Tic Trens, o grupo adotou como referência a **norma ISO/IEC 25010**, que define oito características essenciais de qualidade de software:  
 
-| **RNF#** | **Descrição** | **Aspecto de qualidade** | 
-|----------|----------|----------|
-|RNF01|Ex. O painel dashboard deve estar disponível 99% do tempo|Ex. Disponibilidade|
-|RNF02|Preencha aqui seus requisitos|Preencha aqui o aspecto de qualidade|
+- **Adequação Funcional**: Funcionalidades que permitem ao usuário realizar suas tarefas corretamente.  
+- **Eficiência de Desempenho**: Capacidade do sistema de oferecer respostas rápidas e uso otimizado de recursos.  
+- **Compatibilidade**: Habilidade de integração e interoperabilidade com outros sistemas e componentes.  
+- **Usabilidade**: Facilidade de aprendizado e uso do sistema por parte do usuário.  
+- **Confiabilidade**: Capacidade de manter o funcionamento adequado mesmo diante de falhas.  
+- **Segurança**: Garantia de integridade, confidencialidade e disponibilidade das informações.  
+- **Manutenibilidade**: Facilidade de aprimorar, corrigir ou adaptar o sistema conforme necessário.  
+- **Portabilidade**: Capacidade de operar em diferentes ambientes e plataformas.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Com base nesses princípios, foram definidos os seguintes requisitos não funcionais (Quadro 2):  
+
+<div align="center">  
+<sub>Quadro 2 - Requisitos Não Funcionais</sub>
+
+| **RNF#** | **Descrição** | **Aspecto de Qualidade** | **Teste** |  
+|----------|---------------|--------------------------|------------|  
+| **RNF01** | Todas as informações sensíveis dos usuários devem ser armazenadas em banco de dados utilizando algoritmos de criptografia pós-quântica, como Crystals-Kyber para dados em repouso. | Segurança (Criptografia) | Inspecionar o código e a configuração do BD para confirmar o uso do algoritmo Crystals-Kyber. Tentar acessar ou visualizar os dados sensíveis diretamente no BD; eles devem estar ilegíveis. |  
+| **RNF02** | O sistema deve seguir fielmente o processo de autenticação em dois fatores (RFID + PIN) e validação via API externa, sem permitir atalhos ou bypass. | Adequação Funcional | Realizar testes de fluxo de autenticação completos, garantindo que o acesso só é concedido após a execução das duas etapas (RFID + PIN) e validação pela API externa. |  
+| **RNF03** | Após a validação do usuário e o fechamento completo da porta, o sistema deve acionar o mecanismo de travamento automaticamente dentro de um intervalo máximo de 5 segundos. | Desempenho (Tempo de Resposta) | Usar um cronômetro ou ferramenta de *logging* de sistema para medir o tempo exato entre o evento final do "fechamento completo da porta" e o "acionamento do mecanismo de travamento". Repetir o teste múltiplas vezes (ex: 10 vezes). |  
+| **RNF04** | O sistema deve ser compatível com protocolos MQTT e HTTP, permitindo comunicação com a Ubidots e com o backend local. | Compatibilidade | Testar a comunicação do dispositivo IoT com os dois protocolos, verificando se os dados são enviados corretamente tanto para o backend quanto para a plataforma Ubidots. |  
+| **RNF05** | O código-fonte do sistema deve ser modularizado e documentado, permitindo que cada componente (IoT, backend e dashboard) possa ser atualizado ou corrigido de forma independente. | Manutenibilidade | Analisar a estrutura de diretórios e documentação do código para verificar a modularização e clareza dos comentários. |  
+| **RNF06** | O sistema deve ser capaz de operar tanto em ambiente local (rede da Tic Trens) quanto em ambiente em nuvem, sem necessidade de refatoração de código. | Portabilidade | Implantar e testar o sistema em dois ambientes diferentes (local e remoto), verificando se o funcionamento é idêntico e estável em ambos os casos. |  
+
+<br>  
+<sup>Fonte: Material produzido pelos autores (2025)</sup>  
+</div>  
+
+&nbsp;&nbsp;&nbsp;&nbsp;A definição desses requisitos assegura que o sistema opere de forma **padronizada, interoperável e em conformidade** com as práticas estabelecidas pela norma ISO/IEC 25010. Assim, garante-se a integridade do processo de autenticação, a confiabilidade na comunicação entre dispositivos e a compatibilidade com diferentes protocolos e plataformas de monitoramento.
 
 ### 3.3.3. Arquitetura da Solução (sprint 3)
 

@@ -618,13 +618,17 @@ _Coloque aqui seu Storyboard:_
 <div align="center">  
 <sub>Quadro 1 - Requisitos Funcionais</sub>
 
-| **RF#** | **Descrição** | **Regra de Negócio** | **Ações Previstas** |
+| **ID** | **Requisito** | **Descrição** | **Prioridade** |
 |---|---|---|---|
-| **RF01** | O sistema deve identificar o colaborador por meio de leitura RFID. | Se o identificador não estiver cadastrado, o acesso é negado e o evento é registrado. | Exibir mensagem “Cartão não reconhecido” em caso de falha e registrar tentativa de acesso inválida no banco de dados. |
-| **RF02** | O sistema deve solicitar e validar uma senha única (PIN) após a leitura bem-sucedida do RFID. | O PIN é obrigatório para autenticação completa. Se incorreto, o sistema deve negar o acesso e registrar a tentativa falha. | Solicitar PIN no dispositivo; caso incorreto, exibir “Senha incorreta, tente novamente” e enviar log ao backend. |
-| **RF03** | O sistema deve verificar a capacitação e o agendamento do colaborador antes de liberar o acesso. | O acesso só é concedido se o colaborador estiver capacitado e com atividade programada na data e hora da tentativa. | Consultar API de capacitação/agendamento; em caso de não conformidade, exibir “Acesso negado – colaborador não autorizado”. |
-| **RF04** | O sistema deve registrar todos os eventos de acesso, autorizados ou não, com data, hora e identificação do colaborador. | Todos os eventos devem ser armazenados em banco de dados, incluindo falhas e sucessos, para fins de auditoria e rastreabilidade. | Gravar logs de tentativas e acessos aprovados, com sincronização automática com o servidor quando houver rede. |
-| **RF05** | O sistema deve atualizar o painel em tempo real e gerar alertas visuais para eventos críticos. | Sempre que ocorrer um acesso negado ou PIN incorreto, o dashboard deve exibir alerta imediato para a equipe de segurança. | Atualizar dashboard e emitir notificação visual “Acesso negado” ou “PIN incorreto”, mantendo histórico dos eventos no sistema. |
+| **RF01** | Coleta de dados via sensor RFID | O dispositivo IoT deve realizar a leitura do identificador único (UID) do crachá RFID do colaborador e coletar os dados de autenticação (RFID + PIN) inseridos via teclado matricial. | Alta |
+| **RF02** | Conexão Wi-Fi e comunicação via MQTT | O dispositivo ESP32 deve conectar-se à rede Wi-Fi corporativa e estabelecer comunicação com o broker MQTT para envio e recebimento de mensagens de validação de acesso, utilizando credenciais de autenticação (token/chave única por dispositivo). | Alta |
+| **RF03** | Formatação e publicação de dados no protocolo MQTT | O sistema deve formatar os dados coletados (RFID, PIN, timestamp, ID do dispositivo) e publicá-los em tópicos MQTT específicos (ex: `tictrens/acesso/validacao`) para processamento pelo servidor central. | Alta |
+| **RF04** | Autenticação multifator e validação de credenciais | O sistema deve validar a autenticação em dois fatores: (1) verificar se o UID do RFID está cadastrado no banco de dados e (2) validar o PIN inserido pelo colaborador. O acesso só será liberado se ambos os fatores forem confirmados. | Alta |
+| **RF05** | Verificação de capacitação e agendamento | O backend deve consultar o sistema corporativo de capacitação e agendamento, via API, para verificar se o colaborador possui: (a) certificação válida para a área solicitada e (b) atividade agendada no horário da tentativa de acesso. | Alta |
+| **RF06** | Gestão de dispositivos IoT e credenciais | O sistema deve permitir o cadastro, configuração e gerenciamento dos dispositivos IoT na plataforma, incluindo atribuição de identificadores únicos (Device ID), tokens MQTT e vinculação a locais físicos (salas técnicas). | Média |
+| **RF07** | Registro e auditoria de eventos de acesso | O sistema deve registrar todos os eventos de acesso (autorizados, negados e falhas de autenticação) em banco de dados, incluindo: ID do colaborador, timestamp, local, resultado da validação e motivo de negação (quando aplicável). | Alta |
+| **RF08** | Dashboard corporativo com visualização em tempo real | O sistema deve disponibilizar um dashboard web que exiba em tempo real: (a) eventos de acesso, (b) status dos dispositivos IoT, (c) gráficos de acessos por período/local e (d) alertas visuais e sonoros para tentativas de acesso não autorizadas ou falhas de autenticação. | Alta |
+| **RF09** | Criptografia de dados em trânsito | Toda comunicação entre o dispositivo IoT e o broker MQTT, bem como entre o backend e APIs externas, deve utilizar criptografia TLS/SSL para proteger os dados contra interceptação e garantir a integridade das mensagens. | Alta |
 
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>

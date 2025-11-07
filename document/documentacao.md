@@ -979,7 +979,7 @@ O protótipo é composto pelos seguintes componentes principais, distribuídos n
 *   **Conectividade:** Módulo Wi-Fi para subscrição MQTT.
     
 
-**Arquitetura de Comunicação:**Os dois módulos se comunicam via MQTT através de uma rede Wi-Fi local. O ESP32-SENHA publica mensagens de comando (ex: "liberada" ou "bloqueada") no tópico tranca, e o ESP32-TRANCA, que assina este tópico, recebe o comando e aciona a tranca física.
+**Arquitetura de Comunicação:** Os dois módulos se comunicam via MQTT através de uma rede Wi-Fi local. O ESP32-SENHA publica mensagens de comando (ex: "liberada" ou "bloqueada") no tópico tranca, e o ESP32-TRANCA, que assina este tópico, recebe o comando e aciona a tranca física.
 
 #### **3.4.2.2 Fluxo de Operação do Protótipo**
 
@@ -1027,7 +1027,7 @@ Para validar o sistema, o protótipo físico segue um fluxo de Autenticação de
 
 Para uma demonstração visual da execução dos casos de teste (descritos na tabela a seguir) no protótipo físico, consulte o vídeo de validação no link abaixo:
 
-**\[VÍDEO DE DEMONSTRAÇÃO DOS TESTES\]**_(Link para o vídeo a ser inserido aqui - ex: YouTube, Google Drive)_
+**[VÍDEO DE DEMONSTRAÇÃO DOS TESTES](https://www.youtube.com/watch?v=RMs8XaUNUNU)**
 
 #### **3.4.2.5 Cenários de Teste do Protótipo Físico**
 
@@ -1048,7 +1048,7 @@ A tabela a seguir detalha os testes executados para validar as "leituras (entrad
 
 Os trechos de código a seguir ilustram como os casos de teste são executados, com foco na lógica de autenticação e na comunicação MQTT para acionar a saída física (tranca).
 
-**A. Lógica de Autenticação e "Escrita (Saída)" (ESP32-SENHA)**Este trecho do Código 1 mostra a validação da senha (Testes 03 e 04) e a subsequente "escrita" (publicação MQTT) para o atuador.
+**A. Lógica de Autenticação e "Escrita (Saída)" (ESP32-SENHA)** Este trecho do Código 1 mostra a validação da senha (Testes 03 e 04) e a subsequente "escrita" (publicação MQTT) para o atuador.
 
 ```
 // CODIGO 1: ESP32-SENHA

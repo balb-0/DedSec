@@ -595,21 +595,252 @@ Para melhor visualização, acesse nosso [figma](https://www.figma.com/design/kG
 
 Portanto a criação de personas se mostra uma etapa imprescindível para o direcionamento e contiunuidade do projeto, de forma a ser um guia para conseguirmos chegar no resultado masi satisfatório para a Tic Trens.
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
+### 3.2.2. Jornada do Usuário e Storyboard	
 
-_Coloque aqui seu Mapa de Jornada do Usuário:_
-- _Ferramenta visual da sequência de interações do usuário._
-- _Retrata sentimentos, obstáculos e satisfação ao longo de um processo._
-- _Identifica oportunidades de melhoria na experiência._
-- _Fazer pelo menos um mapa de jornada do usuário_
+&nbsp;&nbsp;&nbsp;&nbsp;A jornada do usuário é uma representação visual e narrativa da experiência de uma pessoa ao interagir com um produto, serviço ou sistema. Ela descreve, passo a passo, o caminho percorrido pelo usuário, desde o primeiro contato até o alcance de seus objetivos, destacando ações, emoções, desafios e oportunidades da persona.
 
-_Coloque aqui seu Storyboard:_
-- _Ilustração sequencial da interação do usuário com a solução._
-- _Enfatiza fluxo, interações e narrativa visual._
-- _Destaca pontos de atrito ou oportunidades na experiência._
-- _Criar ao menos um storyboard._
+&nbsp;&nbsp;&nbsp;&nbsp; Mais do que um simples fluxo de tarefas, a jornada busca compreender o contexto humano por trás das interações, revelando o que o usuário pensa, sente e precisa em cada momento. 
+ 
+#### 3.2.2.1 Jornada de Usuário: Carlos Mendes
 
-&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, são apresentados os principais aspectos técnicos do desenvolvimento da solução proposta, abrangendo desde os requisitos funcionais e não funcionais até a definição das arquiteturas em diferentes níveis de detalhamento.
+&nbsp;&nbsp;&nbsp;&nbsp;Carlos Mendes é operador de manutenção em subestações, salas técnicas e áreas restritas das obras realizadas pela Tic Trens. No seu dia a dia, ele precisa acessar constantemente ambientes de acesso controlado. Atualmente, o processo de autorização é lento e burocrático.
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema, em fase de implementação pela empresa, automatize sua rotina de trabalho, tornando o acesso mais ágil, confiável e seguro — sem a necessidade de múltiplas autorizações humanas.
+
+#### 3.2.2.1.1 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
+
+**Fase 1:** Solicitação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à base de operações, Carlos precisa solicitar autorização para acessar uma sala técnica e iniciar suas atividades. Após a solicitação, ele recebe um cartão RFID com o UID cadastrado para o dia.
+
+- **Pensamento:** "Tomara que hoje o processo não demore"
+
+- **Sentimento:** Carlos se sente **frustrado** por demorar tanto tempo para iniciar sua jornada do trabalho, mas entende que é uma etapa necessária para garantir a segurança da operação.
+
+<br>
+
+**Fase 2:** Autenticação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à área restrita, Carlos aproxima seu cartão RFID do sensor e prossegue para a etapa de verificação por senha. O sistema envia automaticamente um código de até seis dígitos via SMS para o número de celular vinculado ao seu UID. 
+
+- **Pensamento:** "Beleza, só inserir o código e posso iniciar o trabalho."
+
+- **Sentimento:** Carlos se sente **aliviado** pois finalmente consegue iniciar sua jornada de trabalho sem complicações.
+
+<br>
+
+**Fase 3:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após a validação das credenciais, o sistema libera automaticamente a porta. Carlos entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento adequado dos sistemas.
+
+- **Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação."
+
+- **Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
+
+<br>
+
+**Fase 4:** Monitoramento
+
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema IoT registra automaticamente os horários de entrada e saída do usuário. Com isso, Carlos não precisa preencher relatórios manuais, pois sua presença é comprovada digitalmente.
+
+- **Pensamento:** "Bom saber que o sistema registrou tudo, facilita o relatório depois."
+
+- **Sentimento:** Carlos se sente **Neutro**.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao encerrar sua jornada, Carlos tem a tranquilidade de que eventuais falhas de segurança não recairão sobre ele, já que o sistema valida corretamente seus acessos dentro dos horários permitidos, evitando erros manuais.
+
+- **Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
+
+- **Sentimento:** Carlos se sente **Confiante**, pois possui garantia na execução do seu trabalho.
+
+<br>
+
+**Oportunidades:**
+
+- Evitar que problemas de segurança caiam sobre sua responsabilidade, já que o sistema automatiza automaticamente a segurança de entrada e saída das áreas restritas.
+- O sistema pode registrar automaticamente hora de entrada e saída.
+- Implementar relatórios automáticos de entrada/saída, facilitando o trabalho do operador ao final do expediente.
+
+<br>
+
+**Responsabilidades:**
+
+- Cumprir os protocolos de autenticação e segurança.
+- Reportar falhas ou inconsistências ao sistema, para evitar erros de segurança.
+- Realizar manutenções dentro das áreas liberadas pelo sistema no horário permitido.
+ 
+
+<div align="center">
+<sub>Jornada 1 -  Operador de Manutenção</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Carlos.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; A jornada do usuário Carlos Mendes permite identificar claramente as etapas e necessidades de um dos perfis finais da solução: o operador que precisa se autenticar para realizar manutenções.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema proporcione acesso rápido e seguro às salas técnicas, eliminando processos de autenticação demorados e a dependência de múltiplas autorizações. Isso otimiza seu tempo e evita atrasos em manutenções que, muitas vezes, são urgentes.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Com o novo sistema, sua rotina é facilitada: ele não precisa mais gerar relatórios manuais, sua presença é registrada automaticamente e sua responsabilidade por falhas de segurança é mitigada.
+
+#### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é analista de gestão de terceiros na Tic Trens, formada em Logística e com mais de cinco anos de experiência no setor ferroviário. É a principal responsável por monitorar a circulação das equipes e controlar os acessos às áreas operacionais, garantindo a segurança das vias, das áreas restritas e a conformidade dos processos.
+Ela espera que o novo sistema automatize tarefas anteriormente realizadas de forma manual e evite falhas de segurança que possam recair sobre sua responsabilidade.
+
+#### 3.2.2.2.1 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
+
+**Fase 1:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesta etapa, Beatriz realiza o login no painel do sistema e visualiza todos os acessos requisitados às áreas restritas, além de ter acesso aos UIDs dos operadores cadastrados.
+
+- **Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
+
+- **Sentimento:** Beatriz se sente concentrada na operação e verificação do sistema.
+
+<br>
+
+**Fase 2:** Monitoramento
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após a geração dos cartões, Beatriz monitora os acessos por meio dos logs do sistema, que exibem os horários de entrada e saída dos usuários. Isso garante que apenas pessoas qualificadas estejam nas áreas restritas, evitando acessos indevidos por terceiros.
+
+- **Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
+
+- **Sentimento:** Beatriz fica focada na situação, principalmente para não cometer erros na verificação.
+
+<br>
+
+
+**Fase 3:** Notificação
+
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia notificações sempre que alguém acessa uma área restrita. Caso o indivíduo permaneça além do horário autorizado, um alerta é exibido na tela, indicando a infração.
+
+- **Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
+
+- **Sentimento:** Ela fica muito atenta e preocupada nessa situação, principalmente porque a mensagem de alerta se trata de um momento crítico durante sua jornada.
+
+<br>
+
+**Fase 4:** Comunicação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento, Beatriz atua como elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas que exigem autorização prévia ou tempo máximo de permanência.
+
+Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
+
+- **Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
+
+- **Sentimento:** Bia se sente muito preocupada nessas situações, pois ela precisa agir sem hesitação, pois um atraso pode representar grande risco na segurança.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz encerra seu turno com a certeza de que não houve falhas de segurança sob sua responsabilidade, já que o sistema automatiza todo o processo de verificação
+
+- **Pensamento:** "Consegui encerrar meu turno sem contratempos"
+
+- **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
+
+<br>
+
+**Oportunidades:**
+
+- Implementar fluxos automáticos de aprovação e alertas em tempo real (como acessos fora do horário).
+- Garantir controle total sobre quem acessou cada sala.
+
+
+<br>
+
+**Responsabilidades:**
+
+- Validar acessos, monitorar movimentações, gerar relatórios, garantir segurança e conformidade.
+- Comunicar incidentes, colaborar com equipes de TI e segurança, apoiar treinamentos de uso do sistema.
+
+ 
+
+<div align="center">
+<sub>Jornada 2 - Analista de Gestão de Terceiros</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Beatriz.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso — principal beneficiário do sistema IoT — estabelece com a solução. Beatriz espera que o sistema lhe proporcione não apenas mais confiança e segurança ao longo de sua jornada, mas também que automatize grande parte das tarefas anteriormente realizadas de forma manual, reforçando a segurança nas obras e estações.
+
+Para melhor visualização do Mapa da Jornada de Usuário, segue o link do projeto produzido no Figma pela equipe: https://www.figma.com/design/okP2h2ZcSdpnKuPk64hLno/Untitled?node-id=4-2809&t=hg5T2g4TZcBTWzWn-1
+
+#### 3.2.2.3 Storyboard
+
+Storyboards são representações visuais de como o sistema funciona. Sendo assim, por meio de quadrinhos, representam de forma sequencial as interações entre o usuário e o sistema, ilustrando o fluxo das ações, decisões e respostas esperadas. No contexto do projeto IoT para Tic Trens, o storyboard tem como objetivo demonstrar de maneira clara e intuitiva como a equipe de manutenção e a equipe de gestão de acessos interagem com os dispositivos IoT e com a interface de monitoramento do sistema.
+
+Para isso, foram criadas duas Storyboards, uma demonstrando como a equipe de manutenção interage com o dispositivo IoT desenvolvido pelo grupo, e o segundo demonstrando como o trabalho do CCO é beneficiado com o projeto e com o dashboard
+
+#### 3.2.2.3.1 Storyboard: Carlos Mendes
+
+<div align="center">
+<sub>Storyboard 1 - Carlos Mendes</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Storyboard1.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+Cena 1: Carlos está desanimado por mais um dia ter que lidar com o sistema demorado e burocrático de autorizações de acessos às salas.
+
+Cena 2: Carlos recebe uma mensagem no celular do CCO dizendo que o sistema foi atualizado, se tornando mais prático para realização de seus serviços.
+
+Cena 3: Feliz com a mudança, Carlos se dirige até uma das salas no qual tinha de prestar serviço.
+
+Cena 4: Chegando na sala, ele observa o novo sistema, assim, aproxima seu cartão RFID do sensor e logo em seguida recebe um código de acesso pelo seu celular.
+
+Cena 5: Após passar o cartão e visualizar a mensagem, Carlos digita o código no painel e consegue abrir a porta.
+
+Cena 6: Carlos realiza seu trabalho, sem grandes demoras para conseguir entrar na sala e sem burocracias.
+
+Cena 7: Após terminar seu trabalho, Carlos passa novamente seu cartão para sair da sala, registrando então o horário de saída.
+
+#### 3.2.2.3.2 Storyboard: Beatriz Nunes
+
+<div align="center">
+<sub>Storyboard 2 - Beatriz Nunes</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Storyboard2.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+Cena 1: Beatriz estava utilizando do sistema antigo, de autorizações e pedidos de autorizações de acesso via mensagens, o que não era eficiente tendo em vista que muitas das vezes os trabalhadores esqueciam de avisar quando saiam e outros erros humanos vinham a acontecer.
+
+Cena 2: Chegou um novo sistema: um dashboard que mostra todas as áreas de acesso no decorrer da estação de metrô.
+
+Cena 3: Clicando em uma das salas, Beatriz consegue analisar quem entrou naquela sala, quando entrou e quando saiu. 
+
+Portanto, fica claro que as storyboards são essenciais para se ter uma melhor visualização de como o sistema funciona e como afeta no dia a dia dos usuários. Eles facilitam o entendimento do fluxo de ações, destacando as melhorias, em relação ao sistema antigo, trazidas pela automação e pelo dashboard de monitoramento.
+
 
 ### 3.3.1. Requisitos Funcionais
 

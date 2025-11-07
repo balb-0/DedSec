@@ -595,21 +595,256 @@ Para melhor visualização, acesse nosso [figma](https://www.figma.com/design/kG
 
 Portanto a criação de personas se mostra uma etapa imprescindível para o direcionamento e contiunuidade do projeto, de forma a ser um guia para conseguirmos chegar no resultado masi satisfatório para a Tic Trens.
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
+### 3.2.2. Jornada do Usuário e Storyboard	
 
-_Coloque aqui seu Mapa de Jornada do Usuário:_
-- _Ferramenta visual da sequência de interações do usuário._
-- _Retrata sentimentos, obstáculos e satisfação ao longo de um processo._
-- _Identifica oportunidades de melhoria na experiência._
-- _Fazer pelo menos um mapa de jornada do usuário_
+&nbsp;&nbsp;&nbsp;&nbsp;A jornada do usuário é uma representação visual e narrativa da experiência de uma pessoa ao interagir com um produto, serviço ou sistema. Ela descreve, passo a passo, o caminho percorrido pelo usuário, desde o primeiro contato até o alcance de seus objetivos, destacando ações, emoções, desafios e oportunidades da persona.
 
-_Coloque aqui seu Storyboard:_
-- _Ilustração sequencial da interação do usuário com a solução._
-- _Enfatiza fluxo, interações e narrativa visual._
-- _Destaca pontos de atrito ou oportunidades na experiência._
-- _Criar ao menos um storyboard._
+&nbsp;&nbsp;&nbsp;&nbsp; Mais do que um simples fluxo de tarefas, a jornada busca compreender o contexto humano por trás das interações, revelando o que o usuário pensa, sente e precisa em cada momento. 
+ 
+#### 3.2.2.1 Jornada de Usuário: Carlos Mendes
 
-&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, são apresentados os principais aspectos técnicos do desenvolvimento da solução proposta, abrangendo desde os requisitos funcionais e não funcionais até a definição das arquiteturas em diferentes níveis de detalhamento.
+&nbsp;&nbsp;&nbsp;&nbsp;Carlos Mendes é operador de manutenção em subestações, salas técnicas e áreas restritas das obras realizadas pela Tic Trens. No seu dia a dia, ele precisa acessar constantemente ambientes de acesso controlado. Atualmente, o processo de autorização é lento e burocrático.
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ele espera que o novo sistema, em fase de implementação pela empresa, automatize sua rotina de trabalho, tornando o acesso mais ágil, confiável e seguro — sem a necessidade de múltiplas autorizações humanas.
+
+#### 3.2.2.1.1 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
+
+**Fase 1:** Solicitação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à base de operações, Carlos precisa solicitar autorização para acessar uma sala técnica e iniciar suas atividades. Após a solicitação, ele recebe um cartão RFID com o UID cadastrado e se dirige a área de manutenção.
+
+- **Pensamento:** "Tomara que hoje o processo não demore"
+
+- **Sentimento:** Carlos se sente **frustrado** por demorar tanto tempo para iniciar sua jornada do trabalho, mas entende que é uma etapa necessária para garantir a segurança da operação.
+
+<br>
+
+**Fase 2:** Autenticação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à área restrita, Carlos aproxima seu cartão RFID do sensor e prossegue para a etapa de verificação por senha. O sistema envia automaticamente um código de até seis dígitos via SMS para o número de celular vinculado ao seu UID. 
+
+- **Pensamento:** "Beleza, só inserir o código e posso iniciar o trabalho."
+
+- **Sentimento:** Carlos se sente **aliviado** pois finalmente consegue iniciar sua jornada de trabalho sem complicações.
+
+<br>
+
+**Fase 3:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após a validação das credenciais, o sistema libera automaticamente a porta. Carlos entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento adequado dos sistemas.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao entrar na sala técnica, o sistema armazena que na área delimitada que Carlos entrou, estão havendo manutenções e exibe essa área para o Gestor de Acessos, evitando contratempos e garantindo que não haja circulação de trens ou passagens de pessoas durante esse processo.
+
+- **Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação e com garantia."
+
+- **Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
+
+<br>
+
+**Fase 4:** Manutenção
+
+&nbsp;&nbsp;&nbsp;&nbsp; Enquanto permanece na sala técnica, Carlos é monitorado pelo sistema IoT, que registra presença, tempo de permanência e condições do ambiente para garantir a conformidade com os protocolos de segurança.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao entrar na sala técnica, o sistema IoT registra automaticamente no banco de dados o início da jornada de trabalho de Carlos. Essa automação garante um controle preciso de presença e tempo de permanência, além de reforçar a segurança operacional. Em caso de qualquer irregularidade durante as atividades, o registro digital permite identificar com clareza quem estava no local, assegurando transparência e responsabilidade em todo o processo.
+
+- **Pensamento:** "Bom saber que o sistema registrou tudo."
+
+- **Sentimento:** Carlos se sente **Neutro**.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao encerrar sua jornada, Carlos tem a tranquilidade de saber que todo o seu ciclo de acesso foi devidamente registrado e validado pelo sistema IoT. Cada entrada e saída é automaticamente comparada com os horários autorizados, eliminando falhas manuais e garantindo precisão nos registros. Essa automatização reforça a segurança operacional e assegura que, em caso de incidentes, as responsabilidades sejam atribuídas de forma justa e transparente.
+
+- **Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
+
+- **Sentimento:** Carlos se sente **Confiante**, pois possui garantia na execução do seu trabalho.
+
+<br>
+
+**Oportunidades:**
+
+- Evitar que problemas de segurança caiam sobre sua responsabilidade, já que o sistema automatiza automaticamente a segurança de entrada e saída das áreas restritas.
+- O sistema pode registrar automaticamente hora de entrada e saída.
+- Implementar relatórios automáticos de entrada/saída, facilitando o trabalho do operador ao final do expediente.
+
+<br>
+
+**Responsabilidades:**
+
+- Cumprir os protocolos de autenticação e segurança.
+- Reportar falhas ou inconsistências ao sistema, para evitar erros de segurança.
+- Realizar manutenções dentro das áreas liberadas pelo sistema no horário permitido.
+ 
+
+<div align="center">
+<sub>Jornada 1 -  Operador de Manutenção</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Carlos.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; A jornada do usuário Carlos Mendes permite identificar claramente as etapas e necessidades de um dos perfis finais da solução: o operador que precisa se autenticar para realizar manutenções.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Carlos espera que o novo sistema proporcione acesso rápido e seguro às salas técnicas, eliminando processos de autenticação demorados e a dependência de múltiplas autorizações. Isso otimiza seu tempo e evita atrasos em manutenções que, muitas vezes, são urgentes.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Com o novo sistema, sua rotina é facilitada: ele não precisa mais gerar relatórios manuais, sua presença é registrada automaticamente e sua responsabilidade por falhas de segurança é mitigada.
+
+#### 3.2.2.2 Jornada de Usuário: Beatriz Nunes
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz Nunes é analista de gestão de terceiros na Tic Trens, formada em Logística e com mais de cinco anos de experiência no setor ferroviário. É a principal responsável por monitorar a circulação das equipes e controlar os acessos às áreas operacionais, garantindo a segurança das vias, das áreas restritas e a conformidade dos processos.
+&nbsp;&nbsp;&nbsp;&nbsp; Ela espera que o novo sistema automatize tarefas anteriormente realizadas de forma manual e evite falhas de segurança que possam recair sobre sua responsabilidade.
+
+#### 3.2.2.2.1 Fases
+
+&nbsp;&nbsp;&nbsp;&nbsp; As fases da jornada do usuário representam os processos pelos quais ele passará durante a utilização do sistema, bem como todas as interações envolvidas nesse percurso.
+
+**Fase 1:** Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesta etapa, Beatriz realiza o login no painel do sistema e visualiza todos os acessos requisitados às áreas restritas, além de ter acesso aos UIDs dos operadores cadastrados.
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, Bia pode associar e gerar novos UID de funcionários já cadastrados a um novo cartão RFID, caso haja perca do cartão ou novas autorizações. 
+
+- **Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
+
+- **Sentimento:** Beatriz se sente concentrada na operação e verificação do sistema.
+
+<br>
+
+**Fase 2:** Monitoramento
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz monitora os acessos por meio dos logs do sistema, que registram com precisão os horários de entrada e saída dos usuários. Além disso, ela visualiza em um mapa todas as manutenções em andamento, seja em salas específicas ou em trechos da linha férrea. Essa visão integrada permite identificar automaticamente as áreas onde não deve haver circulação de trens, garantindo que apenas profissionais autorizados acessem zonas restritas e evitando riscos de acesso indevido por terceiros.
+
+- **Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
+
+- **Sentimento:** Beatriz fica focada na situação, principalmente para não cometer erros na verificação.
+
+<br>
+
+
+**Fase 3:** Notificação
+
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia notificações sempre que alguém acessa uma área restrita. Caso o indivíduo permaneça além do horário autorizado, um alerta é exibido na tela e a cor da área de manutenção muda no mapa, indicando a infração.
+
+- **Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
+
+- **Sentimento:** Ela fica muito atenta e preocupada nessa situação, principalmente porque a mensagem de alerta se trata de um momento crítico durante sua jornada.
+
+<br>
+
+**Fase 4:** Comunicação
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante o monitoramento, Beatriz atua como elo entre a operação e o setor de segurança. Ela acompanha, em tempo real, o fluxo de pessoas e o cumprimento das normas de acesso, especialmente em zonas que exigem autorização prévia ou tempo máximo de permanência.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridade das operações (evitando que pessoas não autorizadas acessem áreas críticas) e preservando a segurança física dos colaboradores;
+
+- **Pensamento:** “Preciso avisar que tem alguém que está mais tempo do que permitido em uma área restrita”
+
+- **Sentimento:** Bia se sente muito preocupada nessas situações, pois ela precisa agir sem hesitação, pois um atraso pode representar grande risco na segurança.
+
+<br>
+
+**Fase 5:** Garantia
+
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz encerra seu turno com a tranquilidade de saber que o sistema automatiza todo o processo de verificação, garantindo que nenhuma falha de segurança passe despercebida. A rastreabilidade das ações e a validação contínua dos acessos asseguram que todas as operações ocorreram dentro dos parâmetros estabelecidos, reforçando a confiabilidade e a responsabilidade do processo.
+
+- **Pensamento:** "Consegui encerrar meu turno sem contratempos."
+
+- **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho. 
+
+<br>
+
+**Oportunidades:**
+
+- Implementar fluxos automáticos de aprovação e alertas em tempo real (como acessos fora do horário).
+- Garantir controle total sobre quem acessou cada sala.
+
+
+<br>
+
+**Responsabilidades:**
+
+- Validar acessos, monitorar movimentações, gerar relatórios, garantir segurança e conformidade.
+- Comunicar incidentes, colaborar com equipes de TI e segurança, apoiar treinamentos de uso do sistema.
+- Gerar novos cartões para funcionários já cadastrados.
+
+ 
+
+<div align="center">
+<sub>Jornada 2 - Analista de Gestão de Terceiros</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/jornadas/Jornada_Beatriz.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso, principal beneficiário do sistema IoT, estabelece com a solução. Beatriz espera que o sistema lhe proporcione não apenas mais confiança e segurança ao longo de sua jornada, mas também que automatize grande parte das tarefas anteriormente realizadas de forma manual, reforçando a segurança nas obras e estações.
+
+Para melhor visualização do Mapa da Jornada de Usuário, segue o link do projeto produzido no Figma pela equipe: https://www.figma.com/design/okP2h2ZcSdpnKuPk64hLno/Untitled?node-id=4-2809&t=hg5T2g4TZcBTWzWn-1
+
+#### 3.2.2.3 Storyboard
+
+Storyboards são representações visuais de como o sistema funciona. Sendo assim, por meio de quadrinhos, representam de forma sequencial as interações entre o usuário e o sistema, ilustrando o fluxo das ações, decisões e respostas esperadas. No contexto do projeto IoT para Tic Trens, o storyboard tem como objetivo demonstrar de maneira clara e intuitiva como a equipe de manutenção e a equipe de gestão de acessos interagem com os dispositivos IoT e com a interface de monitoramento do sistema.
+
+Para isso, foram criadas duas Storyboards, uma demonstrando como a equipe de manutenção interage com o dispositivo IoT desenvolvido pelo grupo, e o segundo demonstrando como o trabalho do CCO é beneficiado com o projeto e com o dashboard
+
+#### 3.2.2.3.1 Storyboard: Carlos Mendes
+
+<div align="center">
+<sub>Storyboard 1 - Carlos Mendes</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Storyboard1.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+Cena 1: Carlos está desanimado por mais um dia ter que lidar com o sistema demorado e burocrático de autorizações de acessos às salas.
+
+Cena 2: Carlos recebe uma mensagem no celular do CCO dizendo que o sistema foi atualizado, se tornando mais prático para realização de seus serviços.
+
+Cena 3: Feliz com a mudança, Carlos se dirige até uma das salas no qual tinha de prestar serviço.
+
+Cena 4: Chegando na sala, ele observa o novo sistema, assim, aproxima seu cartão RFID do sensor e logo em seguida recebe um código de acesso pelo seu celular.
+
+Cena 5: Após passar o cartão e visualizar a mensagem, Carlos digita o código no painel e consegue abrir a porta.
+
+Cena 6: Carlos realiza seu trabalho, sem grandes demoras para conseguir entrar na sala e sem burocracias.
+
+Cena 7: Após terminar seu trabalho, Carlos passa novamente seu cartão para sair da sala, registrando então o horário de saída.
+
+#### 3.2.2.3.2 Storyboard: Beatriz Nunes
+
+<div align="center">
+<sub>Storyboard 2 - Beatriz Nunes</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/Storyboard2.png">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+Cena 1: Beatriz estava utilizando do sistema antigo, de autorizações e pedidos de autorizações de acesso via mensagens, o que não era eficiente tendo em vista que muitas das vezes os trabalhadores esqueciam de avisar quando saiam e outros erros humanos vinham a acontecer.
+
+Cena 2: Chegou um novo sistema: um dashboard que mostra todas as áreas de acesso no decorrer da estação de metrô.
+
+Cena 3: Clicando em uma das salas, Beatriz consegue analisar quem entrou naquela sala, quando entrou e quando saiu. 
+
+Portanto, fica claro que as storyboards são essenciais para se ter uma melhor visualização de como o sistema funciona e como afeta no dia a dia dos usuários. Eles facilitam o entendimento do fluxo de ações, destacando as melhorias, em relação ao sistema antigo, trazidas pela automação e pelo dashboard de monitoramento.
+
 
 ### 3.3.1. Requisitos Funcionais
 
@@ -618,27 +853,55 @@ _Coloque aqui seu Storyboard:_
 <div align="center">  
 <sub>Quadro 1 - Requisitos Funcionais</sub>
 
-| **RF#** | **Descrição** | **Regra de Negócio** | **Ações Previstas** |
+| **ID** | **Requisito** | **Descrição** | **Prioridade** |
 |---|---|---|---|
-| **RF01** | O sistema deve identificar o colaborador por meio de leitura RFID. | Se o identificador não estiver cadastrado, o acesso é negado e o evento é registrado. | Exibir mensagem “Cartão não reconhecido” em caso de falha e registrar tentativa de acesso inválida no banco de dados. |
-| **RF02** | O sistema deve solicitar e validar uma senha única (PIN) após a leitura bem-sucedida do RFID. | O PIN é obrigatório para autenticação completa. Se incorreto, o sistema deve negar o acesso e registrar a tentativa falha. | Solicitar PIN no dispositivo; caso incorreto, exibir “Senha incorreta, tente novamente” e enviar log ao backend. |
-| **RF03** | O sistema deve verificar a capacitação e o agendamento do colaborador antes de liberar o acesso. | O acesso só é concedido se o colaborador estiver capacitado e com atividade programada na data e hora da tentativa. | Consultar API de capacitação/agendamento; em caso de não conformidade, exibir “Acesso negado – colaborador não autorizado”. |
-| **RF04** | O sistema deve registrar todos os eventos de acesso, autorizados ou não, com data, hora e identificação do colaborador. | Todos os eventos devem ser armazenados em banco de dados, incluindo falhas e sucessos, para fins de auditoria e rastreabilidade. | Gravar logs de tentativas e acessos aprovados, com sincronização automática com o servidor quando houver rede. |
-| **RF05** | O sistema deve atualizar o painel em tempo real e gerar alertas visuais para eventos críticos. | Sempre que ocorrer um acesso negado ou PIN incorreto, o dashboard deve exibir alerta imediato para a equipe de segurança. | Atualizar dashboard e emitir notificação visual “Acesso negado” ou “PIN incorreto”, mantendo histórico dos eventos no sistema. |
+| **RF01** | Coleta de dados via sensor RFID | O dispositivo IoT deve realizar a leitura do identificador único (UID) do crachá RFID do colaborador e coletar os dados de autenticação (RFID + PIN) inseridos via teclado matricial. | Alta |
+| **RF02** | Conexão Wi-Fi e comunicação via MQTT | O dispositivo ESP32 deve conectar-se à rede Wi-Fi corporativa e estabelecer comunicação com o broker MQTT para envio e recebimento de mensagens de validação de acesso, utilizando credenciais de autenticação (token/chave única por dispositivo). | Alta |
+| **RF03** | Formatação e publicação de dados no protocolo MQTT | O sistema deve formatar os dados coletados (RFID, PIN, timestamp, ID do dispositivo) e publicá-los em tópicos MQTT específicos (ex: `tictrens/acesso/validacao`) para processamento pelo servidor central. | Alta |
+| **RF04** | Autenticação multifator e validação de credenciais | O sistema deve validar a autenticação em dois fatores: (1) verificar se o UID do RFID está cadastrado no banco de dados e (2) validar o PIN inserido pelo colaborador. O acesso só será liberado se ambos os fatores forem confirmados. | Alta |
+| **RF05** | Verificação de capacitação e agendamento | O backend deve consultar o sistema corporativo de capacitação e agendamento, via API, para verificar se o colaborador possui: (a) certificação válida para a área solicitada e (b) atividade agendada no horário da tentativa de acesso. | Alta |
+| **RF06** | Gestão de dispositivos IoT e credenciais | O sistema deve permitir o cadastro, configuração e gerenciamento dos dispositivos IoT na plataforma, incluindo atribuição de identificadores únicos (Device ID), tokens MQTT e vinculação a locais físicos (salas técnicas). | Média |
+| **RF07** | Registro e auditoria de eventos de acesso | O sistema deve registrar todos os eventos de acesso (autorizados, negados e falhas de autenticação) em banco de dados, incluindo: ID do colaborador, timestamp, local, resultado da validação e motivo de negação (quando aplicável). | Alta |
+| **RF08** | Dashboard corporativo com visualização em tempo real | O sistema deve disponibilizar um dashboard web que exiba em tempo real: (a) eventos de acesso, (b) status dos dispositivos IoT, (c) gráficos de acessos por período/local e (d) alertas visuais e sonoros para tentativas de acesso não autorizadas ou falhas de autenticação. | Alta |
+| **RF09** | Criptografia de dados em trânsito | Toda comunicação entre o dispositivo IoT e o broker MQTT, bem como entre o backend e APIs externas, deve utilizar criptografia TLS/SSL para proteger os dados contra interceptação e garantir a integridade das mensagens. | Alta |
 
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Essas especificações asseguram que o sistema fornecerá informações precisas e oportunas para os operadores, ao mesmo tempo em que mantém os dados protegidos e a operação dos equipamentos monitorada sob condições seguras para a TIC Trens. A implementação adequada desses requisitos contribuirá para um ambiente de trabalho mais seguro e facilitará a análise de dados e auditorias futuras, além de garantir a continuidade e integridade dos processos de monitoramento e manutenção.
 
-### 3.3.2. Requisitos Não Funcionais (sprint 2)	
+### 3.3.2. Requisitos Não Funcionais  
 
-_Descreva quais são os requisitos não funcionais e sua relação com aspectos de qualidade seguindo a norma ISO25010 (visão de aspectos de qualidade). Evolua estes requisitos conforme o desenvolvimento do projeto._
+&nbsp;&nbsp;&nbsp;&nbsp;Os requisitos não funcionais são restrições aplicadas aos requisitos funcionais, ou seja, limitam e qualificam os serviços oferecidos pelo sistema, definindo padrões de qualidade esperados. Para garantir a eficiência e a confiabilidade do sistema de controle de acesso da Tic Trens, o grupo adotou como referência a **norma ISO/IEC 25010**, que define oito características essenciais de qualidade de software:  
 
-| **RNF#** | **Descrição** | **Aspecto de qualidade** | 
-|----------|----------|----------|
-|RNF01|Ex. O painel dashboard deve estar disponível 99% do tempo|Ex. Disponibilidade|
-|RNF02|Preencha aqui seus requisitos|Preencha aqui o aspecto de qualidade|
+- **Adequação Funcional**: Funcionalidades que permitem ao usuário realizar suas tarefas corretamente.  
+- **Eficiência de Desempenho**: Capacidade do sistema de oferecer respostas rápidas e uso otimizado de recursos.  
+- **Compatibilidade**: Habilidade de integração e interoperabilidade com outros sistemas e componentes.  
+- **Usabilidade**: Facilidade de aprendizado e uso do sistema por parte do usuário.  
+- **Confiabilidade**: Capacidade de manter o funcionamento adequado mesmo diante de falhas.  
+- **Segurança**: Garantia de integridade, confidencialidade e disponibilidade das informações.  
+- **Manutenibilidade**: Facilidade de aprimorar, corrigir ou adaptar o sistema conforme necessário.  
+- **Portabilidade**: Capacidade de operar em diferentes ambientes e plataformas.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Com base nesses princípios, foram definidos os seguintes requisitos não funcionais (Quadro 2):  
+
+<div align="center">  
+<sub>Quadro 2 - Requisitos Não Funcionais</sub>
+
+| **RNF#** | **Descrição** | **Aspecto de Qualidade** | **Teste** |  
+|----------|---------------|--------------------------|------------|  
+| **RNF01** | Todas as informações sensíveis dos usuários devem ser armazenadas em banco de dados utilizando algoritmos de criptografia pós-quântica, como Crystals-Kyber para dados em repouso. | Segurança (Criptografia) | Inspecionar o código e a configuração do BD para confirmar o uso do algoritmo Crystals-Kyber. Tentar acessar ou visualizar os dados sensíveis diretamente no BD; eles devem estar ilegíveis. |  
+| **RNF02** | O sistema deve seguir fielmente o processo de autenticação em dois fatores (RFID + PIN) e validação via API externa, sem permitir atalhos ou bypass. | Adequação Funcional | Realizar testes de fluxo de autenticação completos, garantindo que o acesso só é concedido após a execução das duas etapas (RFID + PIN) e validação pela API externa. |  
+| **RNF03** | Após a validação do usuário e o fechamento completo da porta, o sistema deve acionar o mecanismo de travamento automaticamente dentro de um intervalo máximo de 5 segundos. | Desempenho (Tempo de Resposta) | Usar um cronômetro ou ferramenta de *logging* de sistema para medir o tempo exato entre o evento final do "fechamento completo da porta" e o "acionamento do mecanismo de travamento". Repetir o teste múltiplas vezes (ex: 10 vezes). |  
+| **RNF04** | O sistema deve ser compatível com protocolos MQTT e HTTP, permitindo comunicação com a Ubidots e com o backend local. | Compatibilidade | Testar a comunicação do dispositivo IoT com os dois protocolos, verificando se os dados são enviados corretamente tanto para o backend quanto para a plataforma Ubidots. |  
+| **RNF05** | O código-fonte do sistema deve ser modularizado e documentado, permitindo que cada componente (IoT, backend e dashboard) possa ser atualizado ou corrigido de forma independente. | Manutenibilidade | Analisar a estrutura de diretórios e documentação do código para verificar a modularização e clareza dos comentários. |  
+| **RNF06** | O sistema deve ser capaz de operar tanto em ambiente local (rede da Tic Trens) quanto em ambiente em nuvem, sem necessidade de refatoração de código. | Portabilidade | Implantar e testar o sistema em dois ambientes diferentes (local e remoto), verificando se o funcionamento é idêntico e estável em ambos os casos. |  
+
+<br>  
+<sup>Fonte: Material produzido pelos autores (2025)</sup>  
+</div>  
+
+&nbsp;&nbsp;&nbsp;&nbsp;A definição desses requisitos assegura que o sistema opere de forma **padronizada, interoperável e em conformidade** com as práticas estabelecidas pela norma ISO/IEC 25010. Assim, garante-se a integridade do processo de autenticação, a confiabilidade na comunicação entre dispositivos e a compatibilidade com diferentes protocolos e plataformas de monitoramento.
 
 ### 3.3.3. Arquitetura da Solução (sprint 3)
 
@@ -943,14 +1206,837 @@ A tabela a seguir detalha o **fluxo sequencial de eventos** que ocorre no protó
 | **5** | Buzzer (Opcional) | Emissão de feedback sonoro de sucesso | Buzzer | Sinal sonoro breve de sucesso |
 
 
-### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)	
+### 3.4.2. Protótipo Físico do Projeto (offline)	
 
-_Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. A tabela a seguir serve como exemplo._
+Esta seção documenta a construção e validação do primeiro protótipo físico do sistema de controle de acesso. O objetivo desta implementação é testar e validar, em um ambiente controlado e offline, os principais componentes de hardware, o fluxo de interação do usuário (MFA) e, o mais importante, o acionamento do atuador (a tranca).
 
-**#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição/Resultado esperado** | **Observações** (opcional)
-|----------|----------|----------|----------|----------|----------|
-|01|ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado.| ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+Devido ao número de componentes e à necessidade de estabilidade, a solução física adotou um design distribuído, empregando **dois microcontroladores ESP32** que se comunicam via protocolo **MQTT**. Esta abordagem nos permitiu isolar as responsabilidades: um ESP32 gerencia a interface do usuário (entradas) e o outro gerencia o atuador (saída física).
+
+Serão apresentadas diversas situações de teste (conforme a tabela 3.4.2.4) que cobrem cenários de sucesso e falha, ilustrados com descrições, fotos, um vídeo de demonstração e os trechos de código relevantes que comprovam o funcionamento.
+
+#### **3.4.2.1 Componentes e Arquitetura Física**
+
+O protótipo é composto pelos seguintes componentes principais, distribuídos nos dois módulos ESP32:
+
+**Módulo ESP32 - Autenticação (ESP-SENHA):**
+
+*   **Microcontrolador:** ESP32 (principal, responsável pela interação com o usuário).
+    
+*   **Leitor RFID (MFRC522):** Sensor de entrada para o Fator 1. _(Nota: Simulado por um botão nos testes de software, mas o pino está alocado para o componente físico)_.
+    
+*   **Teclado Matricial 4x4:** Sensor de entrada para o Fator 2 (PIN).
+    
+*   **Display LCD I2C (16x2):** Saída informacional para feedback visual ao usuário (mensagens de status, senha).
+    
+*   **Buzzer:** Saída informacional para feedback sonoro em casos de erro (Teste 04).
+    
+*   **Conectividade:** Módulo Wi-Fi para publicação MQTT.
+    
+
+**Módulo ESP32 - Atuador (ESP-TRANCA):**
+
+*   **Microcontrolador:** ESP32 (secundário, responsável pelo acionamento físico).
+    
+*   **Atuador (Tranca/Relé):** A saída física principal do sistema, conectada a um pino de saída, que recebe o comando para destravar.
+    
+*   **Conectividade:** Módulo Wi-Fi para subscrição MQTT.
+    
+
+**Arquitetura de Comunicação:** Os dois módulos se comunicam via MQTT através de uma rede Wi-Fi local. O ESP32-SENHA publica mensagens de comando (ex: "liberada" ou "bloqueada") no tópico tranca, e o ESP32-TRANCA, que assina este tópico, recebe o comando e aciona a tranca física.
+Para realizar a comunicação em MQTT, se fez necessário a utilização de um broker para realizar a conexão entre os dispositivos. Para isso, utilizamos de forma temporária o HiveMQ, uma plataforma para comunicação MQTT em nuvem com plano gratuito.
+
+#### **3.4.2.2 Fluxo de Operação do Protótipo**
+
+Para validar o sistema, o protótipo físico segue um fluxo de Autenticação de Múltiplos Fatores (MFA) claro, que é a base para os cenários de teste:
+
+1.  **Estado Ocioso (Pré-condição):** O ESP32-SENHA está em espera, e o LCD exibe a mensagem "Aproxime o cartao" (conforme Teste 01).
+    
+2.  **Fator 1 (Leitura de Entrada):** O usuário se identifica aproximando o crachá do leitor RFID (simulado pelo botão verde no Teste 02).
+    
+3.  **Fator 2 (Leitura de Entrada):** O ESP32-SENHA valida o crachá e, em caso positivo, solicita o segundo fator no LCD: "Digite a Senha:". O usuário então insere o PIN no teclado matricial.
+    
+4.  **Validação e "Escrita (Saída)" Lógica:** O ESP32-SENHA verifica o PIN.
+    
+    *   **Em caso de sucesso (Teste 03):** Ele publica o comando liberada no tópico MQTT.
+        
+    *   **Em caso de falha (Teste 04):** Ele aciona o Buzzer (saída sonora) e publica o comando bloqueada.
+        
+5.  **"Escrita (Saída)" Física:** O ESP32-TRANCA, que está assinando o tópico MQTT, recebe o comando. Ao receber liberada, ele aciona o relé, **destravando a tranca física** por 5 segundos. Se receber bloqueada, ele garante que a tranca permaneça travada.
+
+#### **3.4.2.3 Código do Protótipo Físico**
+
+**ESP32 Senha**
+
+**Importando Bibliotecas**
+
+Essas linhas incluem as bibliotecas necessárias para o funcionamento do projeto. 
+
+- A biblioteca **Wire.h** habilita a comunicação I2C, usada para conectar o ESP32 a dispositivos como o display LCD. 
+- **LiquidCrystal_I2C.h** permite controlar esse display. 
+- A biblioteca **Keypad.h** é responsável pela leitura das teclas do teclado matricial.
+- **SPI.h** possibilita a comunicação SPI utilizada pelo módulo RFID.
+- **MFRC522.h** é a biblioteca específica para operar o leitor de cartões RFID RC522. 
+- A inclusão de **string** permite o uso de variáveis do tipo texto da linguagem C++.
+- As bibliotecas **WiFi.h**, **PubSubClient.h** e **WiFiClientSecure.h** permitem a conexão do ESP32 à rede Wi-Fi e a comunicação com um servidor MQTT, sendo que a última possibilita conexões seguras e criptografadas.
+```c++
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <string>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+```
+
+**Configurando base do LCD**
+
+O código abaixo configura o display LCD I2C, definindo seu endereço como **0x27** (endereço identificado do display), tamanho de **16 colunas** e **2 linhas** e criando o objeto lcd da classe presente na biblioteca **LiquidCrystal_I2C**, que permite ao programa exibir mensagens e controlar o visor.
+
+```c++
+#define ende 0x27
+#define col 16
+#define lin 2
+LiquidCrystal_I2C lcd(ende, col, lin);
+```
+
+**Variáveis Gerais**
+
+A primeira, ``` String senha_correta = "123456"; ```, define a senha que será usada para liberar o acesso como **"123456"**.
+A segunda, ```bool sistemaAtivo = false;```, cria uma variável lógica que futuramente será utilizada para verificar se o sistema está ativo ou não; quando está em false, o sistema aguarda a aproximação de um cartão RFID, e quando passa para true, permite a digitação da senha.
+```c++
+String senha_correta = "123456";
+bool sistemaAtivo = false;
+```
+**Criando Conexão com MQTT**
+
+O código abaixo cria a conexão segura do ESP32 com o broker MQTT, o espClient permite comunicação criptografada via Wi-Fi, e client usa esse canal para enviar e receber mensagens MQTT.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+```
+**Classes**
+
+&nbsp;&nbsp;&nbsp;&nbsp; As classes servem para organizar e modularizar as diferentes partes do sistema de forma clara e reutilizável. Em vez de escrever tudo em funções soltas no **setup()** ou no **loop()**, você cria objetos com responsabilidades bem definidas.
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, toda a estrutura do código foi criada em POO (Programação Orientada a Objetos), para garantir a organização e modularização do código.
+
+**Classe Teclado**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe **Teclado** foi criada para gerenciar o funcionamento do teclado matricial do sistema, tratando a leitura das teclas e o armazenamento da senha digitada pelo usuário.
+
+&nbsp;&nbsp;&nbsp;&nbsp; No início, são declarados dois atributos privados: Keypad teclado, que representa o teclado físico e realiza a leitura das teclas pressionadas, e String senhaDigitada, que guarda a sequência de números inserida.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O construtor da classe recebe a matriz de teclas (com os caracteres de cada botão), arrays que indicam os pinos de linha e coluna, além da quantidade de linhas e colunas. Com esses dados, ele inicializa o teclado usando a função **makeKeymap()** e define a senha digitada como uma string vazia.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **lerTecla()** retorna a última tecla pressionada. Já o método **adicionarTecla(char tecla)** adiciona o número digitado à variável senhaDigitada, limitando o tamanho a 6 caracteres. Se o usuário pressionar a tecla *, o sistema apaga o último dígito inserido, funcionando como um “backspace”.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **getSenha()** devolve a senha completa que o usuário digitou, enquanto **limparSenha()** apaga todo o conteúdo da senha, preparando o sistema para uma nova tentativa de digitação.
+```c++
+class Teclado {
+  private:
+    Keypad teclado;
+    String senhaDigitada;
+
+  public:
+    Teclado(char matriz[4][4], byte* linhas, byte* colunas, byte qtdLinhas, byte qtdColunas)
+      : teclado(makeKeymap(matriz), linhas, colunas, qtdLinhas, qtdColunas), senhaDigitada("") {}
+
+    char lerTecla() {
+      return teclado.getKey();
+    }
+
+    void adicionarTecla(char tecla) {
+      if (tecla >= '0' && tecla <= '9' && senhaDigitada.length() < 6) {
+        senhaDigitada += tecla;
+      } else if (tecla == '*') {
+        if (senhaDigitada.length() > 0) {
+          senhaDigitada.remove(senhaDigitada.length() - 1);
+        }
+      }
+    }
+
+    String getSenha() {
+      return senhaDigitada;
+    }
+
+    void limparSenha() {
+      senhaDigitada = "";
+    }
+};
+```
+**Classe Leitor RFID**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Rfid gerencia o funcionamento do leitor de cartão RFID RC522. Ela possui atributos privados que definem os pinos utilizados, o objeto que controla o hardware e um UID autorizado de cartão. O construtor recebe os pinos de seleção e reset e inicializa o leitor. 
+
+- **iniciar()** configura a comunicação SPI e prepara o módulo para leitura, exibindo uma mensagem no Serial. 
+- **verificarUIDAtual()** verifica se há um cartão presente e compara seu UID com o autorizado, retornando true se for válido e false caso contrário. 
+- **encerrarLeitura()** finaliza a comunicação com o cartão.  
+- **getRFID()** permite acesso direto ao objeto do leitor para operações adicionais.
+```c++
+class Rfid {
+  private:
+    int ssPin;
+    int rstPin;
+    MFRC522 rfid;
+    byte uidAutorizado[4] = {0x5c, 0x8D, 0x35, 0x4A};
+
+  public:
+    Rfid(int porta1, int porta2): ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+    void iniciar() {
+      SPI.begin();
+      rfid.PCD_Init();
+      delay(100);
+      Serial.println("RC522 pronto!");
+    }
+
+    bool verificarUIDAtual() {
+      if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+        return false;
+      }
+
+      for (byte i = 0; i < 4; i++) {
+        if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    void encerrarLeitura() {
+      rfid.PICC_HaltA();
+      rfid.PCD_StopCrypto1();
+    }
+
+    MFRC522& getRFID() {
+      return rfid;
+    }
+};
+```
+**Classe Display**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Display gerencia a interface com o display LCD I2C. Ela possui atributos privados para os pinos de conexão (pin1 e pin2) e duas strings (texto1 e texto2) que armazenam os textos a serem exibidos. O construtor recebe os pinos de conexão e os inicializa. Além disso, para essa classe foram criadas alguns métodos:
+
+- **iniciar():** Configura a comunicação serial, inicia a comunicação I2C e ativa o backlight do LCD.
+
+- **setTexto1(String novoTexto1):** Define o texto da primeira linha a ser exibido.
+
+- **setTexto2(String novoTexto2):** Define o texto da segunda linha a ser exibido.
+
+- **escreverLinhaUnica(String texto, int linha = 0):** Exibe uma mensagem em uma linha específica do display.
+
+- **escreverLinhaDupla():** Exibe simultaneamente texto1 e texto2 nas duas linhas do LCD.
+
+- **escreverSenhaMascarada(String senha):** Mostra uma mensagem pedindo a senha e exibe a senha digitada substituída por asteriscos para manter a confidencialidade.
+```c++
+class Display {
+  private:
+    int pin1;
+    int pin2;
+    String texto1;
+    String texto2;
+
+  public:
+    Display(int porta1, int porta2): pin1(porta1), pin2(porta2) {}
+
+    void iniciar() {
+      Serial.begin(115200);
+      Wire.begin(pin1, pin2);
+      lcd.init();
+      lcd.backlight();
+    }
+
+    void setTexto1(String novoTexto1) {
+      texto1 = novoTexto1;
+    }
+
+    void setTexto2(String novoTexto2) {
+      texto2 = novoTexto2;
+    }
+
+    void escreverLinhaUnica(String texto, int linha = 0) {
+      lcd.clear();
+      lcd.setCursor(0, linha);
+      lcd.print(texto);
+    }
+
+    void escreverLinhaDupla() {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(texto1);
+      lcd.setCursor(0, 1);
+      lcd.print(texto2);
+    }
+
+    void escreverSenhaMascarada(String senha) {
+      escreverLinhaUnica("Digite a senha:");
+      lcd.setCursor(0, 1);
+      for (int i = 0; i < senha.length(); i++) {
+        lcd.print('*');
+      }
+    }
+};
+```
+**Classe Buzzer**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Buzzer gerencia um buzzer conectado a um pino do microcontrolador. Ela possui um atributo privado pin, que armazena o pino de conexão. O construtor recebe o número do pino e inicializa o atributo. Além disso, foram criados alguns métodos para utilização dessa classe:
+
+- **iniciar():** Configura o pino como saída e garante que o buzzer comece desligado.
+
+- **tocarSom():** Ativa o buzzer, gerando som.
+
+- **desligar():** Desativa o buzzer, interrompendo o som.
+
+```c++
+class Buzzer {
+  private:
+    int pin;
+
+  public:
+    Buzzer(int porta): pin(porta) {}
+
+    void iniciar() {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);
+    }
+
+    void tocarSom() {
+      digitalWrite(pin, HIGH);
+    }
+
+    void desligar() {
+      digitalWrite(pin, LOW);
+    }
+};
+```
+
+**Classe WiFi**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Wifi gerencia a conexão do ESP32 a uma rede Wi-Fi. Ela possui dois atributos privados: ssid, que armazena o nome da rede, e password, que guarda a senha. O construtor inicializa esses atributos.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **conectar_Wifi()** conecta o ESP32 à rede Wi-Fi usando os dados fornecidos, imprimindo no monitor serial mensagens sobre o status de conexão com a internet e aguardando até que a conexão seja estabelecida, mostrando pontos durante a tentativa.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao conectar, exibe a mensagem de confirmação e o endereço IP obtido.
+
+```c++
+class Wifi {
+  private:
+    const char* ssid;
+    const char* password;
+  public:
+    Wifi(const char* nome, const char* senha) : ssid(nome), password(senha) {}
+
+    void conectar_Wifi() {
+
+      delay(10);
+      Serial.println();
+      Serial.print("Conectando à rede: ");
+      Serial.println(ssid);
+
+      WiFi.begin(ssid, password);
+
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print(".");
+      }
+
+      Serial.println("");
+      Serial.println("WiFi conectado");
+      Serial.println("Endereço IP: ");
+      Serial.println(WiFi.localIP());
+  }
+};
+```
+
+**Classe MQTT**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe MQTT gerencia a comunicação do ESP32 com um broker MQTT, permitindo enviar mensagens e manter a conexão ativa. Ela possui quatro atributos privados: mqtt_broker (endereço do broker), mqtt_port (porta do broker), mqtt_username e mqtt_password (credenciais de autenticação). Além disso, foram criados alguns métodos para utilização dessa classe:
+
+- **reconnect():** Tenta reconectar ao broker caso a conexão seja perdida. Enquanto não estiver conectado, imprime mensagens no monitor serial sobre o status da conexão e tenta novamente a cada 5 segundos.
+
+- **iniciar_conexao():** Configura o cliente MQTT usando o broker e a porta especificados e permite comunicação insegura (sem TLS/SSL).
+
+- **desligar_tranca:** Publica uma mensagem para liberar a tranca no outro ESP32.
+
+- **manter_conexao():** Verifica se o cliente ainda está conectado; caso contrário, chama reconnect(). Se a conexão estiver ativa, processa as mensagens recebidas usando client.loop().
+
+```c++
+class MQTT {
+  private:
+    const char* mqtt_broker;
+    const int mqtt_port;
+    const char* mqtt_username;
+    const char* mqtt_password;
+  public:
+    MQTT(const char* broker, const int port, const char* nome, const char* senha) : mqtt_broker(broker), mqtt_port(port), mqtt_username(nome), mqtt_password(senha) {}
+    
+    void reconnect() {
+      while (!client.connected()) {
+        Serial.print("Conectando ao broker MQTT...");
+        if (client.connect("ESP32Client", mqtt_username, mqtt_password)) {
+          Serial.println("conectado");
+        } else {
+          Serial.print("falha, rc=");
+          Serial.print(client.state());
+          Serial.println(" tentando novamente em 5 segundos");
+          delay(5000);
+        }
+      }
+    }
+    void iniciar_conexao(){
+      espClient.setInsecure();
+      client.setServer(mqtt_broker, mqtt_port);
+    }
+    void desligar_tranca(){
+      client.publish("tranca", "liberada");
+      delay(3000);
+      client.publish("tranca", "bloqueada");
+    }
+    void manter_conexao(){
+       if(!client.connected()){
+        reconnect();
+      }else
+        client.loop();
+    }
+};
+```
+**Variáveis Teclado Matricial**
+
+O código abaixo define o teclado matricial 4x4, mapeando cada tecla ('0' a '9', 'A' a 'D', '*', '#') e associando as linhas e colunas aos pinos do ESP32 para que o sistema consiga ler quais teclas são pressionadas.
+
+```c++
+const byte LINHAS = 4;
+const byte COLUNAS = 4;
+
+char TECLAS_MATRIZ[4][4] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte PINOS_LINHAS[LINHAS] = {17, 16, 14, 25};
+byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
+```
+
+**Objetos**
+
+O código abaixo cria instâncias das classes definidas anteriormente, associando cada objeto a seus respectivos pinos, parâmetros ou credenciais:
+
+- **teclado:** controla o teclado matricial, recebendo a matriz de teclas, pinos das linhas e colunas e suas dimensões.
+
+- **somValidacao:** controla o buzzer conectado ao pino 13.
+
+- **display1:** gerencia o display LCD I2C nos pinos 26 e 27.
+
+- **leitorCartao:** controla o leitor RFID nos pinos 5 (SS) e 21 (RST).
+
+- **Wifi:** armazena as credenciais da rede Wi-Fi para conexão.
+
+- **MQTT:** configura o cliente MQTT com endereço do broker, porta e credenciais de usuário.
+
+```c++
+Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);
+Buzzer somValidacao(13);
+Display display1(26, 27);
+Rfid leitorCartao(5, 21);
+Wifi Wifi("GCA-2Ghz", ***********);
+MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");
+```
+
+**void_setup()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo é referente ao **void_setup()** padrão, que neste caso, configura e inicializa todos os componentes principais do sistema. Ele começa ativando o display LCD e exibindo a mensagem "Aproxime o cartão". Em seguida, inicializa o leitor RFID para permitir a leitura de cartões, prepara o buzzer para emitir sons de validação, conecta o ESP32 à rede Wi-Fi e, por fim, configura a conexão com o broker MQTT para envio e recebimento de mensagens.
+
+
+```c++
+void setup() {
+  display1.iniciar();
+  display1.setTexto1("Aproxime o");
+  display1.setTexto2("cartao");
+  display1.escreverLinhaDupla();
+
+  leitorCartao.iniciar();
+  somValidacao.iniciar();
+  Wifi.conectar_Wifi();
+  MQTT.iniciar_conexao();
+}
+```
+
+**void_loop()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo utiliza das classes/objetos criados para executar o código do sistema. No código, ele primeiro mantém a conexão MQTT ativa. Se o sistema ainda não estiver ativo, ele verifica se há um cartão RFID presente e se o UID corresponde ao autorizado. Caso não seja, ele retorna e espera. Se o cartão for válido, ele imprime o UID no serial monitor, ativa o sistema e solicita que o usuário digite a senha, encerrando a leitura do cartão.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Quando o sistema está ativo, ele lê as teclas do teclado matricial. Cada tecla digitada é adicionada à senha em construção, e o display mostra a senha mascarada com asteriscos. Quando a tecla # é pressionada, o sistema verifica se a senha digitada é a correta. Se for, exibe “Acesso Liberado”, toca o buzzer por 3 segundos e envia um comando para destravar a tranca via MQTT. Caso a senha esteja incorreta, exibe “Acesso Negado” e emite dois bipes curtos do buzzer.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após qualquer tentativa de senha, o sistema limpa a senha digitada, desativa o modo de entrada e retorna à tela inicial pedindo para aproximar o cartão novamente. O loop continua, alternando entre a espera pelo cartão, a digitação da senha e o gerenciamento do acesso.
+
+```c++
+void loop() {
+  MQTT.manter_conexao();
+
+  if (!sistemaAtivo) {
+    if (!leitorCartao.verificarUIDAtual()) {
+      return;
+    }
+
+    MFRC522& rfidInterno = leitorCartao.getRFID();
+    Serial.print("UID lido: ");
+    for (byte i = 0; i < rfidInterno.uid.size; i++) {
+      Serial.print(rfidInterno.uid.uidByte[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
+
+    sistemaAtivo = true;
+    display1.escreverLinhaUnica("Digite a Senha:");
+    leitorCartao.encerrarLeitura();
+  }
+
+  if (sistemaAtivo) {
+    char tecla = teclado.lerTecla();
+    if (tecla) {
+      if (tecla == '#') {
+        if (teclado.getSenha() == senha_correta) {
+          display1.escreverLinhaUnica("Acesso Liberado");
+          Serial.println("Senha correta!");
+          somValidacao.tocarSom();
+          delay(3000);
+          somValidacao.desligar();
+
+          MQTT.desligar_tranca();
+        } else {
+          display1.escreverLinhaUnica("Acesso Negado");
+          Serial.println("Senha incorreta!");
+          somValidacao.tocarSom();
+          delay(500);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(500);
+          somValidacao.desligar();
+        }
+
+        delay(2000);
+        teclado.limparSenha();
+        sistemaAtivo = false;
+        display1.setTexto1("Aproxime o");
+        display1.setTexto2("cartao:");
+        display1.escreverLinhaDupla();
+        return;
+      } else {
+        teclado.adicionarTecla(tecla);
+      }
+
+      display1.escreverLinhaUnica("Digite a Senha:");
+      display1.escreverSenhaMascarada(teclado.getSenha());
+    }
+  }
+}
+```
+
+**ESP32 - TRANCA**
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo inclue as bibliotecas que permitem ao ESP32 se conectar a redes Wi-Fi (WiFi.h), se comunicar com brokers MQTT (PubSubClient.h) e estabelecer conexões seguras usando TLS/SSL (WiFiClientSecure.h). Elas fornecem funções para gerenciar conexões, enviar e receber mensagens de forma confiável e segura entre o microcontrolador e servidores remotos.
+
+```c++
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+```
+**Variáveis para Conexão**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo armazena as informações necessárias para que o ESP32 se conecte à rede Wi-Fi e ao broker MQTT. As duas primeiras definem o nome da rede (ssid) e a senha (password). As seguintes armazenam o endereço do broker MQTT (mqtt_broker), a porta de comunicação (mqtt_port) e as credenciais de autenticação (mqtt_username e mqtt_password) que permitem que o dispositivo envie e receba mensagens de forma segura usando o protocolo MQTT.
+
+```c++
+const char* ssid = "Galaxy Samsung J1 mini";
+const char* password = "*******";
+
+const char* mqtt_broker = "18a61305753543af9634a27594738058.s1.eu.hivemq.cloud";
+const int mqtt_port = 8883;
+const char* mqtt_username = "ESP32";
+const char* mqtt_password = "********";
+```
+
+**Tranca**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo define como saidaPin, a variável que guarda a porta onde é conectado o relé, que realiza a conexão com a tranca.
+
+```c++
+const int saidaPin = 5;
+```
+
+**Criando Conexão com MQTT**
+
+O código abaixo cria a conexão segura do ESP32 com o broker MQTT, o espClient permite comunicação criptografada via Wi-Fi, e client usa esse canal para enviar e receber mensagens MQTT.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+```
+
+**Conexão com WiFi**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função setup_wifi() conecta o ESP32 à rede Wi-Fi. Primeiro, ela imprime no monitor serial que está tentando se conectar à rede especificada pelo ssid. 
+&nbsp;&nbsp;&nbsp;&nbsp; Depois, inicia a conexão usando WiFi.begin(ssid, password) e entra em um loop enquanto o dispositivo não estiver conectado, imprimindo pontos para indicar que ainda está tentando.
+&nbsp;&nbsp;&nbsp;&nbsp;Quando a conexão é estabelecida, a função exibe no monitor serial uma mensagem confirmando que o Wi-Fi foi conectado e mostra o endereço IP obtido pelo ESP32.
+
+```c++
+void setup_wifi() {
+  Serial.println();
+  Serial.print("Conectando à rede: ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi conectado!");
+  Serial.print("IP: ");
+  Serial.println(WiFi.localIP());
+}
+```
+
+**Puxando informação ViaMQTT**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Essa função **callback()** é chamada sempre que uma mensagem MQTT chega a um tópico ao qual o ESP32 está inscrito. 
+ &nbsp;&nbsp;&nbsp;&nbsp; Se a mensagem for exatamente "liberada", a função ativa o pino digital 5, liberando a tranca por 5 segundos e depois ativando-a novamente.
+
+```c++
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+    if (strcmp(payloadStr, "liberada") == 0){
+      digitalWrite(5, HIGH);
+      delay(5000);
+      digitalWrite(5, LOW);  
+    }
+}
+```
+**Manter Conexão**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função **reconnect()** garante que o ESP32 esteja sempre conectado ao broker MQTT. Ela verifica se o cliente MQTT (client) está desconectado e, enquanto isso, tenta se conectar usando o nome de usuário e senha fornecidos. 
+&nbsp;&nbsp;&nbsp;&nbsp; Se a conexão for bem-sucedida, ele inscreve o dispositivo no tópico "tranca". Caso a conexão falhe, ela espera 5 segundos antes de tentar novamente.
+
+```c++
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Conectando ao broker MQTT...");
+    if (client.connect("ESP32ClientSub", mqtt_username, mqtt_password)) {
+      Serial.println("Conectado!");
+      client.subscribe("tranca");
+    } else {
+      Serial.print("Falha, rc=");
+      Serial.println(client.state());
+      Serial.println("Tentando de novo em 5s...");
+      delay(5000);
+    }
+  }
+}
+```
+**void_setup()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; No void_setup(), o código define o pino de saída do dispositivo como OUTPUT, conecta o ESP32 à rede Wi-Fi usando a função setup_wifi(), e configura o cliente MQTT, definindo o servidor MQTT e a função de callback para processar mensagens recebidas no tópico assinado anteriormente (tranca).
+
+```c++
+void setup() {
+  Serial.begin(115200);
+  pinMode(saidaPin, OUTPUT);
+  setup_wifi();
+  espClient.setInsecure(); 
+  client.setServer(mqtt_broker, mqtt_port);
+  client.setCallback(callback); 
+}
+```
+
+**void_loop()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo do **void_loop()** mantém a conexão com o broker MQTT. Se o cliente não estiver conectado, chama a função reconnect() para restabelecer a conexão, e em seguida executa client.loop() para processar mensagens recebidas e gerenciar a comunicação MQTT continuamente.
+
+```c++
+void loop() {
+  if (!client.connected()) reconnect();
+  client.loop();
+}
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através do código do **ESP32-Tranca**, é possível receber as mensagens enviadas pelo **ESP32-Senha** para liberação da senha, assim mantendo a conexão entre os dois sistemas e garantindo o funcionamento.
+
+#### **3.4.2.4 Imagens do Protótipo Físico em Funcionamento**
+
+<p align="center">
+  <img src="../assets/documentação/prototipo_fisico/modulo_teclado.jpeg" width="600">
+  <br>
+  <em><sub><strong>Figura X:</strong> Vista geral do Módulo ESP32-SENHA com LCD, teclado e leitor RFID.</sub></em>
+</p>
+
+<br>
+
+<p align="center">
+  <img src="../assets/documentação/prototipo_fisico/modulo_tranca.jpeg" width="600">
+  <br>
+  <em><sub><strong>Figura Y:</strong> Detalhe do Módulo ESP32-TRANCA conectado ao relé e à tranca física.</sub></em>
+</p>
+
+<br>
+
+<p align="center">
+  <img src="../assets/documentação/prototipo_fisico/acesso_liberado.jpeg" width="600">
+  <br>
+  <em><sub><strong>Figura Z:</strong> Protótipo em ação, com o LCD exibindo "Acesso Liberado" durante o Teste 03.</sub></em>
+</p>
+
+#### **3.4.2.4 Vídeo de Demonstração do Protótipo**
+
+Para uma demonstração visual da execução dos casos de teste (descritos na tabela a seguir) no protótipo físico, consulte o vídeo de validação no link abaixo:
+
+**[VÍDEO DE DEMONSTRAÇÃO DOS TESTES](https://www.youtube.com/watch?v=RMs8XaUNUNU)**
+
+#### **3.4.2.5 Cenários de Teste do Protótipo Físico**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através dos casos de teste é possível verificar se um programa, sistema ou função está funcionando corretamente. Eles permitem testar diferentes situações e entradas para garantir que o comportamento esperado seja alcançado e que erros ou falhas sejam identificados antes que o software seja efetivamente utilizado.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A tabela a seguir detalha os testes executados para validar as "leituras (entradas)" (do RFID/Botão e Teclado) e as "escritas (saídas)" (no LCD, Buzzer e, mais importante, na Tranca).
+
+| **#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição/Resultado esperado** | **Observações** (opcional) |
+|---|---|---|---|---|---|
+|01| Inicialização correta do sistema de controle de acesso | O dispositivo ESP32 está desligado e todos os componentes estão conectados corretamente | Ligue o dispositivo ESP32 e aguarde a inicialização completa do sistema | O LCD exibe "Aproxime o cartao" na primeira linha e fica aguardando a leitura do sensor RFID | Verifica se todos os componentes (LCD, teclado, sensor) inicializam corretamente |
+|02| Detecção bem-sucedida de cartão RFID válido | Sistema inicializado e aguardando leitura de cartão (LCD mostra "Aproxime o cartao") | Pressione o botão verde que simula a leitura do cartão RFID | O LCD exibe "Digite a Senha:" e o sistema fica aguardando entrada de senha no teclado | No simulador, o botão verde substitui o leitor RFID real |
+|03| Inserção de senha correta e liberação de acesso | Cartão foi detectado e sistema está aguardando senha (LCD mostra "Digite a Senha:") | Digite a senha correta "123456" no teclado matricial e pressione "#" para confirmar | O LCD exibe "Acesso Liberado". **A tranca física (conectada ao ESP32-TRANCA) recebe o comando MQTT e destrava a porta por 5 segundos.** O sistema retorna para "Aproxime o cartao". | Testa o fluxo completo de autenticação bem-sucedida e a "escrita (saída)" no atuador físico. |
+|04| Inserção de senha incorreta e negação de acesso | Cartão foi detectado e sistema está aguardando senha (LCD mostra "Digite a Senha:") | Digite uma senha incorreta (ex: "654321") no teclado matricial e pressione "#" para confirmar | O LCD exibe "Acesso Negado". **A tranca física permanece travada.** **O buzzer (no ESP32-SENHA) emite um som de alerta.** O sistema retorna para "Aproxime o cartao". | Verifica a segurança do sistema e garante que o atuador (tranca) não seja acionado em caso de falha. |
+|05| Visualização de senha mascarada durante digitação | Sistema aguardando entrada de senha | Digite alguns números no teclado (ex: "123") sem pressionar "#" | O LCD exibe "Digite a Senha:" na primeira linha e asteriscos (*) correspondentes aos dígitos digitados na segunda linha | Garante que a senha não seja visível durante a digitação |
+|06| Correção de senha durante digitação usando tecla "*" | Sistema aguardando entrada de senha e já foram digitados alguns números | Digite alguns números, pressione "*" para apagar o último dígito, continue digitando | O último asterisco é removido do LCD e pode-se continuar digitando normalmente | Permite correção de erros during a digitação |
+|07| Tentativa de acesso sem apresentar cartão primeiro | Sistema inicializado mostrando "Aproxime o cartao" | Tente digitar números no teclado sem antes pressionar o botão do cartão | O sistema não responde às teclas digitadas e mantém a mensagem "Aproxime o cartao" | Garante que o sistema só aceita senha após detectar cartão |
+|08| Limite de caracteres na senha | Sistema aguardando entrada de senha | Digite mais de 6 números consecutivos no teclado | O sistema aceita apenas os primeiros 6 dígitos e ignora os demais | Previne overflow na entrada de senha |
+
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, os casos de teste foram desenvolvidos para garantir a confiabilidade, segurança e funcionalidade do sistema de controle de acesso. Eles permitem verificar se todas as leituras (do RFID e teclado) e escritas (no LCD, buzzer e tranca) estão funcionando corretamente em diferentes cenários, desde o fluxo ideal de autenticação até situações de erro ou uso indevido. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, asseguram que o sistema reage de forma previsível e segura, evitando que a tranca seja acionada sem autorização e que informações sensíveis, como a senha, sejam protegidas durante a digitação. 
+
+#### **3.4.2.6 Trechos de Código Relevantes (Evidências)**
+
+Os trechos de código a seguir ilustram como os casos de teste são executados, com foco na lógica de autenticação e na comunicação MQTT para acionar a saída física (tranca).
+
+**A. Lógica de Autenticação e "Escrita (Saída)" (ESP32-SENHA)** Este trecho do Código 1 mostra a validação da senha (Testes 03 e 04) e a subsequente "escrita" (publicação MQTT) para o atuador.
+
+```
+// CODIGO 1: ESP32-SENHA
+// ... (parte do loop() onde a tecla '#' é pressionada) ...
+
+else if (tecla == '#') {
+  lcd.clear();
+  if (senha_digitada == senha_correta) { 
+    // Validação do Teste 03 (Sucesso)
+    lcd.print("Acesso Liberado");
+    Serial.println("Senha correta!");
+    client.publish("tranca", "liberada"); // <<-- ESCRITA (SAÍDA) LÓGICA
+    
+    // Feedback local no ESP-SENHA (não é a tranca principal)
+    digitalWrite(tranca, HIGH); 
+    delay(3000);
+    digitalWrite(tranca, LOW);
+    
+    client.publish("tranca", "bloqueada"); // Comando para garantir o travamento
+  
+  } else {
+    // Validação do Teste 04 (Falha)
+    lcd.print("Acesso Negado");
+    Serial.println("Senha incorreta!");
+    
+    // Feedback local no ESP-SENHA
+    digitalWrite(buzzer, HIGH); // <<-- ESCRITA (SAÍDA) SONORA
+    delay(500);
+    // ... (buzzer bipa)
+    digitalWrite(buzzer, LOW);
+    
+    client.publish("tranca", "bloqueada"); // Garante que a tranca permaneça bloqueada
+  }
+  
+  // Reseta o estado para o Teste 01
+  delay(2000);
+  senha_digitada = "";
+  sistemaAtivo = false;
+  lcd.clear();
+  lcd.print("Aproxime o"); // Volta à Pré-condição
+  lcd.setCursor(0, 1);
+  lcd.print("cartao:");
+  return;
+}
+```
+
+*   **Explicação:** Este código comprova os Testes 03 e 04. No sucesso, ele envia a mensagem liberada para o ESP32-TRANCA. Esta é a "escrita (saída)" lógica que o professor pediu, pois ela comanda o atuador físico. Em caso de falha, ele aciona o buzzer (outra "saída") e garante que a tranca receba o comando bloqueada.
+    
+
+**B. Recebimento e Acionamento da Tranca (ESP32-TRANCA)** Este trecho do Código 2 mostra o ESP32-TRANCA recebendo o comando e executando a "escrita (saída)" física.
+
+```
+// CODIGO 2: ESP32-TRANCA
+
+// Constante para o pino do atuador (Nota: código tem pino 10 e 5)
+const int saidaPin = 10; 
+
+// ... (Setup do WiFi e MQTT) ...
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+  if (strcmp(payloadStr, "liberada") == 0) {
+    // Execução da Pós-condição do Teste 03
+    digitalWrite(5, HIGH); // <<-- ESCRITA (SAÍDA) FÍSICA NA TRANCA
+    delay(5000); // Mantém a tranca aberta por 5 segundos
+    digitalWrite(5, LOW); // Trava a porta
+  }
+}
+
+void reconnect() {
+  while (!client.connected()) {
+    // ... (Conecta ao MQTT)
+    if (client.connect("ESP32ClientSub", mqtt_username, mqtt_password)) {
+      client.subscribe("tranca"); // Assina o tópico
+    }
+    // ...
+  }
+}
+
+void setup() {
+  // ...
+  pinMode(saidaPin, OUTPUT); // Configura o pino da tranca como saída
+  // ...
+  client.setCallback(callback);
+}
+```
+
+*   **Explicação:** Este código é a evidência final do **Teste 03**. A função callback aguarda a mensagem "liberada". Ao recebê-la, ela imediatamente aciona o pino de saída (digitalWrite(5, HIGH)), que está conectado ao relé que controla a **tranca física**, por 5 segundos. Isso demonstra que a "escrita (saída)" no atuador foi testada e funciona.
+    
+
+#### **3.4.2.7 Conclusão da Validação do Protótipo Físico**
+
+A implementação do protótipo físico com dois ESP32s e MQTT foi bem-sucedida, validando os requisitos fundamentais do projeto. A Tabela de Testes, em conjunto com os trechos de código e o vídeo de demonstração, comprova que o sistema é capaz de:
+
+1.  **Ler Entradas:** Processar o fluxo de autenticação (RFID simulado + Teclado).
+    
+2.  **Escrever Saídas Informacionais:** Fornecer feedback claro ao usuário (LCD, Buzzer).
+    
+3.  **Escrever Saídas Físicas:** Comandar com sucesso a **tranca** (atuador) com base na lógica de autenticação.
+    
+
+Esta base de hardware offline é resiliente e modular, provando-se uma fundação sólida para a próxima fase do projeto, que incluirá a integração com o backend na nuvem e a lógica de agendamento.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
 

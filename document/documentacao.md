@@ -615,7 +615,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 **Fase 1:** Solicitação
 
-&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à base de operações, Carlos precisa solicitar autorização para acessar uma sala técnica e iniciar suas atividades. Após a solicitação, ele recebe um cartão RFID com o UID cadastrado para o dia.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao chegar à base de operações, Carlos precisa solicitar autorização para acessar uma sala técnica e iniciar suas atividades. Após a solicitação, ele recebe um cartão RFID com o UID cadastrado e se dirige a área de manutenção.
 
 - **Pensamento:** "Tomara que hoje o processo não demore"
 
@@ -636,18 +636,20 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 **Fase 3:** Entrada
 
 &nbsp;&nbsp;&nbsp;&nbsp; Após a validação das credenciais, o sistema libera automaticamente a porta. Carlos entra na sala restrita e realiza as manutenções necessárias para garantir o funcionamento adequado dos sistemas.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao entrar na sala técnica, o sistema armazena que na área delimitada que Carlos entrou, estão havendo manutenções e exibe essa área para o Gestor de Acessos, evitando contratempos e garantindo que não haja circulação de trens ou passagens de pessoas durante esse processo.
 
-- **Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação."
+- **Pensamento:** "Agora sim, consigo fazer meu serviço sem precisar ficar esperando liberação e com garantia."
 
 - **Sentimento:** Carlos se sente **satisfeito** pois finalmente consegue realizar seu trabalho com segurança.
 
 <br>
 
-**Fase 4:** Monitoramento
+**Fase 4:** Manutenção
 
-&nbsp;&nbsp;&nbsp;&nbsp; O sistema IoT registra automaticamente os horários de entrada e saída do usuário. Com isso, Carlos não precisa preencher relatórios manuais, pois sua presença é comprovada digitalmente.
+&nbsp;&nbsp;&nbsp;&nbsp; Enquanto permanece na sala técnica, Carlos é monitorado pelo sistema IoT, que registra presença, tempo de permanência e condições do ambiente para garantir a conformidade com os protocolos de segurança.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao entrar na sala técnica, o sistema IoT registra automaticamente no banco de dados o início da jornada de trabalho de Carlos. Essa automação garante um controle preciso de presença e tempo de permanência, além de reforçar a segurança operacional. Em caso de qualquer irregularidade durante as atividades, o registro digital permite identificar com clareza quem estava no local, assegurando transparência e responsabilidade em todo o processo.
 
-- **Pensamento:** "Bom saber que o sistema registrou tudo, facilita o relatório depois."
+- **Pensamento:** "Bom saber que o sistema registrou tudo."
 
 - **Sentimento:** Carlos se sente **Neutro**.
 
@@ -655,7 +657,7 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 **Fase 5:** Garantia
 
-&nbsp;&nbsp;&nbsp;&nbsp; Ao encerrar sua jornada, Carlos tem a tranquilidade de que eventuais falhas de segurança não recairão sobre ele, já que o sistema valida corretamente seus acessos dentro dos horários permitidos, evitando erros manuais.
+&nbsp;&nbsp;&nbsp;&nbsp; Ao encerrar sua jornada, Carlos tem a tranquilidade de saber que todo o seu ciclo de acesso foi devidamente registrado e validado pelo sistema IoT. Cada entrada e saída é automaticamente comparada com os horários autorizados, eliminando falhas manuais e garantindo precisão nos registros. Essa automatização reforça a segurança operacional e assegura que, em caso de incidentes, as responsabilidades sejam atribuídas de forma justa e transparente.
 
 - **Pensamento:** "O sistema funcionou bem hoje, tudo rápido e sem falhas."
 
@@ -707,6 +709,7 @@ Ela espera que o novo sistema automatize tarefas anteriormente realizadas de for
 **Fase 1:** Entrada
 
 &nbsp;&nbsp;&nbsp;&nbsp; Nesta etapa, Beatriz realiza o login no painel do sistema e visualiza todos os acessos requisitados às áreas restritas, além de ter acesso aos UIDs dos operadores cadastrados.
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, Bia pode associar e gerar novos UID de funcionários já cadastrados a um novo cartão RFID, caso haja perca do cartão ou novas autorizações. 
 
 - **Pensamento:** "Será que o sistema já atualizou tudo do turno anterior?"
 
@@ -716,7 +719,7 @@ Ela espera que o novo sistema automatize tarefas anteriormente realizadas de for
 
 **Fase 2:** Monitoramento
 
-&nbsp;&nbsp;&nbsp;&nbsp; Após a geração dos cartões, Beatriz monitora os acessos por meio dos logs do sistema, que exibem os horários de entrada e saída dos usuários. Isso garante que apenas pessoas qualificadas estejam nas áreas restritas, evitando acessos indevidos por terceiros.
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz monitora os acessos por meio dos logs do sistema, que registram com precisão os horários de entrada e saída dos usuários. Além disso, ela visualiza em um mapa todas as manutenções em andamento, seja em salas específicas ou em trechos da linha férrea. Essa visão integrada permite identificar automaticamente as áreas onde não deve haver circulação de trens, garantindo que apenas profissionais autorizados acessem zonas restritas e evitando riscos de acesso indevido por terceiros.
 
 - **Pensamento:** "Será que essa pessoa já tem os treinamentos válidos e permissão necessária?"
 
@@ -727,7 +730,7 @@ Ela espera que o novo sistema automatize tarefas anteriormente realizadas de for
 
 **Fase 3:** Notificação
 
-&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia notificações sempre que alguém acessa uma área restrita. Caso o indivíduo permaneça além do horário autorizado, um alerta é exibido na tela, indicando a infração.
+&nbsp;&nbsp;&nbsp;&nbsp; O sistema envia notificações sempre que alguém acessa uma área restrita. Caso o indivíduo permaneça além do horário autorizado, um alerta é exibido na tela e a cor da área de manutenção muda no mapa, indicando a infração.
 
 - **Pensamento:** “Preciso verificar se alguém está no horário além do horário permitido.”
 
@@ -749,9 +752,9 @@ Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridad
 
 **Fase 5:** Garantia
 
-&nbsp;&nbsp;&nbsp;&nbsp; Beatriz encerra seu turno com a certeza de que não houve falhas de segurança sob sua responsabilidade, já que o sistema automatiza todo o processo de verificação
+&nbsp;&nbsp;&nbsp;&nbsp; Beatriz encerra seu turno com a tranquilidade de saber que o sistema automatiza todo o processo de verificação, garantindo que nenhuma falha de segurança passe despercebida. A rastreabilidade das ações e a validação contínua dos acessos asseguram que todas as operações ocorreram dentro dos parâmetros estabelecidos, reforçando a confiabilidade e a responsabilidade do processo.
 
-- **Pensamento:** "Consegui encerrar meu turno sem contratempos"
+- **Pensamento:** "Consegui encerrar meu turno sem contratempos."
 
 - **Sentimento:** Ela se sente muito alíviada, principamente porque o sistema antigo não lhe garantia nenhuma salvaguardas, o que causava preocupação e um estresse contante durante a jornada de trabalho.
 
@@ -769,6 +772,7 @@ Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridad
 
 - Validar acessos, monitorar movimentações, gerar relatórios, garantir segurança e conformidade.
 - Comunicar incidentes, colaborar com equipes de TI e segurança, apoiar treinamentos de uso do sistema.
+- Gerar novos cartões para funcionários já cadastrados.
 
  
 
@@ -783,7 +787,7 @@ Durante esse processo, Beatriz tem um papel fundamental, garantindo a integridad
 </div>
 <br>
 
-A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso — principal beneficiário do sistema IoT — estabelece com a solução. Beatriz espera que o sistema lhe proporcione não apenas mais confiança e segurança ao longo de sua jornada, mas também que automatize grande parte das tarefas anteriormente realizadas de forma manual, reforçando a segurança nas obras e estações.
+A partir da jornada de Beatriz, é possível mapear todas as interações que o gestor de acesso, principal beneficiário do sistema IoT, estabelece com a solução. Beatriz espera que o sistema lhe proporcione não apenas mais confiança e segurança ao longo de sua jornada, mas também que automatize grande parte das tarefas anteriormente realizadas de forma manual, reforçando a segurança nas obras e estações.
 
 Para melhor visualização do Mapa da Jornada de Usuário, segue o link do projeto produzido no Figma pela equipe: https://www.figma.com/design/okP2h2ZcSdpnKuPk64hLno/Untitled?node-id=4-2809&t=hg5T2g4TZcBTWzWn-1
 
@@ -1239,6 +1243,7 @@ O protótipo é composto pelos seguintes componentes principais, distribuídos n
     
 
 **Arquitetura de Comunicação:** Os dois módulos se comunicam via MQTT através de uma rede Wi-Fi local. O ESP32-SENHA publica mensagens de comando (ex: "liberada" ou "bloqueada") no tópico tranca, e o ESP32-TRANCA, que assina este tópico, recebe o comando e aciona a tranca física.
+Para realizar a comunicação em MQTT, se fez necessário a utilização de um broker para realizar a conexão entre os dispositivos. Para isso, utilizamos de forma temporária o HiveMQ, uma plataforma para comunicação MQTT em nuvem com plano gratuito.
 
 #### **3.4.2.2 Fluxo de Operação do Protótipo**
 
@@ -1258,7 +1263,617 @@ Para validar o sistema, o protótipo físico segue um fluxo de Autenticação de
         
 5.  **"Escrita (Saída)" Física:** O ESP32-TRANCA, que está assinando o tópico MQTT, recebe o comando. Ao receber liberada, ele aciona o relé, **destravando a tranca física** por 5 segundos. Se receber bloqueada, ele garante que a tranca permaneça travada.
 
-#### **3.4.2.3 Imagens do Protótipo Físico em Funcionamento**
+#### **3.4.2.3 Código do Protótipo Físico**
+
+**ESP32 Senha**
+
+**Importando Bibliotecas**
+
+Essas linhas incluem as bibliotecas necessárias para o funcionamento do projeto. 
+
+- A biblioteca **Wire.h** habilita a comunicação I2C, usada para conectar o ESP32 a dispositivos como o display LCD. 
+- **LiquidCrystal_I2C.h** permite controlar esse display. 
+- A biblioteca **Keypad.h** é responsável pela leitura das teclas do teclado matricial.
+- **SPI.h** possibilita a comunicação SPI utilizada pelo módulo RFID.
+- **MFRC522.h** é a biblioteca específica para operar o leitor de cartões RFID RC522. 
+- A inclusão de **string** permite o uso de variáveis do tipo texto da linguagem C++.
+- As bibliotecas **WiFi.h**, **PubSubClient.h** e **WiFiClientSecure.h** permitem a conexão do ESP32 à rede Wi-Fi e a comunicação com um servidor MQTT, sendo que a última possibilita conexões seguras e criptografadas.
+```c++
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <string>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+```
+
+**Configurando base do LCD**
+
+O código abaixo configura o display LCD I2C, definindo seu endereço como **0x27** (endereço identificado do display), tamanho de **16 colunas** e **2 linhas** e criando o objeto lcd da classe presente na biblioteca **LiquidCrystal_I2C**, que permite ao programa exibir mensagens e controlar o visor.
+
+```c++
+#define ende 0x27
+#define col 16
+#define lin 2
+LiquidCrystal_I2C lcd(ende, col, lin);
+```
+
+**Variáveis Gerais**
+
+A primeira, ``` String senha_correta = "123456"; ```, define a senha que será usada para liberar o acesso como **"123456"**.
+A segunda, ```bool sistemaAtivo = false;```, cria uma variável lógica que futuramente será utilizada para verificar se o sistema está ativo ou não; quando está em false, o sistema aguarda a aproximação de um cartão RFID, e quando passa para true, permite a digitação da senha.
+```c++
+String senha_correta = "123456";
+bool sistemaAtivo = false;
+```
+**Criando Conexão com MQTT**
+
+O código abaixo cria a conexão segura do ESP32 com o broker MQTT, o espClient permite comunicação criptografada via Wi-Fi, e client usa esse canal para enviar e receber mensagens MQTT.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+```
+**Classes**
+
+&nbsp;&nbsp;&nbsp;&nbsp; As classes servem para organizar e modularizar as diferentes partes do sistema de forma clara e reutilizável. Em vez de escrever tudo em funções soltas no **setup()** ou no **loop()**, você cria objetos com responsabilidades bem definidas.
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, toda a estrutura do código foi criada em POO (Programação Orientada a Objetos), para garantir a organização e modularização do código.
+
+**Classe Teclado**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe **Teclado** foi criada para gerenciar o funcionamento do teclado matricial do sistema, tratando a leitura das teclas e o armazenamento da senha digitada pelo usuário.
+
+&nbsp;&nbsp;&nbsp;&nbsp; No início, são declarados dois atributos privados: Keypad teclado, que representa o teclado físico e realiza a leitura das teclas pressionadas, e String senhaDigitada, que guarda a sequência de números inserida.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O construtor da classe recebe a matriz de teclas (com os caracteres de cada botão), arrays que indicam os pinos de linha e coluna, além da quantidade de linhas e colunas. Com esses dados, ele inicializa o teclado usando a função **makeKeymap()** e define a senha digitada como uma string vazia.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **lerTecla()** retorna a última tecla pressionada. Já o método **adicionarTecla(char tecla)** adiciona o número digitado à variável senhaDigitada, limitando o tamanho a 6 caracteres. Se o usuário pressionar a tecla *, o sistema apaga o último dígito inserido, funcionando como um “backspace”.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **getSenha()** devolve a senha completa que o usuário digitou, enquanto **limparSenha()** apaga todo o conteúdo da senha, preparando o sistema para uma nova tentativa de digitação.
+```c++
+class Teclado {
+  private:
+    Keypad teclado;
+    String senhaDigitada;
+
+  public:
+    Teclado(char matriz[4][4], byte* linhas, byte* colunas, byte qtdLinhas, byte qtdColunas)
+      : teclado(makeKeymap(matriz), linhas, colunas, qtdLinhas, qtdColunas), senhaDigitada("") {}
+
+    char lerTecla() {
+      return teclado.getKey();
+    }
+
+    void adicionarTecla(char tecla) {
+      if (tecla >= '0' && tecla <= '9' && senhaDigitada.length() < 6) {
+        senhaDigitada += tecla;
+      } else if (tecla == '*') {
+        if (senhaDigitada.length() > 0) {
+          senhaDigitada.remove(senhaDigitada.length() - 1);
+        }
+      }
+    }
+
+    String getSenha() {
+      return senhaDigitada;
+    }
+
+    void limparSenha() {
+      senhaDigitada = "";
+    }
+};
+```
+**Classe Leitor RFID**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Rfid gerencia o funcionamento do leitor de cartão RFID RC522. Ela possui atributos privados que definem os pinos utilizados, o objeto que controla o hardware e um UID autorizado de cartão. O construtor recebe os pinos de seleção e reset e inicializa o leitor. 
+
+- **iniciar()** configura a comunicação SPI e prepara o módulo para leitura, exibindo uma mensagem no Serial. 
+- **verificarUIDAtual()** verifica se há um cartão presente e compara seu UID com o autorizado, retornando true se for válido e false caso contrário. 
+- **encerrarLeitura()** finaliza a comunicação com o cartão.  
+- **getRFID()** permite acesso direto ao objeto do leitor para operações adicionais.
+```c++
+class Rfid {
+  private:
+    int ssPin;
+    int rstPin;
+    MFRC522 rfid;
+    byte uidAutorizado[4] = {0x5c, 0x8D, 0x35, 0x4A};
+
+  public:
+    Rfid(int porta1, int porta2): ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+    void iniciar() {
+      SPI.begin();
+      rfid.PCD_Init();
+      delay(100);
+      Serial.println("RC522 pronto!");
+    }
+
+    bool verificarUIDAtual() {
+      if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+        return false;
+      }
+
+      for (byte i = 0; i < 4; i++) {
+        if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    void encerrarLeitura() {
+      rfid.PICC_HaltA();
+      rfid.PCD_StopCrypto1();
+    }
+
+    MFRC522& getRFID() {
+      return rfid;
+    }
+};
+```
+**Classe Display**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Display gerencia a interface com o display LCD I2C. Ela possui atributos privados para os pinos de conexão (pin1 e pin2) e duas strings (texto1 e texto2) que armazenam os textos a serem exibidos. O construtor recebe os pinos de conexão e os inicializa. Além disso, para essa classe foram criadas alguns métodos:
+
+- **iniciar():** Configura a comunicação serial, inicia a comunicação I2C e ativa o backlight do LCD.
+
+- **setTexto1(String novoTexto1):** Define o texto da primeira linha a ser exibido.
+
+- **setTexto2(String novoTexto2):** Define o texto da segunda linha a ser exibido.
+
+- **escreverLinhaUnica(String texto, int linha = 0):** Exibe uma mensagem em uma linha específica do display.
+
+- **escreverLinhaDupla():** Exibe simultaneamente texto1 e texto2 nas duas linhas do LCD.
+
+- **escreverSenhaMascarada(String senha):** Mostra uma mensagem pedindo a senha e exibe a senha digitada substituída por asteriscos para manter a confidencialidade.
+```c++
+class Display {
+  private:
+    int pin1;
+    int pin2;
+    String texto1;
+    String texto2;
+
+  public:
+    Display(int porta1, int porta2): pin1(porta1), pin2(porta2) {}
+
+    void iniciar() {
+      Serial.begin(115200);
+      Wire.begin(pin1, pin2);
+      lcd.init();
+      lcd.backlight();
+    }
+
+    void setTexto1(String novoTexto1) {
+      texto1 = novoTexto1;
+    }
+
+    void setTexto2(String novoTexto2) {
+      texto2 = novoTexto2;
+    }
+
+    void escreverLinhaUnica(String texto, int linha = 0) {
+      lcd.clear();
+      lcd.setCursor(0, linha);
+      lcd.print(texto);
+    }
+
+    void escreverLinhaDupla() {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(texto1);
+      lcd.setCursor(0, 1);
+      lcd.print(texto2);
+    }
+
+    void escreverSenhaMascarada(String senha) {
+      escreverLinhaUnica("Digite a senha:");
+      lcd.setCursor(0, 1);
+      for (int i = 0; i < senha.length(); i++) {
+        lcd.print('*');
+      }
+    }
+};
+```
+**Classe Buzzer**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Buzzer gerencia um buzzer conectado a um pino do microcontrolador. Ela possui um atributo privado pin, que armazena o pino de conexão. O construtor recebe o número do pino e inicializa o atributo. Além disso, foram criados alguns métodos para utilização dessa classe:
+
+- **iniciar():** Configura o pino como saída e garante que o buzzer comece desligado.
+
+- **tocarSom():** Ativa o buzzer, gerando som.
+
+- **desligar():** Desativa o buzzer, interrompendo o som.
+
+```c++
+class Buzzer {
+  private:
+    int pin;
+
+  public:
+    Buzzer(int porta): pin(porta) {}
+
+    void iniciar() {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);
+    }
+
+    void tocarSom() {
+      digitalWrite(pin, HIGH);
+    }
+
+    void desligar() {
+      digitalWrite(pin, LOW);
+    }
+};
+```
+
+**Classe WiFi**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Wifi gerencia a conexão do ESP32 a uma rede Wi-Fi. Ela possui dois atributos privados: ssid, que armazena o nome da rede, e password, que guarda a senha. O construtor inicializa esses atributos.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **conectar_Wifi()** conecta o ESP32 à rede Wi-Fi usando os dados fornecidos, imprimindo no monitor serial mensagens sobre o status de conexão com a internet e aguardando até que a conexão seja estabelecida, mostrando pontos durante a tentativa.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao conectar, exibe a mensagem de confirmação e o endereço IP obtido.
+
+```c++
+class Wifi {
+  private:
+    const char* ssid;
+    const char* password;
+  public:
+    Wifi(const char* nome, const char* senha) : ssid(nome), password(senha) {}
+
+    void conectar_Wifi() {
+
+      delay(10);
+      Serial.println();
+      Serial.print("Conectando à rede: ");
+      Serial.println(ssid);
+
+      WiFi.begin(ssid, password);
+
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print(".");
+      }
+
+      Serial.println("");
+      Serial.println("WiFi conectado");
+      Serial.println("Endereço IP: ");
+      Serial.println(WiFi.localIP());
+  }
+};
+```
+
+**Classe MQTT**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe MQTT gerencia a comunicação do ESP32 com um broker MQTT, permitindo enviar mensagens e manter a conexão ativa. Ela possui quatro atributos privados: mqtt_broker (endereço do broker), mqtt_port (porta do broker), mqtt_username e mqtt_password (credenciais de autenticação). Além disso, foram criados alguns métodos para utilização dessa classe:
+
+- **reconnect():** Tenta reconectar ao broker caso a conexão seja perdida. Enquanto não estiver conectado, imprime mensagens no monitor serial sobre o status da conexão e tenta novamente a cada 5 segundos.
+
+- **iniciar_conexao():** Configura o cliente MQTT usando o broker e a porta especificados e permite comunicação insegura (sem TLS/SSL).
+
+- **desligar_tranca:** Publica uma mensagem para liberar a tranca no outro ESP32.
+
+- **manter_conexao():** Verifica se o cliente ainda está conectado; caso contrário, chama reconnect(). Se a conexão estiver ativa, processa as mensagens recebidas usando client.loop().
+
+```c++
+class MQTT {
+  private:
+    const char* mqtt_broker;
+    const int mqtt_port;
+    const char* mqtt_username;
+    const char* mqtt_password;
+  public:
+    MQTT(const char* broker, const int port, const char* nome, const char* senha) : mqtt_broker(broker), mqtt_port(port), mqtt_username(nome), mqtt_password(senha) {}
+    
+    void reconnect() {
+      while (!client.connected()) {
+        Serial.print("Conectando ao broker MQTT...");
+        if (client.connect("ESP32Client", mqtt_username, mqtt_password)) {
+          Serial.println("conectado");
+        } else {
+          Serial.print("falha, rc=");
+          Serial.print(client.state());
+          Serial.println(" tentando novamente em 5 segundos");
+          delay(5000);
+        }
+      }
+    }
+    void iniciar_conexao(){
+      espClient.setInsecure();
+      client.setServer(mqtt_broker, mqtt_port);
+    }
+    void desligar_tranca(){
+      client.publish("tranca", "liberada");
+      delay(3000);
+      client.publish("tranca", "bloqueada");
+    }
+    void manter_conexao(){
+       if(!client.connected()){
+        reconnect();
+      }else
+        client.loop();
+    }
+};
+```
+**Variáveis Teclado Matricial**
+
+O código abaixo define o teclado matricial 4x4, mapeando cada tecla ('0' a '9', 'A' a 'D', '*', '#') e associando as linhas e colunas aos pinos do ESP32 para que o sistema consiga ler quais teclas são pressionadas.
+
+```c++
+const byte LINHAS = 4;
+const byte COLUNAS = 4;
+
+char TECLAS_MATRIZ[4][4] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte PINOS_LINHAS[LINHAS] = {17, 16, 14, 25};
+byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
+```
+
+**Objetos**
+
+O código abaixo cria instâncias das classes definidas anteriormente, associando cada objeto a seus respectivos pinos, parâmetros ou credenciais:
+
+- **teclado:** controla o teclado matricial, recebendo a matriz de teclas, pinos das linhas e colunas e suas dimensões.
+
+- **somValidacao:** controla o buzzer conectado ao pino 13.
+
+- **display1:** gerencia o display LCD I2C nos pinos 26 e 27.
+
+- **leitorCartao:** controla o leitor RFID nos pinos 5 (SS) e 21 (RST).
+
+- **Wifi:** armazena as credenciais da rede Wi-Fi para conexão.
+
+- **MQTT:** configura o cliente MQTT com endereço do broker, porta e credenciais de usuário.
+
+```c++
+Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);
+Buzzer somValidacao(13);
+Display display1(26, 27);
+Rfid leitorCartao(5, 21);
+Wifi Wifi("GCA-2Ghz", ***********);
+MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");
+```
+
+**void_setup()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo é referente ao **void_setup()** padrão, que neste caso, configura e inicializa todos os componentes principais do sistema. Ele começa ativando o display LCD e exibindo a mensagem "Aproxime o cartão". Em seguida, inicializa o leitor RFID para permitir a leitura de cartões, prepara o buzzer para emitir sons de validação, conecta o ESP32 à rede Wi-Fi e, por fim, configura a conexão com o broker MQTT para envio e recebimento de mensagens.
+
+
+```c++
+void setup() {
+  display1.iniciar();
+  display1.setTexto1("Aproxime o");
+  display1.setTexto2("cartao");
+  display1.escreverLinhaDupla();
+
+  leitorCartao.iniciar();
+  somValidacao.iniciar();
+  Wifi.conectar_Wifi();
+  MQTT.iniciar_conexao();
+}
+```
+
+**void_loop()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo utiliza das classes/objetos criados para executar o código do sistema. No código, ele primeiro mantém a conexão MQTT ativa. Se o sistema ainda não estiver ativo, ele verifica se há um cartão RFID presente e se o UID corresponde ao autorizado. Caso não seja, ele retorna e espera. Se o cartão for válido, ele imprime o UID no serial monitor, ativa o sistema e solicita que o usuário digite a senha, encerrando a leitura do cartão.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Quando o sistema está ativo, ele lê as teclas do teclado matricial. Cada tecla digitada é adicionada à senha em construção, e o display mostra a senha mascarada com asteriscos. Quando a tecla # é pressionada, o sistema verifica se a senha digitada é a correta. Se for, exibe “Acesso Liberado”, toca o buzzer por 3 segundos e envia um comando para destravar a tranca via MQTT. Caso a senha esteja incorreta, exibe “Acesso Negado” e emite dois bipes curtos do buzzer.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após qualquer tentativa de senha, o sistema limpa a senha digitada, desativa o modo de entrada e retorna à tela inicial pedindo para aproximar o cartão novamente. O loop continua, alternando entre a espera pelo cartão, a digitação da senha e o gerenciamento do acesso.
+
+```c++
+void loop() {
+  MQTT.manter_conexao();
+
+  if (!sistemaAtivo) {
+    if (!leitorCartao.verificarUIDAtual()) {
+      return;
+    }
+
+    MFRC522& rfidInterno = leitorCartao.getRFID();
+    Serial.print("UID lido: ");
+    for (byte i = 0; i < rfidInterno.uid.size; i++) {
+      Serial.print(rfidInterno.uid.uidByte[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
+
+    sistemaAtivo = true;
+    display1.escreverLinhaUnica("Digite a Senha:");
+    leitorCartao.encerrarLeitura();
+  }
+
+  if (sistemaAtivo) {
+    char tecla = teclado.lerTecla();
+    if (tecla) {
+      if (tecla == '#') {
+        if (teclado.getSenha() == senha_correta) {
+          display1.escreverLinhaUnica("Acesso Liberado");
+          Serial.println("Senha correta!");
+          somValidacao.tocarSom();
+          delay(3000);
+          somValidacao.desligar();
+
+          MQTT.desligar_tranca();
+        } else {
+          display1.escreverLinhaUnica("Acesso Negado");
+          Serial.println("Senha incorreta!");
+          somValidacao.tocarSom();
+          delay(500);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(500);
+          somValidacao.desligar();
+        }
+
+        delay(2000);
+        teclado.limparSenha();
+        sistemaAtivo = false;
+        display1.setTexto1("Aproxime o");
+        display1.setTexto2("cartao:");
+        display1.escreverLinhaDupla();
+        return;
+      } else {
+        teclado.adicionarTecla(tecla);
+      }
+
+      display1.escreverLinhaUnica("Digite a Senha:");
+      display1.escreverSenhaMascarada(teclado.getSenha());
+    }
+  }
+}
+```
+
+**ESP32 - TRANCA**
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo inclue as bibliotecas que permitem ao ESP32 se conectar a redes Wi-Fi (WiFi.h), se comunicar com brokers MQTT (PubSubClient.h) e estabelecer conexões seguras usando TLS/SSL (WiFiClientSecure.h). Elas fornecem funções para gerenciar conexões, enviar e receber mensagens de forma confiável e segura entre o microcontrolador e servidores remotos.
+
+```c++
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+```
+**Variáveis para Conexão**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo armazena as informações necessárias para que o ESP32 se conecte à rede Wi-Fi e ao broker MQTT. As duas primeiras definem o nome da rede (ssid) e a senha (password). As seguintes armazenam o endereço do broker MQTT (mqtt_broker), a porta de comunicação (mqtt_port) e as credenciais de autenticação (mqtt_username e mqtt_password) que permitem que o dispositivo envie e receba mensagens de forma segura usando o protocolo MQTT.
+
+```c++
+const char* ssid = "Galaxy Samsung J1 mini";
+const char* password = "*******";
+
+const char* mqtt_broker = "18a61305753543af9634a27594738058.s1.eu.hivemq.cloud";
+const int mqtt_port = 8883;
+const char* mqtt_username = "ESP32";
+const char* mqtt_password = "********";
+```
+
+**Tranca**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo define como saidaPin, a variável que guarda a porta onde é conectado o relé, que realiza a conexão com a tranca.
+
+```c++
+const int saidaPin = 5;
+```
+
+**Criando Conexão com MQTT**
+
+O código abaixo cria a conexão segura do ESP32 com o broker MQTT, o espClient permite comunicação criptografada via Wi-Fi, e client usa esse canal para enviar e receber mensagens MQTT.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+```
+
+**Conexão com WiFi**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função setup_wifi() conecta o ESP32 à rede Wi-Fi. Primeiro, ela imprime no monitor serial que está tentando se conectar à rede especificada pelo ssid. 
+&nbsp;&nbsp;&nbsp;&nbsp; Depois, inicia a conexão usando WiFi.begin(ssid, password) e entra em um loop enquanto o dispositivo não estiver conectado, imprimindo pontos para indicar que ainda está tentando.
+&nbsp;&nbsp;&nbsp;&nbsp;Quando a conexão é estabelecida, a função exibe no monitor serial uma mensagem confirmando que o Wi-Fi foi conectado e mostra o endereço IP obtido pelo ESP32.
+
+```c++
+void setup_wifi() {
+  Serial.println();
+  Serial.print("Conectando à rede: ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi conectado!");
+  Serial.print("IP: ");
+  Serial.println(WiFi.localIP());
+}
+```
+
+**Puxando informação ViaMQTT**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Essa função **callback()** é chamada sempre que uma mensagem MQTT chega a um tópico ao qual o ESP32 está inscrito. 
+ &nbsp;&nbsp;&nbsp;&nbsp; Se a mensagem for exatamente "liberada", a função ativa o pino digital 5, liberando a tranca por 5 segundos e depois ativando-a novamente.
+
+```c++
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+    if (strcmp(payloadStr, "liberada") == 0){
+      digitalWrite(5, HIGH);
+      delay(5000);
+      digitalWrite(5, LOW);  
+    }
+}
+```
+**Manter Conexão**
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função **reconnect()** garante que o ESP32 esteja sempre conectado ao broker MQTT. Ela verifica se o cliente MQTT (client) está desconectado e, enquanto isso, tenta se conectar usando o nome de usuário e senha fornecidos. 
+&nbsp;&nbsp;&nbsp;&nbsp; Se a conexão for bem-sucedida, ele inscreve o dispositivo no tópico "tranca". Caso a conexão falhe, ela espera 5 segundos antes de tentar novamente.
+
+```c++
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Conectando ao broker MQTT...");
+    if (client.connect("ESP32ClientSub", mqtt_username, mqtt_password)) {
+      Serial.println("Conectado!");
+      client.subscribe("tranca");
+    } else {
+      Serial.print("Falha, rc=");
+      Serial.println(client.state());
+      Serial.println("Tentando de novo em 5s...");
+      delay(5000);
+    }
+  }
+}
+```
+**void_setup()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; No void_setup(), o código define o pino de saída do dispositivo como OUTPUT, conecta o ESP32 à rede Wi-Fi usando a função setup_wifi(), e configura o cliente MQTT, definindo o servidor MQTT e a função de callback para processar mensagens recebidas no tópico assinado anteriormente (tranca).
+
+```c++
+void setup() {
+  Serial.begin(115200);
+  pinMode(saidaPin, OUTPUT);
+  setup_wifi();
+  espClient.setInsecure(); 
+  client.setServer(mqtt_broker, mqtt_port);
+  client.setCallback(callback); 
+}
+```
+
+**void_loop()**
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código abaixo do **void_loop()** mantém a conexão com o broker MQTT. Se o cliente não estiver conectado, chama a função reconnect() para restabelecer a conexão, e em seguida executa client.loop() para processar mensagens recebidas e gerenciar a comunicação MQTT continuamente.
+
+```c++
+void loop() {
+  if (!client.connected()) reconnect();
+  client.loop();
+}
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através do código do **ESP32-Tranca**, é possível receber as mensagens enviadas pelo **ESP32-Senha** para liberação da senha, assim mantendo a conexão entre os dois sistemas e garantindo o funcionamento.
+
+#### **3.4.2.4 Imagens do Protótipo Físico em Funcionamento**
 
 <p align="center">
   <img src="../assets/documentação/prototipo_fisico/modulo_teclado.jpeg" width="600">
@@ -1290,7 +1905,9 @@ Para uma demonstração visual da execução dos casos de teste (descritos na ta
 
 #### **3.4.2.5 Cenários de Teste do Protótipo Físico**
 
-A tabela a seguir detalha os testes executados para validar as "leituras (entradas)" (do RFID/Botão e Teclado) e as "escritas (saídas)" (no LCD, Buzzer e, mais importante, na Tranca).
+&nbsp;&nbsp;&nbsp;&nbsp; Através dos casos de teste é possível verificar se um programa, sistema ou função está funcionando corretamente. Eles permitem testar diferentes situações e entradas para garantir que o comportamento esperado seja alcançado e que erros ou falhas sejam identificados antes que o software seja efetivamente utilizado.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A tabela a seguir detalha os testes executados para validar as "leituras (entradas)" (do RFID/Botão e Teclado) e as "escritas (saídas)" (no LCD, Buzzer e, mais importante, na Tranca).
 
 | **#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição/Resultado esperado** | **Observações** (opcional) |
 |---|---|---|---|---|---|
@@ -1302,6 +1919,10 @@ A tabela a seguir detalha os testes executados para validar as "leituras (entrad
 |06| Correção de senha durante digitação usando tecla "*" | Sistema aguardando entrada de senha e já foram digitados alguns números | Digite alguns números, pressione "*" para apagar o último dígito, continue digitando | O último asterisco é removido do LCD e pode-se continuar digitando normalmente | Permite correção de erros during a digitação |
 |07| Tentativa de acesso sem apresentar cartão primeiro | Sistema inicializado mostrando "Aproxime o cartao" | Tente digitar números no teclado sem antes pressionar o botão do cartão | O sistema não responde às teclas digitadas e mantém a mensagem "Aproxime o cartao" | Garante que o sistema só aceita senha após detectar cartão |
 |08| Limite de caracteres na senha | Sistema aguardando entrada de senha | Digite mais de 6 números consecutivos no teclado | O sistema aceita apenas os primeiros 6 dígitos e ignora os demais | Previne overflow na entrada de senha |
+
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, os casos de teste foram desenvolvidos para garantir a confiabilidade, segurança e funcionalidade do sistema de controle de acesso. Eles permitem verificar se todas as leituras (do RFID e teclado) e escritas (no LCD, buzzer e tranca) estão funcionando corretamente em diferentes cenários, desde o fluxo ideal de autenticação até situações de erro ou uso indevido. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, asseguram que o sistema reage de forma previsível e segura, evitando que a tranca seja acionada sem autorização e que informações sensíveis, como a senha, sejam protegidas durante a digitação. 
 
 #### **3.4.2.6 Trechos de Código Relevantes (Evidências)**
 

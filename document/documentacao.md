@@ -1262,6 +1262,45 @@ Este fluxo detalha a jornada da requisição, desde a borda até a liberação d
 
 ---
 
+
+### Relacionamento dos Requisitos com os diagramas da Arquitetura
+Os requisitos de software que fazem parte da norma ISO/IEC 25010 definem atributos utilizados para avaliar a qualidade de um sistema. Como o próprio nome sugere, esses requisitos descrevem as capacidades que o software deve possuir para cumprir o que se propõe a fazer. Eles se dividem em dois tipos: requisitos funcionais e requisitos não funcionais.
+
+Dessa forma, como já mencionado, os diagramas de arquitetura de software representam visualmente o fluxo completo de interação do usuário com o sistema e o comportamento esperado durante esse processo. Sendo assim, é possível analisar, por meio dos diagramas, se os requisitos estão sendo contemplados ou não.
+
+### I. Requisitos Funcionais (RFs)
+Os requisitos funcionais são especificações que descrevem o que o sistema deve fazer. Eles definem as funcionalidades e os serviços que o software deve oferecer para atender às necessidades dos usuários ou de outras partes interessadas, sem se aprofundar em como essas funcionalidades serão implementadas.
+
+Os Requisitos Funcionais são atendidos por componentes específicos e fluxos de interação entre as camadas dos diagramas.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RF01** | Coleta de dados via sensor RFID | **Atendido pela Camada de Borda (Hardware):** O fluxo começa com a leitura do **Leitor RFID** (Entrada/Saída) e a inserção do PIN no **Teclado**. O microcontrolador **ESP32 - ENTRADA** coleta e gerencia esses dados brutos. |
+| **RF02** | Conexão Wi-Fi e comunicação via MQTT | **Atendido pela Camada de Borda e Comunicação:** O **ESP32** utiliza o módulo **Wi-Fi** para estabelecer a conexão de rede. A comunicação é realizada por meio do **Broker MQTT (HiveMQ)**, que está na **Camada de Comunicação**. |
+| **RF03** | Formatação e publicação de dados no protocolo MQTT | **Atendido pela Camada de Borda e Comunicação:** O código no **ESP32** é responsável por formatar os dados brutos (**RFID, PIN**) em *payloads* JSON válidos antes de publicá-los no **Broker MQTT**, utilizando os **Tópicos de Request** (`request_card`, `submit_sms`). |
+| **RF04** | Autenticação multifator e validação de credenciais | **Atendido pela Arquitetura do Backend:** Esta é a função principal do **Orquestrador de Autenticação**. Ele valida (1) o **UID do RFID** (consultando o DB) e (2) o **PIN** inserido pelo usuário (comparando com o código gerado), liberando o acesso somente após a dupla confirmação. |
+| **RF05** | Verificação de capacitação e agendamento | **Atendido pela Arquitetura do Backend:** Esta validação é realizada pelo **Orquestrador de Autenticação** que se integra à **API TIC Trens (Agendamento)**, que representa o sistema corporativo externo. O fluxo exige que esta consulta seja feita antes da geração do PIN. |
+| **RF06** | Gestão de dispositivos IoT e credenciais | **Atendido pela Camada de Backend (API REST e DB):** O cadastro dos dispositivos (Device ID, Tokens MQTT) e sua vinculação a locais físicos são funções gerenciadas pela **API REST** e armazenadas no **Banco de Dados (PostgreSQL)**, permitindo que a Coordenadora (Beatriz) os configure via **Dashboard CCO**. |
+| **RF07** | Registro e auditoria de eventos de acesso | **Atendido pela Arquitetura do Backend (Persistência):** O módulo **Valida credenciais, Salva logs** é explicitamente responsável por registrar todos os eventos (ID do usuário, resultado, *timestamp*, etc.) no **Banco de Dados (PostgreSQL)**. |
+| **RF08** | Dashboard corporativo com visualização em tempo real | **Atendido pela Camada de Aplicação e Backend:** O **Dashboard CCO (Vercel)** é a interface de visualização. Ele consome dados em tempo real através do **Servidor WebSocket** (para eventos imediatos) e dados históricos via **API REST (GET /logs)**. |
+| **RF09** | Criptografia de dados em trânsito | **Atendido pela Camada de Comunicação e Backend:** Isso é garantido pelo uso obrigatório de **TLS/SSL** sobre o MQTT (MQTTS) e sobre o HTTP (**HTTPS** - Porta 443) em todas as conexões (ESP32 $\leftrightarrow$ Broker, Backend $\leftrightarrow$ API TIC Trens, Dashboard $\leftrightarrow$ Backend). |
+
+---
+
+### II. Requisitos Não Funcionais (RNFs)
+Os requisitos não funcionais especificam como o sistema deve se comportar para que uma funcionalidade seja atendida. Eles funcionam como requisitos funcionais com restrições adicionais. Esses requisitos definem critérios de qualidade que influenciam a experiência do usuário e o desempenho do software, como eficiência, segurança, usabilidade e confiabilidade
+
+Os Requisitos Não Funcionais abordam a qualidade e a segurança do sistema, sendo implementados nas configurações dos componentes.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RNF01** | Criptografia pós-quântica para dados em repouso | **Atendido pela Camada de Backend (Banco de Dados):** O requisito é implementado na configuração do **Banco de Dados (PostgreSQL)** e no módulo **Valida credenciais, Salva logs**, garantindo que os dados sensíveis sejam criptografados antes de serem persistidos. |
+| **RNF02** | Fiel cumprimento da autenticação em dois fatores | **Atendido pelo Fluxo do Orquestrador de Autenticação:** O diagrama do Backend mostra o fluxo estrito: 1. Validação de Agendamento, 2. Geração/Envio de PIN, 3. Validação do PIN. O **Orquestrador** é o responsável por impor essa sequência lógica. |
+| **RNF03** | Tempo máximo de 5s para travamento automático | **Atendido pelo Fluxo da Camada de Borda:** Este é um requisito de **Desempenho** crítico, dependendo da baixa latência da comunicação MQTT/Wi-Fi e da eficiência do código no **ESP32 - SAÍDA**, que controla o **Relé** e a **Tranca Física**. |
+| **RNF04** | Compatibilidade com MQTT e HTTP | **Atendido pelas Camadas de Comunicação e Backend:** O diagrama mostra o uso central do **MQTT** (Comunicação Assíncrona) e do **HTTPS/API REST** (Comunicação Síncrona) no Backend. A arquitetura já prevê essa dualidade de protocolos. |
+| **RNF05** | Modularização e documentação do código-fonte | **Atendido pela Arquitetura do Backend:** A divisão do Backend em componentes claros (**Interface MQTT**, **Orquestrador**, **Servidor WebSocket**, **API REST**) é um princípio de modularização, facilitando a manutenção e futuras atualizações. |
+| **RNF06** | Portabilidade (Ambiente Local vs. Nuvem) | **Atendido pela Arquitetura em Camadas:** A arquitetura desacopla a lógica do Backend do hardware (via Broker MQTT). Isso permite que todos os serviços do Backend sejam movidos para um ambiente local ou para a nuvem sem impactar o código dos **dispositivos ESP32** ou do **Dashboard**. |
+---
 #### (Sprint 3)
 
 _Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_

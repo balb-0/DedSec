@@ -1301,21 +1301,27 @@ Os Requisitos Não Funcionais abordam a qualidade e a segurança do sistema, sen
 | **RNF05** | Modularização e documentação do código-fonte | **Atendido pela Arquitetura do Backend:** A divisão do Backend em componentes claros (**Interface MQTT**, **Orquestrador**, **Servidor WebSocket**, **API REST**) é um princípio de modularização, facilitando a manutenção e futuras atualizações. |
 | **RNF06** | Portabilidade (Ambiente Local vs. Nuvem) | **Atendido pela Arquitetura em Camadas:** A arquitetura desacopla a lógica do Backend do hardware (via Broker MQTT). Isso permite que todos os serviços do Backend sejam movidos para um ambiente local ou para a nuvem sem impactar o código dos **dispositivos ESP32** ou do **Dashboard**. |
 ---
-#### (Sprint 3)
 
-_Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
 
-_Descreva a arquitetura técnica da solução de forma detalhada (visão de arquitetura).
+### Demonstração e Explicação da Arquitetura
 
-Justifique como a arquitetura suporta os requisitos funcionais e não funcionais.
+Esta seção contém o material audiovisual de apoio, que demonstra o funcionamento da solução e explica em detalhes cada um dos diagramas de arquitetura documentados neste projeto.
 
-O diagrama de arquitetura deve:_
-- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
-- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
-- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
-- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
-- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
+#### Vídeo - Explicação do Diagrama Geral da Solução
+
+Este vídeo apresenta a visão macro da solução de controle de acesso para a TIC Trens, detalhando a interconexão das quatro camadas: **Borda (Hardware), Comunicação, Backend (Serviço) e Aplicação (Dashboard)**. É um guia visual do fluxo completo de entrada e saída, mostrando como os componentes físicos se comunicam para realizar a autenticação em dois fatores e a atuação da tranca.
+
+* **Conteúdo:** Visão geral das camadas e fluxo de acesso.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=jaz4mZkZzvo)
+
+#### Vídeo - Explicação do Diagrama da Arquitetura do Backend
+
+O segundo vídeo foca no **centro de inteligência** do sistema. Ele detalha o funcionamento do **Orquestrador de Autenticação** no Servidor de Aplicação, a utilização do protocolo **MQTT** para comunicação assíncrona, as consultas ao **Banco de Dados (PostgreSQL)** e a integração com a **API de Agendamento da TIC Trens**. O vídeo explica como o backend gerencia a sessão de acesso, salva os logs e notifica o CCO em tempo real.
+
+* **Conteúdo:** Detalhamento da lógica de autenticação e persistência de dados.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=XVhP-Pj7qDs)
+
+---
 
 
 ### 3.3.4. Arquitetura do Protótipo(sprint 4)	

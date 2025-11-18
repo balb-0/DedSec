@@ -1039,14 +1039,14 @@ Portanto, fica claro que as storyboards são essenciais para se ter uma melhor v
 
 ---
 
-##### 5. Observações Técnicas  
+#### 5. Observações Técnicas  
 
 - O fluxo foi modelado com base no **princípio de autenticação em dois fatores (MFA)**, reforçando a confiabilidade do sistema.  
 - A comunicação entre o Dispositivo IoT e o Backend ocorre de forma segura via **protocolo MQTT ou HTTP com TLS**.  
 - O Dashboard utiliza **WebSocket** para atualização em tempo real dos eventos.  
 - O sistema registra todos os eventos de falha, sucesso e exceção para auditoria futura e análises de segurança.  
 - O modelo de dados é centralizado em **PostgreSQL**, garantindo integridade e rastreabilidade das operações.  
-
+---
 
 ### Diagrama de classes UML
 
@@ -1120,21 +1120,257 @@ As associações representam como as classes interagem entre si, utilizando a mu
 ---
 </div>
 
-#### (Sprint 3)
+### Diagrama da arquitetura de sistema (Geral)
+O Diagrama da arquitetura do sistema tem como objetivo apresentar, de forma integrada, toda a arquitetura e o funcionamento da nossa solução de controle de acesso para áreas sensíveis, desenvolvida em parceria com a TIC Trens. Ele detalha os componentes físicos envolvidos, como sensores, microcontroladores e dispositivos de entrada, além das tecnologias utilizadas — que operam de forma coordenada para garantir segurança, conectividade e eficiência no sistema
 
-_Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
+#### (Diagrama desenvolvido durante a Sprint 3)
+<div align="center">
+<sub>Diagrama da arquitetura geral</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/diagrama_geral_v2.png">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
+</div>  
 
-_Descreva a arquitetura técnica da solução de forma detalhada (visão de arquitetura).
+A solução adota uma arquitetura de **Internet das Coisas (IoT)**, dividida em quatro camadas principais: **Camada de Borda (Hardware)**, **Camada de Comunicação**, **Camada de Backend (Serviço)**, **Camada de Aplicação (Interface)** e **Fluxo de Acesso**.
 
-Justifique como a arquitetura suporta os requisitos funcionais e não funcionais.
+Essa estrutura permite a coleta e o processamento de dados no local (dispositivos de entrada e saída), a comunicação assíncrona e segura, o processamento de regras de negócio e a visualização em tempo real.
 
-O diagrama de arquitetura deve:_
-- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
-- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
-- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
-- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
-- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
+---
+
+#### **1. Camada de Borda (Hardware)**
+
+Esta camada é composta pelos dispositivos físicos instalados nas áreas técnicas, responsáveis pela coleta de dados (identificação) e atuação (liberação de acesso).
+
+| Componente | Função | Interação Principal |
+| :--- | :--- | :--- |
+| **ESP32 - ENTRADA** | Microcontrolador principal; responsável pela lógica de entrada, controle de periféricos e comunicação MQTT. | Comunica com Leitor RFID, Teclado, LCD, Buzzer e Broker MQTT. |
+| **Leitor RFID** (Entrada) | Faz a leitura do cartão de identificação do usuário **(Fator 1: O que você tem)**. | Envia a tag lida para o **ESP32 - ENTRADA**. |
+| **Teclado** | Permite a inserção da senha/código temporário **(Fator 2: O que você sabe)**. | Envia os dígitos digitados para o **ESP32 - ENTRADA**. |
+| **LCD** | Fornece feedback visual ao usuário sobre o status da validação. | Recebe comandos do **ESP32 - ENTRADA**. |
+| **Buzzer** | Fornece feedback sonoro em eventos de acesso (sucesso/negado). | Recebe comandos do **ESP32 - ENTRADA**. |
+| **ESP32 - SAÍDA** | Microcontrolador secundário; responsável pela lógica de saída, controle da tranca e leitura do sensor de status. | Comunica com Leitor RFID (Saída), Sensor de Porta e Relé. |
+| **Leitor RFID** (Saída) | Permite o registro e/ou liberação da saída do usuário. | Envia a tag lida para o **ESP32 - SAÍDA**. |
+| **Sensor de Porta (Magnética)** | Monitora o **status físico** da porta (aberta/fechada). | Envia um **Sinal Elétrico (Status)** para o **ESP32 - SAÍDA**. |
+| **Relé** | Atuador eletrônico que controla o estado da **Tranca Física** (fechadura eletromagnética). | Recebe o comando de abertura/fechamento do **ESP32 - SAÍDA**. |
+| **Tranca Física** | O mecanismo físico de segurança que impede ou libera o acesso. | Controlada pelo **Relé**. |
+
+---
+
+#### **2. Camada de Comunicação**
+
+Responsável por estabelecer a ponte entre o hardware (Borda) e o software (Backend), utilizando um protocolo leve para eficiência.
+
+| Componente | Função | Protocolo / Tecnologia |
+| :--- | :--- | :--- |
+| **Broker MQTT (HiveMQ)** | Servidor de mensagens central que implementa o padrão *publish/subscribe* (Pub/Sub). Gerencia a comunicação assíncrona. | **MQTT** |
+| **Wi-Fi** | Meio físico de comunicação de rede local utilizado pelos dispositivos ESP32 e pelo Broker. | **TCP/IP** |
+| **Gateway de SMS (Twilio/Zenvia)** | Serviço externo para o envio seguro do código de **senha temporária (OTP)** ao celular do usuário. | N/A |
+
+---
+
+#### **3. Camada de Backend (Serviço e Dados)**
+
+Camada de inteligência, onde as regras de negócio são validadas, os dados são armazenados e os serviços externos são integrados.
+
+| Componente | Função | Protocolo / Tecnologia |
+| :--- | :--- | :--- |
+| **Servidor de Aplicação (Node.js)** | Motor principal do backend. Processa as mensagens MQTT, aplica as regras de acesso, interage com o DB e serviços externos. | N/A |
+| **Banco de Dados (PostgreSQL)** | Armazena dados essenciais: **cadastro de usuários e cartões**, **logs de acesso** e **logs de auditoria** de segurança. | N/A |
+| **API TIC Trens (Agendamento)** | Sistema externo que fornece informações sobre a **capacitação** e o **agendamento/autorização** do usuário para a área específica. | **HTTPS** |
+| **API RESTful (API REST)** | Interface para a manipulação e consulta de dados (usuários, logs) e gerenciamento pelo Dashboard. | **HTTPS** |
+| **WebSockets** | Protocolo de comunicação bidirecional e persistente, usado para enviar atualizações de status em **tempo real** para o Dashboard. | N/A |
+
+---
+
+#### **4. Camada de Aplicação (Interface)**
+
+A interface de usuário final, que permite o monitoramento e a intervenção da equipe de segurança e coordenação.
+
+| Componente | Função | Usuário Primário |
+| :--- | :--- | :--- |
+| **Dashboard (Interface do CCO)** | Interface gráfica que exibe o status em tempo real das portas, logs de acesso, falhas de autenticação e permite o gerenciamento de permissões. | **Beatriz (CCO - Coordenadora)** |
+
+---
+
+#### 5. Exemplos de fluxo de acesso.
+
+O fluxo de acesso da solução é um processo de autenticação em dois fatores e autorização contextual (via agendamento) para a entrada, e um processo simplificado de registro e liberação rápida para a saída.
+
+####  5.1. Fluxo de Acesso (Entrada)
+
+1.  **Início:** O usuário passa o cartão no **Leitor RFID (Entrada)**.
+2.  **Mensageria:** O **ESP32 - ENTRADA** envia a tag do cartão para o **Broker MQTT**.
+3.  **Processamento:** O **Servidor de Aplicação** recebe a tag e realiza as consultas:
+    * Consulta o **DB** para identificar o usuário.
+    * Consulta a **API TIC Trens** para checar o agendamento/autorização.
+4.  **Autenticação:** Se autorizado, o Servidor gera um código OTP e o envia ao usuário via **Gateway de SMS**.
+5.  **Validação Final:** O usuário insere o código no **Teclado**, que é enviado via MQTT de volta ao Servidor para validação.
+6.  **Atuação (Abertura):** Se validado, o Servidor envia a mensagem de "Liberação de Acesso" (via MQTT) ao **ESP32 - ENTRADA**, que envia o comando de abertura ao **ESP32 - SAÍDA**.
+7.  O **ESP32 - SAÍDA** aciona o **Relé**, que destrava a **Tranca Física**.
+8.  **Monitoramento:** O evento de entrada é registrado no **Banco de Dados**, e o status é atualizado via **WebSockets** para o **Dashboard do CCO**.
+
+#### 5.2. Fluxo de Acesso (Saida)
+1.  **Início:** O usuário passa o cartão no **Leitor RFID (Saída)**, indicando a intenção de sair.
+2.  **Mensageria:** O **ESP32 - SAÍDA** envia a tag do cartão para o **Broker MQTT**.
+3.  **Processamento e Registro:** O **Servidor de Aplicação** recebe a tag e realiza as ações:
+    * Consulta o **DB** para identificar o usuário.
+    * Valida se o usuário estava registrado como **"Dentro"** da área.
+    * **Registra o evento de saída** no **Banco de Dados**, com carimbo de tempo (timestamp).
+    * Opcionalmente, pode enviar um comando (via MQTT) de volta para o **ESP32 - SAÍDA** para exibir uma mensagem de confirmação (ex: "Saída Registrada").
+4.  **Atuação (Liberação):** O **ESP32 - SAÍDA** é programado para que, no fluxo de saída, a leitura do cartão ou um botão de saída (não mostrado no diagrama, mas comum) acione o **Relé** para liberar a **Tranca Física** imediatamente (priorizando a evacuação/fluxo de saída, não exigindo senha).
+5.  **Monitoramento:** O status da porta (via Sensor) e o log de saída são enviados ao DB e, via **WebSockets**, ao **Dashboard do CCO**.
+
+
+---
+### Diagrama da arquitetura do backend
+O Diagrama da arquitetura do Backend tem como objetivo apresentar, de forma integrada, a **inteligência central** e o **fluxo de processamento lógico** da nossa solução de controle de acesso para áreas sensíveis da TIC Trens.
+
+Ele detalha a **orquestração de autenticação** em dois fatores, a comunicação **assíncrona** via Broker MQTT (HiveMQ), a persistência de dados no **PostgreSQL**, e a integração com APIs externas, como o sistema de **Agendamento da TIC Trens** e o **Gateway de SMS**. Essa arquitetura opera de forma coordenada para garantir a **segurança, a rastreabilidade dos logs e o monitoramento em tempo real** pelo CCO.
+
+
+#### (Diagrama desenvolvido durante a Sprint 3)
+<div align="center">
+<sub>Diagrama focado no backend</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/diagrama_backend.png">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
+</div> 
+
+O diagrama do backend foi dividido em 3 partes principais: **Camada de Comunicação e Mensageria**, **Arquitetura do Backend**, **Persistência e Monitoramento** e **Fluxo de Autenticação**.
+
+#### 1. Camada de Comunicação e Mensageria
+
+Esta camada gerencia a comunicação assíncrona com os dispositivos de Borda (ESP32) através de um Broker de mensagens.
+
+| Componente | Função |
+| :--- | :--- |
+| **Broker MQTT (HiveMQ)** | Ponto de entrada e saída para a comunicação assíncrona com os dispositivos de Borda (ESP32). |
+| **Tópicos de Request** (`request_card`, `submit_sms`) | Tópicos para os quais os dispositivos de Borda **publicam** suas requisições (leitura do cartão e senha SMS). |
+| **Tópicos de Resposta** (`response_final`, `tranca`) | Tópicos para os quais o Backend **publica** a resposta final de acesso, direcionando comandos para os dispositivos atuadores (tranca/relé). |
+
+---
+
+#### 2. Arquitetura do Backend (Lógica de Serviço)
+
+Esta é a camada de aplicação Node.js, que coordena as regras de negócio, o fluxo de autenticação e a interação com os serviços.
+
+| Componente | Função | Interações / Dados |
+| :--- | :--- | :--- |
+| **Interface MQTT (Ouve e Publica nos Tópicos)** | Módulo de *listener* e *publisher* do Backend. É responsável por traduzir as mensagens MQTT em eventos de sistema. | Conecta ao **Broker MQTT**. |
+| **Orquestrador de Autenticação (A Lógica Principal)** | **Motor de regras** do Backend. Gerencia o estado da sessão de acesso, aplica as regras de segurança e decide a concessão/negação de acesso. | **Valida agendamento**, **Gera e envia PIN**, **Publica resposta** final. |
+| **API TIC Trens (Agendamento)** | Serviço externo consultado pelo Orquestrador para verificar a **capacitação** e o **agendamento** prévio do usuário. | Utiliza **HTTPS** para comunicação segura. |
+| **Gateway de SMS (Twilio/Zenvia)** | Serviço externo acionado pelo Orquestrador para o envio do **PIN (senha temporária)** gerado. | Recebe o PIN e o telefone do usuário. |
+
+---
+
+#### 3. Persistência e Monitoramento
+
+Esta seção garante que todos os eventos sejam registrados, que os dados sejam mantidos e que o CCO tenha visibilidade em tempo real.
+
+| Componente | Função | Interações / Dados |
+| :--- | :--- | :--- |
+| **Banco de Dados (PostgreSQL)** | Armazena de forma robusta e segura todos os dados primários do sistema: usuários, logs de acesso, sessões e configurações. | **Armazena os dados**. |
+| **Valida Credenciais, Salva Logs** | Módulo de interface com o DB. Responsável pela **validação do PIN** e pelo **registro detalhado** de cada evento de acesso (sucesso ou falha). | Escreve/Lê no **Banco de Dados**. |
+| **Servidor WebSocket (Envia Alertas em Tempo Real)** | Mantém uma conexão persistente com o Dashboard CCO para enviar **notificações imediatas** de eventos e alertas críticos. | Envia o **Evento de Acesso (Tempo Real)**. |
+| **Notifica CCO** | Sub-módulo acionado pelo Orquestrador após eventos importantes (ex: acesso negado, porta aberta, etc.). | Envia a notificação ao **Servidor WebSocket**. |
+| **API REST (Consulta Logs/Sessões)** | Interface **síncrona** utilizada pelo Dashboard CCO para consultas mais complexas, como histórico de logs e relatórios. | Utiliza **HTTPS (GET /logs)**. |
+| **Dashboard CCO (Vercel)** | A interface de visualização e gerenciamento do Coordenador. Consome dados via **API REST** e **WebSocket**. | Cliente de requisições **HTTPS** e **WebSocket**. |
+
+---
+
+#### 4. Fluxo de Autenticação Completa (Sucesso)
+
+Este fluxo detalha a jornada da requisição, desde a borda até a liberação do acesso, conforme orquestrado pelo Backend.
+
+#### 4.1. Primeiro Fator (Cartão e Autorização)
+1.  **Requisição:** O dispositivo de Borda (ESP32) envia a leitura do cartão via MQTT para o tópico: `request_card`.
+2.  **Identificação:** A **Interface MQTT** encaminha a requisição ao **Orquestrador de Autenticação**. Este consulta o **Banco de Dados** para identificar o usuário.
+3.  **Autorização Externa:** O Orquestrador consulta a **API TIC Trens (Agendamento)** para **Validar agendamento** e checar se o usuário está qualificado para a área no horário atual.
+4.  **Segundo Fator (PIN):** Se a validação do agendamento for positiva, o Orquestrador **Gera e envia PIN** (OTP - *One-Time Password*), utilizando o **Gateway de SMS**.
+5.  **Acompanhamento CCO:** O Orquestrador aciona **Notifica CCO** para enviar uma atualização em tempo real (*"Aguardando PIN..."*) via **Servidor WebSocket** ao Dashboard CCO.
+
+#### 4.2. Segundo Fator (Validação do PIN)
+6.  **Submissão:** O dispositivo de Borda envia o PIN digitado via MQTT para o tópico: `submit_sms`.
+7.  **Validação Interna:** O Orquestrador recebe o PIN e o compara com o PIN gerado e ativo, utilizando o módulo **Valida credenciais** (Banco de Dados).
+8.  **Decisão e Atuação:**
+    * Se a validação for **POSITIVA**, o Orquestrador envia o comando final de liberação via **Publica resposta** no tópico: `tranca`.
+9.  **Registro e Notificação:**
+    * O módulo **Salva Logs** registra o evento de **Acesso Concedido** no **Banco de Dados**.
+    * O Orquestrador aciona **Notifica CCO** para enviar o status final (*"Acesso Concedido"*) ao Dashboard CCO.
+
+#### 4.3. Fluxo de Falha (Exemplo: Agendamento Inválido)
+* Se o agendamento no passo 3 for inválido, o Orquestrador **pula** a geração de PIN.
+* O Orquestrador envia uma resposta de **Acesso Negado** (via **Publica resposta**) para o dispositivo e notifica o CCO com um alerta de "Agendamento Inválido".
+* O módulo **Salva Logs** registra a tentativa de acesso negado no **Banco de Dados** para auditoria.
+
+---
+
+
+### Relacionamento dos Requisitos com os diagramas da Arquitetura
+Os requisitos de software que fazem parte da norma ISO/IEC 25010 definem atributos utilizados para avaliar a qualidade de um sistema. Como o próprio nome sugere, esses requisitos descrevem as capacidades que o software deve possuir para cumprir o que se propõe a fazer. Eles se dividem em dois tipos: requisitos funcionais e requisitos não funcionais.
+
+Dessa forma, como já mencionado, os diagramas de arquitetura de software representam visualmente o fluxo completo de interação do usuário com o sistema e o comportamento esperado durante esse processo. Sendo assim, é possível analisar, por meio dos diagramas, se os requisitos estão sendo contemplados ou não.
+
+### I. Requisitos Funcionais (RFs)
+Os requisitos funcionais são especificações que descrevem o que o sistema deve fazer. Eles definem as funcionalidades e os serviços que o software deve oferecer para atender às necessidades dos usuários ou de outras partes interessadas, sem se aprofundar em como essas funcionalidades serão implementadas.
+
+Os Requisitos Funcionais são atendidos por componentes específicos e fluxos de interação entre as camadas dos diagramas.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RF01** | Coleta de dados via sensor RFID | **Atendido pela Camada de Borda (Hardware):** O fluxo começa com a leitura do **Leitor RFID** (Entrada/Saída) e a inserção do PIN no **Teclado**. O microcontrolador **ESP32 - ENTRADA** coleta e gerencia esses dados brutos. |
+| **RF02** | Conexão Wi-Fi e comunicação via MQTT | **Atendido pela Camada de Borda e Comunicação:** O **ESP32** utiliza o módulo **Wi-Fi** para estabelecer a conexão de rede. A comunicação é realizada por meio do **Broker MQTT (HiveMQ)**, que está na **Camada de Comunicação**. |
+| **RF03** | Formatação e publicação de dados no protocolo MQTT | **Atendido pela Camada de Borda e Comunicação:** O código no **ESP32** é responsável por formatar os dados brutos (**RFID, PIN**) em *payloads* JSON válidos antes de publicá-los no **Broker MQTT**, utilizando os **Tópicos de Request** (`request_card`, `submit_sms`). |
+| **RF04** | Autenticação multifator e validação de credenciais | **Atendido pela Arquitetura do Backend:** Esta é a função principal do **Orquestrador de Autenticação**. Ele valida (1) o **UID do RFID** (consultando o DB) e (2) o **PIN** inserido pelo usuário (comparando com o código gerado), liberando o acesso somente após a dupla confirmação. |
+| **RF05** | Verificação de capacitação e agendamento | **Atendido pela Arquitetura do Backend:** Esta validação é realizada pelo **Orquestrador de Autenticação** que se integra à **API TIC Trens (Agendamento)**, que representa o sistema corporativo externo. O fluxo exige que esta consulta seja feita antes da geração do PIN. |
+| **RF06** | Gestão de dispositivos IoT e credenciais | **Atendido pela Camada de Backend (API REST e DB):** O cadastro dos dispositivos (Device ID, Tokens MQTT) e sua vinculação a locais físicos são funções gerenciadas pela **API REST** e armazenadas no **Banco de Dados (PostgreSQL)**, permitindo que a Coordenadora (Beatriz) os configure via **Dashboard CCO**. |
+| **RF07** | Registro e auditoria de eventos de acesso | **Atendido pela Arquitetura do Backend (Persistência):** O módulo **Valida credenciais, Salva logs** é explicitamente responsável por registrar todos os eventos (ID do usuário, resultado, *timestamp*, etc.) no **Banco de Dados (PostgreSQL)**. |
+| **RF08** | Dashboard corporativo com visualização em tempo real | **Atendido pela Camada de Aplicação e Backend:** O **Dashboard CCO (Vercel)** é a interface de visualização. Ele consome dados em tempo real através do **Servidor WebSocket** (para eventos imediatos) e dados históricos via **API REST (GET /logs)**. |
+| **RF09** | Criptografia de dados em trânsito | **Atendido pela Camada de Comunicação e Backend:** Isso é garantido pelo uso obrigatório de **TLS/SSL** sobre o MQTT (MQTTS) e sobre o HTTP (**HTTPS** - Porta 443) em todas as conexões (ESP32 $\leftrightarrow$ Broker, Backend $\leftrightarrow$ API TIC Trens, Dashboard $\leftrightarrow$ Backend). |
+
+---
+
+### II. Requisitos Não Funcionais (RNFs)
+Os requisitos não funcionais especificam como o sistema deve se comportar para que uma funcionalidade seja atendida. Eles funcionam como requisitos funcionais com restrições adicionais. Esses requisitos definem critérios de qualidade que influenciam a experiência do usuário e o desempenho do software, como eficiência, segurança, usabilidade e confiabilidade
+
+Os Requisitos Não Funcionais abordam a qualidade e a segurança do sistema, sendo implementados nas configurações dos componentes.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RNF01** | Criptografia pós-quântica para dados em repouso | **Atendido pela Camada de Backend (Banco de Dados):** O requisito é implementado na configuração do **Banco de Dados (PostgreSQL)** e no módulo **Valida credenciais, Salva logs**, garantindo que os dados sensíveis sejam criptografados antes de serem persistidos. |
+| **RNF02** | Fiel cumprimento da autenticação em dois fatores | **Atendido pelo Fluxo do Orquestrador de Autenticação:** O diagrama do Backend mostra o fluxo estrito: 1. Validação de Agendamento, 2. Geração/Envio de PIN, 3. Validação do PIN. O **Orquestrador** é o responsável por impor essa sequência lógica. |
+| **RNF03** | Tempo máximo de 5s para travamento automático | **Atendido pelo Fluxo da Camada de Borda:** Este é um requisito de **Desempenho** crítico, dependendo da baixa latência da comunicação MQTT/Wi-Fi e da eficiência do código no **ESP32 - SAÍDA**, que controla o **Relé** e a **Tranca Física**. |
+| **RNF04** | Compatibilidade com MQTT e HTTP | **Atendido pelas Camadas de Comunicação e Backend:** O diagrama mostra o uso central do **MQTT** (Comunicação Assíncrona) e do **HTTPS/API REST** (Comunicação Síncrona) no Backend. A arquitetura já prevê essa dualidade de protocolos. |
+| **RNF05** | Modularização e documentação do código-fonte | **Atendido pela Arquitetura do Backend:** A divisão do Backend em componentes claros (**Interface MQTT**, **Orquestrador**, **Servidor WebSocket**, **API REST**) é um princípio de modularização, facilitando a manutenção e futuras atualizações. |
+| **RNF06** | Portabilidade (Ambiente Local vs. Nuvem) | **Atendido pela Arquitetura em Camadas:** A arquitetura desacopla a lógica do Backend do hardware (via Broker MQTT). Isso permite que todos os serviços do Backend sejam movidos para um ambiente local ou para a nuvem sem impactar o código dos **dispositivos ESP32** ou do **Dashboard**. |
+---
+
+
+### Demonstração e Explicação da Arquitetura
+
+Esta seção contém o material audiovisual de apoio, que demonstra o funcionamento da solução e explica em detalhes cada um dos diagramas de arquitetura documentados neste projeto.
+
+#### Vídeo - Explicação do Diagrama Geral da Solução
+
+Este vídeo apresenta a visão macro da solução de controle de acesso para a TIC Trens, detalhando a interconexão das quatro camadas: **Borda (Hardware), Comunicação, Backend (Serviço) e Aplicação (Dashboard)**. É um guia visual do fluxo completo de entrada e saída, mostrando como os componentes físicos se comunicam para realizar a autenticação em dois fatores e a atuação da tranca.
+
+* **Conteúdo:** Visão geral das camadas e fluxo de acesso.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=jaz4mZkZzvo)
+
+#### Vídeo - Explicação do Diagrama da Arquitetura do Backend
+
+O segundo vídeo foca no **centro de inteligência** do sistema. Ele detalha o funcionamento do **Orquestrador de Autenticação** no Servidor de Aplicação, a utilização do protocolo **MQTT** para comunicação assíncrona, as consultas ao **Banco de Dados (PostgreSQL)** e a integração com a **API de Agendamento da TIC Trens**. O vídeo explica como o backend gerencia a sessão de acesso, salva os logs e notifica o CCO em tempo real.
+
+* **Conteúdo:** Detalhamento da lógica de autenticação e persistência de dados.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=XVhP-Pj7qDs)
+
+---
 
 
 ### 3.3.4. Arquitetura do Protótipo(sprint 4)	

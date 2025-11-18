@@ -59,7 +59,56 @@ Portanto, a adoção dessa solução IoT representa um avanço significativo na 
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
-_Descreva as etapas da metodologia RM-ODP que foram utilizadas para o desenvolvimento, citando o referencial teórico. Você deve apenas enunciar os métodos, sem dizer ainda como ele foi aplicado e quais resultados obtidos._
+## Estrutura de Visões do RM-ODP
+O modelo de referência RM-ODP (Reference Model for Open Distributed Processing) é uma abordagem estruturada para o desenvolvimento de sistemas distribuídos, baseada em diferentes perspectivas complementares chamadas viewpoints.
+ Esses pontos de vista permitem analisar e especificar o sistema sob diferentes dimensões, desde seus objetivos organizacionais até as tecnologias utilizadas em sua implementação, promovendo clareza, modularidade e consistência entre as partes do projeto.
+O diagrama a seguir ilustra as cinco visões fundamentais definidas pelo RM-ODP e sua relação com o sistema e o ambiente em que ele está inserido:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/82602211-2a17-43d4-9aa4-e5c0fa65043c" alt="RM-ODP_viewpoints"/>
+</p>
+
+## 2.1 Visões e Referenciais Teóricos do RM-ODP
+O RM-ODP define cinco viewpoints que descrevem um sistema distribuído de maneira modular e coerente, cada um enfatizando aspectos diferentes de sua concepção e operação. Essa abordagem abre novas possibilidades como: alinhar objetivos organizacionais, estrutura informacional, funcionalidades computacionais, mecanismos de engenharia e decisões tecnológicas.
+
+### 2.1.1 Ponto de Vista Empresarial (Enterprise Viewpoint)
+O Enterprise Viewpoint descreve o sistema sob a ótica de seu propósito, escopo e políticas organizacionais, identificando os atores envolvidos, suas responsabilidades e as restrições externas que afetam seu funcionamento.
+ Essa visão busca garantir que o sistema atenda aos objetivos de negócio e às regras institucionais que motivam sua existência, funcionando como uma junção entre as necessidades organizacionais e a modelagem técnica.
+Segundo a norma ISO/IEC 10746-3 (Architecture), este ponto de vista define os compromissos, as políticas de operação e as restrições de comportamento que orientam todas as demais visões do modelo.
+
+### 2.1.2 Ponto de Vista da Informação (Information Viewpoint)
+O Information Viewpoint concentra-se na estrutura lógica das informações manipuladas pelo sistema, descrevendo como os dados são organizados, relacionados e processados ao longo do ciclo de vida da aplicação.
+ Essa perspectiva define os tipos de informação, seus estados, transformações e regras de consistência, assegurando integridade e confiabilidade no tratamento dos dados. De acordo com a ISO/IEC 10746-3, essa visão abstrai o conteúdo informacional dos detalhes tecnológicos, permitindo compreender o significado e o valor dos dados dentro do contexto do sistema.
+
+### 2.1.3  Ponto de Vista Computacional (Computational Viewpoint)
+O Computational Viewpoint representa o sistema a partir de sua decomposição funcional, estruturando-o em objetos computacionais que interagem por meio de interfaces bem definidas.
+ Essa visão descreve serviços, operações e fluxos de comunicação entre componentes, facilitando a compreensão de como as funcionalidades são distribuídas e coordenadas.
+ Conforme a ISO/IEC 10746-3, esse ponto de vista visa separar a especificação funcional da infraestrutura física, permitindo independência entre a lógica de negócio e a implementação técnica.
+
+### 2.1.4 Ponto de Vista de Engenharia (Engineering Viewpoint)
+O Engineering Viewpoint aborda os mecanismos e funções de suporte que permitem a comunicação e a distribuição entre os objetos definidos na visão computacional.
+Ele inclui aspectos como topologia de rede, canais de comunicação, desempenho, tolerância a falhas e interoperabilidade, assegurando que os componentes do sistema possam cooperar de forma eficiente em ambientes distribuídos.
+ De acordo com a ISO/IEC 10746-3, esse ponto de vista descreve a infraestrutura necessária para que o sistema opere de maneira integrada e confiável, conciliando eficiência técnica com os requisitos arquiteturais definidos nas demais visões.
+
+### 2.1.5 Ponto de Vista Tecnológico (Technology Viewpoint)
+O Technology Viewpoint foca nas decisões práticas de implementação, envolvendo a seleção de plataformas, linguagens de programação, frameworks, bancos de dados e protocolos de comunicação.
+ Essa visão traduz as abstrações conceituais das demais camadas em soluções concretas, garantindo viabilidade técnica e compatibilidade com o ambiente operacional.
+ Segundo a ISO/IEC 10746-3, o objetivo desse ponto de vista é assegurar que as escolhas tecnológicas sustentem os requisitos funcionais, de desempenho e manutenção do sistema, promovendo alinhamento entre teoria e prática.
+
+## 2.2 Integração entre Visões
+A integração entre os viewpoints do RM-ODP constitui o elemento central que garante coerência e completude na modelagem de sistemas distribuídos. Cada visão aborda um aspecto específico do sistema, mas somente a articulação entre elas permite representar, de forma consistente, tanto os objetivos organizacionais quanto as decisões tecnológicas envolvidas no desenvolvimento.
+O modelo adota o princípio de separação de preocupações, no qual cada ponto de vista contribui com uma perspectiva própria, utilizando conceitos e linguagens apropriadas ao seu nível de abstração. Essa separação facilita o entendimento e o gerenciamento da complexidade do sistema e alinha os conceitos entre os diferentes domínios.
+O Enterprise Viewpoint fornece a base conceitual e estratégica, estabelecendo o propósito e as regras que direcionam as demais visões. O Information Viewpoint transforma esses objetivos em estruturas de dados e fluxos informacionais, que são operacionalizados no Computational Viewpoint por meio de componentes e serviços interconectados. O Engineering Viewpoint garante que essas interações ocorram de maneira eficiente em um ambiente distribuído, enquanto o Technology Viewpoint concretiza as abstrações anteriores em soluções técnicas viáveis e interoperáveis.
+Essa integração hierárquica assegura que as decisões tomadas não entrem em conflito com os demais, evitando redundâncias e inconsistências no projeto. O resultado é uma arquitetura distribuída sólida, modular e escalável, onde cada dimensão (organizacional, informacional, computacional, estrutural e tecnológica) se complementa.
+Dessa forma, além do RM-ODP promover o processo de modelagem, ele também promove uma visão unificada do sistema, garantindo que os requisitos funcionais, técnicos e de negócio estejam perfeitamente alinhados em todas as fases de desenvolvimento.
+
+## 2.3 Considerações Finais
+A metodologia RM-ODP se mostra uma ferramenta essencial para o planejamento, análise e especificação de sistemas distribuídos complexos, pois permite compreender e documentar cada dimensão do projeto de forma estruturada e complementar.
+ Ao segmentar o sistema em diferentes viewpoints, o modelo assegura uma abordagem mais organizada, coerente e integrada, reduzindo disparidades  e facilitando a comunicação entre equipes de áreas distintas.
+A aplicação das cinco visões (Enterprise, Information, Computational, Engineering e Technology) possibilita alinhar os objetivos organizacionais com as decisões tecnológicas, garantindo que o desenvolvimento mantenha fidelidade ao propósito inicial do sistema e atenda aos requisitos de desempenho, segurança e interoperabilidade.
+Conclui-se que o RM-ODP fornece uma base teórica sólida para o desenvolvimento orientado à arquitetura, promovendo a padronização e a clareza na especificação de soluções distribuídas.
+
+
 
 # <a name="c3"></a>3. Desenvolvimento e Resultados 
 

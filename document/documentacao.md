@@ -2323,7 +2323,7 @@ A implementação do protótipo físico com dois ESP32s e MQTT foi bem-sucedida,
 
 Esta base de hardware offline é resiliente e modular, provando-se uma fundação sólida para a próxima fase do projeto, que incluirá a integração com o backend na nuvem e a lógica de agendamento.
 
-### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
+### 3.4.3. Protótipo do Projeto com MQTT e I2C 
 
 &nbsp;&nbsp;&nbsp;&nbsp; Nessa seção, nos aprofundamos mais sobre os casos de uso, que representam situações reais do nosso sistema no que diz respeito à interação com o usuário, demonstrando como o sistema deve responder em diversas situações diferentes, registrando não apenas casos de sucesso, mas também casos de falha.
 
@@ -2332,22 +2332,152 @@ Esta base de hardware offline é resiliente e modular, provando-se uma fundaçã
 **#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
 |----------|----------|----------|----------|
 |01| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado e autorizado. | O sistema identifica cartão autorizado no banco de dados e envia, por SMS, um código de acesso. |
-|----------|----------|----------|----------|
 |02| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado mas não está autorizado naquele momento. | O sistema exibe “Cartão não cadastrado”. | 
-|----------|----------|----------|----------|
 |03| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha que recebeu por SMS no teclado. | A tranca é desativada com sucesso após energização do relé e a entrada do trabalhador é liberada. Buzzer é acionado e emite um sinal sonoro. Display exibe “Acesso liberado”. | 
-|----------|----------|----------|----------|
 |04| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha errada no teclado. | A tranca não é liberada. Buzzer é acionado e emite um sinal sonoro diferente de quando é liberado. Display exibe “Senha Incorreta”. | 
-|----------|----------|----------|----------|
 |05| O usuário está dentro da sala, terminou seu trabalho e deseja sair. A porta por dentro também apresenta sensor RFID. | O trabalhador apresenta o mesmo cartão que usou para entrar para sair. | A tranca é liberada e o usuário consegue sair normalmente da sala. | 
-|----------|----------|----------|----------|
 |06| O sistema está conectado com a Internet e após a leitura do cartão autorizado, o display exibe “Digite a senha:”. | O trabalhador digita a senha corretamente. | O sistema responsável pela verificação de entrada envia a informação através do protocolo MQTT emitindo o sinal para liberar a tranca. | 
-|----------|----------|----------|----------|
 |07| O sistema de entrada não está conectado a Internet | O usuário tenta aproximar o cartão | O LCD exibe “Conectando a Internet...”.
-|----------|----------|----------|----------|
 |08| O sistema da tranca não está conectado a Internet | O usuário insere a senha corretamente. | O sistema de entrada envia corretamente o sinal para abertura das portas, mas o sistema da tranca não consegue fazer a requisição da resposta enviada devido a dificuldade de conexão com a internet.
+|09| O sistema da tranca não está conectado a Internet | O usuário insere a senha corretamente. | O sistema de entrada envia corretamente o sinal para abertura das portas, mas o sistema da tranca não consegue fazer a requisição da resposta enviada devido a dificuldade de conexão com a internet.
+|10| O usuário aproxima o cartão e aparece “Digite a Senha:”, porém após a aproximação o sistema perde a conexão com a Internet | O usuário insere a senha corretamente. | O sistema de entrada não envia o sinal para abertura das portas.
 
+### Registros visuais
 
+As imagens a seguir representam os casos de uso registrados anteriormente.
+
+#### Caso 01 - Visor exibindo "Aproxime o cartão"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/aproxime.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 02 - Visor exibindo "Cartão não cadastrado"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/nao_cadastrado.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 03 - Visor exibindo "Digite a senha" e "Acesso liberado"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/digite.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/liberado.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 04 - Visor exibindo "Senha incorreta"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/senha_incorreta.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 07 - Visor exibindo "Conectando a Internet..."
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/conectando.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+### Mudanças realizadas
+
+&nbsp;&nbsp;&nbsp;&nbsp; No primeiro ESP32, que contém o sensor RFID, teclado matricial, visor LCD e buzzer, foram realizadas as seguintes alterações:
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nessa sprint, construímos o primeiro Case para nosso protótipo, no qual é mostrado o teclado matricial, o display LCD e uma representação visual de onde deve ser aproximado o cartão RFID. Em termos de funções alteramos algumas mensagens exibidas no visor, para melhor visualização e entendimento do usuário. Foi adicionado também a lógica de negação para cartões não cadastrados. O barulho do buzzer foi alterado para um mais intuitivo de quando acesso negado ocorresse. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; A principal parte do código alterada é demonstrada a seguir, no qual inclui a lógica de negação de cartões não cadastrados:
+
+``` C++
+  if (!sistemaAtivo) {
+    if (leitorCartao.detectarCartao()) {
+     
+      if (leitorCartao.eCartaoAutorizado()) {
+         
+          MFRC522& rfidInterno = leitorCartao.getRFID();
+          Serial.print("UID lido: ");
+          for (byte i = 0; i < rfidInterno.uid.size; i++) {
+            Serial.print(rfidInterno.uid.uidByte[i], HEX);
+            Serial.print(" ");
+          }
+          Serial.println();
+     
+          sistemaAtivo = true;
+          display1.escreverLinhaUnica("Digite a Senha:");
+         
+      } else {
+          Serial.println("Cartao Negado!");
+          display1.setTexto1("Cartao nao");
+          display1.setTexto2("cadastrado");
+          display1.escreverLinhaDupla();
+         
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+         
+          delay(2000);
+         
+          display1.setTexto1("Aproxime o");
+          display1.setTexto2("cartao");
+          display1.escreverLinhaDupla();
+      }
+     
+      leitorCartao.encerrarLeitura();
+    }
+  }
+``` 
+
+### Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp; A partir dos casos de uso apresentados, foi possível demonstrar de forma detalhada o comportamento do protótipo do sistema de controle de acesso em diferentes condições operacionais. As situações abrangem tanto os fluxos ideais quanto cenários de falha, garantindo uma visão abrangente do funcionamento do sistema. A análise garante que o projeto tenha contra medidas a erros que podem surgir, e integra múltiplos componentes, como módulos ESP32, leitor RFID, relé para acionamento da tranca, display LCD via I2C e comunicação com a nuvem via MQTT,  funcionando de maneira coordenada para garantir segurança e confiabilidade no processo de autenticação.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes realizados reforçam que o sistema é capaz de identificar usuários, validar autenticações, responder adequadamente a problemas como perda de conexão, erros de senha, cartões não autorizados e falhas de comunicação entre os módulos. Dessa forma, a seção cumpre seu objetivo de validar o protótipo em cenários reais de operação, servindo como base para aprimoramentos futuros e garantindo que os requisitos funcionais e de segurança estejam sendo atendidos.
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 

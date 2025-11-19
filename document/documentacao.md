@@ -2343,11 +2343,248 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 _Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
 Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
-## <a name="c4"></a>4. Conclusões e Recomendações
+## <a name="c5"></a>4. Circuito RC
+
+### 4.1 Fundamento Teórico
+
+O **circuito RC** é um dos sistemas mais fundamentais da eletrônica e da física aplicada, sendo composto por um resistor (**R**) e um capacitor (**C**). Sua importância está no comportamento exponencial de carga e descarga do capacitor, o que o torna essencial em aplicações como temporizadores, filtros e controle de sinais em sistemas embarcados e IoT.
+
+Quando o circuito é alimentado por uma fonte de tensão contínua, o capacitor começa a armazenar carga elétrica, e a tensão sobre ele varia conforme o tempo. A velocidade desse processo é determinada pela constante de tempo (**τ**), definida como:
+
+```
+τ = Req × C
+```
+
+onde **Req** é a resistência equivalente vista pelo capacitor e **C** é a capacitância.
+
+Fisicamente, a constante de tempo representa o tempo necessário para que a tensão no capacitor atinja aproximadamente **63,2%** da tensão final durante o carregamento (ou decaia para **36,8%** durante a descarga).
+
+Assim, quanto maior o valor de R ou C, mais lentamente o capacitor se carrega ou descarrega, resultando em um comportamento mais gradual da resposta do circuito. Esse conceito é amplamente aplicado em sensores, atuadores e sistemas IoT, onde atrasos e respostas controladas são essenciais para estabilidade e filtragem de ruídos.
+
+No caso deste experimento, o resistor **R₁** é fixo (**100 kΩ**), enquanto **R₂** é variável, e ambos formam uma associação em paralelo que define **Req**. O capacitor de **2200 µF (2,2×10⁻³ F)** é o elemento responsável pelo armazenamento de carga. O objetivo é ajustar **R₂** de modo que a constante de tempo resultante seja próxima de **60 segundos**, reproduzindo o comportamento teórico de um circuito RC lento e previsível.
+
+### 4.2 Projeto e Cálculo da Constante de Tempo (τ)
+
+O objetivo é determinar qual valor de **R₂** fornece uma constante de tempo **τ ≈ 60 s (±10 s)**.  
+Para isso, utiliza-se o modelo teórico do circuito RC, considerando o resistor equivalente como o **paralelo de R₁ e R₂**.
+
+A resistência equivalente é dada por:
+
+```
+Req = (R₁ × R₂) / (R₁ + R₂)
+```
+
+E a constante de tempo é calculada por:
+
+```
+τ = Req × C
+```
+
+---
+
+### 4.2.1. Dados do Grupo 4
+
+- **R₁ = 100 kΩ**
+- **C = 2200 μF = 2,2 × 10⁻³ F**
+- **R₂ ∈ {33 kΩ, 39 kΩ, 43 kΩ, 47 kΩ}**
+
+### 4.2.2. Cálculos
+
+Aplicando as fórmulas para cada valor de **R₂**:
+
+1. **Para R₂ = 33 kΩ**  
+   Req = (100 × 33) / (100 + 33) = **24,81 kΩ**  
+   τ = 24,81 × 10³ × 2,2 × 10⁻³ = **54,63 s**
+
+2. **Para R₂ = 39 kΩ**  
+   Req = (100 × 39) / (100 + 39) = **28,06 kΩ**  
+   τ = 28,06 × 10³ × 2,2 × 10⁻³ = **61,73 s**
+
+3. **Para R₂ = 43 kΩ**  
+   Req = (100 × 43) / (100 + 43) = **30,07 kΩ**  
+   τ = 30,07 × 10³ × 2,2 × 10⁻³ = **66,15 s**
+
+4. **Para R₂ = 47 kΩ**  
+   Req = (100 × 47) / (100 + 47) = **31,97 kΩ**  
+   τ = 31,97 × 10³ × 2,2 × 10⁻³ = **70,34 s**
+
+### 4.2.3. Resultado Comparativo
+
+| R₂ (kΩ) | Req (kΩ) | τ (s)    | Resultado             |
+|--------|----------|----------|------------------------|
+| 33 kΩ  | 24,81    | 54,63 s  | Dentro da tolerância   |
+| 39 kΩ  | 28,06    | 61,73 s  | Dentro da tolerância   |
+| 43 kΩ  | 30,07    | 66,15 s  | Dentro da tolerância   |
+| 47 kΩ  | 31,97    | 70,34 s  | Fora da tolerância     |
+
+---
+
+### 4.2.4. Escolha final
+
+O valor **R₂ = 39 kΩ** foi selecionado por resultar em **τ ≈ 61,7 s**, o mais próximo da **meta de 60 segundos** e dentro da tolerância especificada.
+
+Com esse valor, o circuito RC apresenta um comportamento suave, estável e coerente com a teoria, sendo ideal para representar um atraso temporal controlado em aplicações de controle e temporização em sistemas IoT.
+
+### 4.3 Montagem do Protótipo
+
+<img width="808" height="601" alt="image" src="https://github.com/user-attachments/assets/d11e98f1-ef6f-41f9-a90a-ae6a93036511" />
+
+<img width="808" height="604" alt="image" src="https://github.com/user-attachments/assets/85ebb3c7-cd26-4c1a-97a1-9997a407cd10" />
+
+### 4.4 Coleta de dados experimentais
+
+A coleta de dados experimentais foi realizada de forma automatizada por meio de um código desenvolvido com o auxílio de inteligência artificial (Chat GPT), implementado em um microcontrolador Arduino Uno.
+
+O programa, escrito em linguagem **C++**, foi responsável por controlar o processo de carregamento do capacitor e efetuar medições periódicas da tensão no capacitor (**Vc**) utilizando o pino analógico A0.
+
+O circuito RC foi montado conforme o projeto teórico do Grupo 4, composto por **R₁ = 100 kΩ**, **R₂ = 39 kΩ** (em paralelo) e **C = 2200 μF**. O terminal positivo do capacitor foi conectado ao nó entre os resistores, onde também foi ligado o pino A0 do Arduino, enquanto o terminal negativo foi conectado ao GND da placa. A tensão de **5 V** foi controlada eletronicamente por meio de um pino digital configurado para acionar o carregamento no instante inicial.
+
+O código desenvolvido realizou automaticamente **50 medições de tensão** ao longo de aproximadamente cinco minutos, seguindo os intervalos temporais recomendados na atividade.
+
+---
+
+Foram adotados três regimes de amostragem, priorizando os instantes iniciais do processo de carga:
+
+- **20 pontos** igualmente espaçados nos primeiros **60 segundos**, com intervalo de **3 segundos** entre as leituras;
+- **20 pontos** igualmente espaçados entre **1 e 3 minutos**, com intervalo de **6 segundos**;
+- **10 pontos** igualmente espaçados entre **3 e 5 minutos**, com intervalo de **12 segundos**.
+
+Esses intervalos foram definidos para garantir maior resolução temporal no início do processo, onde a variação da tensão é mais acentuada, e menor densidade de amostragem nas etapas finais, quando o capacitor se aproxima da tensão final e a curva tende à estabilidade.
+
+A seguir temos a tabela com esses dados organizados como duas colunas (tempo em segundos e tensão em volts) e o código utilizado para a coleta:
+
+```cpp
+const int pinMedicao = A0;
+const int pinControle = 7;
+const float Vref = 5.00;
+const int ADCmax = 1023;
+unsigned long scheduleMs[50];
+int idx = 0;
+
+void setupSchedule() {
+  for (int i=0; i<20; ++i) scheduleMs[idx++] = (unsigned long)i * 3000UL;
+  for (int i=0; i<20; ++i) scheduleMs[idx++] = 60000UL + (unsigned long)i * 6000UL;
+  for (int i=0; i<10; ++i) scheduleMs[idx++] = 180000UL + (unsigned long)i * 12000UL;
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(pinControle, OUTPUT);
+  digitalWrite(pinControle, LOW);
+  setupSchedule();
+  Serial.println("tempo_s, tensao_V");
+  delay(500);
+  digitalWrite(pinControle, HIGH);
+}
+
+void loop() {
+  unsigned long t0 = millis();
+  for (int i=0; i<50; ++i) {
+    unsigned long target = t0 + scheduleMs[i];
+    while (millis() < target) {}
+    int raw = analogRead(pinMedicao);
+    float v = ( (float)raw * Vref ) / (float)ADCmax;
+    float t_seconds = (millis() - t0) / 1000.0;
+    Serial.print(t_seconds, 2);
+    Serial.print(", ");
+    Serial.println(v, 3);
+  }
+  while (true) {}
+}
+
+```
+
+Tabela:
+
+| Tempo (s) | Tensão no capacitor (Vc) |
+|----------|---------------------------|
+| 0        | 0.239                     |
+| 3        | 0.455                     |
+| 6        | 0.655                     |
+| 9        | 0.846                     |
+| 12       | 1.026                     |
+| 15       | 1.202                     |
+| 18       | 1.369                     |
+| 21       | 1.525                     |
+| 24       | 1.676                     |
+| 27       | 1.818                     |
+| 30       | 1.955                     |
+| 33       | 2.087                     |
+| 36       | 2.209                     |
+| 39       | 2.326                     |
+| 42       | 2.430                     |
+| 45       | 2.551                     |
+| 48       | 2.654                     |
+| 51       | 2.752                     |
+| 54       | 2.845                     |
+| 57       | 2.937                     |
+| 60       | 3.025                     |
+| 66       | 3.187                     |
+| 72       | 3.328                     |
+| 78       | 3.460                     |
+| 84       | 3.583                     |
+| 90       | 3.700                     |
+| 96       | 3.803                     |
+| 102      | 3.895                     |
+| 108      | 3.983                     |
+| 114      | 4.062                     |
+| 120      | 4.135                     |
+| 126      | 4.198                     |
+| 132      | 4.257                     |
+| 138      | 4.311                     |
+| 144      | 4.360                     |
+| 150      | 4.409                     |
+| 156      | 4.448                     |
+| 162      | 4.482                     |
+| 168      | 4.516                     |
+| 174      | 4.550                     |
+| 180      | 4.575                     |
+| 182      | 4.624                     |
+| 204      | 4.663                     |
+| 216      | 4.697                     |
+| 228      | 4.726                     |
+| 240      | 4.751                     |
+| 252      | 4.770                     |
+| 264      | 4.785                     |
+| 276      | 4.800                     |
+| 288      | 4.814                     |
+
+### 4.4: Questões 5 e 6: Gráfico Experimental e Análise Comparativa
+
+O gráfico abaixo cumpre os requisitos das Etapas 5 e 6, apresentando uma análise visual comparativa do comportamento do circuito RC.
+
+- **Dados Experimentais (Pontos Azuis):** Correspondem aos 50 pontos de dados de tensão (V) em função do tempo (s) coletados do protótipo físico, conforme detalhado na Tabela da Etapa 4.
+  
+- **Curva Teórica (Linha Vermelha):** Representa o modelo matemático da carga do capacitor, descrito pela equação  
+  **VC(t) = Vfinal × (1 - exp(-t/τ))**.  
+  Para esta curva, foram usados os valores calculados na Etapa 2:  
+  – Tensão final da fonte (**Vfinal = 5.0 V**)  
+  – Constante de tempo teórica (**τ = 61.73 s**), resultante da escolha de **R₂ = 39 kΩ**.
+
+  <img width="815" height="515" alt="image" src="https://github.com/user-attachments/assets/97d5df13-b7c2-452f-9121-3a71fcd4703e" />
+
+  ### 4.5: Questão 7 – Interpretação e Conclusão
+
+Ao comparar o gráfico experimental com a curva teórica de carga do capacitor, observamos que os pontos medidos seguem muito bem o comportamento exponencial previsto pelo modelo  
+**Vc(t) = Vfinal × (1 − e^(−t/τ))**.  
+A nuvem de pontos acompanha consistentemente a curva teórica ao longo de todo o intervalo de 0 a 300 s, sem desvios bruscos ou mudanças de tendência, o que indica que o circuito montado de fato se comporta como um circuito RC série idealizado no projeto.
+
+Apesar do bom acompanhamento, é possível notar pequenas discrepâncias pontuais. Nos instantes iniciais, a tensão medida no capacitor não começa exatamente em 0 V, o que é um indício de offset na medição do ADC ou de pequenas tensões residuais no circuito. Além disso, a tensão final medida se aproxima um pouco menos de 5,0 V considerados no modelo teórico, o que sugere uma diferença entre a tensão nominal da fonte e a tensão efetivamente entregue ao nó de medição (quedas internas no microcontrolador, tolerância da fonte de 5 V e perdas nos componentes). Essas pequenas diferenças explicam o leve deslocamento vertical entre alguns pontos experimentais e a curva teórica, mas não comprometem a forma geral exponencial observada.
+
+Para estimar a constante de tempo experimental, é possível analisar o gráfico e determinar o momento em que a tensão no capacitor atinge aproximadamente **63,2% da tensão final medida**. Como a tensão final experimental está em torno de 4,8 V, 63,2% desse valor corresponde a aproximadamente **3,0 V**. Observando os dados, essa faixa é atingida por volta de **t ≈ 61 s**. Assim, a constante de tempo experimental **τ exp** é da ordem de **60–61 s**. Esse valor é extremamente próximo da constante de tempo teórica τ teórico = **61,73 s**, calculada a partir de **R1 = 100 kΩ**, **R2 = 39 kΩ** (em paralelo) e **C = 2200 µF**. A diferença relativa entre os valores experimental e teórico é mínima, e está dentro da margem de **±10 s** especificada no projeto, indicando que a escolha de R2 = 39 kΩ foi adequada e que o circuito se comportou de forma coerente com o planejamento.
+
+As pequenas diferenças entre o comportamento teórico e o experimental podem ser explicadas por diversas fontes de erro. Em primeiro lugar, há a tolerância dos componentes: resistores costumam ter tolerâncias de 1% a 5%, e capacitores eletrolíticos, como o de 2200 µF utilizado, frequentemente apresentam variações bem maiores, o que altera o valor real de τ = Req × C em relação ao calculado. Em segundo lugar, a tensão de alimentação de 5 V do microcontrolador não é exatamente 5,0 V, e variações nessa referência afetam tanto a tensão real aplicada ao circuito quanto a conversão analógica.
+
+Além disso, o método de medição introduz incertezas adicionais: o tempo é controlado por funções de software, que podem apresentar pequenos atrasos de execução, a conversão analógica leva um tempo e o próprio ruído elétrico e contatos da protoboard podem causar variações de alguns milivolts nas leituras. Juntamente a isso, possíveis pequenas diferenças de montagem (comprimento de fios, contatos não ideais), o tipo de discrepância observada é esperado: um deslocamento na tensão inicial, uma tensão final um pouco menor que a teórica e variações pequenas com relação à curva ideal.
+
+Assim, os resultados experimentais são compatíveis com o modelo teórico de um circuito RC. A curva de carga medida reproduz bem a forma esperada, a constante de tempo experimental obtida a partir do gráfico é muito próxima da tau teórica e as diferenças observadas podem ser atribuídas de maneira consistente à tolerância dos componentes e às limitações inerentes ao processo de medição. Isso mostra que o objetivo do experimento foi atingido com sucesso.
+
+
+## <a name="c4"></a>5. Conclusões e Recomendações
 
 _Escreva, de forma resumida, sobre os principais resultados do seu projeto e faça recomendações formais ao seu parceiro de projeto em relação ao uso dessa solução. Você pode aproveitar este espaço para comentar sobre possíveis materiais extras._
 
-## <a name="c5"></a>5. Referências
+## <a name="c5"></a>6. Referências
 
 **Fontes utilizadas na seção 3.1.1. Contexto da Indústria:**
 

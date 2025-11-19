@@ -2325,12 +2325,29 @@ Esta base de hardware offline é resiliente e modular, provando-se uma fundaçã
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. A tabela a seguir serve como exemplo._
+&nbsp;&nbsp;&nbsp;&nbsp; Nessa seção, nos aprofundamos mais sobre os casos de uso, que representam situações reais do nosso sistema no que diz respeito à interação com o usuário, demonstrando como o sistema deve responder em diversas situações diferentes, registrando não apenas casos de sucesso, mas também casos de falha.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O protótipo do sistema de controle de acesso desenvolvido para a TIC Trens é composto por dois módulos ESP32 que realizam a autenticação do colaborador por RFID e a liberação da tranca por relé. A comunicação com os dispositivos periféricos, como display LCD, ocorre via protocolo I2C, enquanto a troca de dados entre os microcontroladores e a nuvem é realizada por MQTT.
 
 **#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
 |----------|----------|----------|----------|
-|01|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
+|01| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado e autorizado. | O sistema identifica cartão autorizado no banco de dados e envia, por SMS, um código de acesso. |
+|----------|----------|----------|----------|
+|02| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado mas não está autorizado naquele momento. | O sistema exibe “Cartão não cadastrado”. | 
+|----------|----------|----------|----------|
+|03| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha que recebeu por SMS no teclado. | A tranca é desativada com sucesso após energização do relé e a entrada do trabalhador é liberada. Buzzer é acionado e emite um sinal sonoro. Display exibe “Acesso liberado”. | 
+|----------|----------|----------|----------|
+|04| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha errada no teclado. | A tranca não é liberada. Buzzer é acionado e emite um sinal sonoro diferente de quando é liberado. Display exibe “Senha Incorreta”. | 
+|----------|----------|----------|----------|
+|05| O usuário está dentro da sala, terminou seu trabalho e deseja sair. A porta por dentro também apresenta sensor RFID. | O trabalhador apresenta o mesmo cartão que usou para entrar para sair. | A tranca é liberada e o usuário consegue sair normalmente da sala. | 
+|----------|----------|----------|----------|
+|06| O sistema está conectado com a Internet e após a leitura do cartão autorizado, o display exibe “Digite a senha:”. | O trabalhador digita a senha corretamente. | O sistema responsável pela verificação de entrada envia a informação através do protocolo MQTT emitindo o sinal para liberar a tranca. | 
+|----------|----------|----------|----------|
+|07| O sistema de entrada não está conectado a Internet | O usuário tenta aproximar o cartão | O LCD exibe “Conectando a Internet...”.
+|----------|----------|----------|----------|
+|08| O sistema da tranca não está conectado a Internet | O usuário insere a senha corretamente. | O sistema de entrada envia corretamente o sinal para abertura das portas, mas o sistema da tranca não consegue fazer a requisição da resposta enviada devido a dificuldade de conexão com a internet.
+
+
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 

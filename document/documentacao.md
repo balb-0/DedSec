@@ -2424,6 +2424,10 @@ As imagens a seguir representam os casos de uso registrados anteriormente.
 
 ### Mudanças realizadas
 
+&nbsp;&nbsp;&nbsp;&nbsp; O código em MQTT e I2C já se fazia presente na seção 3.4.2 e documentado nesta mesma seção. Nessa atualização, foram feitas algumas novas alterações em problemas que surgiram no RFID.
+
+#### ESP-32 SENHA 
+
 &nbsp;&nbsp;&nbsp;&nbsp; No primeiro ESP32, que contém o sensor RFID, teclado matricial, visor LCD e buzzer, foram realizadas as seguintes alterações:
 
 &nbsp;&nbsp;&nbsp;&nbsp; Nessa sprint, construímos o primeiro Case para nosso protótipo, no qual é mostrado o teclado matricial, o display LCD e uma representação visual de onde deve ser aproximado o cartão RFID. Em termos de funções alteramos algumas mensagens exibidas no visor, para melhor visualização e entendimento do usuário. Foi adicionado também a lógica de negação para cartões não cadastrados. O barulho do buzzer foi alterado para um mais intuitivo de quando acesso negado ocorresse. 
@@ -2472,6 +2476,830 @@ As imagens a seguir representam os casos de uso registrados anteriormente.
     }
   }
 ``` 
+#### Código Completo com as novas alterações
+
+
+```c++
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <string>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+
+// -----------------------------
+// CONFIGURAÇÃO LCD
+// -----------------------------
+#define ende 0x27  // Endereço I2C do display LCD
+#define col 16     // Número de colunas do display (16 caracteres)
+#define lin 2      // Número de linhas do display (2 linhas)
+LiquidCrystal_I2C lcd(ende, col, lin);  // Instância do display LCD
+
+// -----------------------------
+// VARIÁVEIS GERAIS
+// -----------------------------
+String senha_correta = "123456";  // Senha padrão do sistema
+bool sistemaAtivo = false;        // Flag que indica se o sistema está aguardando digitação de senha
+
+// -----------------------------
+// CLASSE TECLADO
+// -----------------------------
+// Classe responsável por gerenciar o teclado matricial 4x4
+class Teclado {
+  private:
+    Keypad teclado;          // Instância do teclado matricial
+    String senhaDigitada;    // Armazena a senha digitada pelo usuário
+
+  public:
+    // Construtor: inicializa o teclado com a matriz de teclas e os pinos
+    Teclado(char matriz[4][4], byte* linhas, byte* colunas, byte qtdLinhas, byte qtdColunas)
+      : teclado(makeKeymap(matriz), linhas, colunas, qtdLinhas, qtdColunas), senhaDigitada("") {}
+
+    // Lê a tecla pressionada no teclado
+    char lerTecla() {
+      return teclado.getKey();
+    }
+
+    // Adiciona uma tecla à senha digitada ou remove o último dígito com '*'
+    void adicionarTecla(char tecla) {
+      // Se for número e a senha tiver menos de 6 dígitos, adiciona
+      if (tecla >= '0' && tecla <= '9' && senhaDigitada.length() < 6) {
+        senhaDigitada += tecla;
+      } 
+      // Se for '*', remove o último dígito (backspace)
+      else if (tecla == '*') {
+        if (senhaDigitada.length() > 0) {
+          senhaDigitada.remove(senhaDigitada.length() - 1);
+        }
+      }
+    }
+
+    // Retorna a senha digitada
+    String getSenha() {
+      return senhaDigitada;
+    }
+
+    // Limpa a senha digitada
+    void limparSenha() {
+      senhaDigitada = "";
+    }
+};
+
+// -----------------------------
+// COMUNICAÇÃO COM TRANCA
+// -----------------------------
+WiFiClientSecure espClient;  // Cliente WiFi seguro (SSL/TLS)
+PubSubClient client(espClient);  // Cliente MQTT para comunicação com a tranca
+
+// -----------------------------
+// CLASSE RFID
+// -----------------------------
+// Classe responsável por gerenciar o leitor RFID RC522
+class Rfid {
+  private:
+    int ssPin;             // Pino SS (Slave Select) do módulo RFID
+    int rstPin;            // Pino RST (Reset) do módulo RFID
+    MFRC522 rfid;          // Instância do leitor RFID
+    byte uidAutorizado[4] = {0x5c, 0x8D, 0x35, 0x4A};  // UID do cartão autorizado
+
+  public:
+    // Construtor: inicializa o leitor RFID com os pinos SS e RST
+    Rfid(int porta1, int porta2): ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+    // Inicializa o módulo RFID e configura o barramento SPI
+    void iniciar() {
+      SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, SS
+      rfid.PCD_Init();
+      delay(100);
+      Serial.println("RC522 pronto!");
+    }
+
+    // Reinicia o módulo RFID
+    void reiniciar() {
+      rfid.PCD_Init(); 
+    }
+
+    // Detecta se há um cartão próximo ao leitor
+    bool detectarCartao() {
+      if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+        return false;
+      }
+      return true;
+    }
+
+    // Verifica se o cartão lido é um cartão autorizado
+    bool eCartaoAutorizado() {
+      for (byte i = 0; i < 4; i++) {
+        if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Encerra a leitura do cartão e desativa a criptografia
+    void encerrarLeitura() {
+      rfid.PICC_HaltA();
+      rfid.PCD_StopCrypto1();
+      delay(50);
+    }
+
+    // Retorna referência ao objeto RFID interno
+    MFRC522& getRFID() {
+      return rfid;
+    }
+};
+
+// -----------------------------
+// CLASSE DISPLAY
+// -----------------------------
+// Classe responsável por gerenciar o display LCD I2C
+class Display {
+  private:
+    int pin1;       // Pino SDA (dados I2C)
+    int pin2;       // Pino SCL (clock I2C)
+    String texto1;  // Texto da primeira linha
+    String texto2;  // Texto da segunda linha
+
+  public:
+    // Construtor: define os pinos I2C do display
+    Display(int porta1, int porta2): pin1(porta1), pin2(porta2) {}
+
+    // Inicializa o display LCD e a comunicação I2C
+    void iniciar() {
+      Serial.begin(115200);
+      Wire.begin(pin1, pin2);  // Inicializa I2C com os pinos SDA e SCL
+      lcd.init();
+      lcd.backlight();  // Liga a luz de fundo do display
+    }
+
+    // Define o texto da primeira linha
+    void setTexto1(String novoTexto1) {
+      texto1 = novoTexto1;
+    }
+
+    // Define o texto da segunda linha
+    void setTexto2(String novoTexto2) {
+      texto2 = novoTexto2;
+    }
+
+    // Escreve um texto em uma linha específica do display
+    void escreverLinhaUnica(String texto, int linha = 0) {
+      lcd.clear();
+      lcd.setCursor(0, linha);
+      lcd.print(texto);
+    }
+
+    // Escreve duas linhas de texto no display
+    void escreverLinhaDupla() {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(texto1);
+      lcd.setCursor(0, 1);
+      lcd.print(texto2);
+    }
+
+    // Escreve a senha com asteriscos para ocultar os dígitos
+    void escreverSenhaMascarada(String senha) {
+      escreverLinhaUnica("Digite a senha:");
+      lcd.setCursor(0, 1);
+      for (int i = 0; i < senha.length(); i++) {
+        lcd.print('*');  // Mascara cada dígito com asterisco
+      }
+    }
+};
+
+// -----------------------------
+// CLASSE BUZZER
+// -----------------------------
+// Classe responsável por controlar o buzzer (som de feedback)
+class Buzzer {
+  private:
+    int pin;  // Pino digital conectado ao buzzer
+
+  public:
+    // Construtor: define o pino do buzzer
+    Buzzer(int porta): pin(porta) {}
+
+    // Inicializa o pino do buzzer como saída
+    void iniciar() {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);  // Garante que o buzzer comece desligado
+    }
+
+    // Liga o buzzer
+    void tocarSom() {
+      digitalWrite(pin, HIGH);
+    }
+
+    // Desliga o buzzer
+    void desligar() {
+      digitalWrite(pin, LOW);
+    }
+};
+
+// -----------------------------
+// CLASSE WIFI
+// -----------------------------
+// Classe responsável por gerenciar a conexão WiFi
+class Wifi {
+  private:
+    const char* ssid;      // Nome da rede WiFi
+    const char* password;  // Senha da rede WiFi
+  public:
+    // Construtor: armazena as credenciais da rede WiFi
+    Wifi(const char* nome, const char* senha) : ssid(nome), password(senha) {}
+
+    // Conecta o ESP32 à rede WiFi
+    void conectar_Wifi() {
+      delay(10);
+      Serial.println();
+      Serial.print("Conectando a rede: ");
+      Serial.println(ssid);
+
+      WiFi.begin(ssid, password);
+
+      // Aguarda até que a conexão seja estabelecida
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print(".");
+      }
+
+      Serial.println("");
+      Serial.println("WiFi conectado");
+      Serial.println("Endereco IP: ");
+      Serial.println(WiFi.localIP());
+    }
+};
+
+// -----------------------------
+// CLASSE MQTT
+// -----------------------------
+// Classe responsável por gerenciar a comunicação MQTT com o broker
+class MQTT {
+  private:
+    const char* mqtt_broker;    // Endereço do broker MQTT
+    const int mqtt_port;        // Porta do broker MQTT
+    const char* mqtt_username;  // Usuário para autenticação MQTT
+    const char* mqtt_password;  // Senha para autenticação MQTT
+  public:
+    // Construtor: armazena as credenciais do broker MQTT
+    MQTT(const char* broker, const int port, const char* nome, const char* senha) 
+      : mqtt_broker(broker), mqtt_port(port), mqtt_username(nome), mqtt_password(senha) {}
+    
+    // Reconecta ao broker MQTT caso a conexão seja perdida
+    void reconnect() {
+      while (!client.connected()) {
+        Serial.print("Conectando ao broker MQTT...");
+        if (client.connect("ESP32Client", mqtt_username, mqtt_password)) {
+          Serial.println("conectado");
+        } else {
+          Serial.print("falha, rc=");
+          Serial.print(client.state());
+          Serial.println(" tentando novamente em 5 segundos");
+          delay(5000);
+        }
+      }
+    }
+    
+    // Inicializa a conexão MQTT configurando o cliente
+    void iniciar_conexao(){
+      espClient.setInsecure();  // Desabilita verificação de certificado SSL
+      client.setServer(mqtt_broker, mqtt_port);
+    }
+    
+    // Publica comandos para desbloquear e bloquear a tranca
+    void desligar_tranca(){
+      client.publish("tranca", "liberada");  // Envia comando para liberar a tranca
+      delay(3000);  // Aguarda 3 segundos com a tranca liberada
+      client.publish("tranca", "bloqueada");  // Envia comando para bloquear novamente
+    }
+    
+    // Mantém a conexão MQTT ativa ou reconecta se necessário
+    void manter_conexao(){
+       if(!client.connected()){
+        reconnect();  // Reconecta se a conexão cair
+      }else
+        client.loop();  // Processa mensagens MQTT pendentes
+    }
+};
+
+// -----------------------------
+// CONFIGURAÇÃO TECLADO 4x4
+// -----------------------------
+const byte LINHAS = 4;   // Número de linhas do teclado matricial
+const byte COLUNAS = 4;  // Número de colunas do teclado matricial
+
+// Mapeamento das teclas do teclado 4x4
+char TECLAS_MATRIZ[4][4] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}  // '*' = backspace, '#' = confirmar
+};
+
+// Pinos do ESP32 conectados às linhas do teclado
+byte PINOS_LINHAS[LINHAS] = {17, 16, 14, 25};
+// Pinos do ESP32 conectados às colunas do teclado
+byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
+
+// -----------------------------
+// INSTÂNCIAS DOS OBJETOS
+// -----------------------------
+Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);  // Teclado 4x4
+Buzzer somValidacao(13);    // Buzzer conectado ao pino 13
+Display display1(26, 27);   // Display LCD I2C (SDA=26, SCL=27)
+Rfid leitorCartao(5, 22);   // Leitor RFID RC522 (SS=5, RST=22)
+Wifi Wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");  // Credenciais da rede WiFi
+MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");  // Broker MQTT HiveMQ
+
+// -----------------------------
+// SETUP
+// -----------------------------
+// Função executada uma vez na inicialização do sistema
+void setup() {
+  // Inicializa os componentes de hardware
+  display1.iniciar();         // Inicia o display LCD
+  leitorCartao.iniciar();     // Inicia o leitor RFID
+  somValidacao.iniciar();     // Inicia o buzzer
+
+  // Exibe mensagem de conexão no display
+  display1.setTexto1("Conectando a");
+  display1.setTexto2("Internet...");
+  display1.escreverLinhaDupla();
+
+  // Conecta à rede WiFi
+  Wifi.conectar_Wifi();
+
+  // Inicializa a conexão com o broker MQTT
+  MQTT.iniciar_conexao();
+
+  // Exibe mensagem para aproximar o cartão
+  display1.setTexto1("Aproxime o");
+  display1.setTexto2("cartao");
+  display1.escreverLinhaDupla();
+}
+
+// -----------------------------
+// LOOP PRINCIPAL
+// -----------------------------
+// Função executada continuamente após o setup
+void loop() {
+  // Mantém a conexão MQTT ativa
+  MQTT.manter_conexao();
+
+  // MODO 1: Aguardando leitura do cartão RFID
+  if (!sistemaAtivo) {
+    if (leitorCartao.detectarCartao()) {
+      
+      // Verifica se o cartão lido está autorizado
+      if (leitorCartao.eCartaoAutorizado()) {
+          
+          // Exibe o UID do cartão no monitor serial para debug
+          MFRC522& rfidInterno = leitorCartao.getRFID();
+          Serial.print("UID lido: ");
+          for (byte i = 0; i < rfidInterno.uid.size; i++) {
+            Serial.print(rfidInterno.uid.uidByte[i], HEX);
+            Serial.print(" ");
+          }
+          Serial.println();
+      
+          // Ativa o sistema para permitir digitação da senha
+          sistemaAtivo = true;
+          display1.escreverLinhaUnica("Digite a Senha:");
+          
+      } else {
+          // Cartão não autorizado - exibe mensagem de erro
+          Serial.println("Cartao Negado!");
+          display1.setTexto1("Cartao nao");
+          display1.setTexto2("cadastrado");
+          display1.escreverLinhaDupla();
+          
+          // Toca dois bipes de erro
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          
+          delay(2000);
+          
+          // Retorna à tela inicial
+          display1.setTexto1("Aproxime o");
+          display1.setTexto2("cartao");
+          display1.escreverLinhaDupla();
+      }
+      
+      leitorCartao.encerrarLeitura();
+    }
+  }
+
+  // MODO 2: Aguardando digitação da senha
+  if (sistemaAtivo) {
+    char tecla = teclado.lerTecla();
+    if (tecla) {
+      // Tecla '#' confirma a senha
+      if (tecla == '#') {
+        // Verifica se a senha está correta
+        if (teclado.getSenha() == senha_correta) {
+          // Senha correta - libera o acesso
+          display1.escreverLinhaUnica("Acesso Liberado");
+          Serial.println("Senha correta!");
+          somValidacao.tocarSom();  // Bipe longo de sucesso
+          delay(3000);
+          somValidacao.desligar();
+
+          // Envia comando via MQTT para desbloquear a tranca
+          MQTT.desligar_tranca();
+        } else {
+          // Senha incorreta - nega o acesso
+          display1.escreverLinhaUnica("Senha Incorreta");
+          Serial.println("Senha incorreta!");
+          // Toca dois bipes de erro
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+        }
+
+        delay(2000);
+        teclado.limparSenha();  // Limpa a senha digitada
+        
+        leitorCartao.reiniciar();  // Reinicia o leitor RFID
+        
+        // Retorna ao modo de leitura de cartão
+        sistemaAtivo = false;
+        display1.setTexto1("Aproxime o");
+        display1.setTexto2("cartao");
+        display1.escreverLinhaDupla();
+        return;
+      } else {
+        // Adiciona a tecla digitada à senha (números) ou remove último dígito ('*')
+        teclado.adicionarTecla(tecla);
+      }
+
+      // Atualiza o display mostrando a senha mascarada
+      display1.escreverLinhaUnica("Digite a Senha:");
+      display1.escreverSenhaMascarada(teclado.getSenha());
+    }
+  }
+}
+```
+#### ESP32 Tranca
+ 
+#### Classe Wifi
+
+No ESP32 Tranca, foram criadas algumas novas classes para manter o código em POO, como a WiFi, que gerencia a conexão do ESP32 a uma rede Wi-Fi. Ela possui dois atributos privados: ssid, que armazena o nome da rede, e password, que guarda a senha. O construtor inicializa esses atributos.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **conectar_Wifi()** conecta o ESP32 à rede Wi-Fi usando os dados fornecidos, imprimindo no monitor serial mensagens sobre o status de conexão com a internet e aguardando até que a conexão seja estabelecida, mostrando pontos durante a tentativa.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao conectar, exibe a mensagem de confirmação e o endereço IP obtido.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+
+class WiFi {
+private:
+  const char* ssid;
+  const char* password;
+
+public:
+  WiFiManager(const char* ssid, const char* password)
+    : ssid(ssid), password(password) {}
+
+  void conectar() {
+    Serial.print("Conectando à rede: ");
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+
+    Serial.println("\nWiFi conectado!");
+    Serial.print("IP: ");
+    Serial.println(WiFi.localIP());
+  }
+};
+
+WiFi wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
+```
+
+#### Novo sensor RFID
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, foi adicionada um novo sensor RFID no Esp32 Tranca, que é responsável por liberar os funcionários que já entraram na sala para manutenção. Dessa forma, foi adicionada uma nova classe chamada RFID.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Rfid foi criada para simplificar o uso do leitor RFID no seu projeto. Ela guarda os pinos que o módulo usa para funcionar, o leitor propriamente dito e também o número do cartão que deve ser reconhecido como autorizado.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Quando você cria um objeto dessa classe, ela já recebe os pinos necessários e deixa tudo preparado para o funcionamento. No método iniciar(), o leitor é ligado e configurado, para que possa começar a detectar cartões. O método detectarCartao() verifica se existe um cartão perto do leitor e se ele conseguiu ler o código desse cartão. Caso consiga, você pode usar o método eCartaoAutorizado() para descobrir se o cartão lido é o mesmo que você cadastrou como permitido.
+
+&nbsp;&nbsp;&nbsp;&nbsp;  Existe também o método reiniciar(), que serve para resetar o leitor caso algo dê errado ou se você quiser simplesmente limpar o estado dele após uma leitura. Já o método encerrarLeitura() finaliza a comunicação com o cartão, evitando erros quando for ler outro cartão em seguida. Se você precisar acessar funções mais avançadas do leitor, o método getRFID() permite acessar o objeto interno da biblioteca.
+
+```c++
+class Rfid {
+private:
+  int ssPin;
+  int rstPin;
+  MFRC522 rfid;
+  byte uidAutorizado[4] = { 0x5c, 0x8D, 0x35, 0x4A };
+
+public:
+  Rfid(int porta1, int porta2)
+    : ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+  void iniciar() {
+    SPI.begin(18, 19, 23, 5);
+    rfid.PCD_Init();
+    delay(100);
+    Serial.println("RC522 pronto!");
+  }
+
+  void reiniciar() {
+    rfid.PCD_Init();  // Reconfigura os registradores do chip
+  }
+
+  bool detectarCartao() {
+    if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+      return false;
+    }
+    return true;
+  }
+
+  bool eCartaoAutorizado() {
+    for (byte i = 0; i < 4; i++) {
+      if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void encerrarLeitura() {
+    rfid.PICC_HaltA();
+    rfid.PCD_StopCrypto1();
+    delay(50);
+  }
+
+  MFRC522& getRFID() {
+    return rfid;
+  }
+};
+```
+
+#### Classe MQTT
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código em MQTT que recebe o sinal para liberar a tranca também foi transformado em MQTT. Além disso, também foi criada uma função callback para receber sinais do tópico tranca.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe MQTT foi feita para organizar toda a parte de conexão do ESP32 com o servidor MQTT. Ela guarda as informações necessárias para conectar (como endereço, porta, usuário e senha) e usa essas informações para configurar o cliente MQTT. O método iniciar() apenas prepara a conexão, enquanto o método reconnect() garante que o ESP32 esteja sempre conectado: se a conexão cair ou ainda não tiver sido feita, ele tenta de novo até funcionar. Quando a conexão é estabelecida, ele também já se inscreve automaticamente no tópico “tranca”.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função callback() é chamada sempre que chega uma mensagem. Ela lê o texto recebido e, se for a palavra “liberada”, ativa o pino 16 por alguns segundos, como se fosse um comando para abrir uma tranca ou liberar uma ação.
+
+```c++
+
+class MQTT {
+private:
+  PubSubClient& client;
+  const char* broker;
+  int port;
+  const char* username;
+  const char* password;
+
+public:
+  MQTTManager(PubSubClient& c, const char* broker, int port, const char* user, const char* pass)
+    : client(c), broker(broker), port(port), username(user), password(pass) {}
+
+  void iniciar() {
+    client.setServer(broker, port);
+  }
+
+  void reconnect() {
+    while (!client.connected()) {
+      Serial.print("Conectando ao broker MQTT...");
+
+      if (client.connect("ESP32ClientSub", username, password)) {
+        Serial.println("Conectado!");
+        client.subscribe("tranca");
+      } else {
+        Serial.print("Falhou, rc=");
+        Serial.println(client.state());
+        Serial.println("Tentando de novo em 5s...");
+        delay(5000);
+      }
+    }
+  }
+};
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+  if (strcmp(payloadStr, "liberada") == 0) {
+    digitalWrite(16, HIGH);
+    delay(5000);
+    digitalWrite(16, LOW);
+  }
+}
+```
+#### Código Completo
+
+&nbsp;&nbsp;&nbsp;&nbsp; O ESP32 TRANCA tem como objetivo controlar um sistema de tranca eletrônica utilizando um RFID, Wi-Fi e MQTT. Ele permite que a porta seja aberta de forma automática ao detectar um cartão RFID autorizado ou quando um comando é enviado pelo broker MQTT. O sistema também utiliza um buzzer para fornecer feedback sonoro e organiza suas funcionalidades em classes para deixar o código mais organizado.
+
+
+```c++
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+#include <MFRC522.h>
+
+const int saidaPin = 16;
+const int buzzer = 32;
+
+bool portaAberta = false;
+
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+
+class WiFi {
+private:
+  const char* ssid;
+  const char* password;
+
+public:
+  WiFiManager(const char* ssid, const char* password)
+    : ssid(ssid), password(password) {}
+
+  void conectar() {
+    Serial.print("Conectando à rede: ");
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+
+    Serial.println("\nWiFi conectado!");
+    Serial.print("IP: ");
+    Serial.println(WiFi.localIP());
+  }
+};
+
+class MQTT {
+private:
+  PubSubClient& client;
+  const char* broker;
+  int port;
+  const char* username;
+  const char* password;
+
+public:
+  MQTTManager(PubSubClient& c, const char* broker, int port, const char* user, const char* pass)
+    : client(c), broker(broker), port(port), username(user), password(pass) {}
+
+  void iniciar() {
+    client.setServer(broker, port);
+  }
+
+  void reconnect() {
+    while (!client.connected()) {
+      Serial.print("Conectando ao broker MQTT...");
+
+      if (client.connect("ESP32ClientSub", username, password)) {
+        Serial.println("Conectado!");
+        client.subscribe("tranca");
+      } else {
+        Serial.print("Falhou, rc=");
+        Serial.println(client.state());
+        Serial.println("Tentando de novo em 5s...");
+        delay(5000);
+      }
+    }
+  }
+};
+
+class Rfid {
+private:
+  int ssPin;
+  int rstPin;
+  MFRC522 rfid;
+  byte uidAutorizado[4] = { 0x5c, 0x8D, 0x35, 0x4A };
+
+public:
+  Rfid(int porta1, int porta2)
+    : ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+  void iniciar() {
+    SPI.begin(18, 19, 23, 5);
+    rfid.PCD_Init();
+    delay(100);
+    Serial.println("RC522 pronto!");
+  }
+
+  void reiniciar() {
+    rfid.PCD_Init();  // Reconfigura os registradores do chip
+  }
+
+  bool detectarCartao() {
+    if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+      return false;
+    }
+    return true;
+  }
+
+  bool eCartaoAutorizado() {
+    for (byte i = 0; i < 4; i++) {
+      if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void encerrarLeitura() {
+    rfid.PICC_HaltA();
+    rfid.PCD_StopCrypto1();
+    delay(50);
+  }
+
+  MFRC522& getRFID() {
+    return rfid;
+  }
+};
+
+WiFi wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
+MQTT mqtt(client, "18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32", "Dedsec2@@");
+Rfid RFID(5, 22);
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+  if (strcmp(payloadStr, "liberada") == 0) {
+    digitalWrite(16, HIGH);
+    delay(5000);
+    digitalWrite(16, LOW);
+  }
+}
+
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(saidaPin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+
+  wifi.conectar();
+
+  espClient.setInsecure();
+  client.setCallback(callback);
+
+  mqtt.iniciar();
+  RFID.iniciar();
+}
+
+
+void loop() {
+  if (!client.connected())
+    mqtt.reconnect();
+
+  client.loop();
+
+  if (RFID.detectarCartao()) {
+    if (RFID.eCartaoAutorizado()) {
+
+      digitalWrite(saidaPin, HIGH);
+      delay(5000);
+      digitalWrite(saidaPin, LOW);
+
+      digitalWrite(buzzer, HIGH);
+      delay(2000);
+      digitalWrite(buzzer, LOW);
+
+      RFID.reiniciar();
+    }
+  }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp; Com esse código, o ESP32 consegue se conectar à rede Wi-Fi, comunicar-se com um servidor MQTT, ler cartões RFID e acionar a tranca e o buzzer quando um acesso é liberado. A estrutura dividida em classes facilita a manutenção e torna o funcionamento mais claro. Assim, o sistema garante maior segurança e controle na liberação da porta, tanto por cartão RFID quanto por comandos remotos via MQTT.
 
 ### Conclusão
 

@@ -20,6 +20,8 @@
 
 [5. Referências](#c5)
 
+[6. Anexos](#c6)
+
 <br>
 
 
@@ -59,7 +61,56 @@ Portanto, a adoção dessa solução IoT representa um avanço significativo na 
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
-_Descreva as etapas da metodologia RM-ODP que foram utilizadas para o desenvolvimento, citando o referencial teórico. Você deve apenas enunciar os métodos, sem dizer ainda como ele foi aplicado e quais resultados obtidos._
+## Estrutura de Visões do RM-ODP
+O modelo de referência RM-ODP (Reference Model for Open Distributed Processing) é uma abordagem estruturada para o desenvolvimento de sistemas distribuídos, baseada em diferentes perspectivas complementares chamadas viewpoints.
+ Esses pontos de vista permitem analisar e especificar o sistema sob diferentes dimensões, desde seus objetivos organizacionais até as tecnologias utilizadas em sua implementação, promovendo clareza, modularidade e consistência entre as partes do projeto.
+O diagrama a seguir ilustra as cinco visões fundamentais definidas pelo RM-ODP e sua relação com o sistema e o ambiente em que ele está inserido:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/82602211-2a17-43d4-9aa4-e5c0fa65043c" alt="RM-ODP_viewpoints"/>
+</p>
+
+## 2.1 Visões e Referenciais Teóricos do RM-ODP
+O RM-ODP define cinco viewpoints que descrevem um sistema distribuído de maneira modular e coerente, cada um enfatizando aspectos diferentes de sua concepção e operação. Essa abordagem abre novas possibilidades como: alinhar objetivos organizacionais, estrutura informacional, funcionalidades computacionais, mecanismos de engenharia e decisões tecnológicas.
+
+### 2.1.1 Ponto de Vista Empresarial (Enterprise Viewpoint)
+O Enterprise Viewpoint descreve o sistema sob a ótica de seu propósito, escopo e políticas organizacionais, identificando os atores envolvidos, suas responsabilidades e as restrições externas que afetam seu funcionamento.
+ Essa visão busca garantir que o sistema atenda aos objetivos de negócio e às regras institucionais que motivam sua existência, funcionando como uma junção entre as necessidades organizacionais e a modelagem técnica.
+Segundo a norma ISO/IEC 10746-3 (Architecture), este ponto de vista define os compromissos, as políticas de operação e as restrições de comportamento que orientam todas as demais visões do modelo.
+
+### 2.1.2 Ponto de Vista da Informação (Information Viewpoint)
+O Information Viewpoint concentra-se na estrutura lógica das informações manipuladas pelo sistema, descrevendo como os dados são organizados, relacionados e processados ao longo do ciclo de vida da aplicação.
+ Essa perspectiva define os tipos de informação, seus estados, transformações e regras de consistência, assegurando integridade e confiabilidade no tratamento dos dados. De acordo com a ISO/IEC 10746-3, essa visão abstrai o conteúdo informacional dos detalhes tecnológicos, permitindo compreender o significado e o valor dos dados dentro do contexto do sistema.
+
+### 2.1.3  Ponto de Vista Computacional (Computational Viewpoint)
+O Computational Viewpoint representa o sistema a partir de sua decomposição funcional, estruturando-o em objetos computacionais que interagem por meio de interfaces bem definidas.
+ Essa visão descreve serviços, operações e fluxos de comunicação entre componentes, facilitando a compreensão de como as funcionalidades são distribuídas e coordenadas.
+ Conforme a ISO/IEC 10746-3, esse ponto de vista visa separar a especificação funcional da infraestrutura física, permitindo independência entre a lógica de negócio e a implementação técnica.
+
+### 2.1.4 Ponto de Vista de Engenharia (Engineering Viewpoint)
+O Engineering Viewpoint aborda os mecanismos e funções de suporte que permitem a comunicação e a distribuição entre os objetos definidos na visão computacional.
+Ele inclui aspectos como topologia de rede, canais de comunicação, desempenho, tolerância a falhas e interoperabilidade, assegurando que os componentes do sistema possam cooperar de forma eficiente em ambientes distribuídos.
+ De acordo com a ISO/IEC 10746-3, esse ponto de vista descreve a infraestrutura necessária para que o sistema opere de maneira integrada e confiável, conciliando eficiência técnica com os requisitos arquiteturais definidos nas demais visões.
+
+### 2.1.5 Ponto de Vista Tecnológico (Technology Viewpoint)
+O Technology Viewpoint foca nas decisões práticas de implementação, envolvendo a seleção de plataformas, linguagens de programação, frameworks, bancos de dados e protocolos de comunicação.
+ Essa visão traduz as abstrações conceituais das demais camadas em soluções concretas, garantindo viabilidade técnica e compatibilidade com o ambiente operacional.
+ Segundo a ISO/IEC 10746-3, o objetivo desse ponto de vista é assegurar que as escolhas tecnológicas sustentem os requisitos funcionais, de desempenho e manutenção do sistema, promovendo alinhamento entre teoria e prática.
+
+## 2.2 Integração entre Visões
+A integração entre os viewpoints do RM-ODP constitui o elemento central que garante coerência e completude na modelagem de sistemas distribuídos. Cada visão aborda um aspecto específico do sistema, mas somente a articulação entre elas permite representar, de forma consistente, tanto os objetivos organizacionais quanto as decisões tecnológicas envolvidas no desenvolvimento.
+O modelo adota o princípio de separação de preocupações, no qual cada ponto de vista contribui com uma perspectiva própria, utilizando conceitos e linguagens apropriadas ao seu nível de abstração. Essa separação facilita o entendimento e o gerenciamento da complexidade do sistema e alinha os conceitos entre os diferentes domínios.
+O Enterprise Viewpoint fornece a base conceitual e estratégica, estabelecendo o propósito e as regras que direcionam as demais visões. O Information Viewpoint transforma esses objetivos em estruturas de dados e fluxos informacionais, que são operacionalizados no Computational Viewpoint por meio de componentes e serviços interconectados. O Engineering Viewpoint garante que essas interações ocorram de maneira eficiente em um ambiente distribuído, enquanto o Technology Viewpoint concretiza as abstrações anteriores em soluções técnicas viáveis e interoperáveis.
+Essa integração hierárquica assegura que as decisões tomadas não entrem em conflito com os demais, evitando redundâncias e inconsistências no projeto. O resultado é uma arquitetura distribuída sólida, modular e escalável, onde cada dimensão (organizacional, informacional, computacional, estrutural e tecnológica) se complementa.
+Dessa forma, além do RM-ODP promover o processo de modelagem, ele também promove uma visão unificada do sistema, garantindo que os requisitos funcionais, técnicos e de negócio estejam perfeitamente alinhados em todas as fases de desenvolvimento.
+
+## 2.3 Considerações Finais
+A metodologia RM-ODP se mostra uma ferramenta essencial para o planejamento, análise e especificação de sistemas distribuídos complexos, pois permite compreender e documentar cada dimensão do projeto de forma estruturada e complementar.
+ Ao segmentar o sistema em diferentes viewpoints, o modelo assegura uma abordagem mais organizada, coerente e integrada, reduzindo disparidades  e facilitando a comunicação entre equipes de áreas distintas.
+A aplicação das cinco visões (Enterprise, Information, Computational, Engineering e Technology) possibilita alinhar os objetivos organizacionais com as decisões tecnológicas, garantindo que o desenvolvimento mantenha fidelidade ao propósito inicial do sistema e atenda aos requisitos de desempenho, segurança e interoperabilidade.
+Conclui-se que o RM-ODP fornece uma base teórica sólida para o desenvolvimento orientado à arquitetura, promovendo a padronização e a clareza na especificação de soluções distribuídas.
+
+
 
 # <a name="c3"></a>3. Desenvolvimento e Resultados 
 
@@ -903,101 +954,258 @@ Portanto, fica claro que as storyboards são essenciais para se ter uma melhor v
 
 &nbsp;&nbsp;&nbsp;&nbsp;A definição desses requisitos assegura que o sistema opere de forma **padronizada, interoperável e em conformidade** com as práticas estabelecidas pela norma ISO/IEC 25010. Assim, garante-se a integridade do processo de autenticação, a confiabilidade na comunicação entre dispositivos e a compatibilidade com diferentes protocolos e plataformas de monitoramento.
 
-### 3.3.3. Arquitetura da Solução (sprint 3)
+### 3.3.3. Arquitetura da Solução
 
-#### (Diagrama desenvolvido durante a Sprint 1)
+
+#### 3.3.3.1. Diagrama da arquitetura de sistema (Geral)
+O Diagrama da arquitetura do sistema tem como objetivo apresentar, de forma integrada, toda a arquitetura e o funcionamento da nossa solução de controle de acesso para áreas sensíveis, desenvolvida em parceria com a TIC Trens. Ele detalha os componentes físicos envolvidos, como sensores, microcontroladores e dispositivos de entrada, além das tecnologias utilizadas — que operam de forma coordenada para garantir segurança, conectividade e eficiência no sistema
 
 <div align="center">
-<sub>Diagrama UML da solução</sub>
+<sub>Diagrama da arquitetura geral</sub>
 </div>
 <div align="center">
-<img src="../assets/documentação/diagrama-uml.jpeg">
+<img src="../assets/documentação/diagrama_geral_v2.png">
+</div>
+<div align="center">
+<sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
+</div>  
+
+A solução adota uma arquitetura de **Internet das Coisas (IoT)**, dividida em quatro camadas principais: **Camada de Borda (Hardware)**, **Camada de Comunicação**, **Camada de Backend (Serviço)**, **Camada de Aplicação (Interface)** e **Fluxo de Acesso**.
+
+Essa estrutura permite a coleta e o processamento de dados no local (dispositivos de entrada e saída), a comunicação assíncrona e segura, o processamento de regras de negócio e a visualização em tempo real.
+
+---
+
+##### **3.3.3.1.1. Camada de Borda (Hardware)**
+
+Esta camada é composta pelos dispositivos físicos instalados nas áreas técnicas, responsáveis pela coleta de dados (identificação) e atuação (liberação de acesso).
+
+| Componente | Função | Interação Principal |
+| :--- | :--- | :--- |
+| **ESP32 - ENTRADA** | Microcontrolador principal; responsável pela lógica de entrada, controle de periféricos e comunicação MQTT. | Comunica com Leitor RFID, Teclado, LCD, Buzzer e Broker MQTT. |
+| **Leitor RFID** (Entrada) | Faz a leitura do cartão de identificação do usuário **(Fator 1: O que você tem)**. | Envia a tag lida para o **ESP32 - ENTRADA**. |
+| **Teclado** | Permite a inserção da senha/código temporário **(Fator 2: O que você sabe)**. | Envia os dígitos digitados para o **ESP32 - ENTRADA**. |
+| **LCD** | Fornece feedback visual ao usuário sobre o status da validação. | Recebe comandos do **ESP32 - ENTRADA**. |
+| **Buzzer** | Fornece feedback sonoro em eventos de acesso (sucesso/negado). | Recebe comandos do **ESP32 - ENTRADA**. |
+| **ESP32 - SAÍDA** | Microcontrolador secundário; responsável pela lógica de saída, controle da tranca e leitura do sensor de status. | Comunica com Leitor RFID (Saída), Sensor de Porta e Relé. |
+| **Leitor RFID** (Saída) | Permite o registro e/ou liberação da saída do usuário. | Envia a tag lida para o **ESP32 - SAÍDA**. |
+| **Sensor de Porta (Magnética)** | Monitora o **status físico** da porta (aberta/fechada). | Envia um **Sinal Elétrico (Status)** para o **ESP32 - SAÍDA**. |
+| **Relé** | Atuador eletrônico que controla o estado da **Tranca Física** (fechadura eletromagnética). | Recebe o comando de abertura/fechamento do **ESP32 - SAÍDA**. |
+| **Tranca Física** | O mecanismo físico de segurança que impede ou libera o acesso. | Controlada pelo **Relé**. |
+
+---
+
+##### **3.3.3.1.2. Camada de Comunicação**
+
+Responsável por estabelecer a ponte entre o hardware (Borda) e o software (Backend), utilizando um protocolo leve para eficiência.
+
+| Componente | Função | Protocolo / Tecnologia |
+| :--- | :--- | :--- |
+| **Broker MQTT (HiveMQ)** | Servidor de mensagens central que implementa o padrão *publish/subscribe* (Pub/Sub). Gerencia a comunicação assíncrona. | **MQTT** |
+| **Wi-Fi** | Meio físico de comunicação de rede local utilizado pelos dispositivos ESP32 e pelo Broker. | **TCP/IP** |
+| **Gateway de SMS (Twilio/Zenvia)** | Serviço externo para o envio seguro do código de **senha temporária (OTP)** ao celular do usuário. | N/A |
+
+---
+
+##### **3.3.3.1.3. Camada de Backend (Serviço e Dados)**
+
+Camada de inteligência, onde as regras de negócio são validadas, os dados são armazenados e os serviços externos são integrados.
+
+| Componente | Função | Protocolo / Tecnologia |
+| :--- | :--- | :--- |
+| **Servidor de Aplicação (Node.js)** | Motor principal do backend. Processa as mensagens MQTT, aplica as regras de acesso, interage com o DB e serviços externos. | N/A |
+| **Banco de Dados (PostgreSQL)** | Armazena dados essenciais: **cadastro de usuários e cartões**, **logs de acesso** e **logs de auditoria** de segurança. | N/A |
+| **API TIC Trens (Agendamento)** | Sistema externo que fornece informações sobre a **capacitação** e o **agendamento/autorização** do usuário para a área específica. | **HTTPS** |
+| **API RESTful (API REST)** | Interface para a manipulação e consulta de dados (usuários, logs) e gerenciamento pelo Dashboard. | **HTTPS** |
+| **WebSockets** | Protocolo de comunicação bidirecional e persistente, usado para enviar atualizações de status em **tempo real** para o Dashboard. | N/A |
+
+---
+
+##### **3.3.3.1.4. Camada de Aplicação (Interface)**
+
+A interface de usuário final, que permite o monitoramento e a intervenção da equipe de segurança e coordenação.
+
+| Componente | Função | Usuário Primário |
+| :--- | :--- | :--- |
+| **Dashboard (Interface do CCO)** | Interface gráfica que exibe o status em tempo real das portas, logs de acesso, falhas de autenticação e permite o gerenciamento de permissões. | **Beatriz (CCO - Coordenadora)** |
+
+---
+
+##### 3.3.3.1.5. Exemplos de fluxo de acesso.
+
+O fluxo de acesso da solução é um processo de autenticação em dois fatores e autorização contextual (via agendamento) para a entrada, e um processo simplificado de registro e liberação rápida para a saída.
+
+#####  3.3.3.1.5.1. Fluxo de Acesso (Entrada)
+
+1.  **Início:** O usuário passa o cartão no **Leitor RFID (Entrada)**.
+2.  **Mensageria:** O **ESP32 - ENTRADA** envia a tag do cartão para o **Broker MQTT**.
+3.  **Processamento:** O **Servidor de Aplicação** recebe a tag e realiza as consultas:
+    * Consulta o **DB** para identificar o usuário.
+    * Consulta a **API TIC Trens** para checar o agendamento/autorização.
+4.  **Autenticação:** Se autorizado, o Servidor gera um código OTP e o envia ao usuário via **Gateway de SMS**.
+5.  **Validação Final:** O usuário insere o código no **Teclado**, que é enviado via MQTT de volta ao Servidor para validação.
+6.  **Atuação (Abertura):** Se validado, o Servidor envia a mensagem de "Liberação de Acesso" (via MQTT) ao **ESP32 - ENTRADA**, que envia o comando de abertura ao **ESP32 - SAÍDA**.
+7.  O **ESP32 - SAÍDA** aciona o **Relé**, que destrava a **Tranca Física**.
+8.  **Monitoramento:** O evento de entrada é registrado no **Banco de Dados**, e o status é atualizado via **WebSockets** para o **Dashboard do CCO**.
+
+##### 3.3.3.1.5.2. Fluxo de Acesso (Saida)
+1.  **Início:** O usuário passa o cartão no **Leitor RFID (Saída)**, indicando a intenção de sair.
+2.  **Mensageria:** O **ESP32 - SAÍDA** envia a tag do cartão para o **Broker MQTT**.
+3.  **Processamento e Registro:** O **Servidor de Aplicação** recebe a tag e realiza as ações:
+    * Consulta o **DB** para identificar o usuário.
+    * Valida se o usuário estava registrado como **"Dentro"** da área.
+    * **Registra o evento de saída** no **Banco de Dados**, com carimbo de tempo (timestamp).
+    * Opcionalmente, pode enviar um comando (via MQTT) de volta para o **ESP32 - SAÍDA** para exibir uma mensagem de confirmação (ex: "Saída Registrada").
+4.  **Atuação (Liberação):** O **ESP32 - SAÍDA** é programado para que, no fluxo de saída, a leitura do cartão ou um botão de saída (não mostrado no diagrama, mas comum) acione o **Relé** para liberar a **Tranca Física** imediatamente (priorizando a evacuação/fluxo de saída, não exigindo senha).
+5.  **Monitoramento:** O status da porta (via Sensor) e o log de saída são enviados ao DB e, via **WebSockets**, ao **Dashboard do CCO**.
+
+
+---
+### 3.3.3.2. Diagrama da arquitetura do backend
+O Diagrama da arquitetura do Backend tem como objetivo apresentar, de forma integrada, a **inteligência central** e o **fluxo de processamento lógico** da nossa solução de controle de acesso para áreas sensíveis da TIC Trens.
+
+Ele detalha a **orquestração de autenticação** em dois fatores, a comunicação **assíncrona** via Broker MQTT (HiveMQ), a persistência de dados no **PostgreSQL**, e a integração com APIs externas, como o sistema de **Agendamento da TIC Trens** e o **Gateway de SMS**. Essa arquitetura opera de forma coordenada para garantir a **segurança, a rastreabilidade dos logs e o monitoramento em tempo real** pelo CCO.
+
+
+<div align="center">
+<sub>Diagrama focado no backend</sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/diagrama_backend.png">
 </div>
 <div align="center">
 <sub>Fonte: Material produzido pelo Time DedSec no PlantUML, 2025.</sub>
 </div> 
 
-#### Diagrama de Sequência: Fluxo de Validação de Acesso  
+O diagrama do backend foi dividido em 3 partes principais: **Camada de Comunicação e Mensageria**, **Arquitetura do Backend**, **Persistência e Monitoramento** e **Fluxo de Autenticação**.
 
-&nbsp;&nbsp;&nbsp;&nbsp;O diagrama de sequência a seguir representa o **fluxo completo de validação de acesso** a uma área técnica da Tic Trens, ilustrando as interações entre os diferentes componentes do sistema: o **Colaborador** (usuário de campo), o **Dispositivo IoT** (hardware instalado na porta), o **Backend** (API principal do sistema), o **Banco de Dados** (armazenamento central), o **Módulo de Validação** (responsável pelas regras de negócio), a **API de Capacitação/Agendamento** (serviço externo fornecido pela Tic Trens) e o **Dashboard** (interface do Centro de Controle Operacional – CCO).  
+##### 3.3.3.2.1. Camada de Comunicação e Mensageria
 
-&nbsp;&nbsp;&nbsp;&nbsp;O processo é composto por **duas fases principais**: a **autenticação de múltiplos fatores (MFA)** e a **validação/autorização de acesso**. Além disso, o sistema inclui rotinas de **resposta**, **notificação em tempo real** e **auditoria pós-acesso**.  
+Esta camada gerencia a comunicação assíncrona com os dispositivos de Borda (ESP32) através de um Broker de mensagens.
 
----
-
-##### 1. Autenticação de Múltiplos Fatores (MFA)  
-
-&nbsp;&nbsp;&nbsp;&nbsp;Nesta primeira etapa, o sistema realiza a validação da **identidade do colaborador**, utilizando dois fatores de autenticação distintos para garantir que o usuário que tenta o acesso é realmente quem diz ser.  
-
-1. **Fator 1 – O que o colaborador possui:** o colaborador aproxima o seu **crachá RFID** no **Dispositivo IoT** localizado na entrada da área técnica.  
-2. O **Dispositivo IoT** envia o **ID do RFID** ao **Backend**, que encaminha a solicitação ao **Módulo de Validação**.  
-3. O **Módulo de Validação** consulta o **Banco de Dados** para verificar se o identificador RFID está cadastrado e vinculado a um colaborador.  
-4. **Se o RFID for reconhecido**, o Dispositivo IoT solicita um segundo fator de autenticação — o **PIN (senha única)** — a ser informado pelo colaborador.  
-5. O colaborador insere o PIN diretamente no teclado do Dispositivo IoT.  
-6. O Dispositivo IoT envia as credenciais completas (**RFID + PIN**) para o Backend, que encaminha os dados para o Módulo de Validação processar a autenticação.  
+| Componente | Função |
+| :--- | :--- |
+| **Broker MQTT (HiveMQ)** | Ponto de entrada e saída para a comunicação assíncrona com os dispositivos de Borda (ESP32). |
+| **Tópicos de Request** (`request_card`, `submit_sms`) | Tópicos para os quais os dispositivos de Borda **publicam** suas requisições (leitura do cartão e senha SMS). |
+| **Tópicos de Resposta** (`response_final`, `tranca`) | Tópicos para os quais o Backend **publica** a resposta final de acesso, direcionando comandos para os dispositivos atuadores (tranca/relé). |
 
 ---
 
-##### 2. Validação e Autorização  
+##### 3.3.3.2.2. Arquitetura do Backend (Lógica de Serviço)
 
-&nbsp;&nbsp;&nbsp;&nbsp;Após a confirmação da identidade do colaborador, o sistema realiza a verificação de **autorização de acesso**, consultando fontes internas e externas para validar se o acesso é permitido naquele momento.  
+Esta é a camada de aplicação Node.js, que coordena as regras de negócio, o fluxo de autenticação e a interação com os serviços.
 
-1. O **Módulo de Validação** confirma a validade do PIN e associa o colaborador autenticado ao seu perfil no banco de dados.  
-2. Se o PIN for **válido**, o sistema consulta a **API de Capacitação e Agendamento** (sistema externo da Tic Trens).  
-3. A API retorna as informações sobre **capacitação técnica** e **atividade agendada** do colaborador.  
-4. O Backend aplica as **regras de negócio**: o acesso só é autorizado se o colaborador estiver **capacitado**, **agendado** e dentro do **horário permitido**.  
-5. Caso contrário, o acesso é negado e o evento é classificado como tentativa não autorizada.  
-
----
-
-##### 3. Respostas do Sistema  
-
-&nbsp;&nbsp;&nbsp;&nbsp;Dependendo do resultado das validações, o sistema executa uma das três rotas de resposta:  
-
-###### A. Caminho de Sucesso – Acesso Autorizado  
-- O PIN é válido e a API confirma capacitação e agendamento ativos.  
-- O **Backend** envia ao **Dispositivo IoT** o comando de **liberação de acesso** (acionando o relé e o LED verde).  
-- O **Módulo de Validação** registra o evento de “Acesso Autorizado” no **Banco de Dados**.  
-- O **Dashboard** é atualizado em tempo real via **WebSocket**, exibindo o nome do colaborador, horário e área acessada.  
-- Uma mensagem de confirmação é exibida ao colaborador: **“Acesso autorizado”**.  
-
-###### B. Caminho de Falha – Acesso Negado (Autorização)  
-- O PIN é válido, mas a API externa indica falha na autorização (sem agendamento, capacitação vencida ou área incorreta).  
-- O **Backend** envia comando de **negação de acesso** ao Dispositivo IoT (mantendo a porta trancada e acendendo o LED vermelho).  
-- O evento é registrado no Banco de Dados como “Tentativa Não Autorizada”, com o motivo da recusa.  
-- O **Dashboard** recebe um alerta visual e sonoro informando a tentativa de acesso negada.  
-- O colaborador vê a mensagem: **“Acesso negado – colaborador não autorizado”**.  
-
-###### C. Caminho de Falha – Acesso Negado (Autenticação)  
-- O RFID é inválido ou o PIN está incorreto.  
-- O **Backend** envia comando de **falha imediata** ao Dispositivo IoT (LED vermelho).  
-- O evento é registrado no Banco de Dados como “Falha de Autenticação”, incluindo a causa (ex: “PIN incorreto” ou “RFID não reconhecido”).  
-- O **Dashboard** exibe alerta de segurança em tempo real.  
-- O colaborador é informado com a mensagem: **“Senha incorreta, tente novamente”** ou **“Cartão não reconhecido”**.  
+| Componente | Função | Interações / Dados |
+| :--- | :--- | :--- |
+| **Interface MQTT (Ouve e Publica nos Tópicos)** | Módulo de *listener* e *publisher* do Backend. É responsável por traduzir as mensagens MQTT em eventos de sistema. | Conecta ao **Broker MQTT**. |
+| **Orquestrador de Autenticação (A Lógica Principal)** | **Motor de regras** do Backend. Gerencia o estado da sessão de acesso, aplica as regras de segurança e decide a concessão/negação de acesso. | **Valida agendamento**, **Gera e envia PIN**, **Publica resposta** final. |
+| **API TIC Trens (Agendamento)** | Serviço externo consultado pelo Orquestrador para verificar a **capacitação** e o **agendamento** prévio do usuário. | Utiliza **HTTPS** para comunicação segura. |
+| **Gateway de SMS (Twilio/Zenvia)** | Serviço externo acionado pelo Orquestrador para o envio do **PIN (senha temporária)** gerado. | Recebe o PIN e o telefone do usuário. |
 
 ---
 
-##### 4. Pós-Acesso e Auditoria  
+##### 3.3.3.2.3. Persistência e Monitoramento
 
-&nbsp;&nbsp;&nbsp;&nbsp;Todos os registros de autenticação e autorização ficam armazenados no Banco de Dados, compondo o histórico de auditoria do sistema.  
-&nbsp;&nbsp;&nbsp;&nbsp;Os gestores podem acessar o **Dashboard do CCO** para gerar **relatórios de conformidade** contendo dados como:  
-- Identificação do colaborador;  
-- Data, hora e local do acesso;  
-- Resultado da validação (autorizado, negado, falha de autenticação);  
-- Motivo do bloqueio, quando aplicável.  
+Esta seção garante que todos os eventos sejam registrados, que os dados sejam mantidos e que o CCO tenha visibilidade em tempo real.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Essas informações são essenciais para fins de **segurança operacional**, **auditoria interna** e **cumprimento de normas trabalhistas e de segurança do trabalho**.  
+| Componente | Função | Interações / Dados |
+| :--- | :--- | :--- |
+| **Banco de Dados (PostgreSQL)** | Armazena de forma robusta e segura todos os dados primários do sistema: usuários, logs de acesso, sessões e configurações. | **Armazena os dados**. |
+| **Valida Credenciais, Salva Logs** | Módulo de interface com o DB. Responsável pela **validação do PIN** e pelo **registro detalhado** de cada evento de acesso (sucesso ou falha). | Escreve/Lê no **Banco de Dados**. |
+| **Servidor WebSocket (Envia Alertas em Tempo Real)** | Mantém uma conexão persistente com o Dashboard CCO para enviar **notificações imediatas** de eventos e alertas críticos. | Envia o **Evento de Acesso (Tempo Real)**. |
+| **Notifica CCO** | Sub-módulo acionado pelo Orquestrador após eventos importantes (ex: acesso negado, porta aberta, etc.). | Envia a notificação ao **Servidor WebSocket**. |
+| **API REST (Consulta Logs/Sessões)** | Interface **síncrona** utilizada pelo Dashboard CCO para consultas mais complexas, como histórico de logs e relatórios. | Utiliza **HTTPS (GET /logs)**. |
+| **Dashboard CCO (Vercel)** | A interface de visualização e gerenciamento do Coordenador. Consome dados via **API REST** e **WebSocket**. | Cliente de requisições **HTTPS** e **WebSocket**. |
 
 ---
 
-##### 5. Observações Técnicas  
+##### 3.3.3.2.4. Fluxo de Autenticação Completa (Sucesso)
 
-- O fluxo foi modelado com base no **princípio de autenticação em dois fatores (MFA)**, reforçando a confiabilidade do sistema.  
-- A comunicação entre o Dispositivo IoT e o Backend ocorre de forma segura via **protocolo MQTT ou HTTP com TLS**.  
-- O Dashboard utiliza **WebSocket** para atualização em tempo real dos eventos.  
-- O sistema registra todos os eventos de falha, sucesso e exceção para auditoria futura e análises de segurança.  
-- O modelo de dados é centralizado em **PostgreSQL**, garantindo integridade e rastreabilidade das operações.  
+Este fluxo detalha a jornada da requisição, desde a borda até a liberação do acesso, conforme orquestrado pelo Backend.
 
+##### 3.3.3.2.4.1. Primeiro Fator (Cartão e Autorização)
+1.  **Requisição:** O dispositivo de Borda (ESP32) envia a leitura do cartão via MQTT para o tópico: `request_card`.
+2.  **Identificação:** A **Interface MQTT** encaminha a requisição ao **Orquestrador de Autenticação**. Este consulta o **Banco de Dados** para identificar o usuário.
+3.  **Autorização Externa:** O Orquestrador consulta a **API TIC Trens (Agendamento)** para **Validar agendamento** e checar se o usuário está qualificado para a área no horário atual.
+4.  **Segundo Fator (PIN):** Se a validação do agendamento for positiva, o Orquestrador **Gera e envia PIN** (OTP - *One-Time Password*), utilizando o **Gateway de SMS**.
+5.  **Acompanhamento CCO:** O Orquestrador aciona **Notifica CCO** para enviar uma atualização em tempo real (*"Aguardando PIN..."*) via **Servidor WebSocket** ao Dashboard CCO.
+
+##### 3.3.3.2.4.2. Segundo Fator (Validação do PIN)
+6.  **Submissão:** O dispositivo de Borda envia o PIN digitado via MQTT para o tópico: `submit_sms`.
+7.  **Validação Interna:** O Orquestrador recebe o PIN e o compara com o PIN gerado e ativo, utilizando o módulo **Valida credenciais** (Banco de Dados).
+8.  **Decisão e Atuação:**
+    * Se a validação for **POSITIVA**, o Orquestrador envia o comando final de liberação via **Publica resposta** no tópico: `tranca`.
+9.  **Registro e Notificação:**
+    * O módulo **Salva Logs** registra o evento de **Acesso Concedido** no **Banco de Dados**.
+    * O Orquestrador aciona **Notifica CCO** para enviar o status final (*"Acesso Concedido"*) ao Dashboard CCO.
+
+##### 3.3.3.2.4.3. Fluxo de Falha (Exemplo: Agendamento Inválido)
+* Se o agendamento no passo 3 for inválido, o Orquestrador **pula** a geração de PIN.
+* O Orquestrador envia uma resposta de **Acesso Negado** (via **Publica resposta**) para o dispositivo e notifica o CCO com um alerta de "Agendamento Inválido".
+* O módulo **Salva Logs** registra a tentativa de acesso negado no **Banco de Dados** para auditoria.
+
+---
+
+
+#### 3.3.3.3.Relacionamento dos Requisitos com os diagramas da Arquitetura
+Os requisitos de software que fazem parte da norma ISO/IEC 25010 definem atributos utilizados para avaliar a qualidade de um sistema. Como o próprio nome sugere, esses requisitos descrevem as capacidades que o software deve possuir para cumprir o que se propõe a fazer. Eles se dividem em dois tipos: requisitos funcionais e requisitos não funcionais.
+
+Dessa forma, como já mencionado, os diagramas de arquitetura de software representam visualmente o fluxo completo de interação do usuário com o sistema e o comportamento esperado durante esse processo. Sendo assim, é possível analisar, por meio dos diagramas, se os requisitos estão sendo contemplados ou não.
+
+#### 3.3.3.3.1. Requisitos Funcionais (RFs)
+Os requisitos funcionais são especificações que descrevem o que o sistema deve fazer. Eles definem as funcionalidades e os serviços que o software deve oferecer para atender às necessidades dos usuários ou de outras partes interessadas, sem se aprofundar em como essas funcionalidades serão implementadas.
+
+Os Requisitos Funcionais são atendidos por componentes específicos e fluxos de interação entre as camadas dos diagramas.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RF01** | Coleta de dados via sensor RFID | **Atendido pela Camada de Borda (Hardware):** O fluxo começa com a leitura do **Leitor RFID** (Entrada/Saída) e a inserção do PIN no **Teclado**. O microcontrolador **ESP32 - ENTRADA** coleta e gerencia esses dados brutos. |
+| **RF02** | Conexão Wi-Fi e comunicação via MQTT | **Atendido pela Camada de Borda e Comunicação:** O **ESP32** utiliza o módulo **Wi-Fi** para estabelecer a conexão de rede. A comunicação é realizada por meio do **Broker MQTT (HiveMQ)**, que está na **Camada de Comunicação**. |
+| **RF03** | Formatação e publicação de dados no protocolo MQTT | **Atendido pela Camada de Borda e Comunicação:** O código no **ESP32** é responsável por formatar os dados brutos (**RFID, PIN**) em *payloads* JSON válidos antes de publicá-los no **Broker MQTT**, utilizando os **Tópicos de Request** (`request_card`, `submit_sms`). |
+| **RF04** | Autenticação multifator e validação de credenciais | **Atendido pela Arquitetura do Backend:** Esta é a função principal do **Orquestrador de Autenticação**. Ele valida (1) o **UID do RFID** (consultando o DB) e (2) o **PIN** inserido pelo usuário (comparando com o código gerado), liberando o acesso somente após a dupla confirmação. |
+| **RF05** | Verificação de capacitação e agendamento | **Atendido pela Arquitetura do Backend:** Esta validação é realizada pelo **Orquestrador de Autenticação** que se integra à **API TIC Trens (Agendamento)**, que representa o sistema corporativo externo. O fluxo exige que esta consulta seja feita antes da geração do PIN. |
+| **RF06** | Gestão de dispositivos IoT e credenciais | **Atendido pela Camada de Backend (API REST e DB):** O cadastro dos dispositivos (Device ID, Tokens MQTT) e sua vinculação a locais físicos são funções gerenciadas pela **API REST** e armazenadas no **Banco de Dados (PostgreSQL)**, permitindo que a Coordenadora (Beatriz) os configure via **Dashboard CCO**. |
+| **RF07** | Registro e auditoria de eventos de acesso | **Atendido pela Arquitetura do Backend (Persistência):** O módulo **Valida credenciais, Salva logs** é explicitamente responsável por registrar todos os eventos (ID do usuário, resultado, *timestamp*, etc.) no **Banco de Dados (PostgreSQL)**. |
+| **RF08** | Dashboard corporativo com visualização em tempo real | **Atendido pela Camada de Aplicação e Backend:** O **Dashboard CCO (Vercel)** é a interface de visualização. Ele consome dados em tempo real através do **Servidor WebSocket** (para eventos imediatos) e dados históricos via **API REST (GET /logs)**. |
+| **RF09** | Criptografia de dados em trânsito | **Atendido pela Camada de Comunicação e Backend:** Isso é garantido pelo uso obrigatório de **TLS/SSL** sobre o MQTT (MQTTS) e sobre o HTTP (**HTTPS** - Porta 443) em todas as conexões (ESP32 $\leftrightarrow$ Broker, Backend $\leftrightarrow$ API TIC Trens, Dashboard $\leftrightarrow$ Backend). |
+
+---
+
+#### 3.3.3.3.2. Requisitos Não Funcionais (RNFs)
+Os requisitos não funcionais especificam como o sistema deve se comportar para que uma funcionalidade seja atendida. Eles funcionam como requisitos funcionais com restrições adicionais. Esses requisitos definem critérios de qualidade que influenciam a experiência do usuário e o desempenho do software, como eficiência, segurança, usabilidade e confiabilidade
+
+Os Requisitos Não Funcionais abordam a qualidade e a segurança do sistema, sendo implementados nas configurações dos componentes.
+
+| ID | Requisito | Atendimento no Diagrama e Fluxo |
+| :--- | :--- | :--- |
+| **RNF01** | Criptografia pós-quântica para dados em repouso | **Atendido pela Camada de Backend (Banco de Dados):** O requisito é implementado na configuração do **Banco de Dados (PostgreSQL)** e no módulo **Valida credenciais, Salva logs**, garantindo que os dados sensíveis sejam criptografados antes de serem persistidos. |
+| **RNF02** | Fiel cumprimento da autenticação em dois fatores | **Atendido pelo Fluxo do Orquestrador de Autenticação:** O diagrama do Backend mostra o fluxo estrito: 1. Validação de Agendamento, 2. Geração/Envio de PIN, 3. Validação do PIN. O **Orquestrador** é o responsável por impor essa sequência lógica. |
+| **RNF03** | Tempo máximo de 5s para travamento automático | **Atendido pelo Fluxo da Camada de Borda:** Este é um requisito de **Desempenho** crítico, dependendo da baixa latência da comunicação MQTT/Wi-Fi e da eficiência do código no **ESP32 - SAÍDA**, que controla o **Relé** e a **Tranca Física**. |
+| **RNF04** | Compatibilidade com MQTT e HTTP | **Atendido pelas Camadas de Comunicação e Backend:** O diagrama mostra o uso central do **MQTT** (Comunicação Assíncrona) e do **HTTPS/API REST** (Comunicação Síncrona) no Backend. A arquitetura já prevê essa dualidade de protocolos. |
+| **RNF05** | Modularização e documentação do código-fonte | **Atendido pela Arquitetura do Backend:** A divisão do Backend em componentes claros (**Interface MQTT**, **Orquestrador**, **Servidor WebSocket**, **API REST**) é um princípio de modularização, facilitando a manutenção e futuras atualizações. |
+| **RNF06** | Portabilidade (Ambiente Local vs. Nuvem) | **Atendido pela Arquitetura em Camadas:** A arquitetura desacopla a lógica do Backend do hardware (via Broker MQTT). Isso permite que todos os serviços do Backend sejam movidos para um ambiente local ou para a nuvem sem impactar o código dos **dispositivos ESP32** ou do **Dashboard**. |
+---
+
+
+### 3.3.3.4. Demonstração e Explicação da Arquitetura
+
+Esta seção contém o material audiovisual de apoio, que demonstra o funcionamento da solução e explica em detalhes cada um dos diagramas de arquitetura documentados neste projeto.
+
+#### Vídeo - Explicação do Diagrama Geral da Solução
+
+Este vídeo apresenta a visão macro da solução de controle de acesso para a TIC Trens, detalhando a interconexão das quatro camadas: **Borda (Hardware), Comunicação, Backend (Serviço) e Aplicação (Dashboard)**. É um guia visual do fluxo completo de entrada e saída, mostrando como os componentes físicos se comunicam para realizar a autenticação em dois fatores e a atuação da tranca.
+
+* **Conteúdo:** Visão geral das camadas e fluxo de acesso.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=jaz4mZkZzvo)
+
+#### Vídeo - Explicação do Diagrama da Arquitetura do Backend
+
+O segundo vídeo foca no **centro de inteligência** do sistema. Ele detalha o funcionamento do **Orquestrador de Autenticação** no Servidor de Aplicação, a utilização do protocolo **MQTT** para comunicação assíncrona, as consultas ao **Banco de Dados (PostgreSQL)** e a integração com a **API de Agendamento da TIC Trens**. O vídeo explica como o backend gerencia a sessão de acesso, salva os logs e notifica o CCO em tempo real.
+
+* **Conteúdo:** Detalhamento da lógica de autenticação e persistência de dados.
+* **Link:** [Visualizar Demonstração](https://www.youtube.com/watch?v=XVhP-Pj7qDs)
+
+---
 
 ### Diagrama de classes UML
 
@@ -1070,22 +1278,6 @@ As associações representam como as classes interagem entre si, utilizando a mu
 | **sala** | $\longrightarrow$ | **tarefa** | $1 \longrightarrow 1...n$ | Uma sala pode ter **várias tarefas** agendadas nela. |
 ---
 </div>
-
-#### (Sprint 3)
-
-_Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
-
-_Descreva a arquitetura técnica da solução de forma detalhada (visão de arquitetura).
-
-Justifique como a arquitetura suporta os requisitos funcionais e não funcionais.
-
-O diagrama de arquitetura deve:_
-- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
-- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
-- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
-- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
-- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
 
 
 ### 3.3.4. Arquitetura do Protótipo(sprint 4)	
@@ -2038,14 +2230,989 @@ A implementação do protótipo físico com dois ESP32s e MQTT foi bem-sucedida,
 
 Esta base de hardware offline é resiliente e modular, provando-se uma fundação sólida para a próxima fase do projeto, que incluirá a integração com o backend na nuvem e a lógica de agendamento.
 
-### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
+### 3.4.3. Protótipo do Projeto com MQTT e I2C 
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. A tabela a seguir serve como exemplo._
+&nbsp;&nbsp;&nbsp;&nbsp; Nessa seção, nos aprofundamos mais sobre os casos de uso, que representam situações reais do nosso sistema no que diz respeito à interação com o usuário, demonstrando como o sistema deve responder em diversas situações diferentes, registrando não apenas casos de sucesso, mas também casos de falha.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O protótipo do sistema de controle de acesso desenvolvido para a TIC Trens é composto por dois módulos ESP32 que realizam a autenticação do colaborador por RFID e a liberação da tranca por relé. A comunicação com os dispositivos periféricos, como display LCD, ocorre via protocolo I2C, enquanto a troca de dados entre os microcontroladores e a nuvem é realizada por MQTT.
 
 **#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
 |----------|----------|----------|----------|
-|01|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
+|01| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado e autorizado. | O sistema identifica cartão autorizado no banco de dados e envia, por SMS, um código de acesso. |
+|02| Sistema devidamente energizado, display apresenta a frase “Aproxime o cartão”. | Usuário aproxima cartão RFID, que está registrado mas não está autorizado naquele momento. | O sistema exibe “Cartão não cadastrado”. | 
+|03| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha que recebeu por SMS no teclado. | A tranca é desativada com sucesso após energização do relé e a entrada do trabalhador é liberada. Buzzer é acionado e emite um sinal sonoro. Display exibe “Acesso liberado”. | 
+|04| Após leitura de cartão autorizado, display exibe “Digite a senha:”. | O usuário digita a senha errada no teclado. | A tranca não é liberada. Buzzer é acionado e emite um sinal sonoro diferente de quando é liberado. Display exibe “Senha Incorreta”. | 
+|05| O usuário está dentro da sala, terminou seu trabalho e deseja sair. A porta por dentro também apresenta sensor RFID. | O trabalhador apresenta o mesmo cartão que usou para entrar para sair. | A tranca é liberada e o usuário consegue sair normalmente da sala. | 
+|06| O sistema está conectado com a Internet e após a leitura do cartão autorizado, o display exibe “Digite a senha:”. | O trabalhador digita a senha corretamente. | O sistema responsável pela verificação de entrada envia a informação através do protocolo MQTT emitindo o sinal para liberar a tranca. | 
+|07| O sistema de entrada não está conectado a Internet | O usuário tenta aproximar o cartão | O LCD exibe “Conectando a Internet...”.
+|08| O sistema da tranca não está conectado a Internet | O usuário insere a senha corretamente. | O sistema de entrada envia corretamente o sinal para abertura das portas, mas o sistema da tranca não consegue fazer a requisição da resposta enviada devido a dificuldade de conexão com a internet.
+|09| O sistema da tranca não está conectado a Internet | O usuário insere a senha corretamente. | O sistema de entrada envia corretamente o sinal para abertura das portas, mas o sistema da tranca não consegue fazer a requisição da resposta enviada devido a dificuldade de conexão com a internet.
+|10| O usuário aproxima o cartão e aparece “Digite a Senha:”, porém após a aproximação o sistema perde a conexão com a Internet | O usuário insere a senha corretamente. | O sistema de entrada não envia o sinal para abertura das portas.
+
+### Registros visuais
+
+As imagens a seguir representam os casos de uso registrados anteriormente.
+
+#### Caso 01 - Visor exibindo "Aproxime o cartão"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/aproxime.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 02 - Visor exibindo "Cartão não cadastrado"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/nao_cadastrado.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 03 - Visor exibindo "Digite a senha" e "Acesso liberado"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/digite.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/liberado.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 04 - Visor exibindo "Senha incorreta"
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/senha_incorreta.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+#### Caso 07 - Visor exibindo "Conectando a Internet..."
+
+<div align="center">
+<sub></sub>
+</div>
+<div align="center">
+<img src="../assets/documentação/prototipo_fisico/conectando.jpg">
+</div>
+<div align="center">
+<sub>Fonte: Autoria da equipe Dedsec.</sub>
+</div>
+<br>
+
+### Mudanças realizadas
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código em MQTT e I2C já se fazia presente na seção 3.4.2 e documentado nesta mesma seção. Nessa atualização, foram feitas algumas novas alterações em problemas que surgiram no RFID.
+
+#### ESP-32 SENHA 
+
+&nbsp;&nbsp;&nbsp;&nbsp; No primeiro ESP32, que contém o sensor RFID, teclado matricial, visor LCD e buzzer, foram realizadas as seguintes alterações:
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nessa sprint, construímos o primeiro Case para nosso protótipo, no qual é mostrado o teclado matricial, o display LCD e uma representação visual de onde deve ser aproximado o cartão RFID. Em termos de funções alteramos algumas mensagens exibidas no visor, para melhor visualização e entendimento do usuário. Foi adicionado também a lógica de negação para cartões não cadastrados. O barulho do buzzer foi alterado para um mais intuitivo de quando acesso negado ocorresse. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; A principal parte do código alterada é demonstrada a seguir, no qual inclui a lógica de negação de cartões não cadastrados:
+
+``` C++
+  if (!sistemaAtivo) {
+    if (leitorCartao.detectarCartao()) {
+     
+      if (leitorCartao.eCartaoAutorizado()) {
+         
+          MFRC522& rfidInterno = leitorCartao.getRFID();
+          Serial.print("UID lido: ");
+          for (byte i = 0; i < rfidInterno.uid.size; i++) {
+            Serial.print(rfidInterno.uid.uidByte[i], HEX);
+            Serial.print(" ");
+          }
+          Serial.println();
+     
+          sistemaAtivo = true;
+          display1.escreverLinhaUnica("Digite a Senha:");
+         
+      } else {
+          Serial.println("Cartao Negado!");
+          display1.setTexto1("Cartao nao");
+          display1.setTexto2("cadastrado");
+          display1.escreverLinhaDupla();
+         
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+         
+          delay(2000);
+         
+          display1.setTexto1("Aproxime o");
+          display1.setTexto2("cartao");
+          display1.escreverLinhaDupla();
+      }
+     
+      leitorCartao.encerrarLeitura();
+    }
+  }
+``` 
+#### Código Completo com as novas alterações
+
+
+```c++
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <string>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+
+// -----------------------------
+// CONFIGURAÇÃO LCD
+// -----------------------------
+#define ende 0x27  // Endereço I2C do display LCD
+#define col 16     // Número de colunas do display (16 caracteres)
+#define lin 2      // Número de linhas do display (2 linhas)
+LiquidCrystal_I2C lcd(ende, col, lin);  // Instância do display LCD
+
+// -----------------------------
+// VARIÁVEIS GERAIS
+// -----------------------------
+String senha_correta = "123456";  // Senha padrão do sistema
+bool sistemaAtivo = false;        // Flag que indica se o sistema está aguardando digitação de senha
+
+// -----------------------------
+// CLASSE TECLADO
+// -----------------------------
+// Classe responsável por gerenciar o teclado matricial 4x4
+class Teclado {
+  private:
+    Keypad teclado;          // Instância do teclado matricial
+    String senhaDigitada;    // Armazena a senha digitada pelo usuário
+
+  public:
+    // Construtor: inicializa o teclado com a matriz de teclas e os pinos
+    Teclado(char matriz[4][4], byte* linhas, byte* colunas, byte qtdLinhas, byte qtdColunas)
+      : teclado(makeKeymap(matriz), linhas, colunas, qtdLinhas, qtdColunas), senhaDigitada("") {}
+
+    // Lê a tecla pressionada no teclado
+    char lerTecla() {
+      return teclado.getKey();
+    }
+
+    // Adiciona uma tecla à senha digitada ou remove o último dígito com '*'
+    void adicionarTecla(char tecla) {
+      // Se for número e a senha tiver menos de 6 dígitos, adiciona
+      if (tecla >= '0' && tecla <= '9' && senhaDigitada.length() < 6) {
+        senhaDigitada += tecla;
+      } 
+      // Se for '*', remove o último dígito (backspace)
+      else if (tecla == '*') {
+        if (senhaDigitada.length() > 0) {
+          senhaDigitada.remove(senhaDigitada.length() - 1);
+        }
+      }
+    }
+
+    // Retorna a senha digitada
+    String getSenha() {
+      return senhaDigitada;
+    }
+
+    // Limpa a senha digitada
+    void limparSenha() {
+      senhaDigitada = "";
+    }
+};
+
+// -----------------------------
+// COMUNICAÇÃO COM TRANCA
+// -----------------------------
+WiFiClientSecure espClient;  // Cliente WiFi seguro (SSL/TLS)
+PubSubClient client(espClient);  // Cliente MQTT para comunicação com a tranca
+
+// -----------------------------
+// CLASSE RFID
+// -----------------------------
+// Classe responsável por gerenciar o leitor RFID RC522
+class Rfid {
+  private:
+    int ssPin;             // Pino SS (Slave Select) do módulo RFID
+    int rstPin;            // Pino RST (Reset) do módulo RFID
+    MFRC522 rfid;          // Instância do leitor RFID
+    byte uidAutorizado[4] = {0x5c, 0x8D, 0x35, 0x4A};  // UID do cartão autorizado
+
+  public:
+    // Construtor: inicializa o leitor RFID com os pinos SS e RST
+    Rfid(int porta1, int porta2): ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+    // Inicializa o módulo RFID e configura o barramento SPI
+    void iniciar() {
+      SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, SS
+      rfid.PCD_Init();
+      delay(100);
+      Serial.println("RC522 pronto!");
+    }
+
+    // Reinicia o módulo RFID
+    void reiniciar() {
+      rfid.PCD_Init(); 
+    }
+
+    // Detecta se há um cartão próximo ao leitor
+    bool detectarCartao() {
+      if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+        return false;
+      }
+      return true;
+    }
+
+    // Verifica se o cartão lido é um cartão autorizado
+    bool eCartaoAutorizado() {
+      for (byte i = 0; i < 4; i++) {
+        if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Encerra a leitura do cartão e desativa a criptografia
+    void encerrarLeitura() {
+      rfid.PICC_HaltA();
+      rfid.PCD_StopCrypto1();
+      delay(50);
+    }
+
+    // Retorna referência ao objeto RFID interno
+    MFRC522& getRFID() {
+      return rfid;
+    }
+};
+
+// -----------------------------
+// CLASSE DISPLAY
+// -----------------------------
+// Classe responsável por gerenciar o display LCD I2C
+class Display {
+  private:
+    int pin1;       // Pino SDA (dados I2C)
+    int pin2;       // Pino SCL (clock I2C)
+    String texto1;  // Texto da primeira linha
+    String texto2;  // Texto da segunda linha
+
+  public:
+    // Construtor: define os pinos I2C do display
+    Display(int porta1, int porta2): pin1(porta1), pin2(porta2) {}
+
+    // Inicializa o display LCD e a comunicação I2C
+    void iniciar() {
+      Serial.begin(115200);
+      Wire.begin(pin1, pin2);  // Inicializa I2C com os pinos SDA e SCL
+      lcd.init();
+      lcd.backlight();  // Liga a luz de fundo do display
+    }
+
+    // Define o texto da primeira linha
+    void setTexto1(String novoTexto1) {
+      texto1 = novoTexto1;
+    }
+
+    // Define o texto da segunda linha
+    void setTexto2(String novoTexto2) {
+      texto2 = novoTexto2;
+    }
+
+    // Escreve um texto em uma linha específica do display
+    void escreverLinhaUnica(String texto, int linha = 0) {
+      lcd.clear();
+      lcd.setCursor(0, linha);
+      lcd.print(texto);
+    }
+
+    // Escreve duas linhas de texto no display
+    void escreverLinhaDupla() {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(texto1);
+      lcd.setCursor(0, 1);
+      lcd.print(texto2);
+    }
+
+    // Escreve a senha com asteriscos para ocultar os dígitos
+    void escreverSenhaMascarada(String senha) {
+      escreverLinhaUnica("Digite a senha:");
+      lcd.setCursor(0, 1);
+      for (int i = 0; i < senha.length(); i++) {
+        lcd.print('*');  // Mascara cada dígito com asterisco
+      }
+    }
+};
+
+// -----------------------------
+// CLASSE BUZZER
+// -----------------------------
+// Classe responsável por controlar o buzzer (som de feedback)
+class Buzzer {
+  private:
+    int pin;  // Pino digital conectado ao buzzer
+
+  public:
+    // Construtor: define o pino do buzzer
+    Buzzer(int porta): pin(porta) {}
+
+    // Inicializa o pino do buzzer como saída
+    void iniciar() {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);  // Garante que o buzzer comece desligado
+    }
+
+    // Liga o buzzer
+    void tocarSom() {
+      digitalWrite(pin, HIGH);
+    }
+
+    // Desliga o buzzer
+    void desligar() {
+      digitalWrite(pin, LOW);
+    }
+};
+
+// -----------------------------
+// CLASSE WIFI
+// -----------------------------
+// Classe responsável por gerenciar a conexão WiFi
+class Wifi {
+  private:
+    const char* ssid;      // Nome da rede WiFi
+    const char* password;  // Senha da rede WiFi
+  public:
+    // Construtor: armazena as credenciais da rede WiFi
+    Wifi(const char* nome, const char* senha) : ssid(nome), password(senha) {}
+
+    // Conecta o ESP32 à rede WiFi
+    void conectar_Wifi() {
+      delay(10);
+      Serial.println();
+      Serial.print("Conectando a rede: ");
+      Serial.println(ssid);
+
+      WiFi.begin(ssid, password);
+
+      // Aguarda até que a conexão seja estabelecida
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print(".");
+      }
+
+      Serial.println("");
+      Serial.println("WiFi conectado");
+      Serial.println("Endereco IP: ");
+      Serial.println(WiFi.localIP());
+    }
+};
+
+// -----------------------------
+// CLASSE MQTT
+// -----------------------------
+// Classe responsável por gerenciar a comunicação MQTT com o broker
+class MQTT {
+  private:
+    const char* mqtt_broker;    // Endereço do broker MQTT
+    const int mqtt_port;        // Porta do broker MQTT
+    const char* mqtt_username;  // Usuário para autenticação MQTT
+    const char* mqtt_password;  // Senha para autenticação MQTT
+  public:
+    // Construtor: armazena as credenciais do broker MQTT
+    MQTT(const char* broker, const int port, const char* nome, const char* senha) 
+      : mqtt_broker(broker), mqtt_port(port), mqtt_username(nome), mqtt_password(senha) {}
+    
+    // Reconecta ao broker MQTT caso a conexão seja perdida
+    void reconnect() {
+      while (!client.connected()) {
+        Serial.print("Conectando ao broker MQTT...");
+        if (client.connect("ESP32Client", mqtt_username, mqtt_password)) {
+          Serial.println("conectado");
+        } else {
+          Serial.print("falha, rc=");
+          Serial.print(client.state());
+          Serial.println(" tentando novamente em 5 segundos");
+          delay(5000);
+        }
+      }
+    }
+    
+    // Inicializa a conexão MQTT configurando o cliente
+    void iniciar_conexao(){
+      espClient.setInsecure();  // Desabilita verificação de certificado SSL
+      client.setServer(mqtt_broker, mqtt_port);
+    }
+    
+    // Publica comandos para desbloquear e bloquear a tranca
+    void desligar_tranca(){
+      client.publish("tranca", "liberada");  // Envia comando para liberar a tranca
+      delay(3000);  // Aguarda 3 segundos com a tranca liberada
+      client.publish("tranca", "bloqueada");  // Envia comando para bloquear novamente
+    }
+    
+    // Mantém a conexão MQTT ativa ou reconecta se necessário
+    void manter_conexao(){
+       if(!client.connected()){
+        reconnect();  // Reconecta se a conexão cair
+      }else
+        client.loop();  // Processa mensagens MQTT pendentes
+    }
+};
+
+// -----------------------------
+// CONFIGURAÇÃO TECLADO 4x4
+// -----------------------------
+const byte LINHAS = 4;   // Número de linhas do teclado matricial
+const byte COLUNAS = 4;  // Número de colunas do teclado matricial
+
+// Mapeamento das teclas do teclado 4x4
+char TECLAS_MATRIZ[4][4] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}  // '*' = backspace, '#' = confirmar
+};
+
+// Pinos do ESP32 conectados às linhas do teclado
+byte PINOS_LINHAS[LINHAS] = {17, 16, 14, 25};
+// Pinos do ESP32 conectados às colunas do teclado
+byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
+
+// -----------------------------
+// INSTÂNCIAS DOS OBJETOS
+// -----------------------------
+Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);  // Teclado 4x4
+Buzzer somValidacao(13);    // Buzzer conectado ao pino 13
+Display display1(26, 27);   // Display LCD I2C (SDA=26, SCL=27)
+Rfid leitorCartao(5, 22);   // Leitor RFID RC522 (SS=5, RST=22)
+Wifi Wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");  // Credenciais da rede WiFi
+MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");  // Broker MQTT HiveMQ
+
+// -----------------------------
+// SETUP
+// -----------------------------
+// Função executada uma vez na inicialização do sistema
+void setup() {
+  // Inicializa os componentes de hardware
+  display1.iniciar();         // Inicia o display LCD
+  leitorCartao.iniciar();     // Inicia o leitor RFID
+  somValidacao.iniciar();     // Inicia o buzzer
+
+  // Exibe mensagem de conexão no display
+  display1.setTexto1("Conectando a");
+  display1.setTexto2("Internet...");
+  display1.escreverLinhaDupla();
+
+  // Conecta à rede WiFi
+  Wifi.conectar_Wifi();
+
+  // Inicializa a conexão com o broker MQTT
+  MQTT.iniciar_conexao();
+
+  // Exibe mensagem para aproximar o cartão
+  display1.setTexto1("Aproxime o");
+  display1.setTexto2("cartao");
+  display1.escreverLinhaDupla();
+}
+
+// -----------------------------
+// LOOP PRINCIPAL
+// -----------------------------
+// Função executada continuamente após o setup
+void loop() {
+  // Mantém a conexão MQTT ativa
+  MQTT.manter_conexao();
+
+  // MODO 1: Aguardando leitura do cartão RFID
+  if (!sistemaAtivo) {
+    if (leitorCartao.detectarCartao()) {
+      
+      // Verifica se o cartão lido está autorizado
+      if (leitorCartao.eCartaoAutorizado()) {
+          
+          // Exibe o UID do cartão no monitor serial para debug
+          MFRC522& rfidInterno = leitorCartao.getRFID();
+          Serial.print("UID lido: ");
+          for (byte i = 0; i < rfidInterno.uid.size; i++) {
+            Serial.print(rfidInterno.uid.uidByte[i], HEX);
+            Serial.print(" ");
+          }
+          Serial.println();
+      
+          // Ativa o sistema para permitir digitação da senha
+          sistemaAtivo = true;
+          display1.escreverLinhaUnica("Digite a Senha:");
+          
+      } else {
+          // Cartão não autorizado - exibe mensagem de erro
+          Serial.println("Cartao Negado!");
+          display1.setTexto1("Cartao nao");
+          display1.setTexto2("cadastrado");
+          display1.escreverLinhaDupla();
+          
+          // Toca dois bipes de erro
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          
+          delay(2000);
+          
+          // Retorna à tela inicial
+          display1.setTexto1("Aproxime o");
+          display1.setTexto2("cartao");
+          display1.escreverLinhaDupla();
+      }
+      
+      leitorCartao.encerrarLeitura();
+    }
+  }
+
+  // MODO 2: Aguardando digitação da senha
+  if (sistemaAtivo) {
+    char tecla = teclado.lerTecla();
+    if (tecla) {
+      // Tecla '#' confirma a senha
+      if (tecla == '#') {
+        // Verifica se a senha está correta
+        if (teclado.getSenha() == senha_correta) {
+          // Senha correta - libera o acesso
+          display1.escreverLinhaUnica("Acesso Liberado");
+          Serial.println("Senha correta!");
+          somValidacao.tocarSom();  // Bipe longo de sucesso
+          delay(3000);
+          somValidacao.desligar();
+
+          // Envia comando via MQTT para desbloquear a tranca
+          MQTT.desligar_tranca();
+        } else {
+          // Senha incorreta - nega o acesso
+          display1.escreverLinhaUnica("Senha Incorreta");
+          Serial.println("Senha incorreta!");
+          // Toca dois bipes de erro
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+          delay(100);
+          somValidacao.tocarSom();
+          delay(200);
+          somValidacao.desligar();
+        }
+
+        delay(2000);
+        teclado.limparSenha();  // Limpa a senha digitada
+        
+        leitorCartao.reiniciar();  // Reinicia o leitor RFID
+        
+        // Retorna ao modo de leitura de cartão
+        sistemaAtivo = false;
+        display1.setTexto1("Aproxime o");
+        display1.setTexto2("cartao");
+        display1.escreverLinhaDupla();
+        return;
+      } else {
+        // Adiciona a tecla digitada à senha (números) ou remove último dígito ('*')
+        teclado.adicionarTecla(tecla);
+      }
+
+      // Atualiza o display mostrando a senha mascarada
+      display1.escreverLinhaUnica("Digite a Senha:");
+      display1.escreverSenhaMascarada(teclado.getSenha());
+    }
+  }
+}
+```
+#### ESP32 Tranca
+ 
+#### Classe Wifi
+
+No ESP32 Tranca, foram criadas algumas novas classes para manter o código em POO, como a WiFi, que gerencia a conexão do ESP32 a uma rede Wi-Fi. Ela possui dois atributos privados: ssid, que armazena o nome da rede, e password, que guarda a senha. O construtor inicializa esses atributos.
+
+&nbsp;&nbsp;&nbsp;&nbsp; O método **conectar_Wifi()** conecta o ESP32 à rede Wi-Fi usando os dados fornecidos, imprimindo no monitor serial mensagens sobre o status de conexão com a internet e aguardando até que a conexão seja estabelecida, mostrando pontos durante a tentativa.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Ao conectar, exibe a mensagem de confirmação e o endereço IP obtido.
+
+```c++
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+
+class WiFi {
+private:
+  const char* ssid;
+  const char* password;
+
+public:
+  WiFiManager(const char* ssid, const char* password)
+    : ssid(ssid), password(password) {}
+
+  void conectar() {
+    Serial.print("Conectando à rede: ");
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+
+    Serial.println("\nWiFi conectado!");
+    Serial.print("IP: ");
+    Serial.println(WiFi.localIP());
+  }
+};
+
+WiFi wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
+```
+
+#### Novo sensor RFID
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além disso, foi adicionada um novo sensor RFID no Esp32 Tranca, que é responsável por liberar os funcionários que já entraram na sala para manutenção. Dessa forma, foi adicionada uma nova classe chamada RFID.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe Rfid foi criada para simplificar o uso do leitor RFID no seu projeto. Ela guarda os pinos que o módulo usa para funcionar, o leitor propriamente dito e também o número do cartão que deve ser reconhecido como autorizado.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Quando você cria um objeto dessa classe, ela já recebe os pinos necessários e deixa tudo preparado para o funcionamento. No método iniciar(), o leitor é ligado e configurado, para que possa começar a detectar cartões. O método detectarCartao() verifica se existe um cartão perto do leitor e se ele conseguiu ler o código desse cartão. Caso consiga, você pode usar o método eCartaoAutorizado() para descobrir se o cartão lido é o mesmo que você cadastrou como permitido.
+
+&nbsp;&nbsp;&nbsp;&nbsp;  Existe também o método reiniciar(), que serve para resetar o leitor caso algo dê errado ou se você quiser simplesmente limpar o estado dele após uma leitura. Já o método encerrarLeitura() finaliza a comunicação com o cartão, evitando erros quando for ler outro cartão em seguida. Se você precisar acessar funções mais avançadas do leitor, o método getRFID() permite acessar o objeto interno da biblioteca.
+
+```c++
+class Rfid {
+private:
+  int ssPin;
+  int rstPin;
+  MFRC522 rfid;
+  byte uidAutorizado[4] = { 0x5c, 0x8D, 0x35, 0x4A };
+
+public:
+  Rfid(int porta1, int porta2)
+    : ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+  void iniciar() {
+    SPI.begin(18, 19, 23, 5);
+    rfid.PCD_Init();
+    delay(100);
+    Serial.println("RC522 pronto!");
+  }
+
+  void reiniciar() {
+    rfid.PCD_Init();  // Reconfigura os registradores do chip
+  }
+
+  bool detectarCartao() {
+    if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+      return false;
+    }
+    return true;
+  }
+
+  bool eCartaoAutorizado() {
+    for (byte i = 0; i < 4; i++) {
+      if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void encerrarLeitura() {
+    rfid.PICC_HaltA();
+    rfid.PCD_StopCrypto1();
+    delay(50);
+  }
+
+  MFRC522& getRFID() {
+    return rfid;
+  }
+};
+```
+
+#### Classe MQTT
+
+&nbsp;&nbsp;&nbsp;&nbsp; O código em MQTT que recebe o sinal para liberar a tranca também foi transformado em MQTT. Além disso, também foi criada uma função callback para receber sinais do tópico tranca.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A classe MQTT foi feita para organizar toda a parte de conexão do ESP32 com o servidor MQTT. Ela guarda as informações necessárias para conectar (como endereço, porta, usuário e senha) e usa essas informações para configurar o cliente MQTT. O método iniciar() apenas prepara a conexão, enquanto o método reconnect() garante que o ESP32 esteja sempre conectado: se a conexão cair ou ainda não tiver sido feita, ele tenta de novo até funcionar. Quando a conexão é estabelecida, ele também já se inscreve automaticamente no tópico “tranca”.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A função callback() é chamada sempre que chega uma mensagem. Ela lê o texto recebido e, se for a palavra “liberada”, ativa o pino 16 por alguns segundos, como se fosse um comando para abrir uma tranca ou liberar uma ação.
+
+```c++
+
+class MQTT {
+private:
+  PubSubClient& client;
+  const char* broker;
+  int port;
+  const char* username;
+  const char* password;
+
+public:
+  MQTTManager(PubSubClient& c, const char* broker, int port, const char* user, const char* pass)
+    : client(c), broker(broker), port(port), username(user), password(pass) {}
+
+  void iniciar() {
+    client.setServer(broker, port);
+  }
+
+  void reconnect() {
+    while (!client.connected()) {
+      Serial.print("Conectando ao broker MQTT...");
+
+      if (client.connect("ESP32ClientSub", username, password)) {
+        Serial.println("Conectado!");
+        client.subscribe("tranca");
+      } else {
+        Serial.print("Falhou, rc=");
+        Serial.println(client.state());
+        Serial.println("Tentando de novo em 5s...");
+        delay(5000);
+      }
+    }
+  }
+};
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+  if (strcmp(payloadStr, "liberada") == 0) {
+    digitalWrite(16, HIGH);
+    delay(5000);
+    digitalWrite(16, LOW);
+  }
+}
+```
+#### Código Completo
+
+&nbsp;&nbsp;&nbsp;&nbsp; O ESP32 TRANCA tem como objetivo controlar um sistema de tranca eletrônica utilizando um RFID, Wi-Fi e MQTT. Ele permite que a porta seja aberta de forma automática ao detectar um cartão RFID autorizado ou quando um comando é enviado pelo broker MQTT. O sistema também utiliza um buzzer para fornecer feedback sonoro e organiza suas funcionalidades em classes para deixar o código mais organizado.
+
+
+```c++
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+#include <MFRC522.h>
+
+const int saidaPin = 16;
+const int buzzer = 32;
+
+bool portaAberta = false;
+
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+
+class WiFi {
+private:
+  const char* ssid;
+  const char* password;
+
+public:
+  WiFiManager(const char* ssid, const char* password)
+    : ssid(ssid), password(password) {}
+
+  void conectar() {
+    Serial.print("Conectando à rede: ");
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+
+    Serial.println("\nWiFi conectado!");
+    Serial.print("IP: ");
+    Serial.println(WiFi.localIP());
+  }
+};
+
+class MQTT {
+private:
+  PubSubClient& client;
+  const char* broker;
+  int port;
+  const char* username;
+  const char* password;
+
+public:
+  MQTTManager(PubSubClient& c, const char* broker, int port, const char* user, const char* pass)
+    : client(c), broker(broker), port(port), username(user), password(pass) {}
+
+  void iniciar() {
+    client.setServer(broker, port);
+  }
+
+  void reconnect() {
+    while (!client.connected()) {
+      Serial.print("Conectando ao broker MQTT...");
+
+      if (client.connect("ESP32ClientSub", username, password)) {
+        Serial.println("Conectado!");
+        client.subscribe("tranca");
+      } else {
+        Serial.print("Falhou, rc=");
+        Serial.println(client.state());
+        Serial.println("Tentando de novo em 5s...");
+        delay(5000);
+      }
+    }
+  }
+};
+
+class Rfid {
+private:
+  int ssPin;
+  int rstPin;
+  MFRC522 rfid;
+  byte uidAutorizado[4] = { 0x5c, 0x8D, 0x35, 0x4A };
+
+public:
+  Rfid(int porta1, int porta2)
+    : ssPin(porta1), rstPin(porta2), rfid(porta1, porta2) {}
+
+  void iniciar() {
+    SPI.begin(18, 19, 23, 5);
+    rfid.PCD_Init();
+    delay(100);
+    Serial.println("RC522 pronto!");
+  }
+
+  void reiniciar() {
+    rfid.PCD_Init();  // Reconfigura os registradores do chip
+  }
+
+  bool detectarCartao() {
+    if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()) {
+      return false;
+    }
+    return true;
+  }
+
+  bool eCartaoAutorizado() {
+    for (byte i = 0; i < 4; i++) {
+      if (rfid.uid.uidByte[i] != uidAutorizado[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void encerrarLeitura() {
+    rfid.PICC_HaltA();
+    rfid.PCD_StopCrypto1();
+    delay(50);
+  }
+
+  MFRC522& getRFID() {
+    return rfid;
+  }
+};
+
+WiFi wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
+MQTT mqtt(client, "18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32", "Dedsec2@@");
+Rfid RFID(5, 22);
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Mensagem recebida no tópico: ");
+  Serial.println(topic);
+
+  char payloadStr[length + 1];
+  memcpy(payloadStr, payload, length);
+  payloadStr[length] = '\0';
+
+  if (strcmp(payloadStr, "liberada") == 0) {
+    digitalWrite(16, HIGH);
+    delay(5000);
+    digitalWrite(16, LOW);
+  }
+}
+
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(saidaPin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+
+  wifi.conectar();
+
+  espClient.setInsecure();
+  client.setCallback(callback);
+
+  mqtt.iniciar();
+  RFID.iniciar();
+}
+
+
+void loop() {
+  if (!client.connected())
+    mqtt.reconnect();
+
+  client.loop();
+
+  if (RFID.detectarCartao()) {
+    if (RFID.eCartaoAutorizado()) {
+
+      digitalWrite(saidaPin, HIGH);
+      delay(5000);
+      digitalWrite(saidaPin, LOW);
+
+      digitalWrite(buzzer, HIGH);
+      delay(2000);
+      digitalWrite(buzzer, LOW);
+
+      RFID.reiniciar();
+    }
+  }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp; Com esse código, o ESP32 consegue se conectar à rede Wi-Fi, comunicar-se com um servidor MQTT, ler cartões RFID e acionar a tranca e o buzzer quando um acesso é liberado. A estrutura dividida em classes facilita a manutenção e torna o funcionamento mais claro. Assim, o sistema garante maior segurança e controle na liberação da porta, tanto por cartão RFID quanto por comandos remotos via MQTT.
+
+### Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp; A partir dos casos de uso apresentados, foi possível demonstrar de forma detalhada o comportamento do protótipo do sistema de controle de acesso em diferentes condições operacionais. As situações abrangem tanto os fluxos ideais quanto cenários de falha, garantindo uma visão abrangente do funcionamento do sistema. A análise garante que o projeto tenha contra medidas a erros que podem surgir, e integra múltiplos componentes, como módulos ESP32, leitor RFID, relé para acionamento da tranca, display LCD via I2C e comunicação com a nuvem via MQTT,  funcionando de maneira coordenada para garantir segurança e confiabilidade no processo de autenticação.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes realizados reforçam que o sistema é capaz de identificar usuários, validar autenticações, responder adequadamente a problemas como perda de conexão, erros de senha, cartões não autorizados e falhas de comunicação entre os módulos. Dessa forma, a seção cumpre seu objetivo de validar o protótipo em cenários reais de operação, servindo como base para aprimoramentos futuros e garantindo que os requisitos funcionais e de segurança estejam sendo atendidos.
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 
@@ -2057,6 +3224,7 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 
 _Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
 Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
@@ -2098,3 +3266,242 @@ VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em:
 **Sobre a pesquisa para as personas:**
 
 TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025
+
+
+# <a name="c6"></a>6. Anexos
+
+## Circuito RC
+
+### 6.1 Fundamento Teórico
+
+O **circuito RC** é um dos sistemas mais fundamentais da eletrônica e da física aplicada, sendo composto por um resistor (**R**) e um capacitor (**C**). Sua importância está no comportamento exponencial de carga e descarga do capacitor, o que o torna essencial em aplicações como temporizadores, filtros e controle de sinais em sistemas embarcados e IoT.
+
+Quando o circuito é alimentado por uma fonte de tensão contínua, o capacitor começa a armazenar carga elétrica, e a tensão sobre ele varia conforme o tempo. A velocidade desse processo é determinada pela constante de tempo (**τ**), definida como:
+
+```
+τ = Req × C
+```
+
+onde **Req** é a resistência equivalente vista pelo capacitor e **C** é a capacitância.
+
+Fisicamente, a constante de tempo representa o tempo necessário para que a tensão no capacitor atinja aproximadamente **63,2%** da tensão final durante o carregamento (ou decaia para **36,8%** durante a descarga).
+
+Assim, quanto maior o valor de R ou C, mais lentamente o capacitor se carrega ou descarrega, resultando em um comportamento mais gradual da resposta do circuito. Esse conceito é amplamente aplicado em sensores, atuadores e sistemas IoT, onde atrasos e respostas controladas são essenciais para estabilidade e filtragem de ruídos.
+
+No caso deste experimento, o resistor **R₁** é fixo (**100 kΩ**), enquanto **R₂** é variável, e ambos formam uma associação em paralelo que define **Req**. O capacitor de **2200 µF (2,2×10⁻³ F)** é o elemento responsável pelo armazenamento de carga. O objetivo é ajustar **R₂** de modo que a constante de tempo resultante seja próxima de **60 segundos**, reproduzindo o comportamento teórico de um circuito RC lento e previsível.
+
+### 6.2 Projeto e Cálculo da Constante de Tempo (τ)
+
+O objetivo é determinar qual valor de **R₂** fornece uma constante de tempo **τ ≈ 60 s (±10 s)**.  
+Para isso, utiliza-se o modelo teórico do circuito RC, considerando o resistor equivalente como o **paralelo de R₁ e R₂**.
+
+A resistência equivalente é dada por:
+
+```
+Req = (R₁ × R₂) / (R₁ + R₂)
+```
+
+E a constante de tempo é calculada por:
+
+```
+τ = Req × C
+```
+
+---
+
+### 6.2.1. Dados do Grupo 4
+
+- **R₁ = 100 kΩ**
+- **C = 2200 μF = 2,2 × 10⁻³ F**
+- **R₂ ∈ {33 kΩ, 39 kΩ, 43 kΩ, 47 kΩ}**
+
+### 6.2.2. Cálculos
+
+Aplicando as fórmulas para cada valor de **R₂**:
+
+1. **Para R₂ = 33 kΩ**  
+   Req = (100 × 33) / (100 + 33) = **24,81 kΩ**  
+   τ = 24,81 × 10³ × 2,2 × 10⁻³ = **54,63 s**
+
+2. **Para R₂ = 39 kΩ**  
+   Req = (100 × 39) / (100 + 39) = **28,06 kΩ**  
+   τ = 28,06 × 10³ × 2,2 × 10⁻³ = **61,73 s**
+
+3. **Para R₂ = 43 kΩ**  
+   Req = (100 × 43) / (100 + 43) = **30,07 kΩ**  
+   τ = 30,07 × 10³ × 2,2 × 10⁻³ = **66,15 s**
+
+4. **Para R₂ = 47 kΩ**  
+   Req = (100 × 47) / (100 + 47) = **31,97 kΩ**  
+   τ = 31,97 × 10³ × 2,2 × 10⁻³ = **70,34 s**
+
+### 6.2.3. Resultado Comparativo
+
+| R₂ (kΩ) | Req (kΩ) | τ (s)    | Resultado             |
+|--------|----------|----------|------------------------|
+| 33 kΩ  | 24,81    | 54,63 s  | Dentro da tolerância   |
+| 39 kΩ  | 28,06    | 61,73 s  | Dentro da tolerância   |
+| 43 kΩ  | 30,07    | 66,15 s  | Dentro da tolerância   |
+| 47 kΩ  | 31,97    | 70,34 s  | Fora da tolerância     |
+
+---
+
+### 6.2.4. Escolha final
+
+O valor **R₂ = 39 kΩ** foi selecionado por resultar em **τ ≈ 61,7 s**, o mais próximo da **meta de 60 segundos** e dentro da tolerância especificada.
+
+Com esse valor, o circuito RC apresenta um comportamento suave, estável e coerente com a teoria, sendo ideal para representar um atraso temporal controlado em aplicações de controle e temporização em sistemas IoT.
+
+### 6.3 Montagem do Protótipo
+
+<img width="808" height="601" alt="image" src="https://github.com/user-attachments/assets/d11e98f1-ef6f-41f9-a90a-ae6a93036511" />
+
+<img width="808" height="604" alt="image" src="https://github.com/user-attachments/assets/85ebb3c7-cd26-4c1a-97a1-9997a407cd10" />
+
+### 6.4 Coleta de dados experimentais
+
+A coleta de dados experimentais foi realizada de forma automatizada por meio de um código desenvolvido com o auxílio de inteligência artificial (Chat GPT), implementado em um microcontrolador Arduino Uno.
+
+O programa, escrito em linguagem **C++**, foi responsável por controlar o processo de carregamento do capacitor e efetuar medições periódicas da tensão no capacitor (**Vc**) utilizando o pino analógico A0.
+
+O circuito RC foi montado conforme o projeto teórico do Grupo 4, composto por **R₁ = 100 kΩ**, **R₂ = 39 kΩ** (em paralelo) e **C = 2200 μF**. O terminal positivo do capacitor foi conectado ao nó entre os resistores, onde também foi ligado o pino A0 do Arduino, enquanto o terminal negativo foi conectado ao GND da placa. A tensão de **5 V** foi controlada eletronicamente por meio de um pino digital configurado para acionar o carregamento no instante inicial.
+
+O código desenvolvido realizou automaticamente **50 medições de tensão** ao longo de aproximadamente cinco minutos, seguindo os intervalos temporais recomendados na atividade.
+
+---
+
+Foram adotados três regimes de amostragem, priorizando os instantes iniciais do processo de carga:
+
+- **20 pontos** igualmente espaçados nos primeiros **60 segundos**, com intervalo de **3 segundos** entre as leituras;
+- **20 pontos** igualmente espaçados entre **1 e 3 minutos**, com intervalo de **6 segundos**;
+- **10 pontos** igualmente espaçados entre **3 e 5 minutos**, com intervalo de **12 segundos**.
+
+Esses intervalos foram definidos para garantir maior resolução temporal no início do processo, onde a variação da tensão é mais acentuada, e menor densidade de amostragem nas etapas finais, quando o capacitor se aproxima da tensão final e a curva tende à estabilidade.
+
+A seguir temos a tabela com esses dados organizados como duas colunas (tempo em segundos e tensão em volts) e o código utilizado para a coleta:
+
+```cpp
+const int pinMedicao = A0;
+const int pinControle = 7;
+const float Vref = 5.00;
+const int ADCmax = 1023;
+unsigned long scheduleMs[50];
+int idx = 0;
+
+void setupSchedule() {
+  for (int i=0; i<20; ++i) scheduleMs[idx++] = (unsigned long)i * 3000UL;
+  for (int i=0; i<20; ++i) scheduleMs[idx++] = 60000UL + (unsigned long)i * 6000UL;
+  for (int i=0; i<10; ++i) scheduleMs[idx++] = 180000UL + (unsigned long)i * 12000UL;
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(pinControle, OUTPUT);
+  digitalWrite(pinControle, LOW);
+  setupSchedule();
+  Serial.println("tempo_s, tensao_V");
+  delay(500);
+  digitalWrite(pinControle, HIGH);
+}
+
+void loop() {
+  unsigned long t0 = millis();
+  for (int i=0; i<50; ++i) {
+    unsigned long target = t0 + scheduleMs[i];
+    while (millis() < target) {}
+    int raw = analogRead(pinMedicao);
+    float v = ( (float)raw * Vref ) / (float)ADCmax;
+    float t_seconds = (millis() - t0) / 1000.0;
+    Serial.print(t_seconds, 2);
+    Serial.print(", ");
+    Serial.println(v, 3);
+  }
+  while (true) {}
+}
+
+```
+
+Tabela:
+
+| Tempo (s) | Tensão no capacitor (Vc) |
+|----------|---------------------------|
+| 0        | 0.239                     |
+| 3        | 0.455                     |
+| 6        | 0.655                     |
+| 9        | 0.846                     |
+| 12       | 1.026                     |
+| 15       | 1.202                     |
+| 18       | 1.369                     |
+| 21       | 1.525                     |
+| 24       | 1.676                     |
+| 27       | 1.818                     |
+| 30       | 1.955                     |
+| 33       | 2.087                     |
+| 36       | 2.209                     |
+| 39       | 2.326                     |
+| 42       | 2.430                     |
+| 45       | 2.551                     |
+| 48       | 2.654                     |
+| 51       | 2.752                     |
+| 54       | 2.845                     |
+| 57       | 2.937                     |
+| 60       | 3.025                     |
+| 66       | 3.187                     |
+| 72       | 3.328                     |
+| 78       | 3.460                     |
+| 84       | 3.583                     |
+| 90       | 3.700                     |
+| 96       | 3.803                     |
+| 102      | 3.895                     |
+| 108      | 3.983                     |
+| 114      | 4.062                     |
+| 120      | 4.135                     |
+| 126      | 4.198                     |
+| 132      | 4.257                     |
+| 138      | 4.311                     |
+| 144      | 4.360                     |
+| 150      | 4.409                     |
+| 156      | 4.448                     |
+| 162      | 4.482                     |
+| 168      | 4.516                     |
+| 174      | 4.550                     |
+| 180      | 4.575                     |
+| 182      | 4.624                     |
+| 204      | 4.663                     |
+| 216      | 4.697                     |
+| 228      | 4.726                     |
+| 240      | 4.751                     |
+| 252      | 4.770                     |
+| 264      | 4.785                     |
+| 276      | 4.800                     |
+| 288      | 4.814                     |
+
+### 6.4: Questões 5 e 6: Gráfico Experimental e Análise Comparativa
+
+O gráfico abaixo cumpre os requisitos das Etapas 5 e 6, apresentando uma análise visual comparativa do comportamento do circuito RC.
+
+- **Dados Experimentais (Pontos Azuis):** Correspondem aos 50 pontos de dados de tensão (V) em função do tempo (s) coletados do protótipo físico, conforme detalhado na Tabela da Etapa 4.
+  
+- **Curva Teórica (Linha Vermelha):** Representa o modelo matemático da carga do capacitor, descrito pela equação  
+  **VC(t) = Vfinal × (1 - exp(-t/τ))**.  
+  Para esta curva, foram usados os valores calculados na Etapa 2:  
+  – Tensão final da fonte (**Vfinal = 5.0 V**)  
+  – Constante de tempo teórica (**τ = 61.73 s**), resultante da escolha de **R₂ = 39 kΩ**.
+
+  <img width="815" height="515" alt="image" src="https://github.com/user-attachments/assets/97d5df13-b7c2-452f-9121-3a71fcd4703e" />
+
+### 6.5: Questão 7 – Interpretação e Conclusão
+
+Ao comparar o gráfico experimental com a curva teórica de carga do capacitor, observamos que os pontos medidos seguem muito bem o comportamento exponencial previsto pelo modelo  
+**Vc(t) = Vfinal × (1 − e^(−t/τ))**.  
+A nuvem de pontos acompanha consistentemente a curva teórica ao longo de todo o intervalo de 0 a 300 s, sem desvios bruscos ou mudanças de tendência, o que indica que o circuito montado de fato se comporta como um circuito RC série idealizado no projeto.
+
+Apesar do bom acompanhamento, é possível notar pequenas discrepâncias pontuais. Nos instantes iniciais, a tensão medida no capacitor não começa exatamente em 0 V, o que é um indício de offset na medição do ADC ou de pequenas tensões residuais no circuito. Além disso, a tensão final medida se aproxima um pouco menos de 5,0 V considerados no modelo teórico, o que sugere uma diferença entre a tensão nominal da fonte e a tensão efetivamente entregue ao nó de medição (quedas internas no microcontrolador, tolerância da fonte de 5 V e perdas nos componentes). Essas pequenas diferenças explicam o leve deslocamento vertical entre alguns pontos experimentais e a curva teórica, mas não comprometem a forma geral exponencial observada.
+
+Para estimar a constante de tempo experimental, é possível analisar o gráfico e determinar o momento em que a tensão no capacitor atinge aproximadamente **63,2% da tensão final medida**. Como a tensão final experimental está em torno de 4,8 V, 63,2% desse valor corresponde a aproximadamente **3,0 V**. Observando os dados, essa faixa é atingida por volta de **t ≈ 61 s**. Assim, a constante de tempo experimental **τ exp** é da ordem de **60–61 s**. Esse valor é extremamente próximo da constante de tempo teórica τ teórico = **61,73 s**, calculada a partir de **R1 = 100 kΩ**, **R2 = 39 kΩ** (em paralelo) e **C = 2200 µF**. A diferença relativa entre os valores experimental e teórico é mínima, e está dentro da margem de **±10 s** especificada no projeto, indicando que a escolha de R2 = 39 kΩ foi adequada e que o circuito se comportou de forma coerente com o planejamento.
+
+As pequenas diferenças entre o comportamento teórico e o experimental podem ser explicadas por diversas fontes de erro. Em primeiro lugar, há a tolerância dos componentes: resistores costumam ter tolerâncias de 1% a 5%, e capacitores eletrolíticos, como o de 2200 µF utilizado, frequentemente apresentam variações bem maiores, o que altera o valor real de τ = Req × C em relação ao calculado. Em segundo lugar, a tensão de alimentação de 5 V do microcontrolador não é exatamente 5,0 V, e variações nessa referência afetam tanto a tensão real aplicada ao circuito quanto a conversão analógica.
+
+Além disso, o método de medição introduz incertezas adicionais: o tempo é controlado por funções de software, que podem apresentar pequenos atrasos de execução, a conversão analógica leva um tempo e o próprio ruído elétrico e contatos da protoboard podem causar variações de alguns milivolts nas leituras. Juntamente a isso, possíveis pequenas diferenças de montagem (comprimento de fios, contatos não ideais), o tipo de discrepância observada é esperado: um deslocamento na tensão inicial, uma tensão final um pouco menor que a teórica e variações pequenas com relação à curva ideal.
+
+Assim, os resultados experimentais são compatíveis com o modelo teórico de um circuito RC. A curva de carga medida reproduz bem a forma esperada, a constante de tempo experimental obtida a partir do gráfico é muito próxima da tau teórica e as diferenças observadas podem ser atribuídas de maneira consistente à tolerância dos componentes e às limitações inerentes ao processo de medição. Isso mostra que o objetivo do experimento foi atingido com sucesso.

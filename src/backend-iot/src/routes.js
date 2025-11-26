@@ -27,6 +27,50 @@ router.get("/api/users", async (req, res) => {
   }
 });
 
+// Rota para obter estatísticas/KPIs
+router.get("/api/stats", async (req, res) => {
+  try {
+    // Total de usuários
+    const totalUsers = await db.query("SELECT COUNT(*) as count FROM users");
+
+    // Usuários ativos
+    const activeUsers = await db.query(
+      "SELECT COUNT(*) as count FROM users WHERE ativo = true"
+    );
+
+    // Total de salas
+    const totalSalas = await db.query("SELECT COUNT(*) as count FROM salas");
+
+    // Salas disponíveis
+    const salasDisponiveis = await db.query(
+      "SELECT COUNT(*) as count FROM salas WHERE status = 'disponivel'"
+    );
+
+    // Salas ocupadas (com alocação ativa)
+    const salasOcupadas = await db.query(
+      `SELECT COUNT(DISTINCT sala_id) as count 
+       FROM alocacao_sala 
+       WHERE fim IS NULL`
+    );
+
+    res.status(200).json({
+      success: true,
+      data: {
+        totalUsers: parseInt(totalUsers.rows[0].count),
+        activeUsers: parseInt(activeUsers.rows[0].count),
+        totalSalas: parseInt(totalSalas.rows[0].count),
+        salasDisponiveis: parseInt(salasDisponiveis.rows[0].count),
+        salasOcupadas: parseInt(salasOcupadas.rows[0].count),
+      },
+    });
+  } catch (error) {
+    console.error("[API] Erro ao buscar estatísticas:", error);
+    res
+      .status(500)
+      .json({ success: false, error: "Erro ao buscar estatísticas." });
+  }
+});
+
 // Rota de teste para enviar SMS via Twilio
 router.post("/test-twilio-sms", async (req, res) => {
   const { to, message } = req.body;

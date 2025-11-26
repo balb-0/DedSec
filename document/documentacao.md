@@ -3216,6 +3216,89 @@ void loop() {
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 
+#### **3.4.4.1. Casos de Teste**
+
+Esta subseção detalha os cenários de uso do sistema de controle de acesso por MFA, apresentando diagramas de sequência UML para ilustrar as interações entre os componentes. Cada caso de teste é acompanhado de sua descrição, alinhamento de negócios/UX, pré-condições, pós-condições e o fluxo de eventos correspondente ao diagrama.
+
+##### **3.4.4.1.1 Caso de Teste 1: Acesso Autorizado com Autenticação de Múltiplo Fator (Sucesso)**
+
+**Descrição:** Este caso de teste valida o fluxo completo de autenticação bem-sucedida. Um usuário previamente cadastrado no sistema tenta acessar uma área restrita, apresentando seu cartão RFID. O sistema inicia o processo de Autenticação de Múltiplo Fator (MFA), onde um Código PIN único é gerado e enviado para o telefone cadastrado do usuário via SMS. O usuário insere este PIN corretamente no teclado do ESP32-SENHA, e o sistema concede o acesso à área restrita, simulado pelo envio de um comando para o módulo da tranca.
+
+**Alinhamento de Negócios e Experiência do Usuário (UX):** Este cenário é fundamental para garantir que o sistema atenda aos requisitos de segurança, permitindo o acesso apenas a usuários verificados através de múltiplos fatores. Do ponto de vista da UX, o fluxo deve ser intuitivo e fornecer feedback claro em cada etapa, minimizando a frustração do usuário enquanto mantém a segurança elevada.
+
+**Pré-condições:**
+
+*   O usuário "João Silva" está cadastrado no Banco de Dados com RFID\_CODE = "ABCD123" e telefone = "+5511987654321".
+    
+*   O cartão RFID associado a "João Silva" está funcional e corretamente programado.
+    
+*   O ESP32-SENHA está online, conectado à rede Wi-Fi e ao Broker MQTT (HiveMQ).
+    
+*   O Backend (Node.js) está online e com conexões ativas ao Broker MQTT, ao Banco de Dados (PostgreSQL) e ao Serviço de SMS (Twilio).
+    
+*   O número de telefone +5511987654321 está devidamente verificado na conta Twilio para permitir o envio de SMS.
+    
+*   A conta Twilio possui créditos suficientes para a realização do envio do SMS.
+    
+
+**Pós-condições:**
+
+*   O sistema concede acesso à área restrita (simulado pelo comando MQTT para o ESP32-TRANCA).
+    
+*   Uma mensagem de "Acesso Liberado" é exibida no display LCD do ESP32-SENHA.
+    
+*   Um log de acesso bem-sucedido é registrado no backend.
+    
+*   O PIN MFA gerado para esta transação é desativado ou removido da lista de desafios ativos do backend após o uso bem-sucedido.
+    
+
+**Diagrama de Sequência UML:**
+
+<p align="center">
+  <img src="../assets/documentação/diagrama_caso_de_teste_1.png" width="1000">
+  <br>
+  <em><sub><strong>Caso de Teste 1: </strong>Acesso Autorizado com Autenticação de Múltiplo Fator (Sucesso)</sub></em>
+</p>
+
+---
+##### **3.4.4.1.2. Caso de Teste 2: Tentativa de Acesso com Cartão RFID Não Cadastrado (Falha)**
+
+**Descrição:** Este caso de teste avalia a capacidade do sistema em negar o acesso e fornecer feedback apropriado quando um cartão RFID que não está registrado no banco de dados é apresentado. Ele garante que apenas RFIDs reconhecidos iniciem o processo de autenticação.
+
+**Alinhamento de Negócios e Experiência do Usuário (UX):** É crucial para a segurança do sistema impedir que cartões não autorizados ou desconhecidos sequer iniciem o fluxo de MFA. A experiência do usuário deve ser direta, informando imediatamente que o cartão não é reconhecido, evitando que o usuário espere por um SMS que nunca virá.
+
+**Pré-condições:**
+
+*   O cartão RFID com código "XYZ789" **NÃO** possui um registro correspondente na tabela users do Banco de Dados.
+    
+*   O ESP32-SENHA está online, conectado à rede Wi-Fi e ao Broker MQTT (HiveMQ).
+    
+*   O Backend (Node.js) está online e com conexões ativas ao Broker MQTT e ao Banco de Dados (PostgreSQL).
+    
+
+**Pós-condições:**
+
+*   O sistema nega o acesso.
+    
+*   Nenhum PIN MFA é gerado ou enviado por SMS.
+    
+*   Nenhum log de acesso bem-sucedido é registrado no backend.
+    
+*   A tranca permanece travada.
+    
+*   Uma mensagem de "Cartão não cadastrado" é exibida no display LCD do ESP32-SENHA.
+    
+
+<p align="center">
+  <img src="../assets/documentação/diagrama_caso_de_teste_2.png" width="1000">
+  <br>
+  <em><sub><strong>Caso de Teste 2: </strong>Tentativa de Acesso com Cartão RFID Não Cadastrado (Falha)</sub></em>
+</p>
+
+
+
+---
+
 _Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
 **Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._

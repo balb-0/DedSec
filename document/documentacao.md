@@ -2068,7 +2068,7 @@ void loop() {
 #### **3.4.2.4 Imagens do Protótipo Físico em Funcionamento**
 
 <p align="center">
-  <img src="../assets/documentação/prototipo_fisico/modulo_teclado.jpeg" width="600">
+  <img src="../assets/documentação/prototipo_fisico/modulo_teclado.jpeg" width="400">
   <br>
   <em><sub><strong>Figura X:</strong> Vista geral do Módulo ESP32-SENHA com LCD, teclado e leitor RFID.</sub></em>
 </p>
@@ -2076,7 +2076,7 @@ void loop() {
 <br>
 
 <p align="center">
-  <img src="../assets/documentação/prototipo_fisico/modulo_tranca.jpeg" width="600">
+  <img src="../assets/documentação/prototipo_fisico/modulo_tranca.jpeg" width="340">
   <br>
   <em><sub><strong>Figura Y:</strong> Detalhe do Módulo ESP32-TRANCA conectado ao relé e à tranca física.</sub></em>
 </p>
@@ -2084,7 +2084,7 @@ void loop() {
 <br>
 
 <p align="center">
-  <img src="../assets/documentação/prototipo_fisico/acesso_liberado.jpeg" width="600">
+  <img src="../assets/documentação/prototipo_fisico/acesso_liberado.jpeg" width="340">
   <br>
   <em><sub><strong>Figura Z:</strong> Protótipo em ação, com o LCD exibindo "Acesso Liberado" durante o Teste 03.</sub></em>
 </p>

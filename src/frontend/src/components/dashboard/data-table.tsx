@@ -18,11 +18,12 @@ export interface TableColumn<T = Record<string, unknown>> {
 interface DataTableProps<T = Record<string, unknown>> {
   data: T[];
   columns: TableColumn<T>[];
+  onRowClick?: (item: T) => void;
 }
 
 export function DataTable<
   T extends Record<string, unknown> = Record<string, unknown>
->({ data, columns }: DataTableProps<T>) {
+>({ data, columns, onRowClick }: DataTableProps<T>) {
   return (
     <div className="rounded-md border">
       <Table>
@@ -42,7 +43,11 @@ export function DataTable<
             </TableRow>
           ) : (
             data.map((item, index) => (
-              <TableRow key={index}>
+              <TableRow
+                key={index}
+                onClick={() => onRowClick?.(item)}
+                className={onRowClick ? "cursor-pointer hover:bg-muted/50" : ""}
+              >
                 {columns.map((column) => (
                   <TableCell key={String(column.key)}>
                     {column.render

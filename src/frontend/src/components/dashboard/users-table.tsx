@@ -7,6 +7,7 @@ import {
 } from "../ui/card";
 import { DataTable, StatusBadge, type TableColumn } from "./data-table";
 import { Avatar, AvatarFallback } from "../ui/avatar";
+import { UserDetailModal, type User as UserType } from "./user-detail-modal";
 import React, { useEffect, useState } from "react";
 
 interface User {
@@ -62,6 +63,8 @@ const columns: TableColumn<User>[] = [
 export function UsersTable() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/users")
@@ -78,26 +81,39 @@ export function UsersTable() {
       });
   }, []);
 
+  const handleRowClick = (user: User) => {
+    setSelectedUser(user);
+    setModalOpen(true);
+  };
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Usuários</CardTitle>
-        <CardDescription>
-          Lista de usuários cadastrados no sistema
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {loading ? (
-          <div className="text-center py-8">Carregando...</div>
-        ) : (
-          <DataTable
-            data={users as unknown as Record<string, unknown>[]}
-            columns={
-              columns as unknown as TableColumn<Record<string, unknown>>[]
-            }
-          />
-        )}
-      </CardContent>
-    </Card>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle>Usuários</CardTitle>
+          <CardDescription>
+            Lista de usuários cadastrados no sistema
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {loading ? (
+            <div className="text-center py-8">Carregando...</div>
+          ) : (
+            <DataTable
+              data={users as unknown as Record<string, unknown>[]}
+              columns={
+                columns as unknown as TableColumn<Record<string, unknown>>[]
+              }
+              onRowClick={handleRowClick}
+            />
+          )}
+        </CardContent>
+      </Card>
+      <UserDetailModal
+        user={selectedUser}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
+    </>
   );
 }

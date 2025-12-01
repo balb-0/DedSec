@@ -15,7 +15,7 @@ router.get("/teste", (req, res) => {
 });
 
 // Rota para listar todos os usuários
-router.get("/api/users", async (req, res) => {
+router.get("/users", async (req, res) => {
   try {
     const result = await db.query(
       "SELECT id, nome, rfid_codigo, ativo, created_at FROM users ORDER BY created_at DESC"
@@ -28,7 +28,7 @@ router.get("/api/users", async (req, res) => {
 });
 
 // Rota para obter estatísticas/KPIs
-router.get("/api/stats", async (req, res) => {
+router.get("/stats", async (req, res) => {
   try {
     // Total de usuários
     const totalUsers = await db.query("SELECT COUNT(*) as count FROM users");

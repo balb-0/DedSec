@@ -1,22 +1,18 @@
 // seed.js
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../../../.env") });
+require("dotenv").config(); // Carrega o .env da raiz do projeto backend-iot
 const { Pool } = require("pg");
 
-// Configuração para banco local de desenvolvimento
-const dbHost = "localhost";
-const dbUser = "postgres"; // Usuário padrão do PostgreSQL
-const dbDatabase = "iot_project_db";
-const dbPassword = ""; // Sem senha para dev local (ou defina no .env)
-const dbPort = 5432;
-
+// Usa as mesmas configurações do .env que o servidor usa
+// Render requer SSL para conexões externas
 const pool = new Pool({
-  user: dbUser,
-  host: dbHost,
-  database: dbDatabase,
-  password: dbPassword,
-  port: dbPort,
-  ssl: false, // Sempre sem SSL para seed local
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: false, // Necessário para Render
+  },
 });
 
 async function seed() {

@@ -27,6 +27,57 @@ router.get("/users", async (req, res) => {
   }
 });
 
+// Rota para buscar detalhes de um usuário específico com histórico de alocações
+router.get("/users/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+
+    // Busca dados do usuário
+    const userResult = await db.query(
+      `SELECT u.id, u.nome, u.rfid_codigo, u.ativo, u.created_at, 
+              s.nome as sala_nome, s.localizacao as sala_localizacao
+       FROM users u
+       LEFT JOIN salas s ON u.sala_id = s.id
+       WHERE u.id = $1`,
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, error: "Usuário não encontrado." });
+    }
+
+    // Busca histórico de alocações
+    const alocacoesResult = await db.query(
+      `SELECT a.id, a.inicio, a.fim, 
+              s.nome as sala_nome, s.localizacao as sala_localizacao,
+              s.status as sala_status
+       FROM alocacao_sala a
+       JOIN salas s ON a.sala_id = s.id
+       WHERE a.user_id = $1
+       ORDER BY a.inicio DESC`,
+      [userId]
+    );
+
+    const user = userResult.rows[0];
+    const alocacoes = alocacoesResult.rows;
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ...user,
+        alocacoes: alocacoes,
+      },
+    });
+  } catch (error) {
+    console.error("[API] Erro ao buscar detalhes do usuário:", error);
+    res
+      .status(500)
+      .json({ success: false, error: "Erro ao buscar detalhes do usuário." });
+  }
+});
+
 // Rota para obter estatísticas/KPIs
 router.get("/stats", async (req, res) => {
   try {

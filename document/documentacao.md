@@ -650,7 +650,11 @@ Portanto a criação de personas se mostra uma etapa imprescindível para o dire
 
 &nbsp;&nbsp;&nbsp;&nbsp;A jornada do usuário é uma representação visual e narrativa da experiência de uma pessoa ao interagir com um produto, serviço ou sistema. Ela descreve, passo a passo, o caminho percorrido pelo usuário, desde o primeiro contato até o alcance de seus objetivos, destacando ações, emoções, desafios e oportunidades da persona.
 
-&nbsp;&nbsp;&nbsp;&nbsp; Mais do que um simples fluxo de tarefas, a jornada busca compreender o contexto humano por trás das interações, revelando o que o usuário pensa, sente e precisa em cada momento. 
+&nbsp;&nbsp;&nbsp;&nbsp; Mais do que um simples fluxo de tarefas, a jornada busca compreender o contexto humano por trás das interações, revelando o que o usuário pensa, sente e precisa em cada momentosegundo a empresa pioneira no campo do design de experiência do usuário (UX), fundada em 1998 por [Jakob Nielsen e Don Norman](https://www.nngroup.com/articles/customer-journey-mapping/), a importância das jornadas do usuário reside principalmente em sua capacidade de criar uma compreensão compartilhada e centrada no cliente em toda a organização, e em ajudar a identificar e resolver pontos de atrito (pain points) na experiência do usuário. Ou seja, a jornada do usuário estabelece uma conexão clara entre o fluxo planejado pelo design e a experiência real vivida pelos usuários, permitindo avaliar se o propósito final do projeto está de fato sendo alcançado.
+
+Além do trabalho pioneiro do Nielsen Norman Group, outras referências destacam a relevância das jornadas do usuário, como o [guia da SoftDesign](https://softdesign.com.br/blog/jornada-do-usuario/) sobre melhores práticas de mapeamento e os recursos visuais disponibilizados pela Figma Community, que facilitam a colaboração e a identificação de oportunidades de melhoria.
+
+
  
 #### 3.2.2.1 Jornada de Usuário: Carlos Mendes
 
@@ -895,6 +899,139 @@ Cena 2: Chegou um novo sistema: um dashboard que mostra todas as áreas de acess
 Cena 3: Clicando em uma das salas, Beatriz consegue analisar quem entrou naquela sala, quando entrou e quando saiu. 
 
 Portanto, fica claro que as storyboards são essenciais para se ter uma melhor visualização de como o sistema funciona e como afeta no dia a dia dos usuários. Eles facilitam o entendimento do fluxo de ações, destacando as melhorias, em relação ao sistema antigo, trazidas pela automação e pelo dashboard de monitoramento.
+
+[Clique aqui para acessar o storyboard diretamente do figma.](https://www.figma.com/design/kGDeEGhxhv6GqoSpoG70At/Tic-Trens?node-id=38-2&t=5GLbYtO8Yg1eCr1D-1 )
+
+### Documentação Técnica de Hardware por Cena (Storyboard)
+
+
+
+### Storyboard 1: Fluxo de trabalho do Carlos
+
+Esta seção detalha os componentes de hardware (sensores, atuadores e processadores) utilizados em cada etapa do fluxo de uso do carlos, permitindo rastreabilidade de dados e diagnóstico rápido de falhas.
+
+#### 1. Fase de Prontidão e Notificação (Cenas 1, 2 e 3)
+**Contexto:** O sistema opera em modo de espera (*Standby*). O usuário é notificado sobre a modernização, mas o dispositivo IoT ainda não realizou ações ativas de bloqueio ou liberação.
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Servidor Backend** | Software/Cloud | Mantém a base de dados de agendamentos atualizada e aguarda solicitações (Listen Mode). |
+| **Smartphone do Usuário** | Interface | Recebe notificações informativas sobre o status do sistema ou agendamento confirmado. |
+| **ESP32 (Microcontrolador)** | Processador | Mantém a conexão Wi-Fi/MQTT ativa (Heartbeat) aguardando interrupções do leitor RFID. |
+
+---
+
+#### 2. O Gatilho: Identificação e Disparo do Código (Cena 4)
+**Contexto:** Ocorre a primeira interação física. A leitura do cartão aciona o servidor para gerar e enviar a senha dinâmica (Token) para o usuário.
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Módulo RFID (MFRC522)** | Sensor | Gera campo RF (13.56 MHz), lê o UID do cartão e envia os dados via SPI para o ESP32. |
+| **ESP32** | Processador | 1. Processa o UID recebido.<br>2. Publica tópico MQTT solicitando validação ao servidor.<br>3. Comanda o display. |
+| **Display LCD 16x2 (I2C)** | Interface (Saída) | Exibe feedback visual imediato: *"Lendo..."* seguido de *"Código enviado ao celular"*. |
+| **Buzzer Ativo** | Atuador (Som) | Emite sinal sonoro curto (*Bip*) indicando leitura bem-sucedida do cartão. |
+| **API de Mensagens** | Serviço (Cloud) | Integrada ao Backend, dispara o SMS ou mensagem WhatsApp com o código OTP para o smartphone. |
+
+---
+
+#### 3. Autenticação e Acesso Físico (Cena 5)
+**Contexto:** O usuário valida sua identidade digitando o código recebido. O sistema libera a barreira física.
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Smartphone do Usuário** | Interface | Exibe o código de acesso (ex: "4590") recebido na etapa anterior. |
+| **Teclado Matricial 4x4** | Interface (Entrada) | Captura a sequência numérica digitada pelo usuário e envia ao ESP32. |
+| **ESP32** | Processador | Valida se a senha digitada corresponde à senha gerada pelo servidor. Se OK, aciona o relé. |
+| **Módulo Relé (1 Canal)** | Atuador (Switch) | Recebe sinal lógico (3.3V) do ESP32 e fecha o circuito de potência (12V) da tranca. |
+| **Tranca Eletromagnética** | Atuador (Força) | Solenóide alimentado por fonte externa (12V) que destrava a porta fisicamente. |
+| **Display LCD** | Interface (Saída) | Exibe: *"Acesso Liberado"* ou *"Senha Incorreta"*. |
+
+---
+
+#### 4. Execução e Saída (Cenas 6 e 7)
+**Contexto:** Monitoramento durante o trabalho e registro de log de saída (encerramento do ciclo).
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Módulo RFID (MFRC522)** | Sensor | Lê o cartão novamente para registrar a saída. |
+| **ESP32** | Processador | Identifica que o usuário já estava no local (status "Dentro"). **Não solicita senha**, apenas registra o log de saída e aciona o relé. |
+| **Módulo Relé** | Atuador | Aciona a tranca novamente para liberar a porta para saída. |
+| **Sensor Magnético (Opcional)** | Sensor | Monitora se a porta foi devidamente fechada após a passagem do usuário. |
+
+---
+
+#### 5. Guia Rápido de Diagnóstico de Falhas (Troubleshooting)
+
+Utilize este guia para identificar a origem de problemas durante os testes:
+
+1.  **Cartão lido, mas SMS não chegou:**
+    * *Falha provável:* Conexão do ESP32 com a Internet ou erro na API de envio de SMS (Backend). O Hardware RFID está OK.
+
+2.  **Display não liga ou mostra caracteres estranhos:**
+    * *Falha provável:* Conexão I2C (Pinos SDA/SCL) ou falta de alimentação 5V no display.
+
+3.  **Senha correta, display diz "Liberado", mas porta não abre:**
+    * *Falha provável:* Fonte de alimentação externa da tranca (12V) desconectada ou falha mecânica no Relé. O código e a lógica estão OK.
+
+4.  **Sistema pede senha na hora da saída:**
+    * *Falha provável:* Erro de lógica no código (Variável de estado `usuarioDentro` não foi atualizada corretamente).
+
+
+### Storyboard 2: Beatriz
+
+Esta seção detalha os componentes de software e arquitetura de dados utilizados na interface de monitoramento, permitindo entender o fluxo da informação desde o dispositivo IoT até a tela da Beatriz.
+
+---
+
+#### 1. Fase de Processos Manuais (Cena 1 - O Problema)
+**Contexto:** Utilização de sistemas descentralizados (mensagens de texto) e dependência da memória humana. Não há componentes de automação ativos nesta fase.
+
+| Componente | Tipo | Impacto no Sistema |
+| :--- | :--- | :--- |
+| **Apps de Mensagem (Whatsapp/SMS)** | Canal Externo | Dados não estruturados e difíceis de auditar. |
+| **Planilhas Manuais** | Registro | Alta latência na atualização da informação e propensão a erros de digitação. |
+
+---
+
+#### 2. Visão Geral em Tempo Real (Cena 2)
+**Contexto:** Beatriz acessa o novo sistema. O Dashboard exibe o status atual de todas as salas técnicas da estação (Ocupada/Livre) em tempo real.
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Frontend Web (Dashboard)** | Interface (UI) | Renderiza o mapa ou lista das salas. Assina os tópicos de atualização para mudar ícones de cor (Verde=Livre, Vermelho=Ocupado) instantaneamente. |
+| **Broker MQTT** | Comunicação | A "ponte" que recebe o status do ESP32 ("Porta Aberta/Fechada") e empurra essa informação para o Dashboard sem precisar recarregar a página (WebSockets). |
+| **API REST (Backend)** | Servidor | Fornece a lista estruturada de todas as salas cadastradas e seus níveis de permissão. |
+| **Banco de Dados (Status)** | Armazenamento | Guarda o "estado atual" de cada sala para que, ao abrir o sistema, Beatriz veja a informação correta imediatamente. |
+
+---
+
+#### 3. Auditoria e Detalhamento (Cena 3)
+**Contexto:** Beatriz clica em uma sala específica para investigar o histórico. O sistema busca os logs de acesso (Quem, Quando, Quanto tempo).
+
+| Componente | Tipo | Função Específica nesta Fase |
+| :--- | :--- | :--- |
+| **Banco de Dados (Logs)** | Armazenamento | Tabela histórica que armazena cada evento recebido do IoT: `ID_Usuario`, `ID_Sala`, `Timestamp_Entrada`, `Timestamp_Saida`. |
+| **Módulo de Relatórios (Backend)** | Processamento | Recebe a solicitação do clique, filtra os dados daquela sala específica no banco e calcula o tempo de permanência de cada acesso. |
+| **Identidade do Usuário** | Banco de Dados | Cruza o `ID_Cartão` (Hexadecimal) com o `Nome do Colaborador` (ex: "Carlos") para exibir nomes legíveis na tela, não apenas códigos. |
+| **Modal de Detalhes (Frontend)** | Interface (UI) | Janela ou tabela que apresenta os dados históricos de forma organizada e cronológica para a supervisora. |
+
+---
+
+#### 4. Guia Rápido de Diagnóstico de Falhas (Plataforma)
+
+Utilize este guia se a experiência de Beatriz no monitoramento apresentar problemas:
+
+1.  **Dashboard carrega, mas os status das salas não mudam (sempre "Livre"):**
+    * *Falha provável:* O **Broker MQTT** ou **WebSockets** não estão conectados ao Frontend. O dispositivo envia, mas a tela não atualiza automaticamente.
+    
+2.  **Ao clicar na sala, a lista de acessos aparece vazia ou dá erro:**
+    * *Falha provável:* Erro na **API de consulta (Backend)** ou falha de conexão com o **Banco de Dados de Logs**.
+    
+3.  **Aparecem códigos estranhos (ex: "5c 8D 35") ao invés do nome da pessoa:**
+    * *Falha provável:* Falha na tabela de **Relacionamento de Usuários**. O sistema registrou o cartão, mas não conseguiu encontrar o nome do funcionário correspondente.
+    
+4.  **Sistema mostra que a sala está "Ocupada" há 24 horas (Falso Positivo):**
+    * *Falha provável:* Ocorreu uma falha no registro de **Saída (Cena 7 do Hardware)**. O sistema recebeu o `Start`, mas nunca recebeu o `Stop`, mantendo o status travado no banco de dados.
 
 
 ### 3.3.1. Requisitos Funcionais

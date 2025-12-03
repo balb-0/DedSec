@@ -220,6 +220,35 @@ class Buzzer {
 };
 
 // -----------------------------
+// CLASSE LED
+// -----------------------------
+// Classe responsável por controlar o led (som de feedback)
+class LED {
+  private:
+    int pin;  // Pino digital conectado ao led
+
+  public:
+    // Construtor: define o pino do led
+    LED(int porta): pin(porta) {}
+
+    // Inicializa o pino do led como saída
+    void iniciar() {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, LOW);  // Garante que o led comece desligado
+    }
+
+    // Liga o led
+    void ligar() {
+      digitalWrite(pin, HIGH);
+    }
+
+    // Desliga o led
+    void desligar() {
+      digitalWrite(pin, LOW);
+    }
+};
+
+// -----------------------------
 // CLASSE WIFI
 // -----------------------------
 // Classe responsável por gerenciar a conexão WiFi
@@ -333,7 +362,8 @@ Display display1(26, 27);   // Display LCD I2C (SDA=26, SCL=27)
 Rfid leitorCartao(5, 22);   // Leitor RFID RC522 (SS=5, RST=22)
 Wifi Wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");  // Credenciais da rede WiFi
 MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");  // Broker MQTT HiveMQ
-
+LED ledVermelho(34);
+LED ledVerde(12);
 // -----------------------------
 // SETUP
 // -----------------------------
@@ -348,6 +378,10 @@ void setup() {
   display1.setTexto1("Conectando a");
   display1.setTexto2("Internet...");
   display1.escreverLinhaDupla();
+
+  // Definindo LED
+  ledVermelho.iniciar();
+  ledVerde.iniciar();
 
   // Conecta à rede WiFi
   Wifi.conectar_Wifi();
@@ -395,6 +429,9 @@ void loop() {
           display1.setTexto1("Cartao nao");
           display1.setTexto2("cadastrado");
           display1.escreverLinhaDupla();
+          ledVermelho.ligar();
+          delay(1000);
+          ledVermelho.desligar();
           
           // Toca dois bipes de erro
           somValidacao.tocarSom();
@@ -428,23 +465,32 @@ void loop() {
           // Senha correta - libera o acesso
           display1.escreverLinhaUnica("Acesso Liberado");
           Serial.println("Senha correta!");
+
+          //Liga o Led
+
+          
           somValidacao.tocarSom();  // Bipe longo de sucesso
+          ledVerde.ligar();
           delay(3000);
+          ledVerde.desligar();
           somValidacao.desligar();
 
           // Envia comando via MQTT para desbloquear a tranca
           MQTT.desligar_tranca();
+          
         } else {
           // Senha incorreta - nega o acesso
           display1.escreverLinhaUnica("Senha Incorreta");
           Serial.println("Senha incorreta!");
           // Toca dois bipes de erro
           somValidacao.tocarSom();
+          ledVermelho.ligar();
           delay(200);
           somValidacao.desligar();
           delay(100);
           somValidacao.tocarSom();
           delay(200);
+          ledVermelho.desligar();
           somValidacao.desligar();
         }
 

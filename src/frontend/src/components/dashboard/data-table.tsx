@@ -66,11 +66,11 @@ export function DataTable<
 
 export function StatusBadge({ status }: { status: string }) {
   const variant =
-    status === "Completed"
+    status === "Finalizado"
       ? "default"
-      : status === "Pending"
+      : status === "Em andamento"
       ? "secondary"
-      : status === "Failed"
+      : status === "Cancelado"
       ? "destructive"
       : "outline";
 

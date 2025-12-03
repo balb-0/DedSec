@@ -23,7 +23,7 @@ const ordersData: Order[] = [
     customer: "John Smith",
     email: "john@example.com",
     amount: "$250.00",
-    status: "Completed",
+    status: "Finalizado",
     date: "2024-01-15",
   },
   {
@@ -31,7 +31,7 @@ const ordersData: Order[] = [
     customer: "Sarah Johnson",
     email: "sarah@example.com",
     amount: "$125.00",
-    status: "Pending",
+    status: "Em andamento",
     date: "2024-01-15",
   },
   {
@@ -39,7 +39,7 @@ const ordersData: Order[] = [
     customer: "Mike Wilson",
     email: "mike@example.com",
     amount: "$450.00",
-    status: "Completed",
+    status: "Finalizado",
     date: "2024-01-14",
   },
   {
@@ -47,7 +47,7 @@ const ordersData: Order[] = [
     customer: "Emily Brown",
     email: "emily@example.com",
     amount: "$89.00",
-    status: "Failed",
+    status: "Cancelado",
     date: "2024-01-14",
   },
   {
@@ -55,7 +55,7 @@ const ordersData: Order[] = [
     customer: "David Lee",
     email: "david@example.com",
     amount: "$320.00",
-    status: "Completed",
+    status: "Finalizado",
     date: "2024-01-13",
   },
 ];
@@ -81,7 +81,10 @@ export function RecentOrdersTable() {
         <CardDescription>Latest orders from your store</CardDescription>
       </CardHeader>
       <CardContent>
-        <DataTable data={ordersData} columns={columns} />
+        <DataTable
+          data={ordersData as unknown as Record<string, unknown>[]}
+          columns={columns as unknown as TableColumn<Record<string, unknown>>[]}
+        />
       </CardContent>
     </Card>
   );

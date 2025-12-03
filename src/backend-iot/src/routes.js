@@ -3,6 +3,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("./config/database");
 const { sendSMS } = require("./services/smsService");
+const {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+} = require("./controllers/usersController");
 
 // Rota de saúde (health check)
 router.get("/", (req, res) => {
@@ -14,20 +21,11 @@ router.get("/teste", (req, res) => {
   res.json({ message: "Rota de teste funcionando!" });
 });
 
-// Rota para listar todos os usuários
-router.get("/users", async (req, res) => {
-  try {
-    const result = await db.query(
-      "SELECT id, nome, rfid_codigo, ativo, created_at FROM users ORDER BY created_at DESC"
-    );
-    res.status(200).json({ success: true, data: result.rows });
-  } catch (error) {
-    console.error("[API] Erro ao buscar usuários:", error);
-    res.status(500).json({ success: false, error: "Erro ao buscar usuários." });
-  }
-});
+// ===== ROTAS DE USUÁRIOS (CRUD) =====
+// GET /users - Listar todos os usuários
+router.get("/users", getAllUsers);
 
-// Rota para buscar detalhes de um usuário específico com histórico de alocações
+// GET /users/:id - Buscar usuário por ID (com histórico de alocações)
 router.get("/users/:id", async (req, res) => {
   try {
     const userId = parseInt(req.params.id);
@@ -78,6 +76,29 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 
+// POST /users - Criar novo usuário
+router.post("/users", createUser);
+
+// PUT /users/:id - Atualizar usuário
+router.put("/users/:id", updateUser);
+
+// DELETE /users/:id - Deletar usuário
+router.delete("/users/:id", deleteUser);
+
+// GET /salas - Listar todas as salas
+router.get("/salas", async (req, res) => {
+  try {
+    const result = await db.query(
+      "SELECT id, nome, localizacao, status FROM salas ORDER BY nome"
+    );
+    res.status(200).json({ success: true, data: result.rows });
+  } catch (error) {
+    console.error("[API] Erro ao buscar salas:", error);
+    res.status(500).json({ success: false, error: "Erro ao buscar salas." });
+  }
+});
+
+// ===== OUTRAS ROTAS =====
 // Rota para obter estatísticas/KPIs
 router.get("/stats", async (req, res) => {
   try {

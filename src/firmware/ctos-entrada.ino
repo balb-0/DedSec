@@ -16,11 +16,30 @@
 #define lin 2      // Número de linhas do display (2 linhas)
 LiquidCrystal_I2C lcd(ende, col, lin);  // Instância do display LCD
 
+// ==========================================
+// CONFIGURAÇÕES DE TEMPORIZAÇÃO (em milissegundos)
+// ==========================================
+// Feedback Visual e Sonoro (LEDs e Buzzer)
+const int tempo_bip_curto = 200;
+const int tempo_intervalo_bip = 100;
+const int tempo_feedback_led = 1000;
+ 
+// Interface (Dislay)
+const int tempo_exibicao_mensagem = 2000;
+
+// Acesso e tranca
+const int tempo_porta_aberta = 3000;
+
+// Rede e conexao
+const int tempo_reconexao_mqtt = 5000;
+const int tempo_conexao_wifi = 1000;
+
+
 // -----------------------------
 // VARIÁVEIS GERAIS
 // -----------------------------
-String senha_correta = "123456";  // Senha padrão do sistema
-bool sistemaAtivo = false;        // Flag que indica se o sistema está aguardando digitação de senha
+const String senha_correta = "123456";  // Senha padrão do sistema atualmente
+bool sistemaAtivo = false; // Flag que indica se o sistema está aguardando digitação de senha
 
 // -----------------------------
 // CLASSE TECLADO
@@ -72,6 +91,7 @@ class Teclado {
 WiFiClientSecure espClient;  // Cliente WiFi seguro (SSL/TLS)
 PubSubClient client(espClient);  // Cliente MQTT para comunicação com a tranca
 
+
 // -----------------------------
 // CLASSE RFID
 // -----------------------------
@@ -91,7 +111,7 @@ class Rfid {
     void iniciar() {
       SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, SS
       rfid.PCD_Init();
-      delay(100);
+      delay(tempo_intervalo_bip);
       Serial.println("RC522 pronto!");
     }
 
@@ -307,7 +327,7 @@ class MQTT {
           Serial.print("falha, rc=");
           Serial.print(client.state());
           Serial.println(" tentando novamente em 5 segundos");
-          delay(5000);
+          delay(tempo_reconexao_mqtt);
         }
       }
     }
@@ -321,7 +341,7 @@ class MQTT {
     // Publica comandos para desbloquear e bloquear a tranca
     void desligar_tranca(){
       client.publish("tranca", "liberada");  // Envia comando para liberar a tranca
-      delay(3000);  // Aguarda 3 segundos com a tranca liberada
+      delay(tempo_porta_aberta);  // Aguarda 3 segundos com a tranca liberada
       client.publish("tranca", "bloqueada");  // Envia comando para bloquear novamente
     }
     
@@ -357,13 +377,74 @@ byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
 // INSTÂNCIAS DOS OBJETOS
 // -----------------------------
 Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);  // Teclado 4x4
-Buzzer somValidacao(13);    // Buzzer conectado ao pino 13
+Buzzer buzzer1(13);    // Buzzer conectado ao pino 13
 Display display1(26, 27);   // Display LCD I2C (SDA=26, SCL=27)
 Rfid leitorCartao(5, 22);   // Leitor RFID RC522 (SS=5, RST=22)
 Wifi Wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");  // Credenciais da rede WiFi
 MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");  // Broker MQTT HiveMQ
 LED ledVermelho(34);
 LED ledVerde(12);
+
+
+// -----------------------------
+// FUNÇÕES DE LÓGICA DO SISTEMA
+// -----------------------------
+void tratarAcessoLiberado(){
+  // Executa a rotina de sucesso (Display, LED Verde, Som e MQTT)
+  Serial.println("Acesso Autorizado");
+  display1.escreverLinhaUnica("Acesso Liberado");
+
+  // Feedback visual e sonoro
+  buzzer1.tocarSom();
+  ledVerde.ligar();
+
+  MQTT.desligar_tranca();
+
+  ledVermelho.desligar();
+  buzzer1.desligar();
+};
+
+void tratarAcessoNegado(String msg1, String msg2){
+  Serial.println("Acesso Negado");
+  display1.setTexto1(msg1);
+  display1.setTexto2(msg2);
+  display1.escreverLinhaDupla();
+  Serial.println(msg1 + " " + msg2 + "!");
+
+  // Sequência de erro (LED Vermelho + 2 Bipes)
+  ledVermelho.ligar();
+
+  buzzer1.tocarSom();
+  delay(tempo_bip_curto);
+  buzzer1.desligar();
+
+  ledVermelho.desligar();
+  delay(tempo_exibicao_mensagem);
+} 
+
+// Reinicia o estado para aguardar novo cartão
+void resetarSistema(){
+  teclado.limparSenha();
+  leitorCartao.reiniciar();
+  sistemaAtivo = false;
+
+  // Tela inicial
+  display1.setTexto1("Aproxime o ");
+  display1.setTexto2("Cartão");
+  display1.escreverLinhaDupla();
+
+}
+
+void imprimirUID(){
+  // Exibe o UID do cartão no monitor serial para debug
+  MFRC522& rfidInterno = leitorCartao.getRFID();
+  Serial.print("UID lido: ");
+  for (byte i = 0; i < rfidInterno.uid.size; i++) {
+    Serial.print(rfidInterno.uid.uidByte[i], HEX);
+    Serial.print(" ");
+  }
+  Serial.println();
+}
 // -----------------------------
 // SETUP
 // -----------------------------
@@ -372,7 +453,7 @@ void setup() {
   // Inicializa os componentes de hardware
   display1.iniciar();         // Inicia o display LCD
   leitorCartao.iniciar();     // Inicia o leitor RFID
-  somValidacao.iniciar();     // Inicia o buzzer
+  buzzer1.iniciar();     // Inicia o buzzer
 
   // Exibe mensagem de conexão no display
   display1.setTexto1("Conectando a");
@@ -402,58 +483,26 @@ void setup() {
 void loop() {
   // Mantém a conexão MQTT ativa
   MQTT.manter_conexao();
-
   // MODO 1: Aguardando leitura do cartão RFID
   if (!sistemaAtivo) {
     if (leitorCartao.detectarCartao()) {
       
       // Verifica se o cartão lido está autorizado
+      imprimirUID();
       if (leitorCartao.eCartaoAutorizado()) {
-          
-          // Exibe o UID do cartão no monitor serial para debug
-          MFRC522& rfidInterno = leitorCartao.getRFID();
-          Serial.print("UID lido: ");
-          for (byte i = 0; i < rfidInterno.uid.size; i++) {
-            Serial.print(rfidInterno.uid.uidByte[i], HEX);
-            Serial.print(" ");
-          }
-          Serial.println();
-      
-          // Ativa o sistema para permitir digitação da senha
-          sistemaAtivo = true;
-          display1.escreverLinhaUnica("Digite a Senha:");
-          
+        // Ativa o sistema para permitir digitação da senha
+        sistemaAtivo = true;
+        display1.escreverLinhaUnica("Digite a Senha:");
+        Serial.println("Cartão reconhecido. Aguardando senha...");
+
       } else {
           // Cartão não autorizado - exibe mensagem de erro
-          Serial.println("Cartao Negado!");
-          display1.setTexto1("Cartao nao");
-          display1.setTexto2("cadastrado");
-          display1.escreverLinhaDupla();
-          ledVermelho.ligar();
-          delay(1000);
-          ledVermelho.desligar();
-          
-          // Toca dois bipes de erro
-          somValidacao.tocarSom();
-          delay(200);
-          somValidacao.desligar();
-          delay(100);
-          somValidacao.tocarSom();
-          delay(200);
-          somValidacao.desligar();
-          
-          delay(2000);
-          
-          // Retorna à tela inicial
-          display1.setTexto1("Aproxime o");
-          display1.setTexto2("cartao");
-          display1.escreverLinhaDupla();
+          tratarAcessoNegado("Cartao nao", "Cadastrado");
+          resetarSistema();
       }
-      
       leitorCartao.encerrarLeitura();
     }
   }
-
   // MODO 2: Aguardando digitação da senha
   if (sistemaAtivo) {
     char tecla = teclado.lerTecla();
@@ -462,57 +511,20 @@ void loop() {
       if (tecla == '#') {
         // Verifica se a senha está correta
         if (teclado.getSenha() == senha_correta) {
-          // Senha correta - libera o acesso
-          display1.escreverLinhaUnica("Acesso Liberado");
-          Serial.println("Senha correta!");
-
-          //Liga o Led
-
-          
-          somValidacao.tocarSom();  // Bipe longo de sucesso
-          ledVerde.ligar();
-          delay(3000);
-          ledVerde.desligar();
-          somValidacao.desligar();
-
-          // Envia comando via MQTT para desbloquear a tranca
-          MQTT.desligar_tranca();
+          tratarAcessoLiberado(); // logica de sucesso encapsulada
           
         } else {
           // Senha incorreta - nega o acesso
-          display1.escreverLinhaUnica("Senha Incorreta");
-          Serial.println("Senha incorreta!");
-          // Toca dois bipes de erro
-          somValidacao.tocarSom();
-          ledVermelho.ligar();
-          delay(200);
-          somValidacao.desligar();
-          delay(100);
-          somValidacao.tocarSom();
-          delay(200);
-          ledVermelho.desligar();
-          somValidacao.desligar();
+          tratarAcessoNegado("Senha", "Incorreta"); // logica de erro encapsulada
         }
-
-        delay(2000);
-        teclado.limparSenha();  // Limpa a senha digitada
-        
-        leitorCartao.reiniciar();  // Reinicia o leitor RFID
-        
-        // Retorna ao modo de leitura de cartão
-        sistemaAtivo = false;
-        display1.setTexto1("Aproxime o");
-        display1.setTexto2("cartao");
-        display1.escreverLinhaDupla();
-        return;
+        resetarSistema(); // logica de resete encapsulada
       } else {
         // Adiciona a tecla digitada à senha (números) ou remove último dígito ('*')
+        // Atualiza o display mostrando a senha mascarada
         teclado.adicionarTecla(tecla);
+        display1.escreverLinhaUnica("Digite a Senha:");
+        display1.escreverSenhaMascarada(teclado.getSenha());
       }
-
-      // Atualiza o display mostrando a senha mascarada
-      display1.escreverLinhaUnica("Digite a Senha:");
-      display1.escreverSenhaMascarada(teclado.getSenha());
     }
   }
 }

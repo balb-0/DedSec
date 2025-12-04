@@ -210,9 +210,19 @@ class MQTT_Manager {
     void reconectar() {
       while (!client.connected()) {
         Serial.print("Conectando ao MQTT...");
+        // Tenta conectar
         if (client.connect("ESP32_Entrada", user, pass)) {
           Serial.println("Conectado!");
-          client.subscribe("command_display"); // IMPORTANTE: Ouvir o backend
+          
+          // --- LINHAS NOVAS DE DEBUG ---
+          boolean r = client.subscribe("command_display");
+          if(r) {
+             Serial.println("SUCESSO: Inscricao no topico 'command_display' enviada!");
+          } else {
+             Serial.println("ERRO: Falha ao tentar se inscrever!");
+          }
+          // -----------------------------
+          
         } else {
           Serial.print("Falha: "); Serial.print(client.state());
           delay(2000);

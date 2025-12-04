@@ -37,7 +37,7 @@ router.get("/users/search", async (req, res) => {
     }
 
     const result = await db.query(
-      `SELECT id, nome, rfid_codigo, ativo, sala_id 
+      `SELECT id, nome, rfid_codigo, telefone, ativo, sala_id 
        FROM users 
        WHERE nome ILIKE $1 
        ORDER BY nome 
@@ -59,7 +59,7 @@ router.get("/users/:id", async (req, res) => {
 
     // Busca dados do usuário
     const userResult = await db.query(
-      `SELECT u.id, u.nome, u.rfid_codigo, u.ativo, u.created_at, 
+      `SELECT u.id, u.nome, u.rfid_codigo, u.telefone, u.ativo, u.created_at, 
               s.nome as sala_nome, s.localizacao as sala_localizacao
        FROM users u
        LEFT JOIN salas s ON u.sala_id = s.id

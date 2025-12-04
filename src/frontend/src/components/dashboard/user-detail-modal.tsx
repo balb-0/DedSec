@@ -15,12 +15,14 @@ import {
   CheckCircle2,
   XCircle,
 } from "lucide-react";
+import { Button } from "../ui/button";
 import React, { useEffect, useState } from "react";
 
 export interface User {
   id: number;
   nome: string;
   rfid_codigo: string;
+  telefone: string | null;
   ativo: boolean;
   created_at: string;
   sala_nome?: string;
@@ -40,6 +42,7 @@ interface UserDetail {
   id: number;
   nome: string;
   rfid_codigo: string;
+  telefone: string | null;
   ativo: boolean;
   created_at: string;
   sala_nome?: string;
@@ -61,25 +64,55 @@ export function UserDetailModal({
   const [userDetail, setUserDetail] = useState<UserDetail | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const fetchUserDetails = () => {
+    if (!user) return;
+
+    setLoading(true);
+    fetch(`/api/users/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setUserDetail(data.data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar detalhes do usuário:", err);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     if (open && user) {
-      setLoading(true);
-      fetch(`/api/users/${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            setUserDetail(data.data);
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Erro ao buscar detalhes do usuário:", err);
-          setLoading(false);
-        });
+      fetchUserDetails();
     } else {
       setUserDetail(null);
     }
   }, [open, user]);
+
+  const handleCompleteTask = async (alocacaoId: number) => {
+    if (!confirm("Tem certeza que deseja marcar esta tarefa como completa?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/alocacoes/${alocacaoId}/complete`, {
+        method: "PUT",
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Recarregar detalhes do usuário
+        fetchUserDetails();
+      } else {
+        alert(data.error || "Erro ao finalizar tarefa");
+      }
+    } catch (err) {
+      console.error("Erro ao finalizar tarefa:", err);
+      alert("Erro ao finalizar tarefa. Tente novamente.");
+    }
+  };
 
   if (!user) return null;
 
@@ -164,6 +197,18 @@ export function UserDetailModal({
                 </div>
               </div>
 
+              {userDetail.telefone && (
+                <div className="flex items-center gap-3 rounded-lg border p-3">
+                  <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
+                    <span className="text-xs">📱</span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Telefone</p>
+                    <p className="font-medium text-sm">{userDetail.telefone}</p>
+                  </div>
+                </div>
+              )}
+
               <div className="flex items-center gap-3 rounded-lg border p-3">
                 <Calendar className="h-5 w-5 text-muted-foreground" />
                 <div>
@@ -230,12 +275,24 @@ export function UserDetailModal({
                             </p>
                           )}
                         </div>
-                        <Badge
-                          variant={alocacao.fim ? "secondary" : "default"}
-                          className="text-xs"
-                        >
-                          {alocacao.fim ? "Finalizada" : "Ativa"}
-                        </Badge>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant={alocacao.fim ? "secondary" : "default"}
+                            className="text-xs"
+                          >
+                            {alocacao.fim ? "Finalizada" : "Ativa"}
+                          </Badge>
+                          {!alocacao.fim && (
+                            <Button
+                              onClick={() => handleCompleteTask(alocacao.id)}
+                              size="sm"
+                              className="bg-green-600 hover:bg-green-700 text-white"
+                            >
+                              <CheckCircle2 className="h-3 w-3 mr-1" />
+                              Completar
+                            </Button>
+                          )}
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground mt-3 pt-3 border-t">

@@ -17,6 +17,7 @@ interface User {
   id: number;
   nome: string;
   rfid_codigo: string;
+  telefone: string | null;
   ativo: boolean;
   sala_id: number | null;
   created_at: string;

@@ -11,10 +11,12 @@ const {
   deleteUser,
 } = require("./controllers/usersController");
 
-// Rota de saúde (health check)
-router.get("/", (req, res) => {
-  res.send("Backend IoT está rodando e ouvindo o MQTT!");
-});
+// Rota de saúde (health check) - apenas em desenvolvimento
+if (process.env.NODE_ENV !== "production") {
+  router.get("/", (req, res) => {
+    res.send("Backend IoT está rodando e ouvindo o MQTT!");
+  });
+}
 
 // Rota de teste simples
 router.get("/teste", (req, res) => {

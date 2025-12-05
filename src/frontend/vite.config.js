@@ -24,4 +24,9 @@ export default defineConfig({
       },
     },
   },
+  // Em produção, as requisições /api vão para a mesma origem (o backend serve o frontend)
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+  },
 });

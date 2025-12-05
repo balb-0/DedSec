@@ -20,6 +20,7 @@ interface Sala {
 interface UserFormData {
   nome: string;
   rfid_codigo: string;
+  telefone: string;
   sala_id: string;
   ativo: boolean;
 }
@@ -31,6 +32,7 @@ interface UserFormModalProps {
     id: number;
     nome: string;
     rfid_codigo: string;
+    telefone: string | null;
     sala_id: number | null;
     ativo: boolean;
   } | null;
@@ -46,6 +48,7 @@ export function UserFormModal({
   const [formData, setFormData] = useState<UserFormData>({
     nome: "",
     rfid_codigo: "",
+    telefone: "",
     sala_id: "",
     ativo: true,
   });
@@ -75,6 +78,7 @@ export function UserFormModal({
       setFormData({
         nome: user.nome,
         rfid_codigo: user.rfid_codigo,
+        telefone: user.telefone || "",
         sala_id: user.sala_id?.toString() || "",
         ativo: user.ativo,
       });
@@ -83,6 +87,7 @@ export function UserFormModal({
       setFormData({
         nome: "",
         rfid_codigo: "",
+        telefone: "",
         sala_id: "",
         ativo: true,
       });
@@ -99,6 +104,7 @@ export function UserFormModal({
       const payload: any = {
         nome: formData.nome,
         rfid_codigo: formData.rfid_codigo,
+        telefone: formData.telefone || null,
         ativo: formData.ativo,
       };
 
@@ -171,6 +177,19 @@ export function UserFormModal({
               }
               placeholder="Ex: A1B2C3D4"
               required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="telefone">Telefone</Label>
+            <Input
+              id="telefone"
+              type="tel"
+              value={formData.telefone}
+              onChange={(e) =>
+                setFormData({ ...formData, telefone: e.target.value })
+              }
+              placeholder="Ex: +5511999887766"
             />
           </div>
 

@@ -3490,6 +3490,57 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
 
 &nbsp;&nbsp;&nbsp;&nbsp; Para melhor visualização, acesse o nosso [Link do Miro.](https://miro.com/app/board/uXjVJkjqCqI=/?share_link_id=422776690347)
 
+
+#### 3.4.4.3 Mudanças no protótipo físico
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além das situações de uso e casos de teste, nessa seção registramos mudanças que fizemos no protótipo físico durante a sprint 4. O principal progresso feito foi referente à quantidade de ESP32 e suas funções, sendo adicionado mais um, dessa forma ficando com o ESP32 de entrada, ESP32 de saída e o ESP32 da tranca. Para acompanhamento dos logs de entrada e saída do protótipo físico pelo CCO, também criamos um dashboard para nosso projeto.
+
+##### 3.4.4.3.1 ESP32 - Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; No ESP32 de entrada foram implementados dois LEDs para representação visual: um verde, que é acionado quando o acesso é liberado, e um vermelho, que brilha quando o acesso é negado.
+
+<img src="../assets/documentação/ESP32_entrada.jpg">
+
+
+##### 3.4.4.3.2 ESP32 - Saída
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesse ESP32 houve uma grande alteração: foram retirados o relé e a tranca, deixando apenas o sensor RFID.
+
+<img src="../assets/documentação/ESP32_saída.jpg">
+
+
+##### 3.4.4.3.3 ESP32 - Tranca
+
+&nbsp;&nbsp;&nbsp;&nbsp; Esse é um novo ESP32 que adicionamos nessa sprint. Nele, colocamos o relé e a tranca, adicionamos um sensor ultrassônico que verifica se a porta está aberta e um buzzer que apita caso a porta se mantenha aberta por mais de cinco segundos.
+
+<img src="../assets/documentação/ESP32_tranca.jpg">
+
+
+##### Fluxo de funcionamento
+
+&nbsp;&nbsp;&nbsp;&nbsp; Tanto o ESP32 de entrada quanto o de saída, funcionam enviando sinais via Broker MQTT para o ESP32 da tranca, que ao receber um acesso permitido, aciona o relé e destrava a tranca.
+
+<img src="../assets/documentação/ESP32_fluxo.png">
+
+
+##### 3.4.4.3.4 Dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além de todo o sistema físico desenvolvido, também foi criado um Dashboard pensando em resolver a dor da equipe do CCO. Nesse Dashboard, conseguimos ter a visualização de todos os trabalhadores registrados, suas devidas informações como código RFID, telefone e histórico de entrada, assim como podemos registrar novos usuários e atribuir novas tarefas aos trabalhadores.
+
+<img src="../assets/documentação/Dashboard.png">
+
+
+**Vídeo Demonstração do Dashboard**
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Para um entendimento mais aprofundado do funcionamento do Dashboard, acesse o [Vídeo](https://www.youtube.com/watch?v=kzzpmuRaaOQ) de demonstração.
+
+##### 3.4.4.3.4.5 Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp; Portanto, as mudanças realizadas no protótipo físico durante a sprint 4 representaram um avanço significativo na robustez e na organização do sistema. A redistribuição das responsabilidades entre três ESP32 tornou o fluxo mais organizado, facilitando manutenção e implementação.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Paralelamente, o desenvolvimento do Dashboard surge para facilitar o monitoramento pelo CCO, oferecendo uma interface prática para acompanhar logs, gerenciar trabalhadores e visualizar informações essenciais. 
+
 ### 3.4.5. Protótipo Final do Projeto (sprint 5)	
 
 _Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>

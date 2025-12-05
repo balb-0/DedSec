@@ -3353,6 +3353,12 @@ void loop() {
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 
+---
+
+_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
+**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
+Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+
 #### **3.4.4.1. Casos de Teste**
 
 Esta subseção detalha os cenários de uso do sistema de controle de acesso por MFA, apresentando diagramas de sequência UML para ilustrar as interações entre os componentes. Cada caso de teste é acompanhado de sua descrição, alinhamento de negócios/UX, pré-condições, pós-condições e o fluxo de eventos correspondente ao diagrama.
@@ -3432,13 +3438,57 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
   <em><sub><strong>Caso de Teste 2: </strong>Tentativa de Acesso com Cartão RFID Não Cadastrado (Falha)</sub></em>
 </p>
 
+#### 3.4.4.2 Situações de Uso
 
+&nbsp;&nbsp;&nbsp;&nbsp; Diferentemente dos casos de teste, as Situações de Uso são criadas para identificar e representar os fluxos de funcionamento do sistema durante a interação com o usuário. Além de contemplar os cenários de sucesso, também devem incluir situações em que o comportamento esperado do sistema ocorre mesmo diante de tentativas inválidas.
+&nbsp;&nbsp;&nbsp;&nbsp; Assim, foram definidas quatro situações distintas de uso: duas em que o acesso é autorizado e duas em que a entrada do usuário é negada, porém com o sistema reagindo corretamente às condições de falha.
 
----
+**Legenda**
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+&nbsp;&nbsp;&nbsp;&nbsp; Para entendimento dos Diagramas UML apresentados a seguir, é importante o entendimento da legenda a seguir referente à elementos visuais:
+
+**#** | **Representação Visual** | **Nome** | **Descrição** 
+|----------|----------|----------|----------|
+|01| <img src="../assets/documentação/UML/ator.png"> | Ator | Em um diagrama UML, um ator representa um tipo de papel que interage com o sistema e seus objetos. |
+|02| <img width= 250px src="../assets/documentação/UML/linha_de_vida.png"> | Linhas de vida | Linhas de vida é o nome dado a cada objeto presente no sistema e representado no Diagrama UML. |
+|03| <img width= 250px src="../assets/documentação/UML/mensagem.png"> | Mensagens | A interação/comunicação entre dois objetos é representada a partir de uma seta, chamada de mensagens. |
+|04| <img width= 250px src="../assets/documentação/UML/criar_msg.png"> | Criar mensagem | Usamos uma mensagem de criação para criar um novo objeto no diagrama. |
+|05| <img width= 250px src="../assets/documentação/UML/deletar_msg.png"> | Deletar Mensagem | Quando um objeto é deletado dentro do sistema, usamos o símbolo de mensagem de exclusão. |
+|06| <img width= 250px src="../assets/documentação/UML/automensagem.png"> | Automensagem | Usado quando um objeto manda uma mensagem para si mesmo. |
+|07| <img width= 250px src="../assets/documentação/UML/responder.png"> | Responder mensagem | As mensagens de resposta são usadas para mostrar a mensagem enviada do destinatário para o remetente. |
+|08| <img width= 250px src="../assets/documentação/UML/msg_encontrada.png"> | Mensagem encontrada | Uma mensagem "Encontrada" é usada para representar um cenário em que uma fonte desconhecida envia a mensagem. |
+|09| <img width= 250px src="../assets/documentação/UML/msg_perdida.png"> | Mensagem perdida | Uma mensagem perdida é usada para representar um cenário em que o destinatário é desconhecido para o sistema. |
+|10| <img width= 250px src="../assets/documentação/UML/guardas.png"> | Guardas | Os guardas são usados para especificar condições que devem ser atendidas para que a mensagem acontecer. |
+
+##### 3.4.4.2.1 Entrada autorizada 
+
+&nbsp;&nbsp;&nbsp;&nbsp; O primeiro caso utiliza do sistema completo. Nele a entrada do trabalhador é autorizada e ocorre de maneira esperada: primeiro aproxima o cartão RFID, em seguida recebe um código via SMS, digita no painel e por fim seu acesso é liberado e registrado no Dashboard.
+
+<img src="../assets/documentação/UML/UML_entrada_aut.png">
+
+##### 3.4.4.2.2 Saída autorizada 
+
+&nbsp;&nbsp;&nbsp;&nbsp; A segunda situação de uso demonstra o caso em que o usuário sai normalmente da sala, interagindo com o sistema da tranca. Para que essa situação ocorra, basta o trabalhador estar dentro de uma sala e aproximar o cartão do sensor RFID, liberando a porta e registrando no Dashboard a sua saída.
+
+<img src="../assets/documentação/UML/UML_saída_aut.png">
+
+##### 3.4.4.2.3 Entrada negada - Cartão não cadastrado
+
+&nbsp;&nbsp;&nbsp;&nbsp; A terceira interação representada é um caso de acesso negado. Nela o usuário aproxima o seu cartão do sensor RFID, mas por não estar registrado não consegue ter acesso à sala. Assim, é enviado ao Dashboard que foi realizado uma tentativa de acesso negado.
+
+<img src="../assets/documentação/UML/UML_entrada_negada.png">
+
+##### 3.4.4.2.4 Entrada negada - Senha incorreta
+
+&nbsp;&nbsp;&nbsp;&nbsp; A última situação de uso representada foi outro caso de acesso inválido. Nessa interação o usuário aproximou o cartão corretamente cadastrado, entretando foi inserida a senha errada. Dessa forma, uma mensagem é registrada no Dashboard, avisando sobre uma tentativa de entrada inválida.
+
+<img src="../assets/documentação/UML/UML_entrada_negada2.png">
+
+##### 3.4.4.2.5 Conclusão dos casos de uso
+
+&nbsp;&nbsp;&nbsp;&nbsp; Portanto, fica claro que os casos de uso representam uma etapa essencial no entendimento do fluxo do projeto, revelando diferentes atores e interações entre si. Além disso, a análise desses cenários permite visualizar antecipadamente situações de sucesso e falha, assegurando que o sistema esteja preparado para responder corretamente em ambos os casos. Dessa forma, essa etapa contribui diretamente para a qualidade e confiabilidade da solução IoT proposta.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Para melhor visualização, acesse o nosso [Link do Miro.](https://miro.com/app/board/uXjVJkjqCqI=/?share_link_id=422776690347)
 
 ### 3.4.5. Protótipo Final do Projeto (sprint 5)	
 
@@ -3483,10 +3533,14 @@ VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em:
 
 [2] RUSHIKEN, Amanda. (2023). Value Proposition Canvas: o que é e como funciona essa metodologia?. G4 Educação. Disponível em: <https://g4educacao.com/blog/value-proposition-canvas> Acesso em 21 out. 2025. <a name="foot2" id="foot2"></a>
 
-**Sobre a pesquisa para as personas:**
+**Fontes utilizadas na pesquisa das personas:**
 
 TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025
 
+**Fontes utilizadas na construção do Diagrama UML na seçao 4.2.2**
+
+GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em: https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-sequence-diagrams/
+. Acesso em: 01 dez. 2025.
 
 # <a name="c6"></a>6. Anexos
 

@@ -17,13 +17,11 @@ const client = mqtt.connect(process.env.MQTT_BROKER_URL, mqttOptions);
 
 client.on('connect', () => {
   console.log('Backend conectado ao Broker MQTT (HiveMQ)!');
-  // Aqui você pode subscrever aos tópicos que o ESP32-SENHA vai publicar, por exemplo
-  client.on('connect', () => {
-  console.log('Backend conectado ao Broker MQTT (HiveMQ)!');
   
-  // --- MUDANÇA AQUI: Assinar os dois tópicos ---
+  // --- LISTA DE TÓPICOS ATUALIZADA ---
+  // Agora ouvimos o pedido do cartão E o envio do PIN
   const topicos = ['request_card', 'submit_sms'];
-  
+
   client.subscribe(topicos, (err) => {
     if (!err) {
       console.log(`Subscrito aos tópicos: ${topicos.join(', ')}`);
@@ -31,8 +29,6 @@ client.on('connect', () => {
       console.error('Erro ao subscrever:', err);
     }
   });
-});
-  // Você pode ter outros tópicos aqui, como 'porta/status' para o sensor ultrassônico
 });
 
 client.on('error', (error) => {

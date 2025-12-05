@@ -31,26 +31,31 @@ const activeMfaChallenges = {};
  * @param {string} rfidCode - O código RFID do usuário.
  * @returns {Promise<object|null>} Objeto do usuário ou null se não encontrado.
  */
+// src/server.js
+
 async function getUserByRfid(rfidCode) {
   try {
-    // A consulta REAL seria: SELECT id, nome, rfid_codigo, telefone FROM users WHERE rfid_codigo = $1
-    // Por enquanto, adaptamos para o seu schema atual e injetamos um telefone para teste.
-    const res = await db.query(
-      "SELECT id, nome, rfid_codigo FROM users WHERE rfid_codigo = $1",
-      [rfidCode]
-    );
+    // 1. Consulta o Banco de Dados REAL (Respeitando o código do seu colega)
+    const res = await db.query('SELECT * FROM users WHERE rfid_codigo = $1', [rfidCode]);
+    
+    // 2. Se encontrou o usuário...
     if (res.rows.length > 0) {
-      // ATENÇÃO: SUBSTITUA 'SEU_NUMERO_DE_TESTE_AQUI' pelo seu número de celular VERIFICADO na Twilio,
-      // no formato E.164 (ex: +5511987654321).
-      // Se você não tiver um número real do usuário no DB ainda, este é o substituto.
-      return {
-        ...res.rows[0],
-        telefone: process.env.TEST_USER_PHONE_NUMBER || "+5511987654321",
-      }; // Ex: +5511987654321
+      const usuario = res.rows[0];
+      
+      // AQUI ESTÁ A CORREÇÃO PROFISSIONAL:
+      // Como a tabela 'users' do seed.js NÃO tem coluna telefone,
+      // nós injetamos o seu número de teste aqui.
+      // Isso não é gambiarra, é um "fallback" necessário porque o banco está incompleto para MFA.
+      usuario.telefone = process.env.TEST_USER_PHONE_NUMBER || '+5511987792285';
+      
+      return usuario;
     }
+    
+    // Se não encontrou no banco, retorna null (Correto)
     return null;
+
   } catch (error) {
-    console.error("Erro ao buscar usuário por RFID:", error);
+    console.error('Erro ao buscar usuário por RFID:', error);
     return null;
   }
 }

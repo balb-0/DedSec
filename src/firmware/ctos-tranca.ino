@@ -106,6 +106,49 @@ public:
   }
 };
 
+class Alarme {
+  private:
+  int pin;
+  int contador;
+  const int limiteDisparo;
+  static const tempo_beep_ms = 500;
+  static const tempo_quant_beeps = 3;
+
+  void tocarSom() {
+    Serial.println("Alarme Disparado!!");
+    for (int i = 0; i < 3; i += 1) {
+      digitalWrite(pin, HIGD);
+      delay(tempo_beep_ms);
+      digitalWrite(pin, LOW);
+      delay(tempo_beep_ms);
+    }
+  }
+
+  public:
+  Alarme(int pinoBuzzer, int limite): pin(pinoBuzzer), limiteDisparo(limite) {
+    contador = 0;
+  }
+  void definir() {
+    pinMode(pinoBuzzer, OUTPUT);
+  }
+
+  void monitorar(bool houveViolacao) {
+    if (houveViolacao) {
+      contador += 1 
+
+      if (contador >= limiteDisparo){
+        tocarSom();
+        contador = 0;
+      } 
+      else {
+        contador = 0;
+      }
+      
+    }
+  }
+
+}
+
 
 Ultrasonico sensorUltrasonico(18, 19);
 Wifi wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
@@ -151,22 +194,10 @@ void loop() {
   
   if (sensorUltrasonico.ler() >= 10){
     delay(1000);
-    contador++;
-    if (contador >= 5){
-      digitalWrite(buzzer, HIGH);
-      delay(500);
-      digitalWrite(buzzer, LOW);
-      delay(500);
-      digitalWrite(buzzer, HIGH);
-      delay(500);
-      digitalWrite(buzzer, LOW);
-      delay(500);
-      digitalWrite(buzzer, HIGH);
-      delay(500);
-      digitalWrite(buzzer, LOW);
-      contador = 0;
-    }
-  }else {
+    tocarAlarme(int buzzer);
+  }
+
+  else {
     contador = 0;
   }
 }

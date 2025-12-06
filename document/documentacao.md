@@ -1427,7 +1427,7 @@ As associações representam como as classes interagem entre si, utilizando a mu
 
 <img src="../assets/documentação/diagrama_de_blocos/diagrama_blocos.png">
 
-Para melhor visualização, acesse nosso [Figma.](https://www.figma.com/design/IYRwWfsIL5ndKZ6P7dOd8M/Diagrama-de-blocos?node-id=0-1&t=VgP5JKNezPpWYsEE-1)
+Para melhor visualização, [acesse nosso Figma.](https://www.figma.com/design/IYRwWfsIL5ndKZ6P7dOd8M/Diagrama-de-blocos?node-id=0-1&t=VgP5JKNezPpWYsEE-1)
 
 ##### 3.3.4.1.1 Camada de Borda
 
@@ -1491,6 +1491,10 @@ Para melhor visualização, acesse nosso [Figma.](https://www.figma.com/design/I
 
 
 #### 3.3.4.2 Demonstração e Explicação
+
+Além do Diagrama de Blocos desenvolvido, também gravamos um vídeo explicando toda essa estrutura e as tecnologias utilizadas, assim como todo o fluxo de utilização e funcionamento do sistema.
+
+Acesse o [vídeo explicativo clicando aqui](https://youtu.be/Ae6xPNZuHMM)
 
 #### 3.3.4.3 Conclusão da Arquitetura do Protótipo
 

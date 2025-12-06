@@ -3494,6 +3494,8 @@ TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em
 
 O manual de instruções está disponível em formato PDF dentro da pasta do projeto. Para acessá‑lo, basta abrir o arquivo <a href="./Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf">Manual de Instruções</a> localizado no mesmo diretório deste documento. O arquivo do Manual de Instruções deve estar em ```/document/Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf```.
 
+O manual também pode ser acessado em: https://docs.google.com/document/d/1_ZLw77yjFCSAIk1sGKD6v2qgPeg766zG/edit 
+
 
 ## Circuito RC
 

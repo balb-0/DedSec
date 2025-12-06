@@ -1,0 +1,31 @@
+{
+  "name": "dedsec-iot-system",
+  "version": "1.0.0",
+  "description": "Sistema IoT de controle de acesso com RFID e MFA",
+  "private": true,
+  "workspaces": [
+    "src/backend-iot",
+    "src/frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd src/backend-iot && npm run dev",
+    "dev:frontend": "cd src/frontend && npm run dev",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd src/backend-iot && npm start",
+    "start:frontend": "cd src/frontend && npm run preview",
+    "install:all": "npm install && cd src/backend-iot && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "iot",
+    "rfid",
+    "mqtt",
+    "express",
+    "react"
+  ],
+  "author": "DedSec",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

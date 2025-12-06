@@ -14,6 +14,7 @@ CREATE TABLE users (
     nome            VARCHAR(120) NOT NULL,
     rfid_codigo     VARCHAR(64) UNIQUE NOT NULL,
     senha_hash      VARCHAR(255) NOT NULL,
+    telefone        VARCHAR(20),
     sala_id         BIGINT REFERENCES salas(id),
     ativo           BOOLEAN NOT NULL DEFAULT TRUE,
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),

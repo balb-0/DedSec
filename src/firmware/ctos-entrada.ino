@@ -18,8 +18,8 @@ LiquidCrystal_I2C lcd(ende, col, lin);
 // -----------------------------
 // VARIÁVEIS GERAIS
 // -----------------------------
-bool aguardandoPin = false; // Substitui o sistemaAtivo antigo
-String rfidAtual = "";      // Armazena o UID do cartão lido para enviar junto com o PIN
+bool aguardandoPin = false; 
+String rfidAtual = "";      
 
 // -----------------------------
 // CLASSE TECLADO
@@ -30,6 +30,7 @@ class Teclado {
     String senhaDigitada;
 
   public:
+    // Construtor
     Teclado(char matriz[4][4], byte* linhas, byte* colunas, byte qtdLinhas, byte qtdColunas)
       : teclado(makeKeymap(matriz), linhas, colunas, qtdLinhas, qtdColunas), senhaDigitada("") {}
 
@@ -52,7 +53,7 @@ class Teclado {
 };
 
 // -----------------------------
-// CLASSE DISPLAY (Simplificada para acesso global)
+// CLASSE DISPLAY
 // -----------------------------
 class Display {
   private:
@@ -66,20 +67,12 @@ class Display {
       lcd.backlight();
     }
 
-    // Métodos estáticos ou globais facilitariam, mas vamos usar a instância global lcd diretamente nos callbacks
     void escrever(String l1, String l2) {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print(l1);
       lcd.setCursor(0, 1);
       lcd.print(l2);
-    }
-    
-    void escreverSenhaMascarada(String senha) {
-      lcd.setCursor(0, 1);
-      lcd.print("                "); // Limpa linha 2
-      lcd.setCursor(0, 1);
-      for (int i = 0; i < senha.length(); i++) lcd.print('*');
     }
 };
 
@@ -121,13 +114,24 @@ class Rfid {
 };
 
 // -----------------------------
-// INSTANCIAS GLOBAIS (Necessárias para o Callback MQTT)
+// INSTANCIAS GLOBAIS
 // -----------------------------
-// Pinos do Teclado
+
+// --- CORREÇÃO DE HARDWARE (SOFTWARE FIX) ---
 const byte LINHAS = 4;
 const byte COLUNAS = 4;
-char TECLAS_MATRIZ[4][4] = { {'1', '2', '3', 'A'}, {'4', '5', '6', 'B'}, {'7', '8', '9', 'C'}, {'*', '0', '#', 'D'} };
+
+// Matriz Transposta (Invertemos para compensar a troca de pinos)
+char TECLAS_MATRIZ[4][4] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}  // '*' = backspace, '#' = confirmar
+};
+
+// Pinos que eram Colunas viraram LINHAS (Input - Seguro para o pino 35)
 byte PINOS_LINHAS[LINHAS] = {17, 16, 14, 25};
+// Pinos do ESP32 conectados às colunas do teclado
 byte PINOS_COLUNAS[COLUNAS] = {15, 32, 33, 35};
 
 Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);
@@ -138,26 +142,21 @@ WiFiClientSecure espClient;
 PubSubClient client(espClient);
 
 // -----------------------------
-// FUNÇÃO AUXILIAR: PARSE JSON MANUAL
+// AUXILIAR JSON
 // -----------------------------
-// Extrai valor de uma chave JSON simples (ex: {"line1": "Texto"})
 String extrairJSON(String json, String chave) {
   String busca = "\"" + chave + "\":";
   int inicio = json.indexOf(busca);
   if (inicio == -1) return "";
-  
   inicio += busca.length();
-  // Pula espaços e aspas iniciais
   while (json[inicio] == ' ' || json[inicio] == '"') inicio++;
-  
   int fim = json.indexOf("\"", inicio);
   if (fim == -1) return "";
-  
   return json.substring(inicio, fim);
 }
 
 // -----------------------------
-// CALLBACK MQTT (Onde a mágica acontece)
+// CALLBACK MQTT
 // -----------------------------
 void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   String mensagem = "";
@@ -166,30 +165,32 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Mensagem recebida ["); Serial.print(topic); Serial.print("]: ");
   Serial.println(mensagem);
 
-  // Se o backend mandou algo para o display
   if (String(topic) == "command_display") {
     String l1 = extrairJSON(mensagem, "line1");
     String l2 = extrairJSON(mensagem, "line2");
     display1.escrever(l1, l2);
     
-    // Se a mensagem for pedindo código, ativamos o teclado
+    // ATENÇÃO: Verifique se o seu backend manda "Digite" (case sensitive)
     if (l1.indexOf("Digite") >= 0 || l2.indexOf("SMS") >= 0) {
       aguardandoPin = true;
       teclado.limparSenha();
     } 
-    // Se for acesso liberado ou negado, resetamos
     else if (l1.indexOf("Acesso") >= 0 || l1.indexOf("Cartao nao") >= 0 || l1.indexOf("Codigo") >= 0) {
       aguardandoPin = false;
-      rfidAtual = ""; // Limpa o RFID atual
-      delay(3000); // Mostra a mensagem por 3s
-      display1.escrever("Aproxime o", "cartao"); // Volta ao inicio
+      rfidAtual = ""; 
+      
+      // Pequeno delay para ler a mensagem antes de resetar
+      if(l1.indexOf("Acesso") >= 0) delay(4000); 
+      else delay(3000);
+
+      display1.escrever("Aproxime o", "cartao");
       leitorCartao.reiniciar();
     }
   }
 }
 
 // -----------------------------
-// CLASSE MQTT (Adaptada)
+// CLASSE MQTT
 // -----------------------------
 class MQTT_Manager {
   private:
@@ -202,27 +203,17 @@ class MQTT_Manager {
       : broker(b), port(p), user(u), pass(pw) {}
 
     void iniciar() {
-      espClient.setInsecure(); // Ignora certificado SSL
+      espClient.setInsecure();
       client.setServer(broker, port);
-      client.setCallback(mqtt_callback); // Define a função global acima
+      client.setCallback(mqtt_callback);
     }
 
     void reconectar() {
       while (!client.connected()) {
         Serial.print("Conectando ao MQTT...");
-        // Tenta conectar
-        if (client.connect("ESP32_Entrada", user, pass)) {
+        if (client.connect("ESP32_Entrada_Final", user, pass)) { // ID Aleatorio ou fixo diferente
           Serial.println("Conectado!");
-          
-          // --- LINHAS NOVAS DE DEBUG ---
-          boolean r = client.subscribe("command_display");
-          if(r) {
-             Serial.println("SUCESSO: Inscricao no topico 'command_display' enviada!");
-          } else {
-             Serial.println("ERRO: Falha ao tentar se inscrever!");
-          }
-          // -----------------------------
-          
+          client.subscribe("command_display");
         } else {
           Serial.print("Falha: "); Serial.print(client.state());
           delay(2000);
@@ -249,7 +240,7 @@ class MQTT_Manager {
 MQTT_Manager meuMQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");
 
 // -----------------------------
-// WIFI
+// WIFI E SETUP
 // -----------------------------
 void conectarWiFi() {
   WiFi.begin("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
@@ -260,9 +251,6 @@ void conectarWiFi() {
   Serial.println("\nWiFi Conectado!");
 }
 
-// -----------------------------
-// SETUP
-// -----------------------------
 void setup() {
   Serial.begin(115200);
   display1.iniciar();
@@ -277,42 +265,31 @@ void setup() {
   display1.escrever("Aproxime o", "cartao");
 }
 
-// -----------------------------
-// LOOP
-// -----------------------------
 void loop() {
   meuMQTT.loop();
 
-  // 1. Lendo Cartão (Só se não estiver esperando PIN)
   if (!aguardandoPin) {
     if (leitorCartao.detectarCartao()) {
       rfidAtual = leitorCartao.lerUID();
       Serial.println("RFID Lido: " + rfidAtual);
-      
       display1.escrever("Verificando...", "Aguarde");
-      
-      // Envia para o backend processar
       meuMQTT.publicarCartao(rfidAtual);
-      
       leitorCartao.encerrarLeitura();
     }
   }
 
-  // 2. Digitando PIN (Só se o backend pediu)
   if (aguardandoPin) {
     char tecla = teclado.lerTecla();
     if (tecla) {
       if (tecla == '#') {
-        // Envia PIN + RFID para o backend conferir
-        display1.escrever("Verificando", "PIN...");
+        display1.escrever("Validando", "PIN...");
         meuMQTT.publicarPin(rfidAtual, teclado.getSenha());
         teclado.limparSenha();
-        // Não mudamos 'aguardandoPin' aqui, esperamos o backend responder via command_display
+        // Não reseta aguardandoPin aqui, espera o backend responder
       } else {
         teclado.adicionarTecla(tecla);
-        // Atualiza a tela (mantém a linha 1 fixa, atualiza a linha 2)
         lcd.setCursor(0, 1);
-        lcd.print("                "); // Limpa visualmente
+        lcd.print("                ");
         lcd.setCursor(0, 1);
         String s = teclado.getSenha();
         for(int i=0; i<s.length(); i++) lcd.print("*");

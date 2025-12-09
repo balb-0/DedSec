@@ -1,10 +1,8 @@
 # Documentação IoTDoc - Módulo 4 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final_**
+## DedSec
 
-## Nome do Grupo
-
-#### Nomes dos integrantes do grupo
+#### Bruno Kadayan, Felipe Caiafa, Francisco Filho, Guilherme Holanda, João Pedro Gonçalves, Rafael Gomes, Vitor Balbo.
 
 <img src="../assets/inteli.png">
 
@@ -25,7 +23,7 @@
 <br>
 
 
-# <a name="c1"></a>1. Introdução (sprint 1)
+# <a name="c1"></a>1. Introdução 
 
 O parceiro de negócio, TIC Trens, é uma holding brasileira que atua no setor de transporte, abrangendo empresas de transporte rodoviário e urbano de passageiros, ônibus, cargas e turismo. Sua principal área de atuação é o transporte de pessoas. O problema a ser resolvido pela empresa está relacionado à gestão e validação do acesso físico a suas áreas técnicas. A empresa enfrenta desafios em coordenar as demandas de acesso lidando com a sobreposição de atividades, priorização entre manutenção e implantação, e a necessidade de verificar a capacitação dos colaboradores conforme a análise de risco. Além disso, há o desafio de garantir que o acesso físico autorizado foi, de fato, realizado por pessoas capacitadas para a atividade programada.
 
@@ -59,7 +57,7 @@ Além disso, essa abordagem contribui para a conformidade com normas regulatóri
 
 Portanto, a adoção dessa solução IoT representa um avanço significativo na gestão de acesso, elevando o nível de segurança e controle, e posicionando a Tic Trens como referência em inovação no setor ferroviário.
 
-# <a name="c2"></a>2. Metodologia (sprint 3)
+# <a name="c2"></a>2. Metodologia 
 
 ## Estrutura de Visões do RM-ODP
 O modelo de referência RM-ODP (Reference Model for Open Distributed Processing) é uma abordagem estruturada para o desenvolvimento de sistemas distribuídos, baseada em diferentes perspectivas complementares chamadas viewpoints.
@@ -368,7 +366,7 @@ Com relatórios em tempo real e indicadores de acesso, a empresa tem maior capac
 
 &nbsp;&nbsp;&nbsp;&nbsp;Em conclusão, a aplicação do Value Proposition Canvas ao contexto da TIC Trens evidencia a importância de alinhar a proposta de valor da solução IoT às reais necessidades operacionais e de segurança da empresa. A análise das dores e desafios enfrentados — como a falta de controle eficiente de acessos, os riscos trabalhistas e a dificuldade de rastreabilidade — permite compreender de forma clara os pontos críticos que comprometem a eficiência e a conformidade da organização. Com isso, a TIC Trens obtém ganhos tangíveis, como o aumento da segurança operacional, a redução de custos administrativos e a melhora significativa da conformidade regulatória. A integração entre controle de acesso, gestão de capacitação e rastreabilidade de operações reafirma a TIC Trens como exemplo de segurança industrial e demonstra como o uso estratégico de IoT pode transformar processos críticos em sistemas inteligentes, seguros e eficientes.
 
-### 3.1.5. Matriz de Riscos (sprint 1)	
+### 3.1.5. Matriz de Riscos 
 
 A matriz de riscos é uma ferramenta utilizada para identificar, qualificar e categorizar os riscos que podem ocorrer ao longo do projeto, classificando-os em Ameaças (riscos negativos) e Oportunidades (riscos positivos).
 
@@ -3414,13 +3412,7 @@ void loop() {
 
 &nbsp;&nbsp;&nbsp;&nbsp; Os testes realizados reforçam que o sistema é capaz de identificar usuários, validar autenticações, responder adequadamente a problemas como perda de conexão, erros de senha, cartões não autorizados e falhas de comunicação entre os módulos. Dessa forma, a seção cumpre seu objetivo de validar o protótipo em cenários reais de operação, servindo como base para aprimoramentos futuros e garantindo que os requisitos funcionais e de segurança estejam sendo atendidos.
 
-### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
-
----
-
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+### 3.4.4. Protótipo Físico do Projeto (online)	
 
 #### **3.4.4.1. Casos de Teste**
 

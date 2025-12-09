@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: dedsec-iot-backend
+    env: node
+    buildCommand: |
+      npm install
+      cd src/frontend && npm install && npm run build
+      cd ../backend-iot && npm install
+    startCommand: cd src/backend-iot && NODE_ENV=production npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    # Adicione suas outras variáveis de ambiente aqui (DB_HOST, DB_USER, MQTT_BROKER_URL, etc.)
+    # Você pode adicionar via dashboard do Render ou aqui

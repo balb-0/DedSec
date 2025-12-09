@@ -46,6 +46,7 @@ async function seed() {
         nome            VARCHAR(120) NOT NULL,
         rfid_codigo     VARCHAR(64) UNIQUE NOT NULL,
         senha_hash      VARCHAR(255) NOT NULL,
+        telefone        VARCHAR(20),
         sala_id         BIGINT REFERENCES salas(id),
         ativo           BOOLEAN NOT NULL DEFAULT TRUE,
         created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -112,6 +113,7 @@ async function seed() {
         nome: "Alice Cooper",
         rfid_codigo: "A1B2C3D4",
         senha_hash: "hash123",
+        telefone: "+5511999887766",
         sala_id: 1,
         ativo: true,
       },
@@ -119,6 +121,7 @@ async function seed() {
         nome: "Bob Martin",
         rfid_codigo: "B2C3D4E5",
         senha_hash: "hash456",
+        telefone: "+5511998776655",
         sala_id: 2,
         ativo: true,
       },
@@ -126,6 +129,7 @@ async function seed() {
         nome: "Carol White",
         rfid_codigo: "C3D4E5F6",
         senha_hash: "hash789",
+        telefone: "+5511997665544",
         sala_id: null,
         ativo: true,
       },
@@ -133,6 +137,7 @@ async function seed() {
         nome: "Dan Brown",
         rfid_codigo: "D4E5F6G7",
         senha_hash: "hash012",
+        telefone: "+5511996554433",
         sala_id: 3,
         ativo: true,
       },
@@ -140,6 +145,7 @@ async function seed() {
         nome: "Eve Davis",
         rfid_codigo: "E5F6G7H8",
         senha_hash: "hash345",
+        telefone: "+5511995443322",
         sala_id: 4,
         ativo: false,
       },
@@ -147,11 +153,12 @@ async function seed() {
 
     for (const usuario of usuarios) {
       await client.query(
-        "INSERT INTO users (nome, rfid_codigo, senha_hash, sala_id, ativo) VALUES ($1, $2, $3, $4, $5)",
+        "INSERT INTO users (nome, rfid_codigo, senha_hash, telefone, sala_id, ativo) VALUES ($1, $2, $3, $4, $5, $6)",
         [
           usuario.nome,
           usuario.rfid_codigo,
           usuario.senha_hash,
+          usuario.telefone,
           usuario.sala_id,
           usuario.ativo,
         ]

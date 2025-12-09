@@ -9,13 +9,45 @@ const { generatePin } = require("./utils/pinGenerator"); // Gerador de PIN
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); // Middleware para parsear corpos de requisição JSON
-app.use(routes); // Usa as rotas definidas em routes.js
+
+// Rotas da API (devem vir antes do static)
+app.use("/api", routes);
+
+// Em produção, servir os arquivos estáticos do frontend
+if (process.env.NODE_ENV === "production") {
+  // Caminho relativo: de src/backend-iot/src/ para src/frontend/dist
+  const frontendPath = path.join(__dirname, "../../../frontend/dist");
+
+  // Verificar se o diretório existe
+  const fs = require("fs");
+  if (fs.existsSync(frontendPath)) {
+    app.use(express.static(frontendPath));
+
+    // Para todas as rotas que não são API, servir o index.html (SPA routing)
+    app.get("*", (req, res) => {
+      // Não servir index.html para rotas da API
+      if (req.path.startsWith("/api")) {
+        return res.status(404).json({ error: "Not found" });
+      }
+      res.sendFile(path.join(frontendPath, "index.html"));
+    });
+  } else {
+    console.warn(`⚠️  Frontend build não encontrado em: ${frontendPath}`);
+    console.warn(
+      "   Certifique-se de que o frontend foi buildado antes de iniciar o servidor."
+    );
+  }
+} else {
+  // Em desenvolvimento, apenas as rotas da API
+  app.use(routes);
+}
 
 // --- Estrutura temporária para armazenar PINs MFA ---
 const activeMfaChallenges = {};

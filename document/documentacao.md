@@ -1,10 +1,8 @@
 # Documentação IoTDoc - Módulo 4 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final_**
+## DedSec
 
-## Nome do Grupo
-
-#### Nomes dos integrantes do grupo
+#### Bruno Kadayan, Felipe Caiafa, Francisco Filho, Guilherme Holanda, João Pedro Gonçalves, Rafael Gomes, Vitor Balbo.
 
 <img src="../assets/inteli.png">
 
@@ -25,7 +23,7 @@
 <br>
 
 
-# <a name="c1"></a>1. Introdução (sprint 1)
+# <a name="c1"></a>1. Introdução 
 
 O parceiro de negócio, TIC Trens, é uma holding brasileira que atua no setor de transporte, abrangendo empresas de transporte rodoviário e urbano de passageiros, ônibus, cargas e turismo. Sua principal área de atuação é o transporte de pessoas. O problema a ser resolvido pela empresa está relacionado à gestão e validação do acesso físico a suas áreas técnicas. A empresa enfrenta desafios em coordenar as demandas de acesso lidando com a sobreposição de atividades, priorização entre manutenção e implantação, e a necessidade de verificar a capacitação dos colaboradores conforme a análise de risco. Além disso, há o desafio de garantir que o acesso físico autorizado foi, de fato, realizado por pessoas capacitadas para a atividade programada.
 
@@ -59,7 +57,7 @@ Além disso, essa abordagem contribui para a conformidade com normas regulatóri
 
 Portanto, a adoção dessa solução IoT representa um avanço significativo na gestão de acesso, elevando o nível de segurança e controle, e posicionando a Tic Trens como referência em inovação no setor ferroviário.
 
-# <a name="c2"></a>2. Metodologia (sprint 3)
+# <a name="c2"></a>2. Metodologia 
 
 ## Estrutura de Visões do RM-ODP
 O modelo de referência RM-ODP (Reference Model for Open Distributed Processing) é uma abordagem estruturada para o desenvolvimento de sistemas distribuídos, baseada em diferentes perspectivas complementares chamadas viewpoints.
@@ -368,7 +366,7 @@ Com relatórios em tempo real e indicadores de acesso, a empresa tem maior capac
 
 &nbsp;&nbsp;&nbsp;&nbsp;Em conclusão, a aplicação do Value Proposition Canvas ao contexto da TIC Trens evidencia a importância de alinhar a proposta de valor da solução IoT às reais necessidades operacionais e de segurança da empresa. A análise das dores e desafios enfrentados — como a falta de controle eficiente de acessos, os riscos trabalhistas e a dificuldade de rastreabilidade — permite compreender de forma clara os pontos críticos que comprometem a eficiência e a conformidade da organização. Com isso, a TIC Trens obtém ganhos tangíveis, como o aumento da segurança operacional, a redução de custos administrativos e a melhora significativa da conformidade regulatória. A integração entre controle de acesso, gestão de capacitação e rastreabilidade de operações reafirma a TIC Trens como exemplo de segurança industrial e demonstra como o uso estratégico de IoT pode transformar processos críticos em sistemas inteligentes, seguros e eficientes.
 
-### 3.1.5. Matriz de Riscos (sprint 1)	
+### 3.1.5. Matriz de Riscos 
 
 A matriz de riscos é uma ferramenta utilizada para identificar, qualificar e categorizar os riscos que podem ocorrer ao longo do projeto, classificando-os em Ameaças (riscos negativos) e Oportunidades (riscos positivos).
 
@@ -1095,7 +1093,7 @@ Utilize este guia se a experiência de Beatriz no monitoramento apresentar probl
 
 
 #### 3.3.3.1. Diagrama da arquitetura de sistema (Geral)
-O Diagrama da arquitetura do sistema tem como objetivo apresentar, de forma integrada, toda a arquitetura e o funcionamento da nossa solução de controle de acesso para áreas sensíveis, desenvolvida em parceria com a TIC Trens. Ele detalha os componentes físicos envolvidos, como sensores, microcontroladores e dispositivos de entrada, além das tecnologias utilizadas — que operam de forma coordenada para garantir segurança, conectividade e eficiência no sistema
+O Diagrama da arquitetura do sistema tem como objetivo apresentar, de forma integrada, toda a arquitetura e o funcionamento da nossa solução de controle de acesso para áreas sensíveis, desenvolvida em parceria com a TIC Trens. Ele detalha os componentes físicos envolvidos, como sensores, microcontroladores e dispositivos de entrada, além das tecnologias utilizadas — que operam de forma coordenada para garantir segurança, conectividade e eficiência no sistema.
 
 <div align="center">
 <sub>Diagrama da arquitetura geral</sub>
@@ -1417,25 +1415,88 @@ As associações representam como as classes interagem entre si, utilizando a mu
 </div>
 
 
-### 3.3.4. Arquitetura do Protótipo(sprint 4)	
+### 3.3.4. Arquitetura do Protótipo
 
-_Vídeo de explicação sobre a arquitetura do protótipo físico: (coloque aqui o link do vídeo)_
+#### 3.3.4.1 Diagrama de arquitetura do Protótipo
 
-_Descreva as tecnologias utilizadas de forma detalhada (visão de tecnologia).
+&nbsp;&nbsp;&nbsp;&nbsp; O Diagrama da arquitetura do Protótipo tem como objetivo apresentar todas as tecnologias utilizadas que participam do sistema, assim como as funções desempenhadas por esses componentes e as relações entre estes. Ele detalha todas as tecnologias envolvidas no projeto, como sensores, microcontroladores, dispositivos de entrada, broker, dashboard, etc.
 
-Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, porém especificando as tecnologias utilizadas. O diagrama de arquitetura deve:_
-- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
-- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
-- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
-- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
-- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros._
-_Faça uma tabela dos possíveis componentes utilizados. Todos os componentes devem estar presentes na arquitetura._
+&nbsp;&nbsp;&nbsp;&nbsp; Essa Arquitetura foi construída com base na Arquitetura da Solução, apresentada na seção anterior. Em decorrência disso, assim como o Diagrama anterior, este também é divido em Camada de Borda, Camada de Comunicação, Camada de Backend e Camada de Aplicação.
 
-| **Componente** | **Descrição** | **Tipo** | 
-|----------|----------|----------|
-|E.g. ESP32 WROOM 32 Devkit|E.g. Trata-se de um microcontrolador amplamente usado na indústria e em projetos educacionais, que possui interfaces mais amigáveis para conexão de componentes diversos...|E.g. Microcontrolador|
-|E.g. sensor XPTO|E.g. Este sensor mede o sinal de XYZ em unidades q/s, e possui tolerância de abcd...|E.g. Sensor|
+<img src="../assets/documentação/diagrama_de_blocos/diagrama_blocos.png">
+
+Para melhor visualização, [acesse nosso Figma.](https://www.figma.com/design/IYRwWfsIL5ndKZ6P7dOd8M/Diagrama-de-blocos?node-id=0-1&t=VgP5JKNezPpWYsEE-1)
+
+##### 3.3.4.1.1 Camada de Borda
+
+&nbsp;&nbsp;&nbsp;&nbsp; A primeira seção apresentada é a Camada de Borda. Nela, podemos visualizar todos os componentes físicos que compõem o sistema e suas respectivas representações visuais, descrições tecnicas e funcionalidades no sistema desenvolvido.
+
+<img src="../assets\documentação\diagrama_de_blocos\camada_borda.png">
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os componentes presentes nessa camada são descritos de maneira mais técnica a seguir:
+
+| **Componente** | **Descrição** | **Tipo** |
+|----------------|------------------------|----------|
+| **Teclado Matricial** | Teclado de múltiplas linhas e colunas. Permite entrada manual de dados, como códigos de acesso, garantindo interação direta do operador com o sistema. Envia dados das teclas pressionadas para o microcontrolador através de varredura de linhas e colunas (Conexão via GPIO/Digital). | Entrada |
+| **Display LCD 16x2** | Módulo capaz de exibir caracteres alfanuméricos em duas linhas. Usado como interface visual do sistema, orientando o usuário durante o processo de autenticação. Conectado ao ESP32 via barramento I2C (SDA/SCL) para economizar pinos e facilitar a comunicação. |  Saída |
+| **ESP32** | Microcontrolador com conectividade Wi-Fi e Bluetooth integrado, responsável pela aquisição de dados de sensores (RFID, teclado, LEDs e buzzer). Realiza processamento local e envio de mensagens MQTT ao servidor. Utiliza WiFi (802.11 b/g/n) para conectar-se à internet e envia payloads JSON via protocolo MQTT para o Broker. | Microcontrolador |
+| **Buzzer** | Componente piezoelétrico que converte sinais elétricos em pulsos acústicos. Usado para gerar notificações sonoras de baixo consumo, sinalizando eventos como erro de autenticação ou sucesso na validação. | Atuador |
+| **LEDs Indicadores** | Diodos emissores de luz usados como sinalização de status do processo de autenticação. Realizam indicação visual de permissão ou bloqueio de acesso. | Atuador |
+| **Sensor RFID** | Leitor de radiofrequência para identificação sem contato. Permite autenticação baseada em cartões/tag RFID, garantindo leitura rápida e tolerante a interferências. Comunica-se com o ESP32 via protocolo SPI (MISO/MOSI/SCK), garantindo alta velocidade na leitura das tags. | Sensor |
+| **Relé** | Dispositivo eletromecânico que atua como chave de potência isolada eletricamente do microcontrolador. Usado para comutar cargas da tranca com segurança, permitindo ativação de dispositivos de maior tensão ou corrente. | Atuador |
+| **Fechadura Solenoide (Tranca)** | Atuador eletromagnético que utiliza uma bobina interna para movimentar o mecanismo de trava quando energizado. Permite abertura/fechamento físico das portas de forma controlada, com tempo de ativação definido pelo sistema. | Atuador |
+| **Sensor Ultrassônico** | Sensor baseado em emissão e recepção de pulsos ultrassônicos. Utilizado para verificar o estado físico da porta (aberta/fechada), detectando se permanece aberta além do tempo permitido. | Sensor |
+
+##### 3.3.4.1.2 Camada de Comunicação
+
+&nbsp;&nbsp;&nbsp;&nbsp; A camada de comunicação é responsável pelo transporte e envio de informações entre os dispositivos de borda e os sistemas externos. Ela engloba tecnologias de rede, serviços de mensageria e APIs que integram autenticação, autorização e envio de notificações.
+
+<img src="../assets\documentação\diagrama_de_blocos\camada_comunicação.png">
+
+&nbsp;&nbsp;&nbsp;&nbsp; As tecnologias que integram essa camada são descritas de maneira mais técnica a seguir:
+
+| **Componente** | **Descrição** | **Tipo** |
+|----------------|------------------------|----------|
+| **Wi-Fi** | Tecnologia de comunicação sem fio, utilizada para conectar os microcontroladores ESP32 à rede local e à internet. Permite a troca de mensagens MQTT entre os dispositivos e o servidor em nuvem. | Protocolo de Comunicação |
+| **Broker MQTT – Ubidots** | Servidor de mensageria que implementa o protocolo MQTT (Message Queuing Telemetry Transport). Atua como intermediário entre os ESP32, enviando mensagens publicadas pelos dispositivos. Permite controlar a tranca remotamente, registrar eventos e disponibilizar dados em dashboards. | Servidor |
+| **API TIC Trens** | Interface de comunicação REST utilizada para consultar informações de capacitação e autorização dos usuários. Integra o sistema de controle de acesso com as regras de uso de cada área operacional, verificando em tempo real se o trabalhador possui autorização para acessar o local. | API Externa |
+| **SMS – Twilio/Zenvia** | Serviço de gateway de mensagens utilizado para envio de códigos por SMS. | Serviço Externo de Notificação |
+
+
+##### 3.3.4.1.3 Camada de Backend
+
+&nbsp;&nbsp;&nbsp;&nbsp; A camada de backend centraliza o processamento lógico do sistema, recebendo dados provenientes da camada de comunicação, aplicando regras de autorização e persistindo informações críticas.
+
+<img src="../assets\documentação\diagrama_de_blocos\camada_backend.png">
+
+&nbsp;&nbsp;&nbsp;&nbsp; A seguir, as tecnologias adotadas pelo grupo nessa camada são descritas tecnicamente:
+
+| **Componente** | **Descrição** | **Tipo** |
+|----------------|------------------------|----------|
+| **Servidor de Aplicação (Node.js + Express)** | Módulo responsável por executar toda a lógica central do sistema. Trata mensagens recebidas via MQTT, valida regras de acesso com base em políticas configuradas, integra-se com APIs externas (como TIC Trens e SMS), e coordena a interação com o banco de dados. O Express fornece estrutura para criação de endpoints REST, controle de rotas e middleware. | Backend |
+| **Banco de Dados (PostgreSQL)** | Sistema de gerenciamento de banco de dados relacional utilizado para registrar/guardar informações essenciais, como cadastro de usuários, cartões RFID, permissões de acesso, logs operacionais e registros de auditoria. É responsável por correlacionar IDs RFID com dados pessoais e números de telefone, permitindo a geração correta de códigos para autenticação via SMS. | Banco de Dados Relacional |
+
+
+##### 3.3.4.1.4 Camada de Aplicação
+
+&nbsp;&nbsp;&nbsp;&nbsp; A camada de aplicação é responsável por apresentar ao usuário final as informações consolidadas pelo backend, permitindo visualização, relatório e acompanhamento em tempo real do fluxo de acesso. Ela atua como ponte entre operadores e os dados gerados pela IoT, oferecendo mecanismos de monitoramento e tomada de decisão ao CCO.
+
+<img src="../assets\documentação\diagrama_de_blocos\camada_aplicação.png">
+
+| **Componente** | **Descrição** | **Tipo** |
+|----------------|------------------------|----------|
+| **Dashboard** | Interface gráfica construída para monitoramento em tempo real do sistema. Consome dados enviados pelo backend via APIs ou WebSockets, apresentando status de usuários, eventos de autenticação, aberturas de portas e alertas de segurança. Permite acompanhar logs históricos e identificar falhas de acesso. Serve como ferramenta central de supervisão operacional, integrando informações da base de dados, broker MQTT e serviços externos. | Interface/Aplicação Web |
+
+
+#### 3.3.4.2 Demonstração e Explicação
+
+Além do Diagrama de Blocos desenvolvido, também gravamos um vídeo explicando toda essa estrutura e as tecnologias utilizadas, assim como todo o fluxo de utilização e funcionamento do sistema.
+
+Acesse o [vídeo explicativo clicando aqui](https://youtu.be/Ae6xPNZuHMM)
+
+#### 3.3.4.3 Conclusão da Arquitetura do Protótipo
+
+&nbsp;&nbsp;&nbsp;&nbsp; Portanto, é evidente que a arquitetura de protótipo em blocos é essencial para fornecer uma visão clara, estruturada e objetiva de todos os componentes que compõem o sistema e como todas as tecnologias do sistema se relacionam. Esse modelo facilita o entendimento global do funcionamento, identifica dependências e papéis exercidos por cada camada.
 
 ### 3.3.5. Arquitetura Refinada da Solução (sprint 5)	
 
@@ -3351,7 +3412,7 @@ void loop() {
 
 &nbsp;&nbsp;&nbsp;&nbsp; Os testes realizados reforçam que o sistema é capaz de identificar usuários, validar autenticações, responder adequadamente a problemas como perda de conexão, erros de senha, cartões não autorizados e falhas de comunicação entre os módulos. Dessa forma, a seção cumpre seu objetivo de validar o protótipo em cenários reais de operação, servindo como base para aprimoramentos futuros e garantindo que os requisitos funcionais e de segurança estejam sendo atendidos.
 
-### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
+### 3.4.4. Protótipo Físico do Projeto (online)	
 
 #### **3.4.4.1. Casos de Teste**
 
@@ -3432,13 +3493,108 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
   <em><sub><strong>Caso de Teste 2: </strong>Tentativa de Acesso com Cartão RFID Não Cadastrado (Falha)</sub></em>
 </p>
 
+#### 3.4.4.2 Situações de Uso
+
+&nbsp;&nbsp;&nbsp;&nbsp; Diferentemente dos casos de teste, as Situações de Uso são criadas para identificar e representar os fluxos de funcionamento do sistema durante a interação com o usuário. Além de contemplar os cenários de sucesso, também devem incluir situações em que o comportamento esperado do sistema ocorre mesmo diante de tentativas inválidas.
+&nbsp;&nbsp;&nbsp;&nbsp; Assim, foram definidas quatro situações distintas de uso: duas em que o acesso é autorizado e duas em que a entrada do usuário é negada, porém com o sistema reagindo corretamente às condições de falha.
+
+**Legenda**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Para entendimento dos Diagramas UML apresentados a seguir, é importante o entendimento da legenda a seguir referente à elementos visuais:
+
+**#** | **Representação Visual** | **Nome** | **Descrição** 
+|----------|----------|----------|----------|
+|01| <img src="../assets/documentação/UML/ator.png"> | Ator | Em um diagrama UML, um ator representa um tipo de papel que interage com o sistema e seus objetos. |
+|02| <img width= 250px src="../assets/documentação/UML/linha_de_vida.png"> | Linhas de vida | Linhas de vida é o nome dado a cada objeto presente no sistema e representado no Diagrama UML. |
+|03| <img width= 250px src="../assets/documentação/UML/mensagem.png"> | Mensagens | A interação/comunicação entre dois objetos é representada a partir de uma seta, chamada de mensagens. |
+|04| <img width= 250px src="../assets/documentação/UML/criar_msg.png"> | Criar mensagem | Usamos uma mensagem de criação para criar um novo objeto no diagrama. |
+|05| <img width= 250px src="../assets/documentação/UML/deletar_msg.png"> | Deletar Mensagem | Quando um objeto é deletado dentro do sistema, usamos o símbolo de mensagem de exclusão. |
+|06| <img width= 250px src="../assets/documentação/UML/automensagem.png"> | Automensagem | Usado quando um objeto manda uma mensagem para si mesmo. |
+|07| <img width= 250px src="../assets/documentação/UML/responder.png"> | Responder mensagem | As mensagens de resposta são usadas para mostrar a mensagem enviada do destinatário para o remetente. |
+|08| <img width= 250px src="../assets/documentação/UML/msg_encontrada.png"> | Mensagem encontrada | Uma mensagem "Encontrada" é usada para representar um cenário em que uma fonte desconhecida envia a mensagem. |
+|09| <img width= 250px src="../assets/documentação/UML/msg_perdida.png"> | Mensagem perdida | Uma mensagem perdida é usada para representar um cenário em que o destinatário é desconhecido para o sistema. |
+|10| <img width= 250px src="../assets/documentação/UML/guardas.png"> | Guardas | Os guardas são usados para especificar condições que devem ser atendidas para que a mensagem acontecer. |
+
+##### 3.4.4.2.1 Entrada autorizada 
+
+&nbsp;&nbsp;&nbsp;&nbsp; O primeiro caso utiliza do sistema completo. Nele a entrada do trabalhador é autorizada e ocorre de maneira esperada: primeiro aproxima o cartão RFID, em seguida recebe um código via SMS, digita no painel e por fim seu acesso é liberado e registrado no Dashboard.
+
+<img src="../assets/documentação/UML/UML_entrada_aut.png">
+
+##### 3.4.4.2.2 Saída autorizada 
+
+&nbsp;&nbsp;&nbsp;&nbsp; A segunda situação de uso demonstra o caso em que o usuário sai normalmente da sala, interagindo com o sistema da tranca. Para que essa situação ocorra, basta o trabalhador estar dentro de uma sala e aproximar o cartão do sensor RFID, liberando a porta e registrando no Dashboard a sua saída.
+
+<img src="../assets/documentação/UML/UML_saída_aut.png">
+
+##### 3.4.4.2.3 Entrada negada - Cartão não cadastrado
+
+&nbsp;&nbsp;&nbsp;&nbsp; A terceira interação representada é um caso de acesso negado. Nela o usuário aproxima o seu cartão do sensor RFID, mas por não estar registrado não consegue ter acesso à sala. Assim, é enviado ao Dashboard que foi realizado uma tentativa de acesso negado.
+
+<img src="../assets/documentação/UML/UML_entrada_negada.png">
+
+##### 3.4.4.2.4 Entrada negada - Senha incorreta
+
+&nbsp;&nbsp;&nbsp;&nbsp; A última situação de uso representada foi outro caso de acesso inválido. Nessa interação o usuário aproximou o cartão corretamente cadastrado, entretando foi inserida a senha errada. Dessa forma, uma mensagem é registrada no Dashboard, avisando sobre uma tentativa de entrada inválida.
+
+<img src="../assets/documentação/UML/UML_entrada_negada2.png">
+
+##### 3.4.4.2.5 Conclusão dos casos de uso
+
+&nbsp;&nbsp;&nbsp;&nbsp; Portanto, fica claro que os casos de uso representam uma etapa essencial no entendimento do fluxo do projeto, revelando diferentes atores e interações entre si. Além disso, a análise desses cenários permite visualizar antecipadamente situações de sucesso e falha, assegurando que o sistema esteja preparado para responder corretamente em ambos os casos. Dessa forma, essa etapa contribui diretamente para a qualidade e confiabilidade da solução IoT proposta.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Para melhor visualização, acesse o nosso [Link do Miro.](https://miro.com/app/board/uXjVJkjqCqI=/?share_link_id=422776690347)
 
 
----
+#### 3.4.4.3 Mudanças no protótipo físico
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+&nbsp;&nbsp;&nbsp;&nbsp; Além das situações de uso e casos de teste, nessa seção registramos mudanças que fizemos no protótipo físico durante a sprint 4. O principal progresso feito foi referente à quantidade de ESP32 e suas funções, sendo adicionado mais um, dessa forma ficando com o ESP32 de entrada, ESP32 de saída e o ESP32 da tranca. Para acompanhamento dos logs de entrada e saída do protótipo físico pelo CCO, também criamos um dashboard para nosso projeto.
+
+##### 3.4.4.3.1 ESP32 - Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; No ESP32 de entrada foram implementados dois LEDs para representação visual: um verde, que é acionado quando o acesso é liberado, e um vermelho, que brilha quando o acesso é negado.
+
+<img src="../assets/documentação/ESP32_entrada.jpg">
+
+
+##### 3.4.4.3.2 ESP32 - Saída
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesse ESP32 houve uma grande alteração: foram retirados o relé e a tranca, deixando apenas o sensor RFID.
+
+<img src="../assets/documentação/ESP32_saída.jpg">
+
+
+##### 3.4.4.3.3 ESP32 - Tranca
+
+&nbsp;&nbsp;&nbsp;&nbsp; Esse é um novo ESP32 que adicionamos nessa sprint. Nele, colocamos o relé e a tranca, adicionamos um sensor ultrassônico que verifica se a porta está aberta e um buzzer que apita caso a porta se mantenha aberta por mais de cinco segundos.
+
+<img src="../assets/documentação/ESP32_tranca.jpg">
+
+
+##### Fluxo de funcionamento
+
+&nbsp;&nbsp;&nbsp;&nbsp; Tanto o ESP32 de entrada quanto o de saída, funcionam enviando sinais via Broker MQTT para o ESP32 da tranca, que ao receber um acesso permitido, aciona o relé e destrava a tranca.
+
+<img src="../assets/documentação/ESP32_fluxo.png">
+
+
+##### 3.4.4.3.4 Dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp; Além de todo o sistema físico desenvolvido, também foi criado um Dashboard pensando em resolver a dor da equipe do CCO. Nesse Dashboard, conseguimos ter a visualização de todos os trabalhadores registrados, suas devidas informações como código RFID, telefone e histórico de entrada, assim como podemos registrar novos usuários e atribuir novas tarefas aos trabalhadores.
+
+<img src="../assets/documentação/Dashboard.png">
+
+
+**Vídeo Demonstração do Dashboard**
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Para um entendimento mais aprofundado do funcionamento do Dashboard, acesse o [Vídeo](https://www.youtube.com/watch?v=kzzpmuRaaOQ) de demonstração.
+
+##### 3.4.4.3.4.5 Conclusão
+
+&nbsp;&nbsp;&nbsp;&nbsp; Portanto, as mudanças realizadas no protótipo físico durante a sprint 4 representaram um avanço significativo na robustez e na organização do sistema. A redistribuição das responsabilidades entre três ESP32 tornou o fluxo mais organizado, facilitando manutenção e implementação.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Paralelamente, o desenvolvimento do Dashboard surge para facilitar o monitoramento pelo CCO, oferecendo uma interface prática para acompanhar logs, gerenciar trabalhadores e visualizar informações essenciais. 
 
 ### 3.4.5. Protótipo Final do Projeto (sprint 5)	
 
@@ -3483,12 +3639,23 @@ VIAÇÃO COMETA. Passagem de Ônibus: Promoções Imperdíveis!. Disponível em:
 
 [2] RUSHIKEN, Amanda. (2023). Value Proposition Canvas: o que é e como funciona essa metodologia?. G4 Educação. Disponível em: <https://g4educacao.com/blog/value-proposition-canvas> Acesso em 21 out. 2025. <a name="foot2" id="foot2"></a>
 
-**Sobre a pesquisa para as personas:**
+**Fontes utilizadas na pesquisa das personas:**
 
 TICTRENS. Vagas de emprego. Disponível em: https://tictrens.gupy.io/. Acesso em: 20 out. 2025
 
+**Fontes utilizadas na construção do Diagrama UML na seçao 4.2.2**
+
+GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em: https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-sequence-diagrams/
+. Acesso em: 01 dez. 2025.
 
 # <a name="c6"></a>6. Anexos
+
+## Manual de Instruções 
+
+O manual de instruções está disponível em formato PDF dentro da pasta do projeto. Para acessá‑lo, basta abrir o arquivo <a href="./Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf">Manual de Instruções</a> localizado no mesmo diretório deste documento. O arquivo do Manual de Instruções deve estar em ```/document/Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf```.
+
+O manual também pode ser acessado em: https://docs.google.com/document/d/1_ZLw77yjFCSAIk1sGKD6v2qgPeg766zG/edit 
+
 
 ## Circuito RC
 

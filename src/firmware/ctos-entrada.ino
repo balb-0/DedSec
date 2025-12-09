@@ -15,11 +15,30 @@
 #define lin 2
 LiquidCrystal_I2C lcd(ende, col, lin);
 
+// ==========================================
+// CONFIGURAÇÕES DE TEMPORIZAÇÃO (em milissegundos)
+// ==========================================
+// Feedback Visual e Sonoro (LEDs e Buzzer)
+const int tempo_bip_curto = 200;
+const int tempo_intervalo_bip = 100;
+const int tempo_feedback_led = 1000;
+ 
+// Interface (Dislay)
+const int tempo_exibicao_mensagem = 2000;
+
+// Acesso e tranca
+const int tempo_porta_aberta = 3000;
+
+// Rede e conexao
+const int tempo_reconexao_mqtt = 5000;
+const int tempo_conexao_wifi = 1000;
+
+
 // -----------------------------
 // VARIÁVEIS GERAIS
 // -----------------------------
-bool aguardandoPin = false; 
-String rfidAtual = "";      
+const String senha_correta = "123456";  // Senha padrão do sistema atualmente
+bool sistemaAtivo = false; // Flag que indica se o sistema está aguardando digitação de senha
 
 // -----------------------------
 // CLASSE TECLADO
@@ -76,6 +95,7 @@ class Display {
     }
 };
 
+
 // -----------------------------
 // CLASSE RFID
 // -----------------------------
@@ -89,6 +109,8 @@ class Rfid {
     void iniciar() {
       SPI.begin(18, 19, 23, 5);
       rfid.PCD_Init();
+      delay(tempo_intervalo_bip);
+      Serial.println("RC522 pronto!");
     }
 
     void reiniciar() { rfid.PCD_Init(); }
@@ -215,15 +237,33 @@ class MQTT_Manager {
           Serial.println("Conectado!");
           client.subscribe("command_display");
         } else {
-          Serial.print("Falha: "); Serial.print(client.state());
-          delay(2000);
+          Serial.print("falha, rc=");
+          Serial.print(client.state());
+          Serial.println(" tentando novamente em 5 segundos");
+          delay(tempo_reconexao_mqtt);
         }
       }
     }
-
-    void loop() {
-      if (!client.connected()) reconectar();
-      client.loop();
+    
+    // Inicializa a conexão MQTT configurando o cliente
+    void iniciar_conexao(){
+      espClient.setInsecure();  // Desabilita verificação de certificado SSL
+      client.setServer(mqtt_broker, mqtt_port);
+    }
+    
+    // Publica comandos para desbloquear e bloquear a tranca
+    void desligar_tranca(){
+      client.publish("tranca", "liberada");  // Envia comando para liberar a tranca
+      delay(tempo_porta_aberta);  // Aguarda 3 segundos com a tranca liberada
+      client.publish("tranca", "bloqueada");  // Envia comando para bloquear novamente
+    }
+    
+    // Mantém a conexão MQTT ativa ou reconecta se necessário
+    void manter_conexao(){
+       if(!client.connected()){
+        reconnect();  // Reconecta se a conexão cair
+      }else
+        client.loop();  // Processa mensagens MQTT pendentes
     }
 
     void publicarCartao(String uid) {
@@ -240,7 +280,79 @@ class MQTT_Manager {
 MQTT_Manager meuMQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");
 
 // -----------------------------
-// WIFI E SETUP
+// INSTÂNCIAS DOS OBJETOS
+// -----------------------------
+Teclado teclado(TECLAS_MATRIZ, PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);  // Teclado 4x4
+Buzzer buzzer1(13);    // Buzzer conectado ao pino 13
+Display display1(26, 27);   // Display LCD I2C (SDA=26, SCL=27)
+Rfid leitorCartao(5, 22);   // Leitor RFID RC522 (SS=5, RST=22)
+Wifi Wifi("Inteli.Iot", "%(Yk(sxGMtvFEs.3");  // Credenciais da rede WiFi
+MQTT MQTT("18a61305753543af9634a27594738058.s1.eu.hivemq.cloud", 8883, "ESP32-SENHA", "Dedsec2@@");  // Broker MQTT HiveMQ
+LED ledVermelho(34);
+LED ledVerde(12);
+
+
+// -----------------------------
+// FUNÇÕES DE LÓGICA DO SISTEMA
+// -----------------------------
+void tratarAcessoLiberado(){
+  // Executa a rotina de sucesso (Display, LED Verde, Som e MQTT)
+  Serial.println("Acesso Autorizado");
+  display1.escreverLinhaUnica("Acesso Liberado");
+
+  // Feedback visual e sonoro
+  buzzer1.tocarSom();
+  ledVerde.ligar();
+
+  MQTT.desligar_tranca();
+
+  ledVermelho.desligar();
+  buzzer1.desligar();
+};
+
+void tratarAcessoNegado(String msg1, String msg2){
+  Serial.println("Acesso Negado");
+  display1.setTexto1(msg1);
+  display1.setTexto2(msg2);
+  display1.escreverLinhaDupla();
+  Serial.println(msg1 + " " + msg2 + "!");
+
+  // Sequência de erro (LED Vermelho + 2 Bipes)
+  ledVermelho.ligar();
+
+  buzzer1.tocarSom();
+  delay(tempo_bip_curto);
+  buzzer1.desligar();
+
+  ledVermelho.desligar();
+  delay(tempo_exibicao_mensagem);
+} 
+
+// Reinicia o estado para aguardar novo cartão
+void resetarSistema(){
+  teclado.limparSenha();
+  leitorCartao.reiniciar();
+  sistemaAtivo = false;
+
+  // Tela inicial
+  display1.setTexto1("Aproxime o ");
+  display1.setTexto2("Cartão");
+  display1.escreverLinhaDupla();
+
+}
+
+void imprimirUID(){
+  // Exibe o UID do cartão no monitor serial para debug
+  MFRC522& rfidInterno = leitorCartao.getRFID();
+  Serial.print("UID lido: ");
+  for (byte i = 0; i < rfidInterno.uid.size; i++) {
+    Serial.print(rfidInterno.uid.uidByte[i], HEX);
+    Serial.print(" ");
+  }
+  Serial.println();
+}
+// -----------------------------
+// SETUP
 // -----------------------------
 void conectarWiFi() {
   WiFi.begin("Inteli.Iot", "%(Yk(sxGMtvFEs.3");
@@ -252,47 +364,75 @@ void conectarWiFi() {
 }
 
 void setup() {
-  Serial.begin(115200);
-  display1.iniciar();
-  leitorCartao.iniciar();
-  
-  display1.escrever("Conectando", "WiFi...");
-  conectarWiFi();
-  
-  display1.escrever("Conectando", "MQTT...");
-  meuMQTT.iniciar();
-  
-  display1.escrever("Aproxime o", "cartao");
+  // Inicializa os componentes de hardware
+  display1.iniciar();         // Inicia o display LCD
+  leitorCartao.iniciar();     // Inicia o leitor RFID
+  buzzer1.iniciar();     // Inicia o buzzer
+
+  // Exibe mensagem de conexão no display
+  display1.setTexto1("Conectando a");
+  display1.setTexto2("Internet...");
+  display1.escreverLinhaDupla();
+
+  // Definindo LED
+  ledVermelho.iniciar();
+  ledVerde.iniciar();
+
+  // Conecta à rede WiFi
+  Wifi.conectar_Wifi();
+
+  // Inicializa a conexão com o broker MQTT
+  MQTT.iniciar_conexao();
+
+  // Exibe mensagem para aproximar o cartão
+  display1.setTexto1("Aproxime o");
+  display1.setTexto2("cartao");
+  display1.escreverLinhaDupla();
 }
 
 void loop() {
-  meuMQTT.loop();
-
-  if (!aguardandoPin) {
+  // Mantém a conexão MQTT ativa
+  MQTT.manter_conexao();
+  // MODO 1: Aguardando leitura do cartão RFID
+  if (!sistemaAtivo) {
     if (leitorCartao.detectarCartao()) {
-      rfidAtual = leitorCartao.lerUID();
-      Serial.println("RFID Lido: " + rfidAtual);
-      display1.escrever("Verificando...", "Aguarde");
-      meuMQTT.publicarCartao(rfidAtual);
+      
+      // Verifica se o cartão lido está autorizado
+      imprimirUID();
+      if (leitorCartao.eCartaoAutorizado()) {
+        // Ativa o sistema para permitir digitação da senha
+        sistemaAtivo = true;
+        display1.escreverLinhaUnica("Digite a Senha:");
+        Serial.println("Cartão reconhecido. Aguardando senha...");
+
+      } else {
+          // Cartão não autorizado - exibe mensagem de erro
+          tratarAcessoNegado("Cartao nao", "Cadastrado");
+          resetarSistema();
+      }
       leitorCartao.encerrarLeitura();
     }
   }
-
-  if (aguardandoPin) {
+  // MODO 2: Aguardando digitação da senha
+  if (sistemaAtivo) {
     char tecla = teclado.lerTecla();
     if (tecla) {
       if (tecla == '#') {
-        display1.escrever("Validando", "PIN...");
-        meuMQTT.publicarPin(rfidAtual, teclado.getSenha());
-        teclado.limparSenha();
-        // Não reseta aguardandoPin aqui, espera o backend responder
+        // Verifica se a senha está correta
+        if (teclado.getSenha() == senha_correta) {
+          tratarAcessoLiberado(); // logica de sucesso encapsulada
+          
+        } else {
+          // Senha incorreta - nega o acesso
+          tratarAcessoNegado("Senha", "Incorreta"); // logica de erro encapsulada
+        }
+        resetarSistema(); // logica de resete encapsulada
       } else {
+        // Adiciona a tecla digitada à senha (números) ou remove último dígito ('*')
+        // Atualiza o display mostrando a senha mascarada
         teclado.adicionarTecla(tecla);
-        lcd.setCursor(0, 1);
-        lcd.print("                ");
-        lcd.setCursor(0, 1);
-        String s = teclado.getSenha();
-        for(int i=0; i<s.length(); i++) lcd.print("*");
+        display1.escreverLinhaUnica("Digite a Senha:");
+        display1.escreverSenhaMascarada(teclado.getSenha());
       }
     }
   }

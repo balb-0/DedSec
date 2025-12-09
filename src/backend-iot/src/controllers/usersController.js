@@ -5,7 +5,7 @@ const db = require("../config/database");
 const getAllUsers = async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT id, nome, rfid_codigo, ativo, sala_id, created_at FROM users ORDER BY created_at DESC"
+      "SELECT id, nome, rfid_codigo, telefone, ativo, sala_id, created_at FROM users ORDER BY created_at DESC"
     );
     res.status(200).json({ success: true, data: result.rows });
   } catch (error) {
@@ -19,7 +19,7 @@ const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await db.query(
-      `SELECT u.id, u.nome, u.rfid_codigo, u.ativo, u.sala_id, u.created_at,
+      `SELECT u.id, u.nome, u.rfid_codigo, u.telefone, u.ativo, u.sala_id, u.created_at,
               s.nome as sala_nome, s.localizacao as sala_localizacao
        FROM users u
        LEFT JOIN salas s ON u.sala_id = s.id
@@ -41,7 +41,7 @@ const getUserById = async (req, res) => {
 // POST /users - Criar novo usuário
 const createUser = async (req, res) => {
   try {
-    const { nome, rfid_codigo, sala_id, ativo } = req.body;
+    const { nome, rfid_codigo, telefone, sala_id, ativo } = req.body;
 
     // Validações
     if (!nome || !rfid_codigo) {
@@ -68,10 +68,17 @@ const createUser = async (req, res) => {
     const isAtivo = ativo !== undefined ? ativo : true;
 
     const result = await db.query(
-      `INSERT INTO users (nome, rfid_codigo, senha_hash, sala_id, ativo) 
-       VALUES ($1, $2, $3, $4, $5) 
-       RETURNING id, nome, rfid_codigo, ativo, sala_id, created_at`,
-      [nome, rfid_codigo, "temp_hash", sala_id || null, isAtivo]
+      `INSERT INTO users (nome, rfid_codigo, senha_hash, telefone, sala_id, ativo) 
+       VALUES ($1, $2, $3, $4, $5, $6) 
+       RETURNING id, nome, rfid_codigo, telefone, ativo, sala_id, created_at`,
+      [
+        nome,
+        rfid_codigo,
+        "temp_hash",
+        telefone || null,
+        sala_id || null,
+        isAtivo,
+      ]
     );
 
     res.status(201).json({ success: true, data: result.rows[0] });
@@ -98,7 +105,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome, rfid_codigo, sala_id, ativo } = req.body;
+    const { nome, rfid_codigo, telefone, sala_id, ativo } = req.body;
 
     // Verificar se usuário existe
     const userCheck = await db.query("SELECT id FROM users WHERE id = $1", [
@@ -138,6 +145,10 @@ const updateUser = async (req, res) => {
       updates.push(`rfid_codigo = $${paramCount++}`);
       values.push(rfid_codigo);
     }
+    if (telefone !== undefined) {
+      updates.push(`telefone = $${paramCount++}`);
+      values.push(telefone);
+    }
     if (sala_id !== undefined) {
       updates.push(`sala_id = $${paramCount++}`);
       values.push(sala_id);
@@ -162,7 +173,7 @@ const updateUser = async (req, res) => {
     const query = `UPDATE users 
                    SET ${updates.join(", ")} 
                    WHERE id = $${paramCount} 
-                   RETURNING id, nome, rfid_codigo, ativo, sala_id, created_at, updated_at`;
+                   RETURNING id, nome, rfid_codigo, telefone, ativo, sala_id, created_at, updated_at`;
 
     const result = await db.query(query, values);
 

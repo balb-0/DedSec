@@ -14,21 +14,20 @@
 - <a href="https://www.linkedin.com/in/felipecaiafa/">Felipe Caiafa Alvim Soares</a>
 - <a href="https://www.linkedin.com/in/joão-pedro-gonçalves-corrêa-araujo">João Pedro Gonçalves Corrêa Araujo</a>
 - <a href="https://www.linkedin.com/in/guilhermeholandamarques/">Guilherme Holanda Marques</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+- <a href="https://www.linkedin.com/in/bruno-gabriel-giordano-guilherme-kadayan-ab86762a0/">Bruno Gabriel Giordano Guilherme Kadayan</a> 
+- <a href="https://www.linkedin.com/in/vitor-balbo/">Vitor Balbo</a>
+- <a href="https://www.linkedin.com/in/rafael-g-ferreira/">Rafael Gomes Ferreira</a> 
+- <a href="https://www.linkedin.com/in/francisco-filho-87b243346/">Francisco Filho</a>
 
 ## 👩‍🏫 Professores:
 ### Orientador(a) 
 - <a href="https://www.linkedin.com/in/fabiana-martins-de-oliveira-8993b0b2/">Fabiana Martins de Oliveira</a>
 ### Instrutores
 - <a href="https://www.linkedin.com/in/bryan-kano/">Bryan Kano</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+- <a href="https://www.linkedin.com/in/fernando-pizzo-208b526a/">Fernando Pizzo Ribeiro</a> 
+- <a href="https://www.linkedin.com/in/gui-cestari/">Guilherme Cestari</a> 
+- <a href="https://www.linkedin.com/in/laizaribeiro/">Laíza Ribeiro Silva </a>
+- <a href="https://www.linkedin.com/in/pedroteberga/">Pedro Teberga</a> 
 
 ## 📜 Descrição
 

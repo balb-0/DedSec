@@ -3604,7 +3604,17 @@ Também inclua figuras da versão final do protótipo físico e dashboards, alé
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
-_Escreva, de forma resumida, sobre os principais resultados do seu projeto e faça recomendações formais ao seu parceiro de projeto em relação ao uso dessa solução. Você pode aproveitar este espaço para comentar sobre possíveis materiais extras._
+&nbsp;&nbsp;&nbsp;&nbsp; Tudo isto posto, a problemática trazida pela TIC Trens dizia respeito à otimização do processo de entrada de trabalhadores nas diversas salas de manutenção da estação de trens, tendo em vista o sistema pouco eficaz atualmente vigente.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Assim, o CTOS, projeto IoT desenvolvido pelo grupo DedSec, surge como solução para a problemática em questão. O sistema utiliza sensor RFID, serviço de SMS e teclado matricial para autenticação e liberação dos trabalhadores no dia, horário e sala autorizados. Além disso, apresenta um dashboard para acompanhamento, por parte do CCO, do histórico de alocações em salas por cada usuário registrado no banco de dados.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, o projeto CTOS resolve a problemática do sistema burocrático atual, no qual os trabalhadores precisam aguardar permissões e liberações manuais para terem acesso às salas e realizarem seus trabalhos. Além disso, permite maior controle sobre quem entrou em cada sala, bem como os horários de entrada e saída, oferecendo ao CCO uma organização significativamente melhor do fluxo de acesso.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesse sentido, recomenda-se que o projeto seja instalado em grande escala, abrangendo o máximo de salas possível. É importante que o sistema de entrada seja instalado ao lado da porta de acesso, pelo lado de fora. A implementação em grande volume é viável graças ao sistema simples e de baixo custo desenvolvido.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes de guerrilha apresentaram bom feedback em relação ao funcionamento do CTOS. Apesar disso, foi observada uma grande margem de melhoria para o protótipo. Como prioridade principal, recomenda-se que, no prosseguimento do projeto, seja adicionado um broker local ao sistema, garantindo seu pleno funcionamento mesmo em locais sem disponibilidade de Wi-Fi.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Em suma, o desenvolvimento do CTOS demonstrou que uma solução IoT bem estruturada é capaz de transformar de maneira significativa o fluxo operacional da TIC Trens, oferecendo mais agilidade, segurança e rastreabilidade no acesso às salas de manutenção. Os resultados obtidos evidenciam que a proposta atende plenamente à necessidade inicial e possui grande potencial de escalabilidade, configurando-se como uma base sólida para evoluções futuras.
 
 ## <a name="c5"></a>5. Referências
 

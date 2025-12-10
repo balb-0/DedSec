@@ -3650,6 +3650,68 @@ GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em
 
 # <a name="c6"></a>6. Anexos
 
+## Testes
+
+&nbsp;&nbsp;&nbsp;&nbsp; Esta seção apresenta os procedimentos utilizados para validar o funcionamento do sistema, garantindo que cada módulo opere conforme o esperado. Aqui são descritos os cenários de teste, condições de execução, resultados esperados e critérios de aprovação, permitindo que qualquer operador, técnico ou desenvolvedor reproduza os testes de forma consistente e confiável.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes documentados servem como referência para diagnóstico, manutenção e verificação após atualizações, assegurando que o sistema mantenha sua integridade e desempenho ao longo do tempo. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Entre as principais métricas analisadas estão a taxa de sucesso das operações e ocorrência de erros. A análise dessas métricas garante que o sistema atenda aos requisitos mínimos de qualidade e opere dentro dos limites esperados em condições reais de uso.
+
+#### 1. Teste de sucesso do CTOS Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir entrar em uma das salas.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar a senha no celular | Digitar a senha | Verificar se a tranca abriu |
+|--------------|------|-------------------------|------------------------------|-----------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |✅ Sucesso | ❌ Erro |
+| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 2. Teste de sucesso do CTOS Saída
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir sair da sala.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar se a tranca abriu |
+|--------------|------|-------------------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | 
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso |
+
+#### 3. Teste de funcionalidade do Dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para ver onde um dos usuários entrou.
+
+|     Nome     |  Ver em qual sala esta o Bruno |
+|--------------|--------------------------------|
+| Paulo Victor | ✅ Sucesso |
+| Kaian    | ✅ Sucesso |  
+| Samuel Vono  | ✅ Sucesso |
+
+#### 4. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para registrar um trabalhador
+
+|     Nome     | Clicar no botão "Novo Usuário" | Digitar as informações do novo usuário | Clicar em "Criar" |
+|--------------|--------------------------------|----------------------------------------|-------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 5. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para atribuir uma tarefa a um trabalhador
+
+|     Nome     | Clique em "Gerenciar tarefas" | Pesquise pelo nome de algum trabalhador registrado | Clique em "+ Atribuir tarefa" | Digite os dados dessa nova tarefa |
+|--------------|-------------------------------|----------------------------------------------------|----------------------------|-------------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através dos testes, foi possível confirmar que todos as partes do CTOS desempenham suas funções principais de maneira  confiável. Os cenários simulados demonstraram que tanto o fluxo de entrada e saída quanto as operações do Dashboard e do módulo de registro funcionam conforme especificado, apresentando alta taxa de sucesso e baixa ocorrência de falhas.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os resultados obtidos reforçam a robustez da solução e evidenciam que o sistema atende às demandas de autenticação, controle de acesso e gestão operacional. Além disso, o processo de validação oferece uma base sólida para futuras manutenções, permitindo identificar rapidamente erros e garantir que atualizações ou expansões não comprometam o desempenho geral.
+
 ## Manual de Instruções 
 
 O manual de instruções está disponível em formato PDF dentro da pasta do projeto. Para acessá‑lo, basta abrir o arquivo <a href="./Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf">Manual de Instruções</a> localizado no mesmo diretório deste documento. O arquivo do Manual de Instruções deve estar em ```/document/Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf```.

@@ -3712,6 +3712,8 @@ GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em
 
 &nbsp;&nbsp;&nbsp;&nbsp; Os resultados obtidos reforçam a robustez da solução e evidenciam que o sistema atende às demandas de autenticação, controle de acesso e gestão operacional. Além disso, o processo de validação oferece uma base sólida para futuras manutenções, permitindo identificar rapidamente erros e garantir que atualizações ou expansões não comprometam o desempenho geral.
 
+**Link para planilha de testes completa:** https://docs.google.com/spreadsheets/d/1gIgESOluDs9bUZzKPDMIbwmFvWBmQvvtsm09tMgIg_o/edit?usp=sharing  
+
 ## Manual de Instruções 
 
 O manual de instruções está disponível em formato PDF dentro da pasta do projeto. Para acessá‑lo, basta abrir o arquivo <a href="./Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf">Manual de Instruções</a> localizado no mesmo diretório deste documento. O arquivo do Manual de Instruções deve estar em ```/document/Manual de Instruções Módulo 4 - Grupo 4.docx (1).pdf```.

@@ -21,6 +21,7 @@ interface User {
   ativo: boolean;
   sala_id: number | null;
   created_at: string;
+  status_alocacao?: "em_andamento" | "finalizado" | "sem_tarefa";
 }
 
 const createColumns = (
@@ -53,11 +54,17 @@ const createColumns = (
     header: "RFID",
   },
   {
-    key: "ativo",
+    key: "status_alocacao",
     header: "Status",
-    render: (item) => (
-      <StatusBadge status={item.ativo ? "Finalizado" : "Em andamento"} />
-    ),
+    render: (item) => {
+      const status = item.status_alocacao || "sem_tarefa";
+      const statusMap: Record<string, string> = {
+        em_andamento: "Em andamento",
+        finalizado: "Finalizado",
+        sem_tarefa: "Sem tarefa",
+      };
+      return <StatusBadge status={statusMap[status] || "Sem tarefa"} />;
+    },
   },
   {
     key: "created_at",

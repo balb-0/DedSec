@@ -1500,11 +1500,59 @@ Acesse o [vídeo explicativo clicando aqui](https://youtu.be/Ae6xPNZuHMM)
 
 ### 3.3.5. Arquitetura Refinada da Solução (sprint 5)	
 
-_Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura). <br>
+#### Status da Revisão e Feedback
 
-Justifique como a arquitetura suporta os requisitos funcionais e não funcionais. <br>
+Nesta etapa do projeto (Sprint 5), a equipe realizou uma análise da arquitetura da solução implementada. Após a validação dos testes de integração e a verificação de conformidade com os objetivos do projeto, concluiu-se que a estrutura arquitetural vigente é robusta e adequada, decidindo-se pela preservação integral do modelo atual, sem modificações.
 
-A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada._
+A arquitetura definida nas sprints anteriores provou-se capaz de suportar com eficiência o fluxo completo de autenticação MFA (RFID + SMS), a comunicação assíncrona via MQTT e a persistência segura dos dados, consolidando-se como a versão final para este ciclo de desenvolvimento.
+
+#### Visão da Arquitetura (Consolidada)
+
+A solução DedSec mantém sua arquitetura de **IoT Distribuído** baseada em eventos, utilizando um modelo híbrido de processamento na borda (_Edge Computing_ leve) e processamento centralizado na nuvem (_Cloud Computing_). O sistema é estruturado em quatro camadas principais:
+
+1.  **Camada de Borda (Edge - ESP32):** Responsável pela coleta de dados (RFID e Teclado) e atuação física (Tranca), operando como cliente MQTT seguro.
+    
+2.  **Camada de Mensageria (Broker MQTT):** Atua como o barramento central de comunicação, garantindo desacoplamento e entrega de mensagens.
+    
+3.  **Camada de Aplicação (Backend):** Centraliza as regras de negócio, validação de credenciais, integração com API de SMS (Twilio) e gestão de acesso.
+    
+4.  **Camada de Dados (Persistência):** Banco de dados relacional para armazenamento seguro de logs e usuários.
+    
+
+#### Justificativa de Suporte aos Requisitos Funcionais (RF)
+
+A arquitetura validada atende integralmente aos requisitos funcionais listados na seção 3.3.1:
+
+*   **RF01 (Coleta RFID + Teclado):** A utilização do microcontrolador ESP32 na borda, integrado às bibliotecas MFRC522 e Keypad, garante a interface física necessária para a coleta simultânea do UID do cartão e do PIN, processando esses inputs localmente antes da transmissão.
+    
+*   **RF02 (Conectividade) e RF03 (Protocolo MQTT):** A arquitetura baseia-se na biblioteca PubSubClient no firmware do ESP32, permitindo a conexão Wi-Fi e a formatação dos dados em JSON para publicação em tópicos hierárquicos (ex: request\_card, submit\_sms), cumprindo rigorosamente os protocolos de comunicação exigidos.
+    
+*   **RF04 (Autenticação Multifator) e RF05 (Capacitação/Agendamento):** A centralização da lógica no Backend (Node.js) é fundamental aqui. O ESP32 envia os dados brutos, e o servidor consulta o banco de dados para validar o UID, checar capacitação/agendamento (**RF05**) e gerenciar o envio/validação do PIN via SMS (**RF04**), garantindo que a decisão de acesso seja tomada com base em dados íntegros e atualizados.
+    
+*   **RF06 (Gestão de Dispositivos):** O modelo de dados relacional (PostgreSQL) suporta tabelas específicas para cadastro de dispositivos e vinculação a salas, permitindo que o Backend gerencie múltiplos pontos de acesso identificados pelo device\_id enviado no payload MQTT.
+    
+*   **RF07 (Registro e Auditoria):** A arquitetura orientada a eventos assegura que, no momento exato da validação do PIN no Backend, uma transação SQL de INSERT seja executada na tabela de logs (alocacao\_sala), registrando ID, timestamp (NOW()) e resultado, garantindo a rastreabilidade completa.
+    
+*   **RF08 (Dashboard):** A exposição de APIs RESTful pelo Backend permite que o Frontend (React/Vite) consuma os dados de logs e status em tempo real, fornecendo a visualização gráfica exigida.
+    
+*   **RF09 (Criptografia em Trânsito):** A infraestrutura suporta conexões seguras, utilizando MQTTS (MQTT sobre TLS) entre o ESP32 e o Broker HiveMQ, e HTTPS entre o Backend e o Banco de Dados, protegendo os dados em trânsito.
+    
+
+#### Justificativa de Suporte aos Requisitos Não Funcionais (RNF)
+
+A estrutura técnica suporta os requisitos de qualidade listados na seção 3.3.2:
+
+*   **RNF01 (Segurança Avançada):** O Backend modular em Node.js permite a integração de bibliotecas criptográficas avançadas. A arquitetura de banco de dados suporta o armazenamento de dados criptografados (como hashes de senhas e dados sensíveis) sem depender de texto plano, viabilizando a implementação de algoritmos robustos.
+    
+*   **RNF02 (Adequação Funcional MFA):** A máquina de estados implementada no Backend (activeMfaChallenges) impede "bypasses". O sistema exige a sequência lógica: _Leitura RFID -> Geração de Desafio -> Recebimento de PIN -> Validação_, rejeitando qualquer tentativa de envio de PIN sem um RFID prévio válido.
+    
+*   **RNF03 (Desempenho de Travamento):** O código embarcado no ESP32 é otimizado para, após receber o comando tranca:liberada do MQTT, acionar o relé e iniciar um temporizador interno (millis()) que garante o fechamento automático em 5 segundos ou menos, independentemente da latência da rede após o comando inicial.
+    
+*   **RNF04 (Compatibilidade de Protocolos):** A arquitetura é híbrida, utilizando MQTT para a comunicação leve e rápida com o hardware (IoT) e HTTP para a comunicação com o Dashboard e APIs externas (como Ubidots ou Twilio), garantindo a interoperabilidade.
+    
+*   **RNF05 (Manutenibilidade):** A separação clara em camadas (Firmware C++, Backend Node.js, Frontend React, Banco SQL) garante alta coesão e baixo acoplamento. É possível atualizar a regra de negócio no servidor sem precisar regravar o código físico do ESP32, e vice-versa.
+    
+*   **RNF06 (Portabilidade):** O Backend e as conexões com o Banco de Dados foram configurados via variáveis de ambiente (.env) e utilizam tecnologias agnósticas (Node.js), permitindo que o sistema rode tanto localmente (na rede da Tic Trens) quanto em serviços de nuvem (Render/HiveMQ) apenas alterando os parâmetros de conexão, sem necessidade de refatoração do código fonte.
 
 
 ## 3.4. Resultados	

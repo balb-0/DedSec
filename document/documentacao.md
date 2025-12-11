@@ -3649,6 +3649,74 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
 _Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
 Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
+### 3.4.6 Teste de Usabilidade
+
+&nbsp;&nbsp;&nbsp;&nbsp; Esta seção apresenta os procedimentos utilizados para validar o funcionamento do sistema, garantindo que cada módulo opere conforme o esperado. Aqui são descritos os cenários de teste, condições de execução, resultados esperados e critérios de aprovação, permitindo que qualquer operador, técnico ou desenvolvedor reproduza os testes de forma consistente e confiável.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes documentados servem como referência para diagnóstico, manutenção e verificação após atualizações, assegurando que o sistema mantenha sua integridade e desempenho ao longo do tempo. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Entre as principais métricas analisadas estão a taxa de sucesso das operações e ocorrência de erros. A análise dessas métricas garante que o sistema atenda aos requisitos mínimos de qualidade e opere dentro dos limites esperados em condições reais de uso.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes foram realizados no ambiente do Instituto de Tecnologia e Liderança no dia 08 de dezembro de 2025 com estudantes que não sabiam do contexto do projeto e apenas receberam um cartão RFID para validar a entrada e um celular para receber o SMS. O objetivo é identificar o quão intuitiva é a usabilidade do nosso sistema e identificar os erros para minimizá-los antes da entrega do produto final.
+
+#### 1. Teste de sucesso do CTOS Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir entrar em uma das salas.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar a senha no celular | Digitar a senha | Verificar se a tranca abriu |
+|--------------|------|-------------------------|------------------------------|-----------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso | ❌ Erro | ✅ Sucesso |
+| Kaian    | 2    | ✅ Sucesso | ❌ Erro | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 2. Teste de sucesso do CTOS Saída
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir sair da sala.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar se a tranca abriu |
+|--------------|------|-------------------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | 
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso |
+
+#### 3. Teste de funcionalidade do Dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para ver onde um dos usuários entrou.
+
+|     Nome     |  Ver em qual sala esta o Bruno |
+|--------------|--------------------------------|
+| Paulo Victor | ✅ Sucesso |
+| Kaian    | ✅ Sucesso |  
+| Samuel Vono  | ✅ Sucesso |
+
+#### 4. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para registrar um trabalhador
+
+|     Nome     | Clicar no botão "Novo Usuário" | Digitar as informações do novo usuário | Clicar em "Criar" |
+|--------------|--------------------------------|----------------------------------------|-------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 5. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para atribuir uma tarefa a um trabalhador
+
+|     Nome     | Clique em "Gerenciar tarefas" | Pesquise pelo nome de algum trabalhador registrado | Clique em "+ Atribuir tarefa" | Digite os dados dessa nova tarefa |
+|--------------|-------------------------------|----------------------------------------------------|----------------------------|-------------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através dos testes, foi possível confirmar que todos as partes do CTOS desempenham suas funções principais de maneira  confiável. Os cenários simulados demonstraram que tanto o fluxo de entrada e saída quanto as operações do Dashboard e do módulo de registro funcionam conforme especificado, apresentando alta taxa de sucesso e baixa ocorrência de falhas.
+
+&nbsp;&nbsp;&nbsp;&nbsp; No entanto, um dos erros identificados durante os testes, foi a dificuldade no processo de envio das mensagens. Em alguns dos testes, alguns usuários relataram que a senha que era enviada apresentava acesso negado ao sistema. Isso porque, o sistema físico se sobrecarregava com muitas requisições de envio de senha, o que fazia com que ele mandasse a senha apenas quando era reiniciado. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após os dois primeiros testes, conseguimos corrigir esse problema e evitá-lo durante o último teste do sistema, que garantiu um bom funcionamento nos restante das etapas e não apresentou nenhum outro defeito durante o processo de testes.
+
+**Link para planilha de testes completa:** https://docs.google.com/spreadsheets/d/1gIgESOluDs9bUZzKPDMIbwmFvWBmQvvtsm09tMgIg_o/edit?usp=sharing  
+
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
@@ -3698,69 +3766,7 @@ GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em
 
 # <a name="c6"></a>6. Anexos
 
-## Testes
 
-&nbsp;&nbsp;&nbsp;&nbsp; Esta seção apresenta os procedimentos utilizados para validar o funcionamento do sistema, garantindo que cada módulo opere conforme o esperado. Aqui são descritos os cenários de teste, condições de execução, resultados esperados e critérios de aprovação, permitindo que qualquer operador, técnico ou desenvolvedor reproduza os testes de forma consistente e confiável.
-
-&nbsp;&nbsp;&nbsp;&nbsp; Os testes documentados servem como referência para diagnóstico, manutenção e verificação após atualizações, assegurando que o sistema mantenha sua integridade e desempenho ao longo do tempo. 
-
-&nbsp;&nbsp;&nbsp;&nbsp; Entre as principais métricas analisadas estão a taxa de sucesso das operações e ocorrência de erros. A análise dessas métricas garante que o sistema atenda aos requisitos mínimos de qualidade e opere dentro dos limites esperados em condições reais de uso.
-
-#### 1. Teste de sucesso do CTOS Entrada
-
-&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir entrar em uma das salas.
-
-|     Nome     | Item |  Aproximar cartão RFID  | Verificar a senha no celular | Digitar a senha | Verificar se a tranca abriu |
-|--------------|------|-------------------------|------------------------------|-----------------|-----------------------------|
-| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |✅ Sucesso | ❌ Erro |
-| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-
-#### 2. Teste de sucesso do CTOS Saída
-
-&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir sair da sala.
-
-|     Nome     | Item |  Aproximar cartão RFID  | Verificar se a tranca abriu |
-|--------------|------|-------------------------|-----------------------------|
-| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |
-| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | 
-| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso |
-
-#### 3. Teste de funcionalidade do Dashboard
-
-&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para ver onde um dos usuários entrou.
-
-|     Nome     |  Ver em qual sala esta o Bruno |
-|--------------|--------------------------------|
-| Paulo Victor | ✅ Sucesso |
-| Kaian    | ✅ Sucesso |  
-| Samuel Vono  | ✅ Sucesso |
-
-#### 4. Teste de Registro de trabalhadores
-
-&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para registrar um trabalhador
-
-|     Nome     | Clicar no botão "Novo Usuário" | Digitar as informações do novo usuário | Clicar em "Criar" |
-|--------------|--------------------------------|----------------------------------------|-------------------|
-| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-
-#### 5. Teste de Registro de trabalhadores
-
-&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para atribuir uma tarefa a um trabalhador
-
-|     Nome     | Clique em "Gerenciar tarefas" | Pesquise pelo nome de algum trabalhador registrado | Clique em "+ Atribuir tarefa" | Digite os dados dessa nova tarefa |
-|--------------|-------------------------------|----------------------------------------------------|----------------------------|-------------------------|
-| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
-
-&nbsp;&nbsp;&nbsp;&nbsp; Através dos testes, foi possível confirmar que todos as partes do CTOS desempenham suas funções principais de maneira  confiável. Os cenários simulados demonstraram que tanto o fluxo de entrada e saída quanto as operações do Dashboard e do módulo de registro funcionam conforme especificado, apresentando alta taxa de sucesso e baixa ocorrência de falhas.
-
-&nbsp;&nbsp;&nbsp;&nbsp; Os resultados obtidos reforçam a robustez da solução e evidenciam que o sistema atende às demandas de autenticação, controle de acesso e gestão operacional. Além disso, o processo de validação oferece uma base sólida para futuras manutenções, permitindo identificar rapidamente erros e garantir que atualizações ou expansões não comprometam o desempenho geral.
-
-**Link para planilha de testes completa:** https://docs.google.com/spreadsheets/d/1gIgESOluDs9bUZzKPDMIbwmFvWBmQvvtsm09tMgIg_o/edit?usp=sharing  
 
 ## Manual de Instruções 
 

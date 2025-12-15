@@ -72,6 +72,8 @@ export function StatusBadge({ status }: { status: string }) {
       ? "secondary"
       : status === "Cancelado"
       ? "destructive"
+      : status === "Sem tarefa"
+      ? "outline"
       : "outline";
 
   return <Badge variant={variant}>{status}</Badge>;

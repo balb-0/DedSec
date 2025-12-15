@@ -31,9 +31,11 @@
 
 ## 📜 Descrição
 
-Descreva seu projeto (até 600 palavras)
+Desenvolvido em parceria com a TIC Trens, uma holding referência no setor de transporte rodoferroviário, este projeto tem como objetivo modernizar e assegurar o controle de acesso físico às áreas técnicas da empresa. O principal desafio enfrentado pela companhia é a gestão de entrada em locais críticos, onde é necessário não apenas autorizar o acesso, mas garantir que o colaborador possua a capacitação técnica adequada e esteja devidamente escalado para aquela atividade específica, evitando riscos operacionais e conflitos de agenda.
 
-Inclua um link para o vídeo de demonstração do funcionamento de seu projeto (sprint 5)
+A solução proposta consiste em um sistema baseado em Internet das Coisas (IoT) que atua como um validador inteligente de presença. O dispositivo combina um leitor de cartões para identificação inicial do usuário com um teclado externo para uma autenticação de segurança adicional via senha. Ao processar esses dados, o sistema verifica automaticamente se o colaborador possui horário agendado e se sua qualificação atende aos requisitos de risco da tarefa, liberando a entrada apenas sob conformidade total. Essa abordagem eleva os padrões de segurança da companhia, garantindo uma gestão eficiente, auditável e alinhada às exigências regulatórias do setor.
+
+**Inclua um link para o vídeo de demonstração do funcionamento de seu projeto (sprint 5)**
 
 
 ## 📁 Estrutura de pastas

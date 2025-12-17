@@ -1498,7 +1498,7 @@ Acesse o [vídeo explicativo clicando aqui](https://youtu.be/Ae6xPNZuHMM)
 
 &nbsp;&nbsp;&nbsp;&nbsp; Portanto, é evidente que a arquitetura de protótipo em blocos é essencial para fornecer uma visão clara, estruturada e objetiva de todos os componentes que compõem o sistema e como todas as tecnologias do sistema se relacionam. Esse modelo facilita o entendimento global do funcionamento, identifica dependências e papéis exercidos por cada camada.
 
-### 3.3.5. Arquitetura Refinada da Solução (sprint 5)	
+### 3.3.5. Arquitetura Refinada da Solução
 
 #### Status da Revisão e Feedback
 
@@ -1517,6 +1517,11 @@ A solução DedSec mantém sua arquitetura de **IoT Distribuído** baseada em ev
 3.  **Camada de Aplicação (Backend):** Centraliza as regras de negócio, validação de credenciais, integração com API de SMS (Twilio) e gestão de acesso.
     
 4.  **Camada de Dados (Persistência):** Banco de dados relacional para armazenamento seguro de logs e usuários.
+
+Para detalhar o rigor técnico das interações entre estas camadas e explicitar o fluxo de comunicação durante o processo de autenticação, apresenta-se abaixo o Diagrama de Sequência do sistema:
+
+<img src="/assets/documentação/diagrama_sequencia.png">
+
     
 
 #### Justificativa de Suporte aos Requisitos Funcionais (RF)

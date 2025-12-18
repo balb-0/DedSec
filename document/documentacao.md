@@ -3604,140 +3604,102 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
 
 &nbsp;&nbsp;&nbsp;&nbsp; Paralelamente, o desenvolvimento do Dashboard surge para facilitar o monitoramento pelo CCO, oferecendo uma interface prática para acompanhar logs, gerenciar trabalhadores e visualizar informações essenciais. 
 
-### 3.4.5. Protótipo Final do Projeto (sprint 5)	
+### 3.4.5. Protótipo Final do Projeto (Sprint 5)
 
-Esta seção tem como objetivo consolidar e apresentar o resultado integral do trabalho desenvolvido ao longo das cinco sprints. O foco agora desloca-se do planejamento e experimentação para a demonstração da solução efetivamente entregue.
+Esta seção tem como objetivo consolidar e apresentar o resultado integral do trabalho desenvolvido ao longo das cinco sprints. O foco desloca-se do planejamento e experimentação para a demonstração da solução efetivamente entregue (estado *As-Built*).
 
-Considerando que a seção anterior (3.4.4) já detalhou a evolução dos casos de teste, as alterações na arquitetura de hardware (distribuição dos ESP32) e o desenvolvimento do Dashboard, o sistema atingiu seu estágio de estabilidade técnica. Portanto, não houve mudanças estruturais recentes; o propósito desta seção é revisar, refinar e validar os conceitos finais relacionados ao protótipo físico e aos fluxos de experiência do usuário, garantindo que a documentação reflita com fidelidade o produto final. Para isso, apresentamos abaixo os principais cenários de uso, evidenciando em cada um a correlação direta entre o fluxo lógico (UML), o registro de gestão (Dashboard) e a resposta física do hardware.
+Considerando que a seção anterior (3.4.4) detalhou a evolução dos casos de teste, as alterações na arquitetura de hardware e o desenvolvimento do Dashboard, o sistema atingiu seu estágio de estabilidade técnica. Portanto, o propósito desta seção é revisar e validar os conceitos finais relacionados ao protótipo físico e aos fluxos de experiência do usuário. Apresentamos abaixo os principais cenários de uso, evidenciando a correlação direta entre o fluxo lógico (UML), o registro de gestão (Dashboard) e a resposta física do hardware.
 
-#### 3.4.5.1. Validação do Cenário A: Acesso Autorizado por Agendamento de Atividade
-Este cenário valida o fluxo mais crítico da regra de negócio da Tic Trens. O acesso não depende apenas da identidade do usuário (quem ele é), mas da existência de uma atividade programada (o que ele vai fazer).
+#### 3.4.5.1. Validação do Cenário A: Acesso Autorizado por Agendamento
+Este cenário valida o fluxo mais crítico da regra de negócio da Tic Trens: o acesso condicionado à existência de uma atividade programada. O sistema exige a validação de três camadas simultâneas:
 
-O sistema exige a validação de três camadas simultâneas:
+1.  **Física:** Posse do cartão (RFID).
+2.  **Lógica:** Conhecimento da senha (MFA).
+3.  **Operacional:** Existência de um Evento/Trabalho ativo para aquela sala no horário corrente.
 
-**Física:** Posse do cartão (RFID).
-
-**Lógica:** Conhecimento da senha (MFA).
-
-**Operacional:** Existência de um Evento/Trabalho ativo para aquela sala naquele horário.
-
-**A. Fluxo Lógico (Modelagem)** O Diagrama de Sequência abaixo ilustra a consulta complexa realizada pelo Backend. Antes de enviar a senha SMS, o sistema verifica no banco de dados se há um "Job" ou "Evento" criado pelo gestor para o colaborador naquele intervalo de tempo.
+**A. Fluxo Lógico (Modelagem)**
+O Diagrama de Sequência abaixo ilustra a consulta complexa realizada pelo Backend. Antes de enviar a senha SMS, o sistema verifica no banco de dados se há um "Job" criado pelo gestor para o colaborador naquele intervalo de tempo.
 
 <figure style="text-align:center;">
-  <img src="../assets/documentação/UML/UML_entrada_aut.png" width="80%" 
-  style="display:block; margin:auto;"> 
+  <img src="../assets/documentação/UML/UML_entrada_aut.png" width="80%" style="display:block; margin:auto;"> 
   <figcaption>
     Figura 1: Diagrama de Sequência UML - Fluxo de Sucesso condicionado à existência de um Evento de Trabalho Agendado (Fonte: Elaboração Própria).
   </figcaption>
 </figure>
 
-**B. Evidência de Gestão e Auditoria (Dashboard)** A validação começa no planejamento. A Figura 2 demonstra a interface de criação de eventos, onde o gestor define o colaborador e a janela de tempo autorizada. A Figura 3 comprova que, após a execução física, o sistema vinculou o acesso à atividade programada.
+**B. Evidência de Gestão e Auditoria (Dashboard)**
+A validação inicia-se no planejamento. A Figura 2 demonstra a interface onde o gestor inicia o processo, e a Figura 3 comprova a criação do evento, definindo o colaborador e a janela de tempo autorizada.
 
 <figure style="text-align:center;">
   <img src="../assets/documentação/localizacaoCriarUsuario.png" width="60%" style="display:block; margin:auto;">
   <figcaption>
-    Figura 2: Interface de Gestão Operacional: botão que dá acesso à tela de criação de um evento de uma tarefa.
+    Figura 2: Interface de Gestão Operacional – Acesso à funcionalidade de agendamento de tarefas.
   </figcaption>
 </figure>
 
 <figure style="text-align:center;">
   <img src="../assets/documentação/telaCriandoUsuario.png" width="30%" style="display:block; margin:auto;">
   <figcaption>
-    Figura 3: Interface de Gestão Operacional: Criação de um evento de trabalho autorizando o colaborador em horário e local específicos.
+    Figura 3: Formulário de Agendamento – Definição de colaborador, horário e local permitidos.
   </figcaption>
 </figure>
 
-[INSERIR PRINT DO LOG "ACESSO PERMITIDO"]
+**C. Resposta Física (Hardware)**
+Como resultado da validação positiva das três camadas (RFID + Senha + Agendamento), o hardware executou a liberação com sucesso:
+
+* **Feedback Visual:** LED Verde acionado no Módulo de Entrada.
+* **Feedback Mecânico:** Tranca destravada (relé acionado).
+
 <figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="60%" style="display:block; margin:auto;">
+  <img src="../assets/documentação/AcessoAutorizado.jpg" width="40%" style="display:block; margin:auto;">
   <figcaption>
-    Figura 4: Log de auditoria confirmando que o acesso foi permitido e vinculado ao agendamento vigente.
-  </figcaption>
-</figure>
-
-
-**C. Resposta Física (Hardware)** Como resultado da validação positiva das três camadas (RFID + Senha + Agendamento), o hardware executou a liberação:
-
-`Feedback Visual:` O LED Verde foi acionado no Módulo de Entrada.
-
-``Feedback Mecânico:`` A tranca foi destravada (relé acionado).
-
-[INSERIR FOTO COMPOSTA AQUI]
-<figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
-  <figcaption>
-    Figura 5: Comportamento do protótipo físico: (Esq.) LED indicando sucesso após validação do agendamento; (Dir.) Mecanismo da tranca liberado.
+    Figura 4: Comportamento do protótipo físico: (Esq.) LED indicando sucesso; (Dir.) Mecanismo da tranca acionado na posição aberta.
   </figcaption>
 </figure>
 
 #### 3.4.5.2. Validação do Cenário B: Bloqueio por Falha de Agendamento ou Segurança
-Este cenário demonstra a robustez do sistema ao negar acessos que, embora tecnicamente corretos (cartão válido), são operacionalmente inválidos (sem agendamento), além de tratar violações físicas.
 
-**A. Fluxo Lógico (Modelagem)** O diagrama detalha o comportamento do sistema ao rejeitar um colaborador que tenta acessar a sala fora do horário de seu evento programado ou sem nenhuma atividade atribuída.
+Este cenário demonstra a robustez do sistema ao negar acessos tecnicamente corretos (cartão válido), mas operacionalmente inválidos (sem agendamento), além de tratar violações físicas.
 
+**A. Fluxo Lógico (Modelagem)**
+O diagrama detalha o comportamento do sistema ao rejeitar um colaborador fora do horário programado.
 
-[INSERIR DIAGRAMA DE FALHA/ALERTA AQUI]
 <figure style="text-align:center;">
   <img src="../assets/documentação/diagrama_caso_de_teste_2.png" style="display:block; margin:auto;" width="80%">
   <figcaption>
-    Figura 6: Diagrama de Sequência UML - Tratamento de exceções (Sem Agendamento) e acionamento de alertas locais.
+    Figura 5: Diagrama de Sequência UML - Tratamento de exceções (Sem Agendamento) e acionamento de alertas locais.
   </figcaption>
 </figure>
 
-**B. Evidência de Alerta (Dashboard)** O sistema notifica a central sobre a tentativa de acesso não programado.
+**B. Evidência de Alerta (Dashboard)**
+Durante a execução dos testes de negação, o Dashboard registrou o evento em tempo real na lista de logs de segurança. O registro foi marcado com o status "Acesso Negado" e destacado com um ícone de alerta, permitindo que a equipe do CCO identificasse o motivo do bloqueio (ex: "Fora de Horário") instantaneamente.
 
-[INSERIR PRINT DE ALERTA VERMELHO AQUI] 
-<figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
-  <figcaption>
-    Figura 7: Log de "Acesso Negado" detalhando o motivo (ex: "Fora de Horário" ou "Sem Evento Ativo"
-  </figcaption>
-</figure>
-
-
-**C. Resposta Física (Hardware)** O teste validou a autonomia do ESP32-Tranca para segurança local (Buzzer em caso de porta aberta) e o bloqueio do ESP32-Entrada (LED Vermelho) quando o Backend não localiza um evento válido.
-
- [INSERIR FOTO DO LED VERMELHO/BUZZER AQUI]
-<figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
-  <figcaption>
-    Figura 8: Atuação dos periféricos de segurança: Indicação visual de bloqueio e sonorização de alarme.
-  </figcaption>
-</figure>
-
+**C. Resposta Física (Hardware)**
+A validação confirmou a autonomia dos módulos:
+* **Bloqueio Lógico:** O ESP32-Entrada acionou o LED Vermelho e negou o envio de senha ao identificar a falta de agendamento.
+* **Alerta de Intrusão:** Nos testes de porta mantida aberta indevidamente, o ESP32-Tranca detectou a obstrução via sensor ultrassônico e acionou o buzzer de alarme, alertando o ambiente local independentemente da comunicação com o servidor.
 
 #### 3.4.5.3. Visão Geral da Arquitetura de Hardware Consolidada
-Após a validação funcional dos fluxos, apresenta-se a visão global do sistema físico finalizado (As-Built). A solução opera como um ecossistema distribuído de três módulos independentes comunicando-se via protocolo MQTT.
 
-1. **Módulo de Entrada (Front-End Físico)** Responsável pela primeira camada de autenticação e interface humano-máquina.
+Após a validação funcional, apresenta-se a visão global do sistema físico finalizado. A solução opera como um ecossistema distribuído de três módulos independentes comunicando-se via protocolo MQTT.
 
-[INSERIR FOTO DO CASE ENTRADA] 
+Para esta etapa, o desenvolvimento de encapsulamento (*case*) foi priorizado para o Módulo de Entrada, por ser o ponto de interação direta com o usuário. Os módulos de Tranca e Saída foram mantidos como protótipos funcionais para permitir a visualização didática dos componentes e conexões na apresentação técnica.
+
+**1. Módulo de Entrada (Front-End Físico)**
+Responsável pela primeira camada de autenticação e interface humano-máquina.
+
 <figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
+  <img src="../assets/documentação/moduloEntradaFinal.jpg" width="40%" style="display:block; margin:auto;">
   <figcaption>
-    Figura 9: Case final do Módulo de Entrada contendo Teclado Matricial 4x4 e Leitor RFID.
+    Figura 6: Case final do Módulo de Entrada contendo Teclado Matricial 4x4 e Leitor RFID.
   </figcaption>
 </figure>
 
-2. **Módulo de Tranca (Atuador e Segurança)** Instalado na área segura, responsável pelo controle físico do acesso e monitoramento do estado da porta.
+**2. Módulo de Tranca (Atuador e Segurança)**
+Instalado na área segura (interior da sala), é responsável pelo controle físico do acesso e monitoramento do estado da porta. Este módulo foi apresentado em formato de protótipo funcional, expondo o Relé de acionamento, o Sensor Ultrassônico para detecção de porta aberta e o Buzzer de alerta.
 
-[INSERIR FOTO DO CASE TRANCA]
-<figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
-  <figcaption>
-    Figura 10: Case final do Módulo de Tranca abrigando o Relé, Sensor Ultrassônico e Buzzer.
-  </figcaption>
-</figure>
-
-3. **Módulo de Saída (Registro)** Dispositivo simplificado para registro de fluxo e desbloqueio rápido interno.
-
-[INSERIR FOTO DO CASE SAIDA]
-<figure style="text-align:center;">
-  <img src="../assets/documentação/.png" width="40%" style="display:block; margin:auto;">
-  <figcaption>
-    Figura 11: Case final do Módulo de Saída com leitor RFID dedicado.
-  </figcaption>
-</figure>
+**3. Módulo de Saída (Registro)**
+Dispositivo simplificado para registro de fluxo e desbloqueio rápido interno. Assim como o módulo de tranca, este componente foi validado em formato de protótipo funcional, contendo o microcontrolador ESP32 e o leitor RFID dedicado para registrar o fim da atividade do colaborador na sala.
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 

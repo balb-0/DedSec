@@ -1035,6 +1035,12 @@ Utilize este guia se a experiência de Beatriz no monitoramento apresentar probl
     
 4.  **Sistema mostra que a sala está "Ocupada" há 24 horas (Falso Positivo):**
     * *Falha provável:* Ocorreu uma falha no registro de **Saída (Cena 7 do Hardware)**. O sistema recebeu o `Start`, mas nunca recebeu o `Stop`, mantendo o status travado no banco de dados.
+      
+A elaboração detalhada das Jornadas do Usuário e dos Storyboards, fundamentada nas práticas de Design de Experiência (UX), permitiu validar não apenas a viabilidade funcional, mas também a pertinência operacional da solução IoT proposta.
+
+    Ao correlacionar as expectativas humanas das personas (Carlos e Beatriz) com os requisitos técnicos de hardware e software detalhados nas tabelas por cena, foi possível demonstrar como a arquitetura do sistema composta por sensores RFID, validadores TOTP e dashboards em tempo real responde diretamente às dores de "cegueira operacional" e ineficiência burocrática identificadas no início do projeto.
+
+    Dessa forma, esta seção consolida o alinhamento entre a engenharia do projeto e a realidade do campo. O mapeamento técnico atrelado à narrativa visual assegura que o desenvolvimento tecnológico subsequente não seja apenas um exercício de codificação, mas uma entrega de valor focada em segurança, rastreabilidade e fluidez para os colaboradores da TIC Trens.
 
 
 ### 3.3.1. Requisitos Funcionais

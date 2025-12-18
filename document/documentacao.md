@@ -583,6 +583,9 @@ Elas funcionam como o “lado positivo” da análise de riscos: enquanto os ris
 
 &nbsp;&nbsp;&nbsp;&nbsp;O grupo DedSec reafirma seu compromisso com a **transparência**, **segurança da informação** e **conformidade legal**, garantindo que todas as práticas de tratamento de dados — tanto na infraestrutura interna quanto na Ubidots — estejam alinhadas à LGPD e às diretrizes éticas do Inteli.
 
+Em virtude do exposto, esta Política de Privacidade ratifica o compromisso inegociável do grupo DedSec com a governança de dados e a proteção dos direitos fundamentais de liberdade e privacidade. A implementação da solução de controle de acesso, embora focada na segurança física e operacional da TIC Trens, não negligencia a segurança lógica e jurídica das informações.
+
+    Ao alinhar as práticas de desenvolvimento com a LGPD e utilizar parceiros tecnológicos confiáveis como a Ubidots, asseguramos um ambiente onde a inovação tecnológica caminha lado a lado com a responsabilidade ética. Desta forma, o projeto garante que a modernização dos processos de segurança não apenas proteja as infraestruturas críticas, mas também preserve a confiança e os direitos de todos os colaboradores envolvidos.
 
 ### 3.1.7. Bill of Material (BOM)
 

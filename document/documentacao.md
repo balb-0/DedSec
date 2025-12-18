@@ -1209,6 +1209,9 @@ O fluxo de acesso da solução é um processo de autenticação em dois fatores 
 4.  **Atuação (Liberação):** O **ESP32 - SAÍDA** é programado para que, no fluxo de saída, a leitura do cartão ou um botão de saída (não mostrado no diagrama, mas comum) acione o **Relé** para liberar a **Tranca Física** imediatamente (priorizando a evacuação/fluxo de saída, não exigindo senha).
 5.  **Monitoramento:** O status da porta (via Sensor) e o log de saída são enviados ao DB e, via **WebSockets**, ao **Dashboard do CCO**.
 
+A arquitetura de sistema apresentada consolida uma abordagem robusta e escalável para o desafio de controle de acesso da TIC Trens. Ao estruturar a solução em camadas distintas Borda, Comunicação, Backend e Aplicação, garante-se não apenas a organização lógica do desenvolvimento, mas também a eficiência operacional: o hardware foca na interação física imediata, enquanto a nuvem processa regras de negócio complexas.
+
+    O diagrama e os fluxos detalhados evidenciam como tecnologias díspares (sensores RFID, protocolo MQTT, bancos de dados relacionais e interfaces web) operam em harmonia para transformar um processo manual em um ecossistema digital seguro. Esta arquitetura assegura que cada tentativa de acesso seja tratada com rigor (MFA), registrada com precisão (Logs) e monitorada em tempo real (Dashboard), entregando à gestão da TIC Trens a visibilidade e o controle necessários para mitigar riscos em áreas críticas.
 
 ---
 ### 3.3.3.2. Diagrama da arquitetura do backend
@@ -1293,6 +1296,10 @@ Este fluxo detalha a jornada da requisição, desde a borda até a liberação d
 * Se o agendamento no passo 3 for inválido, o Orquestrador **pula** a geração de PIN.
 * O Orquestrador envia uma resposta de **Acesso Negado** (via **Publica resposta**) para o dispositivo e notifica o CCO com um alerta de "Agendamento Inválido".
 * O módulo **Salva Logs** registra a tentativa de acesso negado no **Banco de Dados** para auditoria.
+
+A arquitetura de backend detalhada atua como a espinha dorsal da solução DedSec, transformando sinais brutos de hardware em decisões de segurança inteligentes. Ao desacoplar a comunicação (MQTT) da lógica de negócios (Node.js) e da persistência (PostgreSQL), o sistema atinge um equilíbrio crucial entre desempenho em tempo real e integridade de dados.
+
+    A orquestração centralizada não apenas viabiliza a complexa validação de múltiplos fatores (Cartão + Agendamento + PIN), mas também elimina os "pontos cegos" operacionais através da atualização instantânea do Dashboard via WebSockets. Em suma, esta estrutura lógica garante que a TIC Trens possua um sistema auditável, escalável e resiliente, capaz de impor as regras corporativas de acesso de forma automatizada e infalível.
 
 ---
 
@@ -1428,6 +1435,10 @@ As associações representam como as classes interagem entre si, utilizando a mu
 | **sala** | $\longrightarrow$ | **tarefa** | $1 \longrightarrow 1...n$ | Uma sala pode ter **várias tarefas** agendadas nela. |
 ---
 </div>
+
+A apresentação dos recursos audiovisuais em conjunto com a modelagem estática UML consolida o entendimento da solução proposta para a TIC Trens. Enquanto os vídeos de demonstração cumprem o papel de validar funcionalmente os fluxos de arquitetura — transformando diagramas abstratos em processos visíveis de autenticação e monitoramento —, o Diagrama de Classes estabelece a fundação lógica necessária para a persistência dos dados.
+
+    A definição rigorosa das entidades user, tarefa e sala, juntamente com seus métodos de validação e relacionamentos, assegura que o sistema não apenas armazene informações, mas opere as regras de negócio de agendamento e permissão de forma eficiente. Dessa forma, esta seção fornece o blueprint estrutural indispensável para as etapas subsequentes de implementação do banco de dados e codificação do backend, garantindo que a aplicação final seja fiel aos requisitos de segurança e rastreabilidade mapeados.
 
 
 ### 3.3.4. Arquitetura do Protótipo

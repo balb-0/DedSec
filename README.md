@@ -55,7 +55,7 @@ O sistema eleva os padrões de segurança, garantindo uma gestão eficiente, aud
 
 ## Vídeo de Demonstração
 
-**Inclua um link para o vídeo de demonstração do funcionamento do projeto (Sprint 5)**
+Acesse esse [vídeo demonstrativo](https://drive.google.com/file/d/1p35DPxW82gZfnuR04HiqSwwZV_0kJf33/view?usp=drive_link) para visualizar o funcionamento do projeto.
 
 ## Arquitetura do Sistema
 

@@ -207,6 +207,8 @@ Dessa forma, a empresa deve direcionar esforços para aproveitar a capacidade de
 
 ### 3.1.3. Descrição da solução a ser desenvolvida
 
+Esta seção detalha a arquitetura técnica e funcional da solução proposta para mitigar os riscos operacionais identificados na TIC Trens. O foco central é a transição de um modelo de controle manual e vulnerável para um ecossistema automatizado baseado em Internet das Coisas (IoT). A solução visa integrar hardware de campo e software de gestão para garantir a integridade dos dados e, primordialmente, a segurança das vidas envolvidas na operação ferroviária.
+
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
 A TIC Trens enfrenta uma crítica falta de rastreabilidade e controle nos acessos físicos a áreas técnicas de alto risco (subestações de energia, _houses_ de via, canteiros de obra). O processo atual de liberação é manual, baseado em comunicação via rádio, e propenso a falhas humanas, como o esquecimento de registrar a saída.
@@ -262,7 +264,7 @@ O sucesso será avaliado por três medidas principais durante a fase de testes (
 *   **Medida de Adoção (Qualitativa):** Feedback direto da persona "Operador do CCO" sobre a clareza, confiabilidade e utilidade do dashboard para a tomada de decisão de segurança.
 
 
-
+Em suma, a implementação da Plataforma de Gestão de Acesso Inteligente transcende a simples modernização tecnológica; ela representa uma mudança de paradigma na cultura de segurança da TIC Trens. Ao eliminar a dependência da falibilidade humana nos registros de entrada e saída, a solução entrega uma camada robusta de proteção operacional. A combinação de hardware de controle e software de monitoramento não apenas resolve o problema imediato de rastreabilidade, mas estabelece uma base escalável para que a eficiência operacional nunca comprometa a integridade física das equipes de campo.
 
 
 	
@@ -581,6 +583,9 @@ Elas funcionam como o “lado positivo” da análise de riscos: enquanto os ris
 
 &nbsp;&nbsp;&nbsp;&nbsp;O grupo DedSec reafirma seu compromisso com a **transparência**, **segurança da informação** e **conformidade legal**, garantindo que todas as práticas de tratamento de dados — tanto na infraestrutura interna quanto na Ubidots — estejam alinhadas à LGPD e às diretrizes éticas do Inteli.
 
+Em virtude do exposto, esta Política de Privacidade ratifica o compromisso inegociável do grupo DedSec com a governança de dados e a proteção dos direitos fundamentais de liberdade e privacidade. A implementação da solução de controle de acesso, embora focada na segurança física e operacional da TIC Trens, não negligencia a segurança lógica e jurídica das informações.
+
+    Ao alinhar as práticas de desenvolvimento com a LGPD e utilizar parceiros tecnológicos confiáveis como a Ubidots, asseguramos um ambiente onde a inovação tecnológica caminha lado a lado com a responsabilidade ética. Desta forma, o projeto garante que a modernização dos processos de segurança não apenas proteja as infraestruturas críticas, mas também preserve a confiança e os direitos de todos os colaboradores envolvidos.
 
 ### 3.1.7. Bill of Material (BOM)
 
@@ -1030,9 +1035,19 @@ Utilize este guia se a experiência de Beatriz no monitoramento apresentar probl
     
 4.  **Sistema mostra que a sala está "Ocupada" há 24 horas (Falso Positivo):**
     * *Falha provável:* Ocorreu uma falha no registro de **Saída (Cena 7 do Hardware)**. O sistema recebeu o `Start`, mas nunca recebeu o `Stop`, mantendo o status travado no banco de dados.
+      
+A elaboração detalhada das Jornadas do Usuário e dos Storyboards, fundamentada nas práticas de Design de Experiência (UX), permitiu validar não apenas a viabilidade funcional, mas também a pertinência operacional da solução IoT proposta.
+
+    Ao correlacionar as expectativas humanas das personas (Carlos e Beatriz) com os requisitos técnicos de hardware e software detalhados nas tabelas por cena, foi possível demonstrar como a arquitetura do sistema composta por sensores RFID, validadores TOTP e dashboards em tempo real responde diretamente às dores de "cegueira operacional" e ineficiência burocrática identificadas no início do projeto.
+
+    Dessa forma, esta seção consolida o alinhamento entre a engenharia do projeto e a realidade do campo. O mapeamento técnico atrelado à narrativa visual assegura que o desenvolvimento tecnológico subsequente não seja apenas um exercício de codificação, mas uma entrega de valor focada em segurança, rastreabilidade e fluidez para os colaboradores da TIC Trens.
 
 
 ### 3.3.1. Requisitos Funcionais
+
+A definição dos Requisitos Funcionais constitui a base técnica do projeto, traduzindo as necessidades operacionais e de segurança da TIC Trens em funcionalidades tangíveis do sistema. Esta seção detalha os comportamentos específicos que a solução deve apresentar, abrangendo a integração entre o hardware de controle de acesso, a lógica de validação no backend e a interface de monitoramento.
+
+    Elaborados a partir das jornadas dos usuários e dos fluxos de processo mapeados, estes requisitos visam mitigar os riscos de falha humana e garantir a integridade dos dados. O Quadro 1, a seguir, consolida essas especificações, classificando-as por prioridade para orientar o desenvolvimento do Produto Mínimo Viável (MVP).
 
 &nbsp;&nbsp;&nbsp;&nbsp;Os requisitos funcionais definidos para o sistema de controle de acesso inteligente da TIC Trens foram elaborados com base no fluxo de validação apresentado no diagrama de sequência. Cada requisito busca garantir a segurança das áreas técnicas, a confiabilidade das informações e a rastreabilidade das ações dos colaboradores. O conjunto de requisitos descrito a seguir reflete a integração entre hardware IoT, backend e sistemas corporativos de capacitação e agendamento.  
 
@@ -1194,6 +1209,9 @@ O fluxo de acesso da solução é um processo de autenticação em dois fatores 
 4.  **Atuação (Liberação):** O **ESP32 - SAÍDA** é programado para que, no fluxo de saída, a leitura do cartão ou um botão de saída (não mostrado no diagrama, mas comum) acione o **Relé** para liberar a **Tranca Física** imediatamente (priorizando a evacuação/fluxo de saída, não exigindo senha).
 5.  **Monitoramento:** O status da porta (via Sensor) e o log de saída são enviados ao DB e, via **WebSockets**, ao **Dashboard do CCO**.
 
+A arquitetura de sistema apresentada consolida uma abordagem robusta e escalável para o desafio de controle de acesso da TIC Trens. Ao estruturar a solução em camadas distintas Borda, Comunicação, Backend e Aplicação, garante-se não apenas a organização lógica do desenvolvimento, mas também a eficiência operacional: o hardware foca na interação física imediata, enquanto a nuvem processa regras de negócio complexas.
+
+    O diagrama e os fluxos detalhados evidenciam como tecnologias díspares (sensores RFID, protocolo MQTT, bancos de dados relacionais e interfaces web) operam em harmonia para transformar um processo manual em um ecossistema digital seguro. Esta arquitetura assegura que cada tentativa de acesso seja tratada com rigor (MFA), registrada com precisão (Logs) e monitorada em tempo real (Dashboard), entregando à gestão da TIC Trens a visibilidade e o controle necessários para mitigar riscos em áreas críticas.
 
 ---
 ### 3.3.3.2. Diagrama da arquitetura do backend
@@ -1278,6 +1296,10 @@ Este fluxo detalha a jornada da requisição, desde a borda até a liberação d
 * Se o agendamento no passo 3 for inválido, o Orquestrador **pula** a geração de PIN.
 * O Orquestrador envia uma resposta de **Acesso Negado** (via **Publica resposta**) para o dispositivo e notifica o CCO com um alerta de "Agendamento Inválido".
 * O módulo **Salva Logs** registra a tentativa de acesso negado no **Banco de Dados** para auditoria.
+
+A arquitetura de backend detalhada atua como a espinha dorsal da solução DedSec, transformando sinais brutos de hardware em decisões de segurança inteligentes. Ao desacoplar a comunicação (MQTT) da lógica de negócios (Node.js) e da persistência (PostgreSQL), o sistema atinge um equilíbrio crucial entre desempenho em tempo real e integridade de dados.
+
+    A orquestração centralizada não apenas viabiliza a complexa validação de múltiplos fatores (Cartão + Agendamento + PIN), mas também elimina os "pontos cegos" operacionais através da atualização instantânea do Dashboard via WebSockets. Em suma, esta estrutura lógica garante que a TIC Trens possua um sistema auditável, escalável e resiliente, capaz de impor as regras corporativas de acesso de forma automatizada e infalível.
 
 ---
 
@@ -1413,6 +1435,10 @@ As associações representam como as classes interagem entre si, utilizando a mu
 | **sala** | $\longrightarrow$ | **tarefa** | $1 \longrightarrow 1...n$ | Uma sala pode ter **várias tarefas** agendadas nela. |
 ---
 </div>
+
+A apresentação dos recursos audiovisuais em conjunto com a modelagem estática UML consolida o entendimento da solução proposta para a TIC Trens. Enquanto os vídeos de demonstração cumprem o papel de validar funcionalmente os fluxos de arquitetura — transformando diagramas abstratos em processos visíveis de autenticação e monitoramento —, o Diagrama de Classes estabelece a fundação lógica necessária para a persistência dos dados.
+
+    A definição rigorosa das entidades user, tarefa e sala, juntamente com seus métodos de validação e relacionamentos, assegura que o sistema não apenas armazene informações, mas opere as regras de negócio de agendamento e permissão de forma eficiente. Dessa forma, esta seção fornece o blueprint estrutural indispensável para as etapas subsequentes de implementação do banco de dados e codificação do backend, garantindo que a aplicação final seja fiel aos requisitos de segurança e rastreabilidade mapeados.
 
 
 ### 3.3.4. Arquitetura do Protótipo
@@ -1559,10 +1585,25 @@ A estrutura técnica suporta os requisitos de qualidade listados na seção 3.3.
     
 *   **RNF06 (Portabilidade):** O Backend e as conexões com o Banco de Dados foram configurados via variáveis de ambiente (.env) e utilizam tecnologias agnósticas (Node.js), permitindo que o sistema rode tanto localmente (na rede da Tic Trens) quanto em serviços de nuvem (Render/HiveMQ) apenas alterando os parâmetros de conexão, sem necessidade de refatoração do código fonte.
 
+A arquitetura consolidada nesta etapa do projeto demonstra a maturidade técnica necessária para sustentar a operação crítica da TIC Trens. A preservação do modelo arquitetural após os testes de integração confirma a assertividade das decisões de design, evidenciando que a divisão estratificada entre Borda, Mensageria, Aplicação e Dados foi capaz de harmonizar os requisitos de hardware com a lógica de negócios complexa.
+
+    Mais do que cumprir listas de requisitos funcionais e não funcionais, esta arquitetura estabelece um ecossistema digital seguro, resiliente e escalável. Ao garantir a integridade do fluxo de dados desde o acionamento físico do relé até o registro imutável no banco de dados, a solução fornece a base tecnológica sólida indispensável para transformar a cultura de segurança e rastreabilidade da empresa parceira.
 
 ## 3.4. Resultados	
 
-_Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
+A seção de Resultados documenta a trajetória técnica e prática percorrida para a materialização da solução CTOS. A validação da solução seguiu uma abordagem evolutiva e incremental, visando mitigar riscos técnicos e assegurar que cada componente — hardware, firmware e software — atendesse aos rigorosos requisitos de segurança e conectividade estipulados pela TIC Trens.
+
+A apresentação dos resultados está estruturada cronologicamente para demonstrar a maturação do projeto:
+
+- Validação Lógica (Simulação): Inicia-se com os testes de lógica de programação e máquinas de estado em ambiente virtual (Wokwi), onde o fluxo de autenticação foi depurado antes da montagem física.
+
+- Validação de Hardware (Protótipo Offline): Avança para a construção física dos circuitos, testando a integração entre microcontroladores, sensores RFID e atuadores em um ambiente controlado.
+
+- Validação de Conectividade (Protótipo Online/IoT): Demonstra a implementação da arquitetura distribuída via MQTT, permitindo a comunicação em tempo real entre os dispositivos de borda e a nuvem.
+
+- Validação de Usabilidade e Negócio: Por fim, são apresentados os testes com usuários finais e a integração com o Dashboard de gestão, comprovando a eficácia da solução na resolução das dores operacionais do CCO.
+
+Esta estruturação comprova não apenas a viabilidade técnica da engenharia aplicada, mas também a adequação da solução às necessidades reais de controle de acesso e rastreabilidade.
 
 ### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi
 

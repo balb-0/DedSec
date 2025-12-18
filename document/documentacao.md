@@ -1045,6 +1045,10 @@ A elaboração detalhada das Jornadas do Usuário e dos Storyboards, fundamentad
 
 ### 3.3.1. Requisitos Funcionais
 
+A definição dos Requisitos Funcionais constitui a base técnica do projeto, traduzindo as necessidades operacionais e de segurança da TIC Trens em funcionalidades tangíveis do sistema. Esta seção detalha os comportamentos específicos que a solução deve apresentar, abrangendo a integração entre o hardware de controle de acesso, a lógica de validação no backend e a interface de monitoramento.
+
+    Elaborados a partir das jornadas dos usuários e dos fluxos de processo mapeados, estes requisitos visam mitigar os riscos de falha humana e garantir a integridade dos dados. O Quadro 1, a seguir, consolida essas especificações, classificando-as por prioridade para orientar o desenvolvimento do Produto Mínimo Viável (MVP).
+
 &nbsp;&nbsp;&nbsp;&nbsp;Os requisitos funcionais definidos para o sistema de controle de acesso inteligente da TIC Trens foram elaborados com base no fluxo de validação apresentado no diagrama de sequência. Cada requisito busca garantir a segurança das áreas técnicas, a confiabilidade das informações e a rastreabilidade das ações dos colaboradores. O conjunto de requisitos descrito a seguir reflete a integração entre hardware IoT, backend e sistemas corporativos de capacitação e agendamento.  
 
 <div align="center">  
@@ -1570,10 +1574,25 @@ A estrutura técnica suporta os requisitos de qualidade listados na seção 3.3.
     
 *   **RNF06 (Portabilidade):** O Backend e as conexões com o Banco de Dados foram configurados via variáveis de ambiente (.env) e utilizam tecnologias agnósticas (Node.js), permitindo que o sistema rode tanto localmente (na rede da Tic Trens) quanto em serviços de nuvem (Render/HiveMQ) apenas alterando os parâmetros de conexão, sem necessidade de refatoração do código fonte.
 
+A arquitetura consolidada nesta etapa do projeto demonstra a maturidade técnica necessária para sustentar a operação crítica da TIC Trens. A preservação do modelo arquitetural após os testes de integração confirma a assertividade das decisões de design, evidenciando que a divisão estratificada entre Borda, Mensageria, Aplicação e Dados foi capaz de harmonizar os requisitos de hardware com a lógica de negócios complexa.
+
+    Mais do que cumprir listas de requisitos funcionais e não funcionais, esta arquitetura estabelece um ecossistema digital seguro, resiliente e escalável. Ao garantir a integridade do fluxo de dados desde o acionamento físico do relé até o registro imutável no banco de dados, a solução fornece a base tecnológica sólida indispensável para transformar a cultura de segurança e rastreabilidade da empresa parceira.
 
 ## 3.4. Resultados	
 
-_Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
+A seção de Resultados documenta a trajetória técnica e prática percorrida para a materialização da solução CTOS. A validação da solução seguiu uma abordagem evolutiva e incremental, visando mitigar riscos técnicos e assegurar que cada componente — hardware, firmware e software — atendesse aos rigorosos requisitos de segurança e conectividade estipulados pela TIC Trens.
+
+A apresentação dos resultados está estruturada cronologicamente para demonstrar a maturação do projeto:
+
+- Validação Lógica (Simulação): Inicia-se com os testes de lógica de programação e máquinas de estado em ambiente virtual (Wokwi), onde o fluxo de autenticação foi depurado antes da montagem física.
+
+- Validação de Hardware (Protótipo Offline): Avança para a construção física dos circuitos, testando a integração entre microcontroladores, sensores RFID e atuadores em um ambiente controlado.
+
+- Validação de Conectividade (Protótipo Online/IoT): Demonstra a implementação da arquitetura distribuída via MQTT, permitindo a comunicação em tempo real entre os dispositivos de borda e a nuvem.
+
+- Validação de Usabilidade e Negócio: Por fim, são apresentados os testes com usuários finais e a integração com o Dashboard de gestão, comprovando a eficácia da solução na resolução das dores operacionais do CCO.
+
+Esta estruturação comprova não apenas a viabilidade técnica da engenharia aplicada, mas também a adequação da solução às necessidades reais de controle de acesso e rastreabilidade.
 
 ### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi
 

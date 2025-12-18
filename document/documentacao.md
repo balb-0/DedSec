@@ -207,6 +207,8 @@ Dessa forma, a empresa deve direcionar esforços para aproveitar a capacidade de
 
 ### 3.1.3. Descrição da solução a ser desenvolvida
 
+Esta seção detalha a arquitetura técnica e funcional da solução proposta para mitigar os riscos operacionais identificados na TIC Trens. O foco central é a transição de um modelo de controle manual e vulnerável para um ecossistema automatizado baseado em Internet das Coisas (IoT). A solução visa integrar hardware de campo e software de gestão para garantir a integridade dos dados e, primordialmente, a segurança das vidas envolvidas na operação ferroviária.
+
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
 A TIC Trens enfrenta uma crítica falta de rastreabilidade e controle nos acessos físicos a áreas técnicas de alto risco (subestações de energia, _houses_ de via, canteiros de obra). O processo atual de liberação é manual, baseado em comunicação via rádio, e propenso a falhas humanas, como o esquecimento de registrar a saída.
@@ -262,7 +264,7 @@ O sucesso será avaliado por três medidas principais durante a fase de testes (
 *   **Medida de Adoção (Qualitativa):** Feedback direto da persona "Operador do CCO" sobre a clareza, confiabilidade e utilidade do dashboard para a tomada de decisão de segurança.
 
 
-
+Em suma, a implementação da Plataforma de Gestão de Acesso Inteligente transcende a simples modernização tecnológica; ela representa uma mudança de paradigma na cultura de segurança da TIC Trens. Ao eliminar a dependência da falibilidade humana nos registros de entrada e saída, a solução entrega uma camada robusta de proteção operacional. A combinação de hardware de controle e software de monitoramento não apenas resolve o problema imediato de rastreabilidade, mas estabelece uma base escalável para que a eficiência operacional nunca comprometa a integridade física das equipes de campo.
 
 
 	

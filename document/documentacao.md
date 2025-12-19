@@ -3690,7 +3690,7 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
 
 &nbsp;&nbsp;&nbsp;&nbsp; Paralelamente, o desenvolvimento do Dashboard surge para facilitar o monitoramento pelo CCO, oferecendo uma interface prática para acompanhar logs, gerenciar trabalhadores e visualizar informações essenciais. 
 
-### 3.4.5. Protótipo Final do Projeto (Sprint 5)
+### 3.4.5. Protótipo Final do Projeto
 
 Esta seção tem como objetivo consolidar e apresentar o resultado integral do trabalho desenvolvido ao longo das cinco sprints. O foco desloca-se do planejamento e experimentação para a demonstração da solução efetivamente entregue (estado *As-Built*).
 

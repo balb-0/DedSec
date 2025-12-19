@@ -1,10 +1,8 @@
 # Documentação IoTDoc - Módulo 4 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final_**
+## DedSec
 
-## Nome do Grupo
-
-#### Nomes dos integrantes do grupo
+#### Bruno Kadayan, Felipe Caiafa, Francisco Filho, Guilherme Holanda, João Pedro Gonçalves, Rafael Gomes, Vitor Balbo.
 
 <img src="../assets/inteli.png">
 
@@ -25,7 +23,7 @@
 <br>
 
 
-# <a name="c1"></a>1. Introdução (sprint 1)
+# <a name="c1"></a>1. Introdução 
 
 O parceiro de negócio, TIC Trens, é uma holding brasileira que atua no setor de transporte, abrangendo empresas de transporte rodoviário e urbano de passageiros, ônibus, cargas e turismo. Sua principal área de atuação é o transporte de pessoas. O problema a ser resolvido pela empresa está relacionado à gestão e validação do acesso físico a suas áreas técnicas. A empresa enfrenta desafios em coordenar as demandas de acesso lidando com a sobreposição de atividades, priorização entre manutenção e implantação, e a necessidade de verificar a capacitação dos colaboradores conforme a análise de risco. Além disso, há o desafio de garantir que o acesso físico autorizado foi, de fato, realizado por pessoas capacitadas para a atividade programada.
 
@@ -59,7 +57,7 @@ Além disso, essa abordagem contribui para a conformidade com normas regulatóri
 
 Portanto, a adoção dessa solução IoT representa um avanço significativo na gestão de acesso, elevando o nível de segurança e controle, e posicionando a Tic Trens como referência em inovação no setor ferroviário.
 
-# <a name="c2"></a>2. Metodologia (sprint 3)
+# <a name="c2"></a>2. Metodologia 
 
 ## Estrutura de Visões do RM-ODP
 O modelo de referência RM-ODP (Reference Model for Open Distributed Processing) é uma abordagem estruturada para o desenvolvimento de sistemas distribuídos, baseada em diferentes perspectivas complementares chamadas viewpoints.
@@ -209,6 +207,8 @@ Dessa forma, a empresa deve direcionar esforços para aproveitar a capacidade de
 
 ### 3.1.3. Descrição da solução a ser desenvolvida
 
+Esta seção detalha a arquitetura técnica e funcional da solução proposta para mitigar os riscos operacionais identificados na TIC Trens. O foco central é a transição de um modelo de controle manual e vulnerável para um ecossistema automatizado baseado em Internet das Coisas (IoT). A solução visa integrar hardware de campo e software de gestão para garantir a integridade dos dados e, primordialmente, a segurança das vidas envolvidas na operação ferroviária.
+
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
 A TIC Trens enfrenta uma crítica falta de rastreabilidade e controle nos acessos físicos a áreas técnicas de alto risco (subestações de energia, _houses_ de via, canteiros de obra). O processo atual de liberação é manual, baseado em comunicação via rádio, e propenso a falhas humanas, como o esquecimento de registrar a saída.
@@ -264,7 +264,7 @@ O sucesso será avaliado por três medidas principais durante a fase de testes (
 *   **Medida de Adoção (Qualitativa):** Feedback direto da persona "Operador do CCO" sobre a clareza, confiabilidade e utilidade do dashboard para a tomada de decisão de segurança.
 
 
-
+Em suma, a implementação da Plataforma de Gestão de Acesso Inteligente transcende a simples modernização tecnológica; ela representa uma mudança de paradigma na cultura de segurança da TIC Trens. Ao eliminar a dependência da falibilidade humana nos registros de entrada e saída, a solução entrega uma camada robusta de proteção operacional. A combinação de hardware de controle e software de monitoramento não apenas resolve o problema imediato de rastreabilidade, mas estabelece uma base escalável para que a eficiência operacional nunca comprometa a integridade física das equipes de campo.
 
 
 	
@@ -368,7 +368,7 @@ Com relatórios em tempo real e indicadores de acesso, a empresa tem maior capac
 
 &nbsp;&nbsp;&nbsp;&nbsp;Em conclusão, a aplicação do Value Proposition Canvas ao contexto da TIC Trens evidencia a importância de alinhar a proposta de valor da solução IoT às reais necessidades operacionais e de segurança da empresa. A análise das dores e desafios enfrentados — como a falta de controle eficiente de acessos, os riscos trabalhistas e a dificuldade de rastreabilidade — permite compreender de forma clara os pontos críticos que comprometem a eficiência e a conformidade da organização. Com isso, a TIC Trens obtém ganhos tangíveis, como o aumento da segurança operacional, a redução de custos administrativos e a melhora significativa da conformidade regulatória. A integração entre controle de acesso, gestão de capacitação e rastreabilidade de operações reafirma a TIC Trens como exemplo de segurança industrial e demonstra como o uso estratégico de IoT pode transformar processos críticos em sistemas inteligentes, seguros e eficientes.
 
-### 3.1.5. Matriz de Riscos (sprint 1)	
+### 3.1.5. Matriz de Riscos 
 
 A matriz de riscos é uma ferramenta utilizada para identificar, qualificar e categorizar os riscos que podem ocorrer ao longo do projeto, classificando-os em Ameaças (riscos negativos) e Oportunidades (riscos positivos).
 
@@ -583,6 +583,9 @@ Elas funcionam como o “lado positivo” da análise de riscos: enquanto os ris
 
 &nbsp;&nbsp;&nbsp;&nbsp;O grupo DedSec reafirma seu compromisso com a **transparência**, **segurança da informação** e **conformidade legal**, garantindo que todas as práticas de tratamento de dados — tanto na infraestrutura interna quanto na Ubidots — estejam alinhadas à LGPD e às diretrizes éticas do Inteli.
 
+Em virtude do exposto, esta Política de Privacidade ratifica o compromisso inegociável do grupo DedSec com a governança de dados e a proteção dos direitos fundamentais de liberdade e privacidade. A implementação da solução de controle de acesso, embora focada na segurança física e operacional da TIC Trens, não negligencia a segurança lógica e jurídica das informações.
+
+    Ao alinhar as práticas de desenvolvimento com a LGPD e utilizar parceiros tecnológicos confiáveis como a Ubidots, asseguramos um ambiente onde a inovação tecnológica caminha lado a lado com a responsabilidade ética. Desta forma, o projeto garante que a modernização dos processos de segurança não apenas proteja as infraestruturas críticas, mas também preserve a confiança e os direitos de todos os colaboradores envolvidos.
 
 ### 3.1.7. Bill of Material (BOM)
 
@@ -1032,9 +1035,19 @@ Utilize este guia se a experiência de Beatriz no monitoramento apresentar probl
     
 4.  **Sistema mostra que a sala está "Ocupada" há 24 horas (Falso Positivo):**
     * *Falha provável:* Ocorreu uma falha no registro de **Saída (Cena 7 do Hardware)**. O sistema recebeu o `Start`, mas nunca recebeu o `Stop`, mantendo o status travado no banco de dados.
+      
+A elaboração detalhada das Jornadas do Usuário e dos Storyboards, fundamentada nas práticas de Design de Experiência (UX), permitiu validar não apenas a viabilidade funcional, mas também a pertinência operacional da solução IoT proposta.
+
+    Ao correlacionar as expectativas humanas das personas (Carlos e Beatriz) com os requisitos técnicos de hardware e software detalhados nas tabelas por cena, foi possível demonstrar como a arquitetura do sistema composta por sensores RFID, validadores TOTP e dashboards em tempo real responde diretamente às dores de "cegueira operacional" e ineficiência burocrática identificadas no início do projeto.
+
+    Dessa forma, esta seção consolida o alinhamento entre a engenharia do projeto e a realidade do campo. O mapeamento técnico atrelado à narrativa visual assegura que o desenvolvimento tecnológico subsequente não seja apenas um exercício de codificação, mas uma entrega de valor focada em segurança, rastreabilidade e fluidez para os colaboradores da TIC Trens.
 
 
 ### 3.3.1. Requisitos Funcionais
+
+A definição dos Requisitos Funcionais constitui a base técnica do projeto, traduzindo as necessidades operacionais e de segurança da TIC Trens em funcionalidades tangíveis do sistema. Esta seção detalha os comportamentos específicos que a solução deve apresentar, abrangendo a integração entre o hardware de controle de acesso, a lógica de validação no backend e a interface de monitoramento.
+
+    Elaborados a partir das jornadas dos usuários e dos fluxos de processo mapeados, estes requisitos visam mitigar os riscos de falha humana e garantir a integridade dos dados. O Quadro 1, a seguir, consolida essas especificações, classificando-as por prioridade para orientar o desenvolvimento do Produto Mínimo Viável (MVP).
 
 &nbsp;&nbsp;&nbsp;&nbsp;Os requisitos funcionais definidos para o sistema de controle de acesso inteligente da TIC Trens foram elaborados com base no fluxo de validação apresentado no diagrama de sequência. Cada requisito busca garantir a segurança das áreas técnicas, a confiabilidade das informações e a rastreabilidade das ações dos colaboradores. O conjunto de requisitos descrito a seguir reflete a integração entre hardware IoT, backend e sistemas corporativos de capacitação e agendamento.  
 
@@ -1196,6 +1209,9 @@ O fluxo de acesso da solução é um processo de autenticação em dois fatores 
 4.  **Atuação (Liberação):** O **ESP32 - SAÍDA** é programado para que, no fluxo de saída, a leitura do cartão ou um botão de saída (não mostrado no diagrama, mas comum) acione o **Relé** para liberar a **Tranca Física** imediatamente (priorizando a evacuação/fluxo de saída, não exigindo senha).
 5.  **Monitoramento:** O status da porta (via Sensor) e o log de saída são enviados ao DB e, via **WebSockets**, ao **Dashboard do CCO**.
 
+A arquitetura de sistema apresentada consolida uma abordagem robusta e escalável para o desafio de controle de acesso da TIC Trens. Ao estruturar a solução em camadas distintas Borda, Comunicação, Backend e Aplicação, garante-se não apenas a organização lógica do desenvolvimento, mas também a eficiência operacional: o hardware foca na interação física imediata, enquanto a nuvem processa regras de negócio complexas.
+
+    O diagrama e os fluxos detalhados evidenciam como tecnologias díspares (sensores RFID, protocolo MQTT, bancos de dados relacionais e interfaces web) operam em harmonia para transformar um processo manual em um ecossistema digital seguro. Esta arquitetura assegura que cada tentativa de acesso seja tratada com rigor (MFA), registrada com precisão (Logs) e monitorada em tempo real (Dashboard), entregando à gestão da TIC Trens a visibilidade e o controle necessários para mitigar riscos em áreas críticas.
 
 ---
 ### 3.3.3.2. Diagrama da arquitetura do backend
@@ -1280,6 +1296,10 @@ Este fluxo detalha a jornada da requisição, desde a borda até a liberação d
 * Se o agendamento no passo 3 for inválido, o Orquestrador **pula** a geração de PIN.
 * O Orquestrador envia uma resposta de **Acesso Negado** (via **Publica resposta**) para o dispositivo e notifica o CCO com um alerta de "Agendamento Inválido".
 * O módulo **Salva Logs** registra a tentativa de acesso negado no **Banco de Dados** para auditoria.
+
+A arquitetura de backend detalhada atua como a espinha dorsal da solução DedSec, transformando sinais brutos de hardware em decisões de segurança inteligentes. Ao desacoplar a comunicação (MQTT) da lógica de negócios (Node.js) e da persistência (PostgreSQL), o sistema atinge um equilíbrio crucial entre desempenho em tempo real e integridade de dados.
+
+    A orquestração centralizada não apenas viabiliza a complexa validação de múltiplos fatores (Cartão + Agendamento + PIN), mas também elimina os "pontos cegos" operacionais através da atualização instantânea do Dashboard via WebSockets. Em suma, esta estrutura lógica garante que a TIC Trens possua um sistema auditável, escalável e resiliente, capaz de impor as regras corporativas de acesso de forma automatizada e infalível.
 
 ---
 
@@ -1416,6 +1436,10 @@ As associações representam como as classes interagem entre si, utilizando a mu
 ---
 </div>
 
+A apresentação dos recursos audiovisuais em conjunto com a modelagem estática UML consolida o entendimento da solução proposta para a TIC Trens. Enquanto os vídeos de demonstração cumprem o papel de validar funcionalmente os fluxos de arquitetura — transformando diagramas abstratos em processos visíveis de autenticação e monitoramento —, o Diagrama de Classes estabelece a fundação lógica necessária para a persistência dos dados.
+
+    A definição rigorosa das entidades user, tarefa e sala, juntamente com seus métodos de validação e relacionamentos, assegura que o sistema não apenas armazene informações, mas opere as regras de negócio de agendamento e permissão de forma eficiente. Dessa forma, esta seção fornece o blueprint estrutural indispensável para as etapas subsequentes de implementação do banco de dados e codificação do backend, garantindo que a aplicação final seja fiel aos requisitos de segurança e rastreabilidade mapeados.
+
 
 ### 3.3.4. Arquitetura do Protótipo
 
@@ -1500,18 +1524,86 @@ Acesse o [vídeo explicativo clicando aqui](https://youtu.be/Ae6xPNZuHMM)
 
 &nbsp;&nbsp;&nbsp;&nbsp; Portanto, é evidente que a arquitetura de protótipo em blocos é essencial para fornecer uma visão clara, estruturada e objetiva de todos os componentes que compõem o sistema e como todas as tecnologias do sistema se relacionam. Esse modelo facilita o entendimento global do funcionamento, identifica dependências e papéis exercidos por cada camada.
 
-### 3.3.5. Arquitetura Refinada da Solução (sprint 5)	
+### 3.3.5. Arquitetura Refinada da Solução
 
-_Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura). <br>
+#### Status da Revisão e Feedback
 
-Justifique como a arquitetura suporta os requisitos funcionais e não funcionais. <br>
+Nesta etapa do projeto (Sprint 5), a equipe realizou uma análise da arquitetura da solução implementada. Após a validação dos testes de integração e a verificação de conformidade com os objetivos do projeto, concluiu-se que a estrutura arquitetural vigente é robusta e adequada, decidindo-se pela preservação integral do modelo atual, sem modificações.
 
-A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada._
+A arquitetura definida nas sprints anteriores provou-se capaz de suportar com eficiência o fluxo completo de autenticação MFA (RFID + SMS), a comunicação assíncrona via MQTT e a persistência segura dos dados, consolidando-se como a versão final para este ciclo de desenvolvimento.
 
+#### Visão da Arquitetura (Consolidada)
+
+A solução DedSec mantém sua arquitetura de **IoT Distribuído** baseada em eventos, utilizando um modelo híbrido de processamento na borda (_Edge Computing_ leve) e processamento centralizado na nuvem (_Cloud Computing_). O sistema é estruturado em quatro camadas principais:
+
+1.  **Camada de Borda (Edge - ESP32):** Responsável pela coleta de dados (RFID e Teclado) e atuação física (Tranca), operando como cliente MQTT seguro.
+    
+2.  **Camada de Mensageria (Broker MQTT):** Atua como o barramento central de comunicação, garantindo desacoplamento e entrega de mensagens.
+    
+3.  **Camada de Aplicação (Backend):** Centraliza as regras de negócio, validação de credenciais, integração com API de SMS (Twilio) e gestão de acesso.
+    
+4.  **Camada de Dados (Persistência):** Banco de dados relacional para armazenamento seguro de logs e usuários.
+
+Para detalhar o rigor técnico das interações entre estas camadas e explicitar o fluxo de comunicação durante o processo de autenticação, apresenta-se abaixo o Diagrama de Sequência do sistema:
+
+<img src="/assets/documentação/diagrama_sequencia.png">
+
+    
+
+#### Justificativa de Suporte aos Requisitos Funcionais (RF)
+
+A arquitetura validada atende integralmente aos requisitos funcionais listados na seção 3.3.1:
+
+*   **RF01 (Coleta RFID + Teclado):** A utilização do microcontrolador ESP32 na borda, integrado às bibliotecas MFRC522 e Keypad, garante a interface física necessária para a coleta simultânea do UID do cartão e do PIN, processando esses inputs localmente antes da transmissão.
+    
+*   **RF02 (Conectividade) e RF03 (Protocolo MQTT):** A arquitetura baseia-se na biblioteca PubSubClient no firmware do ESP32, permitindo a conexão Wi-Fi e a formatação dos dados em JSON para publicação em tópicos hierárquicos (ex: request\_card, submit\_sms), cumprindo rigorosamente os protocolos de comunicação exigidos.
+    
+*   **RF04 (Autenticação Multifator) e RF05 (Capacitação/Agendamento):** A centralização da lógica no Backend (Node.js) é fundamental aqui. O ESP32 envia os dados brutos, e o servidor consulta o banco de dados para validar o UID, checar capacitação/agendamento (**RF05**) e gerenciar o envio/validação do PIN via SMS (**RF04**), garantindo que a decisão de acesso seja tomada com base em dados íntegros e atualizados.
+    
+*   **RF06 (Gestão de Dispositivos):** O modelo de dados relacional (PostgreSQL) suporta tabelas específicas para cadastro de dispositivos e vinculação a salas, permitindo que o Backend gerencie múltiplos pontos de acesso identificados pelo device\_id enviado no payload MQTT.
+    
+*   **RF07 (Registro e Auditoria):** A arquitetura orientada a eventos assegura que, no momento exato da validação do PIN no Backend, uma transação SQL de INSERT seja executada na tabela de logs (alocacao\_sala), registrando ID, timestamp (NOW()) e resultado, garantindo a rastreabilidade completa.
+    
+*   **RF08 (Dashboard):** A exposição de APIs RESTful pelo Backend permite que o Frontend (React/Vite) consuma os dados de logs e status em tempo real, fornecendo a visualização gráfica exigida.
+    
+*   **RF09 (Criptografia em Trânsito):** A infraestrutura suporta conexões seguras, utilizando MQTTS (MQTT sobre TLS) entre o ESP32 e o Broker HiveMQ, e HTTPS entre o Backend e o Banco de Dados, protegendo os dados em trânsito.
+    
+
+#### Justificativa de Suporte aos Requisitos Não Funcionais (RNF)
+
+A estrutura técnica suporta os requisitos de qualidade listados na seção 3.3.2:
+
+*   **RNF01 (Segurança Avançada):** O Backend modular em Node.js permite a integração de bibliotecas criptográficas avançadas. A arquitetura de banco de dados suporta o armazenamento de dados criptografados (como hashes de senhas e dados sensíveis) sem depender de texto plano, viabilizando a implementação de algoritmos robustos.
+    
+*   **RNF02 (Adequação Funcional MFA):** A máquina de estados implementada no Backend (activeMfaChallenges) impede "bypasses". O sistema exige a sequência lógica: _Leitura RFID -> Geração de Desafio -> Recebimento de PIN -> Validação_, rejeitando qualquer tentativa de envio de PIN sem um RFID prévio válido.
+    
+*   **RNF03 (Desempenho de Travamento):** O código embarcado no ESP32 é otimizado para, após receber o comando tranca:liberada do MQTT, acionar o relé e iniciar um temporizador interno (millis()) que garante o fechamento automático em 5 segundos ou menos, independentemente da latência da rede após o comando inicial.
+    
+*   **RNF04 (Compatibilidade de Protocolos):** A arquitetura é híbrida, utilizando MQTT para a comunicação leve e rápida com o hardware (IoT) e HTTP para a comunicação com o Dashboard e APIs externas (como Ubidots ou Twilio), garantindo a interoperabilidade.
+    
+*   **RNF05 (Manutenibilidade):** A separação clara em camadas (Firmware C++, Backend Node.js, Frontend React, Banco SQL) garante alta coesão e baixo acoplamento. É possível atualizar a regra de negócio no servidor sem precisar regravar o código físico do ESP32, e vice-versa.
+    
+*   **RNF06 (Portabilidade):** O Backend e as conexões com o Banco de Dados foram configurados via variáveis de ambiente (.env) e utilizam tecnologias agnósticas (Node.js), permitindo que o sistema rode tanto localmente (na rede da Tic Trens) quanto em serviços de nuvem (Render/HiveMQ) apenas alterando os parâmetros de conexão, sem necessidade de refatoração do código fonte.
+
+A arquitetura consolidada nesta etapa do projeto demonstra a maturidade técnica necessária para sustentar a operação crítica da TIC Trens. A preservação do modelo arquitetural após os testes de integração confirma a assertividade das decisões de design, evidenciando que a divisão estratificada entre Borda, Mensageria, Aplicação e Dados foi capaz de harmonizar os requisitos de hardware com a lógica de negócios complexa.
+
+    Mais do que cumprir listas de requisitos funcionais e não funcionais, esta arquitetura estabelece um ecossistema digital seguro, resiliente e escalável. Ao garantir a integridade do fluxo de dados desde o acionamento físico do relé até o registro imutável no banco de dados, a solução fornece a base tecnológica sólida indispensável para transformar a cultura de segurança e rastreabilidade da empresa parceira.
 
 ## 3.4. Resultados	
 
-_Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
+A seção de Resultados documenta a trajetória técnica e prática percorrida para a materialização da solução CTOS. A validação da solução seguiu uma abordagem evolutiva e incremental, visando mitigar riscos técnicos e assegurar que cada componente — hardware, firmware e software — atendesse aos rigorosos requisitos de segurança e conectividade estipulados pela TIC Trens.
+
+A apresentação dos resultados está estruturada cronologicamente para demonstrar a maturação do projeto:
+
+- Validação Lógica (Simulação): Inicia-se com os testes de lógica de programação e máquinas de estado em ambiente virtual (Wokwi), onde o fluxo de autenticação foi depurado antes da montagem física.
+
+- Validação de Hardware (Protótipo Offline): Avança para a construção física dos circuitos, testando a integração entre microcontroladores, sensores RFID e atuadores em um ambiente controlado.
+
+- Validação de Conectividade (Protótipo Online/IoT): Demonstra a implementação da arquitetura distribuída via MQTT, permitindo a comunicação em tempo real entre os dispositivos de borda e a nuvem.
+
+- Validação de Usabilidade e Negócio: Por fim, são apresentados os testes com usuários finais e a integração com o Dashboard de gestão, comprovando a eficácia da solução na resolução das dores operacionais do CCO.
+
+Esta estruturação comprova não apenas a viabilidade técnica da engenharia aplicada, mas também a adequação da solução às necessidades reais de controle de acesso e rastreabilidade.
 
 ### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi
 
@@ -3414,13 +3506,7 @@ void loop() {
 
 &nbsp;&nbsp;&nbsp;&nbsp; Os testes realizados reforçam que o sistema é capaz de identificar usuários, validar autenticações, responder adequadamente a problemas como perda de conexão, erros de senha, cartões não autorizados e falhas de comunicação entre os módulos. Dessa forma, a seção cumpre seu objetivo de validar o protótipo em cenários reais de operação, servindo como base para aprimoramentos futuros e garantindo que os requisitos funcionais e de segurança estejam sendo atendidos.
 
-### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
-
----
-
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+### 3.4.4. Protótipo Físico do Projeto (online)	
 
 #### **3.4.4.1. Casos de Teste**
 
@@ -3604,6 +3690,79 @@ Esta subseção detalha os cenários de uso do sistema de controle de acesso por
 
 &nbsp;&nbsp;&nbsp;&nbsp; Paralelamente, o desenvolvimento do Dashboard surge para facilitar o monitoramento pelo CCO, oferecendo uma interface prática para acompanhar logs, gerenciar trabalhadores e visualizar informações essenciais. 
 
+### 3.4.5. Protótipo Final do Projeto (sprint 5)	
+
+_Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
+Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+
+### 3.4.6 Teste de Usabilidade
+
+&nbsp;&nbsp;&nbsp;&nbsp; Esta seção apresenta os procedimentos utilizados para validar o funcionamento do sistema, garantindo que cada módulo opere conforme o esperado. Aqui são descritos os cenários de teste, condições de execução, resultados esperados e critérios de aprovação, permitindo que qualquer operador, técnico ou desenvolvedor reproduza os testes de forma consistente e confiável.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes documentados servem como referência para diagnóstico, manutenção e verificação após atualizações, assegurando que o sistema mantenha sua integridade e desempenho ao longo do tempo. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Entre as principais métricas analisadas estão a taxa de sucesso das operações e ocorrência de erros. A análise dessas métricas garante que o sistema atenda aos requisitos mínimos de qualidade e opere dentro dos limites esperados em condições reais de uso.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes foram realizados no ambiente do Instituto de Tecnologia e Liderança no dia 08 de dezembro de 2025 com estudantes que não sabiam do contexto do projeto e apenas receberam um cartão RFID para validar a entrada e um celular para receber o SMS. O objetivo é identificar o quão intuitiva é a usabilidade do nosso sistema e identificar os erros para minimizá-los antes da entrega do produto final.
+
+#### 1. Teste de sucesso do CTOS Entrada
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir entrar em uma das salas.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar a senha no celular | Digitar a senha | Verificar se a tranca abriu |
+|--------------|------|-------------------------|------------------------------|-----------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso | ❌ Erro | ✅ Sucesso |
+| Kaian    | 2    | ✅ Sucesso | ❌ Erro | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 2. Teste de sucesso do CTOS Saída
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário é um trabalhador da estação de Trem, e deve utilizar o sistema para conseguir sair da sala.
+
+|     Nome     | Item |  Aproximar cartão RFID  | Verificar se a tranca abriu |
+|--------------|------|-------------------------|-----------------------------|
+| Paulo Victor | 1    | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | 2    | ✅ Sucesso | ✅ Sucesso | 
+| Samuel Vono  | 3    | ✅ Sucesso | ✅ Sucesso |
+
+#### 3. Teste de funcionalidade do Dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para ver onde um dos usuários entrou.
+
+|     Nome     |  Ver em qual sala esta o Bruno |
+|--------------|--------------------------------|
+| Paulo Victor | ✅ Sucesso |
+| Kaian    | ✅ Sucesso |  
+| Samuel Vono  | ✅ Sucesso |
+
+#### 4. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para registrar um trabalhador
+
+|     Nome     | Clicar no botão "Novo Usuário" | Digitar as informações do novo usuário | Clicar em "Criar" |
+|--------------|--------------------------------|----------------------------------------|-------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+#### 5. Teste de Registro de trabalhadores
+
+&nbsp;&nbsp;&nbsp;&nbsp; Durante esse teste, o usuário trabalha no COO, e deve utilizar o sistema para atribuir uma tarefa a um trabalhador
+
+|     Nome     | Clique em "Gerenciar tarefas" | Pesquise pelo nome de algum trabalhador registrado | Clique em "+ Atribuir tarefa" | Digite os dados dessa nova tarefa |
+|--------------|-------------------------------|----------------------------------------------------|----------------------------|-------------------------|
+| Paulo Victor | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Kaian    | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+| Samuel Vono  | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso | ✅ Sucesso |
+
+&nbsp;&nbsp;&nbsp;&nbsp; Através dos testes, foi possível confirmar que todos as partes do CTOS desempenham suas funções principais de maneira  confiável. Os cenários simulados demonstraram que tanto o fluxo de entrada e saída quanto as operações do Dashboard e do módulo de registro funcionam conforme especificado, apresentando alta taxa de sucesso e baixa ocorrência de falhas.
+
+&nbsp;&nbsp;&nbsp;&nbsp; No entanto, um dos erros identificados durante os testes, foi a dificuldade no processo de envio das mensagens. Em alguns dos testes, alguns usuários relataram que a senha que era enviada apresentava acesso negado ao sistema. Isso porque, o sistema físico se sobrecarregava com muitas requisições de envio de senha, o que fazia com que ele mandasse a senha apenas quando era reiniciado. 
+
+&nbsp;&nbsp;&nbsp;&nbsp; Após os dois primeiros testes, conseguimos corrigir esse problema e evitá-lo durante o último teste do sistema, que garantiu um bom funcionamento nos restante das etapas e não apresentou nenhum outro defeito durante o processo de testes.
+
+**Link para planilha de testes completa:** https://docs.google.com/spreadsheets/d/1gIgESOluDs9bUZzKPDMIbwmFvWBmQvvtsm09tMgIg_o/edit?usp=sharing  
+
 ### 3.4.5. Protótipo Final do Projeto (Sprint 5)
 
 Esta seção tem como objetivo consolidar e apresentar o resultado integral do trabalho desenvolvido ao longo das cinco sprints. O foco desloca-se do planejamento e experimentação para a demonstração da solução efetivamente entregue (estado *As-Built*).
@@ -3703,7 +3862,17 @@ Dispositivo simplificado para registro de fluxo e desbloqueio rápido interno. A
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
-_Escreva, de forma resumida, sobre os principais resultados do seu projeto e faça recomendações formais ao seu parceiro de projeto em relação ao uso dessa solução. Você pode aproveitar este espaço para comentar sobre possíveis materiais extras._
+&nbsp;&nbsp;&nbsp;&nbsp; Tudo isto posto, a problemática trazida pela TIC Trens dizia respeito à otimização do processo de entrada de trabalhadores nas diversas salas de manutenção da estação de trens, tendo em vista o sistema pouco eficaz atualmente vigente.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Assim, o CTOS, projeto IoT desenvolvido pelo grupo DedSec, surge como solução para a problemática em questão. O sistema utiliza sensor RFID, serviço de SMS e teclado matricial para autenticação e liberação dos trabalhadores no dia, horário e sala autorizados. Além disso, apresenta um dashboard para acompanhamento, por parte do CCO, do histórico de alocações em salas por cada usuário registrado no banco de dados.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Dessa forma, o projeto CTOS resolve a problemática do sistema burocrático atual, no qual os trabalhadores precisam aguardar permissões e liberações manuais para terem acesso às salas e realizarem seus trabalhos. Além disso, permite maior controle sobre quem entrou em cada sala, bem como os horários de entrada e saída, oferecendo ao CCO uma organização significativamente melhor do fluxo de acesso.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Nesse sentido, recomenda-se que o projeto seja instalado em grande escala, abrangendo o máximo de salas possível. É importante que o sistema de entrada seja instalado ao lado da porta de acesso, pelo lado de fora. A implementação em grande volume é viável graças ao sistema simples e de baixo custo desenvolvido.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Os testes de guerrilha apresentaram bom feedback em relação ao funcionamento do CTOS. Apesar disso, foi observada uma grande margem de melhoria para o protótipo. Como prioridade principal, recomenda-se que, no prosseguimento do projeto, seja adicionado um broker local ao sistema, garantindo seu pleno funcionamento mesmo em locais sem disponibilidade de Wi-Fi.
+
+&nbsp;&nbsp;&nbsp;&nbsp; Em suma, o desenvolvimento do CTOS demonstrou que uma solução IoT bem estruturada é capaz de transformar de maneira significativa o fluxo operacional da TIC Trens, oferecendo mais agilidade, segurança e rastreabilidade no acesso às salas de manutenção. Os resultados obtidos evidenciam que a proposta atende plenamente à necessidade inicial e possui grande potencial de escalabilidade, configurando-se como uma base sólida para evoluções futuras.
 
 ## <a name="c5"></a>5. Referências
 
@@ -3748,6 +3917,8 @@ GEEKSFORGEEKS. Unified Modeling Language (UML) Sequence Diagrams. Disponível em
 . Acesso em: 01 dez. 2025.
 
 # <a name="c6"></a>6. Anexos
+
+
 
 ## Manual de Instruções 
 

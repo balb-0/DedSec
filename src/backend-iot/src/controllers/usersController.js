@@ -5,7 +5,21 @@ const db = require("../config/database");
 const getAllUsers = async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT id, nome, rfid_codigo, telefone, ativo, sala_id, created_at FROM users ORDER BY created_at DESC"
+      `SELECT u.id, u.nome, u.rfid_codigo, u.telefone, u.ativo, u.sala_id, u.created_at,
+              CASE 
+                WHEN EXISTS (
+                  SELECT 1 FROM alocacao_sala 
+                  WHERE user_id = u.id 
+                    AND (fim IS NULL OR fim > NOW())
+                ) THEN 'em_andamento'
+                WHEN EXISTS (
+                  SELECT 1 FROM alocacao_sala 
+                  WHERE user_id = u.id
+                ) THEN 'finalizado'
+                ELSE 'sem_tarefa'
+              END as status_alocacao
+       FROM users u
+       ORDER BY u.created_at DESC`
     );
     res.status(200).json({ success: true, data: result.rows });
   } catch (error) {
